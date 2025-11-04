@@ -1,0 +1,72 @@
+---
+title: "Trends and Regional Differences in U.S. Dental Caries and Preventive Care: NHANES + California Medi-Cal (1999–2023)"
+author: "Team: Jian Gao (jg5037) [add teammates byself]"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: false
+    df_print: paged
+bibliography: references.bib
+link-citations: true
+---
+
+
+## Team Members
+- Jason Guo (jg5037)
+- [Add teammates’ names and UNI byself]
+
+
+
+## Proposed Title
+**Trends and Regional Differences in U.S. Dental Caries Burden and Preventive Service Utilization:  A Combined Analysis of NHANES and California Medi-Cal Data (1999–2023)**
+
+## Motivation
+Dental caries remains the most common chronic disease of childhood in the U.S., and progress has been slower among low-income and minority children [@nidcr2022].  
+Sealants are highly effective for preventing pit-and-fissure caries, with large reductions in molar cavities reported in the literature [@ng2023].  
+We will integrate national oral health prevalence data (NHANES [@nhanes2025]) with California program-level dental utilization data (Medi-Cal [@medical2023]) to examine whether increases in preventive dental service utilization correspond with reductions in caries burden and to quantify COVID-19–related disruption.
+
+
+## Expected Final Product
+- Reproducible R Markdown report with interactive visualizations (GitHub Pages).  
+- Statistical and graphical summaries of national caries trends and California preventive-service utilization.  
+- Evaluation of COVID-19 disruptions in dental service use.
+
+## Data Sources
+1. **NHANES Oral Health Prevalence Estimates (1999–2020)** — Centers for Disease Control and Prevention (CDC) [@nhanes2025].  
+2. **California Medi-Cal Dental Utilization and Sealant Data (2013–2023)** — California Department of Health Care Services [@medical2023].  
+3. **Data dictionary** — official metadata file describing variable definitions.  
+
+All datasets are stored in the `datasets/` folder:  
+`nhanes_oral.csv`, `ca_dental.csv`, `ca_dictionary.csv`.
+
+
+
+
+## Planned Analyses
+- Harmonize age stages across datasets:  
+  Early Childhood (2–5), Childhood (6–9), Adolescence (10–19),  
+  Young Adulthood (20–34), Adulthood (35–64), Older Age (65+).  
+- **NHANES:** describe time trends in total and untreated caries by age, sex, and race.  
+- **Medi-Cal:** analyze preventive and sealant utilization trends (2013–2023) and evaluate COVID-19 interruption using segmented regression.  
+- **Ecological analysis:** merge datasets by age stage × year and test correlation between preventive utilization and caries prevalence via weighted least squares (1/SE²).  
+- **Visualization:** time-series plots, scatter-regression plots, inequality trends, and ITS diagrams.
+
+**Challenges:** aligning variable definitions, matching age-year windows, and addressing ecological inference limitations.
+
+
+
+
+## Timeline
+| Date Range | Main Task |
+|-------------|------------|
+| **Nov 1 – Nov 10** | Data cleaning and harmonization; preliminary plots for NHANES and Medi-Cal. |
+| **Nov 11 – Nov 17** | NHANES national trend and inequality analysis. |
+| **Nov 18 – Nov 24** | Medi-Cal preventive and sealant utilization; COVID-19 interruption analysis. |
+| **Nov 25 – Dec 1** | Ecological association modeling and sensitivity checks. |
+| **Dec 2 – Dec 8** | Integrate results and finalize figures/tables. |
+| **Dec 9 – Dec 12** | Final report writing, GitHub Pages deployment, and presentation preparation. |
+
+
+
+
+

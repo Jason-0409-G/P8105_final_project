@@ -1,0 +1,30 @@
+column,type,label,description
+Calendar Year,text,Calendar Year,"Calendar Year (CY): CY 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, and 2022."
+Measure,text,Measure,"Grouping of dental services utilized: 
+Annual Dental Visit (D0100 - D9999 or Safety Net Clinics (SNC) 03 Encounters CY 2013-2019). For CY 2019, Annual Dental Visit also included CPT 99188 along with CDT procedures and SNC 03 encounters.
+For each measure below, CY 2016, 2017, 2018 and 2019 captured members who received the CDT procedures or SNCs 03 Encounters with identified ICD 10 Codes.
+Exams/Oral Health Evaluations (D0120, D0145, or D0150; CY 2016, 2017, 2018 and 2019 included SNCs 03 Encounters with identified ICD 10 Codes ), 
+Use of Diagnostic Services (D0100-D0999;  CY 2016, 2017, 2018 and 2019 included SNCs 03 Encounters with identified ICD 10 Codes ),
+Use of Dental Treatment Services (D2000 - D9999; CY 2016, 2017, 2018 and 2019 included SNCs 03 Encounters with identified ICD 10 Codes ), 
+Use of Preventative Services (D1000-D1999; CY 2016, 2017 , 2018 and 2019 included SNCs 03 Encounters with identified ICD 10 Codes ). For CY 2019, Use of Preventive Services also included CPT 99188 along with CDT procedures and SNC 03 encounters, 
+Use of Restorative Services (D2000-D2999; CY 2016, 2017, 2018 and 2019 included SNCs 03 Encounters with identified ICD 10 Codes ), 
+Treatment/Prevention for Caries (D2000-D2999) or Caries-Preventive Procedure (D1203-D1208, D1310, D1330, D1351; CY 2016, 2017 , 2018 and 2019 included SNCs 03 Encounters with identified ICD 10 Codes ), 
+Use of Sealants (Number of members ages 6-9 who received a dental sealant (D1351) on a permanent first molar (tooth number = 3, 14, 19, 30) or Number of members ages 10-14 who received a dental sealant (D1351) on a permanent second molar (tooth number=2, 15, 18, 31); CY 2016, 2017, 2018 and 2019 included SNCs 03 Encounters with ICD 10 Code Z98810)."
+Age Filter,text,Age Group ,"Age Group for Measures: Age <1, Age 1-2, Age 3-5, Age 6-9, Age 10-14, Age 15-18, Age 19-20, Age 21-34, Age 35-44, Age 45-64, Age 65-74, Age 75+"
+Users,text,Users,Number of users for Measures.
+Users Annotation code,text,Users Annotation code,"Annotation code
+1 = Cell suppressed for small numbers; 
+2 = Cell suppressed for complementary cell; 
+3 = No data available; and
+4 = Statistically unstable value."
+Users Annotation Description,text,Users Annotation Description,"Annotation Description
+1 = Cell suppressed for small numbers; 
+2 = Cell suppressed for complementary cell; 
+3 = No data available; and
+4 = Statistically unstable value."
+Denominator (3 Months Continuous Eligibility),text,,
+Denominator Annotation code,text,Denominator Annotation code,Annotation code
+Denominator Annotation Description,text,Denominator Annotation Description,Annotation Description
+Utilization %,text,Utilization %,Percentage of members in that measure with respect to the number of eligible members (3 months continuous enrollment in the same plan) within the measurement period.
+Utilization Annotation code,text,Utilization Annotation code,Annotation code
+Utilization Annotation Description,text,Utilization Annotation Description,Annotation Description
