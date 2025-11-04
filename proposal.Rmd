@@ -3,9 +3,9 @@ title: "Trends and Regional Differences in U.S. Dental Caries and Preventive Car
 author: "Team: Jian Gao (jg5037) [add teammates byself]"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 output:
-  html_document:
-    toc: false
-    df_print: paged
+  github_document:
+    toc: true
+    toc_depth: 2
 bibliography: references.bib
 link-citations: true
 ---
