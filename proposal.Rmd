@@ -1,6 +1,6 @@
 ---
 title: "Trends and Regional Differences in U.S. Dental Caries and Preventive Care: NHANES + California Medi-Cal (1999–2023)"
-author: "Team: Jian Gao (jg5037) [add teammates byself]"
+author: "Team: Jian Gao (jg5037) Bruce Liu (tl3391) [add teammates byself]"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 output:
   github_document:
@@ -13,6 +13,7 @@ link-citations: true
 
 ## Team Members
 - Jason Guo (jg5037)
+- Bruce Liu (tl3391)
 - [Add teammates’ names and UNI byself]
 
 

@@ -1,8 +1,8 @@
 Trends and Regional Differences in U.S. Dental Caries and Preventive
 Care: NHANES + California Medi-Cal (1999–2023)
 ================
-Team: Jian Gao (jg5037) \[add teammates byself\]
-2025-11-04
+Team: Jian Gao (jg5037) Bruce Liu (tl3391) \[add teammates byself\]
+2025-11-05
 
 - [Team Members](#team-members)
 - [Proposed Title](#proposed-title)
@@ -15,6 +15,7 @@ Team: Jian Gao (jg5037) \[add teammates byself\]
 ## Team Members
 
 - Jason Guo (jg5037)
+- Bruce Liu (tl3391)
 - \[Add teammates’ names and UNI byself\]
 
 ## Proposed Title
