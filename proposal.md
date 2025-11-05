@@ -1,7 +1,8 @@
 Trends and Regional Differences in U.S. Dental Caries and Preventive
 Care: NHANES + California Medi-Cal (1999–2023)
 ================
-Team: Jian Gao (jg5037) Bruce Liu (tl3391) \[add teammates byself\]
+Team: Jian Gao (jg5037), Bruce Liu (tl3391), Malcolm Chen (zc2823), Keyu
+Pan (kp3127)
 2025-11-05
 
 - [Team Members](#team-members)
@@ -16,7 +17,8 @@ Team: Jian Gao (jg5037) Bruce Liu (tl3391) \[add teammates byself\]
 
 - Jason Guo (jg5037)
 - Bruce Liu (tl3391)
-- \[Add teammates’ names and UNI byself\]
+- Malcolm Chen (zc2823)
+- Keyu Pan (kp3127)
 
 ## Proposed Title
 
@@ -36,10 +38,10 @@ et al. 2023](#ref-ng2023)).
 We will integrate national oral health prevalence data (NHANES ([Centers
 for Disease Control and Prevention (CDC) 2025](#ref-nhanes2025))) with
 California program-level dental utilization data (Medi-Cal ([California
-Department of Health Care Services 2023](#ref-medical2023))) to examine
-whether increases in preventive dental service utilization correspond
-with reductions in caries burden and to quantify COVID-19–related
-disruption.
+Department of Health Care Services 2023](#ref-medical2023))), and this
+ecological analysis will assess whether state-level trends in preventive
+dental service utilization (Medi-Cal) are temporally aligned with
+national changes in caries burden (NHANES),
 
 ## Expected Final Product
 
@@ -48,6 +50,9 @@ disruption.
 - Statistical and graphical summaries of national caries trends and
   California preventive-service utilization.  
 - Evaluation of COVID-19 disruptions in dental service use.
+- Exploratory analysis using Medi-Cal sealant utilization among children
+  as a proxy for California’s preventive dental coverage, examining its
+  temporal relationship with national caries burden trends.
 
 ## Data Sources
 
@@ -69,18 +74,21 @@ All datasets are stored in the `datasets/` folder:
 - Harmonize age stages across datasets:  
   Early Childhood (2–5), Childhood (6–9), Adolescence (10–19),  
   Young Adulthood (20–34), Adulthood (35–64), Older Age (65+).  
-- **NHANES:** describe time trends in total and untreated caries by age,
-  sex, and race.  
-- **Medi-Cal:** analyze preventive and sealant utilization trends
-  (2013–2023) and evaluate COVID-19 interruption using segmented
-  regression.  
-- **Ecological analysis:** merge datasets by age stage × year and test
-  correlation between preventive utilization and caries prevalence via
-  weighted least squares (1/SE²).  
-- **Visualization:** time-series plots, scatter-regression plots,
-  inequality trends, and ITS diagrams.
+- **NHANES:** Describe time trends in total and untreated caries by age,
+  sex, and race.<br> Assess inequality trends across demographic
+  subgroups.
+- **Medi-Cal:** Analyze preventive visit and sealant utilization trends
+  (2013–2023) among children and adolescents, and evaluate
+  COVID-19–related interruptions using segmented regression.  
+- **Ecological analysis:** Merge harmonized datasets by age group × year
+  to explore temporal associations between California preventive
+  utilization (as a proxy for preventive coverage) and national caries
+  burden using weighted least squares (1/SE²).  
+- **Visualization:** Generate time-series plots, scatter-regression
+  plots, inequality trend charts, and interrupted time-series (ITS)
+  diagrams.
 
-**Challenges:** aligning variable definitions, matching age-year
+**Challenges:** Aligning variable definitions, matching age-year
 windows, and addressing ecological inference limitations.
 
 ## Timeline
