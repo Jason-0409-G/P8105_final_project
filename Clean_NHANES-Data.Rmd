@@ -71,7 +71,11 @@ nhanes <- nhanes %>%
   mutate(measure_clean = recode(measure, !!!measure_map))
 ```
 
-# 目前未对分组进行任何操作
+# 目前未对分组进行任何操作（除了只保留年龄小组而非大组 之外）
+```{r}
+nhanes <- nhanes %>%
+  filter(age_group %in% c("2-5", "6-9", "10-19", "20-34", "35-64", "65+"))
+```
 
 # Delete the rows that missing percent
 ```{r}
