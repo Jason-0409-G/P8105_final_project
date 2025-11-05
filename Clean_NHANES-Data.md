@@ -99,7 +99,11 @@ nhanes <- nhanes %>%
 
 ``` r
 nhanes <- nhanes %>%
-  filter(age_group %in% c("2-5", "6-9", "10-19", "20-34", "35-64", "65+"))
+  filter(age_group %in% c(
+    "2-5", "6-11", "12-19",
+    "20-29", "30-39", "40-49", "50-59",
+    "60-69", "70 and over"
+  ))
 ```
 
 # Delete the rows that missing percent

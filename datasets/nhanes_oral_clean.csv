@@ -2,42 +2,438 @@ survey_years,year_mid,sex,age_group,race_ethnicity,measure,measure_clean,percent
 1999-2000,1999.5,All,2-5,All,Total Dental Caries in Primary Teeth,total_primary,28.9,3,22.7,35.8
 1999-2000,1999.5,Male,2-5,All,Total Dental Caries in Primary Teeth,total_primary,29.6,5.1,19.1,42.1
 1999-2000,1999.5,Female,2-5,All,Total Dental Caries in Primary Teeth,total_primary,28.1,2.5,22.8,34
+1999-2000,1999.5,All,6-11,All,Total Dental Caries in Primary Teeth,total_primary,46.7,4,38,55.5
+1999-2000,1999.5,Male,6-11,All,Total Dental Caries in Primary Teeth,total_primary,46.7,5.1,35.6,58.1
+1999-2000,1999.5,Female,6-11,All,Total Dental Caries in Primary Teeth,total_primary,46.7,6.2,33.1,60.7
+1999-2000,1999.5,All,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,18.4,1.9,14.6,22.8
+1999-2000,1999.5,Male,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,17.3,2.2,12.8,22.5
+1999-2000,1999.5,Female,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,19.6,2.3,15,24.9
+1999-2000,1999.5,All,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,61.7,1.2,59.1,64.3
+1999-2000,1999.5,Male,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,57.5,1.7,53.7,61.2
+1999-2000,1999.5,Female,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,66.1,1.9,61.9,70.1
+1999-2000,1999.5,All,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,84.1,2.3,78.5,88.8
+1999-2000,1999.5,Male,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,80.5,3.6,71.4,87.8
+1999-2000,1999.5,Female,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,87.7,3,79.7,93.4
+1999-2000,1999.5,All,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,89.8,2,84.5,93.8
+1999-2000,1999.5,Male,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,88.4,2.2,82.9,92.7
+1999-2000,1999.5,Female,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,91.1,2.8,83,96.2
+1999-2000,1999.5,All,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,95,1,92.4,97
+1999-2000,1999.5,Male,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,95.7,1.2,92.3,97.9
+1999-2000,1999.5,Female,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,94.4,1.3,90.9,96.9
+1999-2000,1999.5,All,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,93.8,1.1,91,95.9
+1999-2000,1999.5,Male,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,93.2,2.1,87.2,97
+1999-2000,1999.5,Female,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,94.4,1.2,90.7,96.9
+1999-2000,1999.5,All,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,93.8,1.1,90.9,96.1
+1999-2000,1999.5,Male,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,92.4,1.5,88.5,95.3
+1999-2000,1999.5,Female,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,95.4,1.4,91.2,97.9
+1999-2000,1999.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,21.4,14,16.4,27
+1999-2000,1999.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,19.1,14,12.8,26.9
+1999-2000,1999.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,23.5,14,17.4,30.6
+1999-2000,1999.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,31.5,14,26.2,37.3
+1999-2000,1999.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,27,14,20.9,33.8
+1999-2000,1999.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,34.7,14,28.3,41.4
 1999-2000,1999.5,All,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,23.2,2.2,18.5,28.4
 1999-2000,1999.5,Male,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,24.1,3.9,16,33.7
 1999-2000,1999.5,Female,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,22.3,2.2,17.7,27.4
+1999-2000,1999.5,All,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,22,2.7,16.3,28.6
+1999-2000,1999.5,Male,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,22.2,4.6,13,33.9
+1999-2000,1999.5,Female,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,21.8,4.7,12.5,33.9
+1999-2000,1999.5,All,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,6.2,1.6,3.2,10.7
+1999-2000,1999.5,Male,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,7.1,2.3,2.9,13.9
+1999-2000,1999.5,Female,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,5.3,1.2,3.1,8.4
+1999-2000,1999.5,All,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.4,2,17.2,26.2
+1999-2000,1999.5,Male,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.5,3,15.3,28.7
+1999-2000,1999.5,Female,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.4,2.6,16,27.6
+1999-2000,1999.5,All,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,31.1,3.3,24.2,38.7
+1999-2000,1999.5,Male,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,31.4,3.8,23.4,40.4
+1999-2000,1999.5,Female,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,30.8,3.4,23.7,38.6
+1999-2000,1999.5,All,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.4,2.8,22.5,34.9
+1999-2000,1999.5,Male,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,29.9,3.2,23.1,37.4
+1999-2000,1999.5,Female,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,26.8,3.2,20.2,34.3
+1999-2000,1999.5,All,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,19.9,2.1,15.7,24.8
+1999-2000,1999.5,Male,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.5,2.6,17,28.7
+1999-2000,1999.5,Female,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17.7,2.7,12.2,24.3
+1999-2000,1999.5,All,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.4,3.3,15.6,30.5
+1999-2000,1999.5,Male,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,24.5,4.4,15.5,35.5
+1999-2000,1999.5,Female,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,20.4,3.9,12.6,30.2
+1999-2000,1999.5,All,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.8,1.6,19.5,26.4
+1999-2000,1999.5,Male,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.4,2.8,22.4,34.9
+1999-2000,1999.5,Female,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17.1,2.3,12.4,22.8
 2001-2002,2001.5,All,2-5,All,Total Dental Caries in Primary Teeth,total_primary,26.1,1.9,22.1,30.5
 2001-2002,2001.5,Male,2-5,All,Total Dental Caries in Primary Teeth,total_primary,27.9,2.6,22.4,33.9
 2001-2002,2001.5,Female,2-5,All,Total Dental Caries in Primary Teeth,total_primary,24.5,3.2,17.9,32.1
+2001-2002,2001.5,All,6-11,All,Total Dental Caries in Primary Teeth,total_primary,51.1,3.2,44.1,58.1
+2001-2002,2001.5,Male,6-11,All,Total Dental Caries in Primary Teeth,total_primary,55.5,3.3,48.1,62.6
+2001-2002,2001.5,Female,6-11,All,Total Dental Caries in Primary Teeth,total_primary,46.2,3.9,37.7,54.9
+2001-2002,2001.5,All,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,20.8,1.5,17.6,24.3
+2001-2002,2001.5,Male,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,19.9,1.8,16.2,24
+2001-2002,2001.5,Female,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,21.7,2.7,16.2,28.1
+2001-2002,2001.5,All,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,55.2,1.7,51.4,59
+2001-2002,2001.5,Male,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,53.4,2.5,47.9,58.9
+2001-2002,2001.5,Female,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,57.1,2.1,52.3,61.7
+2001-2002,2001.5,All,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,80,1.8,76,83.7
+2001-2002,2001.5,Male,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,78.5,1.6,74,82.6
+2001-2002,2001.5,Female,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,81.4,2.9,74.4,87.1
+2001-2002,2001.5,All,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,92.6,1,90.2,94.6
+2001-2002,2001.5,Male,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,91.2,2,85.7,95
+2001-2002,2001.5,Female,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,93.9,1.5,89.9,96.7
+2001-2002,2001.5,All,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,95,1,92.3,97
+2001-2002,2001.5,Male,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,93.9,1.1,91,96.1
+2001-2002,2001.5,Female,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,96.2,1.2,92.7,98.3
+2001-2002,2001.5,All,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,96.4,0.6,94.5,97.8
+2001-2002,2001.5,Male,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,95.6,0.9,92.6,97.6
+2001-2002,2001.5,Female,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97.2,0.9,94.4,98.8
+2001-2002,2001.5,All,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,93.9,0.8,91.5,95.8
+2001-2002,2001.5,Male,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,92.9,1.3,89.1,95.7
+2001-2002,2001.5,Female,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,94.7,1.1,91.3,97
+2001-2002,2001.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,17.9,15,13.4,23.2
+2001-2002,2001.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,17.1,15,12.4,22.7
+2001-2002,2001.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,18.6,15,13,25.3
+2001-2002,2001.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,27,15,22.8,31.5
+2001-2002,2001.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,23.9,15,18.9,29.6
+2001-2002,2001.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,29.2,15,23.8,35
 2001-2002,2001.5,All,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,15.8,2.1,11.6,20.9
 2001-2002,2001.5,Male,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,16.7,2.2,12.3,21.9
 2001-2002,2001.5,Female,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,15,2.9,9.2,22.5
+2001-2002,2001.5,All,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,23.5,2.4,18.5,29.2
+2001-2002,2001.5,Male,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,25.4,2.2,20.8,30.4
+2001-2002,2001.5,Female,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,21.4,3.5,14.4,29.8
+2001-2002,2001.5,All,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,6.9,1.2,4.6,10
+2001-2002,2001.5,Male,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,7.1,1.5,4.3,11
+2001-2002,2001.5,Female,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,6.7,1.9,3.3,11.9
+2001-2002,2001.5,All,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,16.4,1.4,13.5,19.5
+2001-2002,2001.5,Male,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17.5,1.7,14,21.5
+2001-2002,2001.5,Female,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,15.2,1.3,12.4,18.3
+2001-2002,2001.5,All,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23.6,2.5,18.4,29.5
+2001-2002,2001.5,Male,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,24.3,2.9,18.2,31.1
+2001-2002,2001.5,Female,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23.1,2.8,17.4,29.6
+2001-2002,2001.5,All,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.2,1.4,22.1,28.4
+2001-2002,2001.5,Male,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28,1.3,23.4,33.1
+2001-2002,2001.5,Female,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.6,2.3,17.8,27.9
+2001-2002,2001.5,All,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.2,1.2,18.4,24.2
+2001-2002,2001.5,Male,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23.4,2.1,19,28.3
+2001-2002,2001.5,Female,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,18.8,1.4,15,23
+2001-2002,2001.5,All,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,19.3,2.3,14.5,24.7
+2001-2002,2001.5,Male,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23.3,3.4,16.4,31.5
+2001-2002,2001.5,Female,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,15.1,2.4,10.4,20.9
+2001-2002,2001.5,All,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,16.5,2.1,12.2,21.7
+2001-2002,2001.5,Male,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17,2.7,11.7,23.5
+2001-2002,2001.5,Female,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,16.1,2.6,10.9,22.5
 2003-2004,2003.5,All,2-5,All,Total Dental Caries in Primary Teeth,total_primary,29.4,2.3,24.5,34.7
 2003-2004,2003.5,Male,2-5,All,Total Dental Caries in Primary Teeth,total_primary,32.5,3.6,25.1,40.7
 2003-2004,2003.5,Female,2-5,All,Total Dental Caries in Primary Teeth,total_primary,26.2,2.7,20.5,32.6
+2003-2004,2003.5,All,6-11,All,Total Dental Caries in Primary Teeth,total_primary,56.8,3.2,49.7,63.7
+2003-2004,2003.5,Male,6-11,All,Total Dental Caries in Primary Teeth,total_primary,58.8,3.4,51.2,66.1
+2003-2004,2003.5,Female,6-11,All,Total Dental Caries in Primary Teeth,total_primary,54.5,4.5,44.6,64.2
+2003-2004,2003.5,All,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,23.4,2,19.3,28
+2003-2004,2003.5,Male,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,20.6,2.8,14.8,27.4
+2003-2004,2003.5,Female,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,26.3,2.2,21.8,31.2
+2003-2004,2003.5,All,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,59.5,2.1,54.8,64
+2003-2004,2003.5,Male,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,55.2,2.5,49.8,60.5
+2003-2004,2003.5,Female,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,63.9,2.4,58.4,69.1
+2003-2004,2003.5,All,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,85.3,1.6,81.6,88.5
+2003-2004,2003.5,Male,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,86.5,1.8,82.2,90.1
+2003-2004,2003.5,Female,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,84,2.5,77.9,89
+2003-2004,2003.5,All,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,92.9,1.2,89.8,95.3
+2003-2004,2003.5,Male,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,92.7,1.7,88.2,95.9
+2003-2004,2003.5,Female,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,93.1,1.4,89.3,95.8
+2003-2004,2003.5,All,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,95.2,0.8,93.1,96.8
+2003-2004,2003.5,Male,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,92.9,1.6,88.8,95.9
+2003-2004,2003.5,Female,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,97.3,0.7,94.9,98.8
+2003-2004,2003.5,All,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97,0.4,95.1,98.3
+2003-2004,2003.5,Male,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,96.9,0.8,93.9,98.7
+2003-2004,2003.5,Female,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97,1,93.9,98.8
+2003-2004,2003.5,All,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,94.5,1.1,91.6,96.6
+2003-2004,2003.5,Male,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,94.1,1.5,90.1,96.8
+2003-2004,2003.5,Female,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,94.8,1.7,89.9,97.8
+2003-2004,2003.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,19.3,15,14.1,25.4
+2003-2004,2003.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,20.8,15,15.7,26.6
+2003-2004,2003.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,17.9,15,10.4,27.8
+2003-2004,2003.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,29.6,15,22.1,37.9
+2003-2004,2003.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,27,15,20,34.9
+2003-2004,2003.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,31.4,15,23.2,40.7
 2003-2004,2003.5,All,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,23.4,2.2,18.7,28.5
 2003-2004,2003.5,Male,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,23.2,3.4,16.2,31.4
 2003-2004,2003.5,Female,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,23.6,2.5,18.5,29.3
+2003-2004,2003.5,All,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,30.4,2.6,24.9,36.3
+2003-2004,2003.5,Male,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,32.5,3.5,25.2,40.5
+2003-2004,2003.5,Female,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,28,3.9,19.9,37.4
+2003-2004,2003.5,All,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,9.4,1.7,6.1,13.8
+2003-2004,2003.5,Male,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,7.9,1.6,4.8,12.1
+2003-2004,2003.5,Female,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,10.9,2.2,6.6,16.7
+2003-2004,2003.5,All,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,20.5,2,16.4,25.1
+2003-2004,2003.5,Male,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,19.8,1.8,16,24.1
+2003-2004,2003.5,Female,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.2,2.7,15.6,27.7
+2003-2004,2003.5,All,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,32.8,2.6,27.2,38.7
+2003-2004,2003.5,Male,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,37.8,3.1,31.1,44.8
+2003-2004,2003.5,Female,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.6,2.9,21.5,34.3
+2003-2004,2003.5,All,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,31.2,2.8,25.3,37.6
+2003-2004,2003.5,Male,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,34.4,4.2,25.4,44.2
+2003-2004,2003.5,Female,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28,2.7,22.3,34.3
+2003-2004,2003.5,All,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.8,3.2,21.2,35.2
+2003-2004,2003.5,Male,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,32,4.4,22.8,42.4
+2003-2004,2003.5,Female,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23.8,2.8,18,30.4
+2003-2004,2003.5,All,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.4,2.2,22.7,32.5
+2003-2004,2003.5,Male,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.3,3.5,21,36.5
+2003-2004,2003.5,Female,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,26.5,2.2,21.1,32.4
+2003-2004,2003.5,All,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17.2,1.9,13.3,21.7
+2003-2004,2003.5,Male,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17.2,2.5,12.3,23.1
+2003-2004,2003.5,Female,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17.2,2.9,11.4,24.5
+2005-2006,2005.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,13.3,15,7.3,21.5
+2005-2006,2005.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,13.3,15,6.7,23
+2005-2006,2005.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,13.2,15,6.7,22.6
+2005-2006,2005.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,25.6,15,21.5,30
+2005-2006,2005.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,20.3,15,16.4,24.7
+2005-2006,2005.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,29.5,15,24.4,34.9
+2007-2008,2007.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,12.4,16,9.1,16.3
+2007-2008,2007.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,12.6,16,7.7,19.1
+2007-2008,2007.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,12.2,16,9.3,15.6
+2007-2008,2007.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,24.8,16,20.2,29.8
+2007-2008,2007.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,22.8,16,15.4,31.6
+2007-2008,2007.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,26.2,16,21,32
+2009-2010,2009.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,10.6,16,6.8,15.6
+2009-2010,2009.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,10.1,16,6.3,15.2
+2009-2010,2009.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,11.1,16,6.5,17.2
+2009-2010,2009.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,20.8,16,15.6,26.7
+2009-2010,2009.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,19.7,16,13.8,26.8
+2009-2010,2009.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,21.6,16,15.9,28.2
 2011-2012,2011.5,All,2-5,All,Total Dental Caries in Primary Teeth,total_primary,22.7,2.1,18.4,27.5
 2011-2012,2011.5,Male,2-5,All,Total Dental Caries in Primary Teeth,total_primary,23.8,2.3,19,29
 2011-2012,2011.5,Female,2-5,All,Total Dental Caries in Primary Teeth,total_primary,21.6,3.1,15.4,28.9
+2011-2012,2011.5,All,6-11,All,Total Dental Caries in Primary Teeth,total_primary,53.2,2.3,48.2,58.1
+2011-2012,2011.5,Male,6-11,All,Total Dental Caries in Primary Teeth,total_primary,57.6,3.3,50.2,64.7
+2011-2012,2011.5,Female,6-11,All,Total Dental Caries in Primary Teeth,total_primary,48,3.7,40.1,56
+2011-2012,2011.5,All,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,21.3,1.6,17.9,25
+2011-2012,2011.5,Male,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,19.5,1.8,15.8,23.6
+2011-2012,2011.5,Female,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,23.1,3.2,16.7,30.7
+2011-2012,2011.5,All,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,58.2,2.4,53,63.2
+2011-2012,2011.5,Male,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,60.3,3.3,52.9,67.4
+2011-2012,2011.5,Female,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,55.9,2.7,50,61.7
+2011-2012,2011.5,All,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,80.5,1.9,76.2,84.3
+2011-2012,2011.5,Male,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,78,2.5,72.2,83.1
+2011-2012,2011.5,Female,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,83,2.6,76.8,88.2
+2011-2012,2011.5,All,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,88.5,1.7,84.5,91.8
+2011-2012,2011.5,Male,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,91.8,1.8,87.2,95.1
+2011-2012,2011.5,Female,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,85.1,1.9,80.6,88.8
+2011-2012,2011.5,All,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,94.5,1.3,91.1,96.9
+2011-2012,2011.5,Male,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,95.8,1.3,92.2,98.1
+2011-2012,2011.5,Female,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,93.2,1.4,89.6,95.8
+2011-2012,2011.5,All,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97.7,0.5,96.3,98.6
+2011-2012,2011.5,Male,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97.6,0.4,95.4,98.9
+2011-2012,2011.5,Female,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97.8,0.7,95.6,99.1
+2011-2012,2011.5,All,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,96.8,0.7,94.8,98.1
+2011-2012,2011.5,Male,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,96,1.2,92.6,98.1
+2011-2012,2011.5,Female,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,97.5,0.7,95.2,98.9
+2011-2012,2011.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,7.3,17,5.6,9.4
+2011-2012,2011.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,6.3,17,3.8,9.7
+2011-2012,2011.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,8.3,17,5.7,11.6
+2011-2012,2011.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,22.1,17,16.9,27.9
+2011-2012,2011.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,22.8,17,16.7,29.8
+2011-2012,2011.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,21.5,17,15.9,28.1
 2011-2012,2011.5,All,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,10,1.4,7.2,13.5
 2011-2012,2011.5,Male,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,10.9,1.7,7.5,15.2
 2011-2012,2011.5,Female,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,9.2,1.6,6,13.2
+2011-2012,2011.5,All,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,19.2,2.1,15,24.1
+2011-2012,2011.5,Male,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,20.9,2.6,15.6,27
+2011-2012,2011.5,Female,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,17.2,2.3,12.7,22.5
+2011-2012,2011.5,All,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,5.7,0.9,4.1,7.8
+2011-2012,2011.5,Male,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,5.6,0.9,3.9,7.8
+2011-2012,2011.5,Female,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,5.9,1.2,3.6,9.1
+2011-2012,2011.5,All,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,15.5,1.5,12.3,19.1
+2011-2012,2011.5,Male,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,17.1,2.1,12.8,22.1
+2011-2012,2011.5,Female,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,13.8,2.9,8.3,21.2
+2011-2012,2011.5,All,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28,3,21.9,34.9
+2011-2012,2011.5,Male,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.8,4,20.5,38.2
+2011-2012,2011.5,Female,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.3,3.4,20.2,35.2
+2011-2012,2011.5,All,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.8,2.9,21.9,34.4
+2011-2012,2011.5,Male,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,29.1,4.4,20.1,39.5
+2011-2012,2011.5,Female,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,26.6,2.8,20.8,33
+2011-2012,2011.5,All,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.5,2.8,19.7,32.1
+2011-2012,2011.5,Male,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.6,2.4,23.7,33.9
+2011-2012,2011.5,Female,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.4,3.7,15.1,31.4
+2011-2012,2011.5,All,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,26.9,3,20.7,33.8
+2011-2012,2011.5,Male,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,35.4,4,27,44.5
+2011-2012,2011.5,Female,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,18.7,3.8,11.4,28.1
+2011-2012,2011.5,All,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.4,1.5,18.3,24.9
+2011-2012,2011.5,Male,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.6,2.4,17.7,28.1
+2011-2012,2011.5,Female,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,20.3,1.9,16.2,25
 2013-2014,2013.5,All,2-5,All,Total Dental Caries in Primary Teeth,total_primary,24.2,2,20,28.8
 2013-2014,2013.5,Male,2-5,All,Total Dental Caries in Primary Teeth,total_primary,23.6,2.4,18.6,29.3
 2013-2014,2013.5,Female,2-5,All,Total Dental Caries in Primary Teeth,total_primary,24.8,3,18.7,31.7
+2013-2014,2013.5,All,6-11,All,Total Dental Caries in Primary Teeth,total_primary,49.9,3,43.4,56.5
+2013-2014,2013.5,Male,6-11,All,Total Dental Caries in Primary Teeth,total_primary,53.7,3.3,46.3,60.9
+2013-2014,2013.5,Female,6-11,All,Total Dental Caries in Primary Teeth,total_primary,45.8,4.5,35.9,55.9
+2013-2014,2013.5,All,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,16,1.6,12.8,19.7
+2013-2014,2013.5,Male,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,14.8,2.1,10.6,19.9
+2013-2014,2013.5,Female,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,17.3,2.1,13,22.4
+2013-2014,2013.5,All,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,55.7,2.1,51.2,60.2
+2013-2014,2013.5,Male,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,53.2,2,49,57.4
+2013-2014,2013.5,Female,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,58.3,3,51.7,64.8
+2013-2014,2013.5,All,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,80,1.8,75.9,83.7
+2013-2014,2013.5,Male,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,76.8,2.7,70.4,82.4
+2013-2014,2013.5,Female,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,83.3,2.1,78.4,87.5
+2013-2014,2013.5,All,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,89.8,1.5,86.1,92.8
+2013-2014,2013.5,Male,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,90.7,1.7,86.5,94
+2013-2014,2013.5,Female,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,88.9,1.7,84.7,92.2
+2013-2014,2013.5,All,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,95.6,0.8,93.6,97.1
+2013-2014,2013.5,Male,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,94.8,1.1,92,96.8
+2013-2014,2013.5,Female,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,96.3,0.8,94.2,97.9
+2013-2014,2013.5,All,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97.8,0.5,96.5,98.7
+2013-2014,2013.5,Male,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97.4,0.8,94.9,98.9
+2013-2014,2013.5,Female,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,98.2,0.6,96.4,99.3
+2013-2014,2013.5,All,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,97.8,0.6,96.2,98.8
+2013-2014,2013.5,Male,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,96.9,1,93.9,98.7
+2013-2014,2013.5,Female,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,98.6,0.4,96.8,99.5
+2013-2014,2013.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,9.6,15,6.1,14.3
+2013-2014,2013.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,11.8,15,6.7,18.7
+2013-2014,2013.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,7.6,15,4.9,11.1
+2013-2014,2013.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,19.4,15,14.2,25.5
+2013-2014,2013.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,18.7,15,12.8,26
+2013-2014,2013.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,19.9,15,14.8,25.9
 2013-2014,2013.5,All,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,11.8,1.4,9,15.1
 2013-2014,2013.5,Male,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,10.9,1.8,7.3,15.5
 2013-2014,2013.5,Female,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,12.8,2,8.8,17.8
+2013-2014,2013.5,All,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,15.3,1.8,11.6,19.6
+2013-2014,2013.5,Male,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,15,2.3,10.4,20.8
+2013-2014,2013.5,Female,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,15.6,3,9.8,23.1
+2013-2014,2013.5,All,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,6.4,0.9,4.6,8.5
+2013-2014,2013.5,Male,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,5.8,1.1,3.7,8.5
+2013-2014,2013.5,Female,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,7,1.3,4.5,10.4
+2013-2014,2013.5,All,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.3,2.2,16.9,26.3
+2013-2014,2013.5,Male,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23,2.6,17.6,29.1
+2013-2014,2013.5,Female,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,19.6,2.5,14.5,25.5
+2013-2014,2013.5,All,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,34.8,1.8,31.1,38.7
+2013-2014,2013.5,Male,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,36.4,3.3,29.5,43.8
+2013-2014,2013.5,Female,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,33.2,2.7,27.4,39.4
+2013-2014,2013.5,All,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,35.5,3.6,28,43.7
+2013-2014,2013.5,Male,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,37.9,4.6,28,48.5
+2013-2014,2013.5,Female,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,33.3,4.1,24.6,42.8
+2013-2014,2013.5,All,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,33.9,2.3,29.1,39
+2013-2014,2013.5,Male,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,34.9,4.1,26.2,44.3
+2013-2014,2013.5,Female,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,33,2,28.8,37.5
+2013-2014,2013.5,All,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.8,2.5,22.5,33.5
+2013-2014,2013.5,Male,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,30.6,2.8,24.6,37.1
+2013-2014,2013.5,Female,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,24.9,2.5,19.7,30.8
+2013-2014,2013.5,All,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.9,2.5,20.7,31.7
+2013-2014,2013.5,Male,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,31,3.7,23.2,39.7
+2013-2014,2013.5,Female,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.4,2.5,16.2,27.4
 2015-2016,2015.5,All,2-5,All,Total Dental Caries in Primary Teeth,total_primary,21.4,2.7,15.9,27.7
 2015-2016,2015.5,Male,2-5,All,Total Dental Caries in Primary Teeth,total_primary,23.9,3.5,16.8,32.3
 2015-2016,2015.5,Female,2-5,All,Total Dental Caries in Primary Teeth,total_primary,18.6,2.8,13.1,25.3
+2015-2016,2015.5,All,6-11,All,Total Dental Caries in Primary Teeth,total_primary,49.9,2.7,44,55.8
+2015-2016,2015.5,Male,6-11,All,Total Dental Caries in Primary Teeth,total_primary,49,3.3,41.8,56.3
+2015-2016,2015.5,Female,6-11,All,Total Dental Caries in Primary Teeth,total_primary,50.8,3,44.3,57.3
+2015-2016,2015.5,All,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,15.4,1.6,12.1,19.1
+2015-2016,2015.5,Male,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,11.9,1.9,8.1,16.7
+2015-2016,2015.5,Female,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,19,2.1,14.7,23.9
+2015-2016,2015.5,All,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,52.4,2.5,47,57.7
+2015-2016,2015.5,Male,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,50.4,3.1,43.6,57.1
+2015-2016,2015.5,Female,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,54.4,3,47.8,61
+2015-2016,2015.5,All,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,80.7,1.8,76.6,84.3
+2015-2016,2015.5,Male,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,79.4,1.7,75.2,83.1
+2015-2016,2015.5,Female,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,82,2.4,76.3,86.8
+2015-2016,2015.5,All,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,85.6,1.2,82.9,88.1
+2015-2016,2015.5,Male,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,88.2,1.5,84.6,91.3
+2015-2016,2015.5,Female,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,82.8,2.5,76.7,87.8
+2015-2016,2015.5,All,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,93.9,1.2,90.9,96.2
+2015-2016,2015.5,Male,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,90.5,2.2,84.6,94.7
+2015-2016,2015.5,Female,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,97.2,0.9,94.5,98.8
+2015-2016,2015.5,All,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,95.6,0.7,93.9,96.9
+2015-2016,2015.5,Male,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,95.6,0.8,93.1,97.4
+2015-2016,2015.5,Female,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,95.5,0.8,93,97.3
+2015-2016,2015.5,All,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,96.6,0.9,94,98.3
+2015-2016,2015.5,Male,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,96.6,1.3,92.5,98.8
+2015-2016,2015.5,Female,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,96.5,1.2,92.7,98.7
+2015-2016,2015.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,7.2,15,5.3,9.6
+2015-2016,2015.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,7.5,15,4.1,12.5
+2015-2016,2015.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,6.9,15,3.9,11.3
+2015-2016,2015.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,16.4,15,11.7,22
+2015-2016,2015.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,17.3,15,12.7,22.6
+2015-2016,2015.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,15.7,15,9.9,23.1
 2015-2016,2015.5,All,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,8.8,1.3,6.1,12.1
 2015-2016,2015.5,Male,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,11.4,1.9,7.7,16.1
 2015-2016,2015.5,Female,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,6,1.3,3.5,9.4
+2015-2016,2015.5,All,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,14.3,1.3,11.6,17.4
+2015-2016,2015.5,Male,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,13.5,1.7,10.2,17.5
+2015-2016,2015.5,Female,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,15.1,1.8,11.4,19.4
+2015-2016,2015.5,All,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,4.1,0.6,2.9,5.6
+2015-2016,2015.5,Male,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,3.3,0.7,1.9,5.3
+2015-2016,2015.5,Female,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,4.9,0.9,3.2,7.2
+2015-2016,2015.5,All,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,12.5,1.4,9.7,15.9
+2015-2016,2015.5,Male,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,12.8,2,8.9,17.7
+2015-2016,2015.5,Female,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,12.3,1.5,9.2,15.9
+2015-2016,2015.5,All,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.4,2.2,22.8,32.4
+2015-2016,2015.5,Male,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,29.7,2.4,24.6,35.2
+2015-2016,2015.5,Female,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.1,3.5,18,33.4
+2015-2016,2015.5,All,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.2,2.9,22,34.9
+2015-2016,2015.5,Male,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,30.5,3.3,23.7,38.1
+2015-2016,2015.5,Female,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,26,3,19.7,33
+2015-2016,2015.5,All,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27,3.2,20.4,34.4
+2015-2016,2015.5,Male,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.2,3.4,21.1,36.1
+2015-2016,2015.5,Female,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.8,3.7,18.3,34.6
+2015-2016,2015.5,All,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.7,2.8,19.8,32.3
+2015-2016,2015.5,Male,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,29.7,3.5,22.4,37.8
+2015-2016,2015.5,Female,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21.8,3,15.7,29
+2015-2016,2015.5,All,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.5,2.5,17.4,28.2
+2015-2016,2015.5,Male,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.5,2.8,19.6,32.1
+2015-2016,2015.5,Female,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,19.6,3.1,13.4,27.2
 2017-2018,2017.5,All,2-5,All,Total Dental Caries in Primary Teeth,total_primary,22.8,2.6,17.4,28.9
 2017-2018,2017.5,Male,2-5,All,Total Dental Caries in Primary Teeth,total_primary,22.6,3.5,15.6,31
 2017-2018,2017.5,Female,2-5,All,Total Dental Caries in Primary Teeth,total_primary,22.9,3,16.7,30.1
+2017-2018,2017.5,All,6-11,All,Total Dental Caries in Primary Teeth,total_primary,45.9,3.4,38.5,53.4
+2017-2018,2017.5,Male,6-11,All,Total Dental Caries in Primary Teeth,total_primary,47.4,3.7,39.4,55.5
+2017-2018,2017.5,Female,6-11,All,Total Dental Caries in Primary Teeth,total_primary,44.1,3.9,35.8,52.8
+2017-2018,2017.5,All,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,14.8,2.1,10.6,19.8
+2017-2018,2017.5,Male,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,12.5,1.9,8.7,17.1
+2017-2018,2017.5,Female,6-11,All,Total Dental Caries in Permanent Teeth,total_perm,17.1,2.9,11.4,24.3
+2017-2018,2017.5,All,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,54.7,2.2,49.9,59.5
+2017-2018,2017.5,Male,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,54.6,3.2,47.4,61.6
+2017-2018,2017.5,Female,12-19,All,Total Dental Caries in Permanent Teeth,total_perm,54.8,2.8,48.6,61
+2017-2018,2017.5,All,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,72.1,1.9,67.9,76.1
+2017-2018,2017.5,Male,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,70.4,3.3,62.8,77.3
+2017-2018,2017.5,Female,20-29,All,Total Dental Caries in Permanent Teeth,total_perm,73.8,2.9,67,79.9
+2017-2018,2017.5,All,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,82.9,2.4,77.1,87.8
+2017-2018,2017.5,Male,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,83,2.9,75.7,88.8
+2017-2018,2017.5,Female,30-39,All,Total Dental Caries in Permanent Teeth,total_perm,82.9,3.6,73.8,89.8
+2017-2018,2017.5,All,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,92.6,1.6,88.3,95.6
+2017-2018,2017.5,Male,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,88.5,2.5,82,93.4
+2017-2018,2017.5,Female,40-49,All,Total Dental Caries in Permanent Teeth,total_perm,96.6,0.9,94.2,98.2
+2017-2018,2017.5,All,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,95.4,0.7,93.7,96.8
+2017-2018,2017.5,Male,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,92.9,1.5,89.1,95.8
+2017-2018,2017.5,Female,50-59,All,Total Dental Caries in Permanent Teeth,total_perm,97.8,0.6,95.9,99
+2017-2018,2017.5,All,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,96.3,0.9,93.8,98.1
+2017-2018,2017.5,Male,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,97,0.6,94.9,98.4
+2017-2018,2017.5,Female,60-69,All,Total Dental Caries in Permanent Teeth,total_perm,95.8,1.5,91.1,98.4
+2017-2018,2017.5,All,60-69,All,Complete Tooth Loss,Complete Tooth Loss,9.8,15,6,14.9
+2017-2018,2017.5,Male,60-69,All,Complete Tooth Loss,Complete Tooth Loss,11.3,15,6.4,18.1
+2017-2018,2017.5,Female,60-69,All,Complete Tooth Loss,Complete Tooth Loss,8.5,15,4.9,13.5
+2017-2018,2017.5,All,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,13.7,15,10.5,17.5
+2017-2018,2017.5,Male,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,13.4,15,9.6,18
+2017-2018,2017.5,Female,70 and over,All,Complete Tooth Loss,Complete Tooth Loss,14,15,10.1,18.7
 2017-2018,2017.5,All,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,12,2.1,7.8,17.4
 2017-2018,2017.5,Male,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,12.4,3.1,6.5,20.8
 2017-2018,2017.5,Female,2-5,All,Untreated Dental Caries in Primary Teeth,untreated_primary,11.7,1.9,7.9,16.4
+2017-2018,2017.5,All,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,14,1.3,11.3,17.1
+2017-2018,2017.5,Male,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,14.2,1.6,11,17.9
+2017-2018,2017.5,Female,6-11,All,Untreated Dental Caries in Primary Teeth,untreated_primary,13.8,2,9.8,18.6
+2017-2018,2017.5,All,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,2.9,1,1.2,5.8
+2017-2018,2017.5,Male,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,1.8,0.6,0.7,3.5
+2017-2018,2017.5,Female,6-11,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,4.1,1.7,1.3,9.4
+2017-2018,2017.5,All,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,10,1.2,7.6,12.8
+2017-2018,2017.5,Male,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,11.8,1.8,8.1,16.3
+2017-2018,2017.5,Female,12-19,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,8.2,0.9,6.1,10.8
+2017-2018,2017.5,All,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.1,2.6,16.8,28.3
+2017-2018,2017.5,Male,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23.8,3.1,17.5,31.1
+2017-2018,2017.5,Female,20-29,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,20.4,3.3,13.8,28.5
+2017-2018,2017.5,All,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.3,2.7,19.6,31.6
+2017-2018,2017.5,Male,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,27.6,3.4,20.6,35.6
+2017-2018,2017.5,Female,30-39,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23,3,16.9,30.1
+2017-2018,2017.5,All,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,25.3,3,19.1,32.3
+2017-2018,2017.5,Male,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,28.2,3.6,20.8,36.7
+2017-2018,2017.5,Female,40-49,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,22.4,3.6,15.1,31.1
+2017-2018,2017.5,All,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,23.4,2.9,17.4,30.3
+2017-2018,2017.5,Male,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,26,3.7,18.4,34.8
+2017-2018,2017.5,Female,50-59,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,21,3,14.9,28.3
+2017-2018,2017.5,All,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,24.6,2.7,19.1,30.9
+2017-2018,2017.5,Male,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,29.6,3.4,22.6,37.5
+2017-2018,2017.5,Female,60-69,All,Untreated Dental Caries in Permanent Teeth,untreated_perm,20.2,3.7,12.9,29.4
