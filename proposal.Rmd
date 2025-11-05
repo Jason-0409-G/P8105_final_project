@@ -1,7 +1,7 @@
 ---
 title: "Trends and Regional Differences in U.S. Dental Caries and Preventive Care: NHANES + California Medi-Cal (1999–2023)"
 author: "Team: Jian Gao (jg5037), Bruce Liu (tl3391), Malcolm Chen (zc2823), Keyu Pan (kp3127)"
-date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+date: "Date: `r format(Sys.Date(), '%Y-%m-%d')`"
 output:
   github_document:
     toc: true
@@ -15,17 +15,12 @@ link-citations: true
 - Jason Guo (jg5037)
 - Bruce Liu (tl3391)
 - Malcolm Chen (zc2823)
-<<<<<<< HEAD
 - Keyu Pan (kp3127)
-
-=======
-- [Add teammates’ names and UNI byself]
-- 11111
->>>>>>> 3073c69e66ef07125984c96c5060fb18fd4e70e8
 
 
 ## Proposed Title
 **Trends and Regional Differences in U.S. Dental Caries Burden and Preventive Service Utilization:  A Combined Analysis of NHANES and California Medi-Cal Data (1999–2023)**
+
 
 ## Motivation
 Dental caries remains the most common chronic disease of childhood in the U.S., and progress has been slower among low-income and minority children [@nidcr2022].  
