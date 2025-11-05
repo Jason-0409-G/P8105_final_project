@@ -1,8 +1,13 @@
 Trends and Regional Differences in U.S. Dental Caries and Preventive
 Care: NHANES + California Medi-Cal (1999–2023)
 ================
+<<<<<<< HEAD
 Team: Jian Gao (jg5037), Bruce Liu (tl3391), Malcolm Chen (zc2823), Keyu
 Pan (kp3127)
+=======
+Team: Jian Gao (jg5037), Bruce Liu (tl3391), Malcolm Chen (zc2823) \[add
+teammates byself\]
+>>>>>>> 3073c69e66ef07125984c96c5060fb18fd4e70e8
 2025-11-05
 
 - [Team Members](#team-members)
@@ -18,7 +23,12 @@ Pan (kp3127)
 - Jason Guo (jg5037)
 - Bruce Liu (tl3391)
 - Malcolm Chen (zc2823)
+<<<<<<< HEAD
 - Keyu Pan (kp3127)
+=======
+- \[Add teammates’ names and UNI byself\]
+- 11111
+>>>>>>> 3073c69e66ef07125984c96c5060fb18fd4e70e8
 
 ## Proposed Title
 

@@ -15,8 +15,13 @@ link-citations: true
 - Jason Guo (jg5037)
 - Bruce Liu (tl3391)
 - Malcolm Chen (zc2823)
+<<<<<<< HEAD
 - Keyu Pan (kp3127)
 
+=======
+- [Add teammates’ names and UNI byself]
+- 11111
+>>>>>>> 3073c69e66ef07125984c96c5060fb18fd4e70e8
 
 
 ## Proposed Title
