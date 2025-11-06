@@ -9,6 +9,7 @@ Jason Gao
 library(tidyverse)
 library(janitor)
 library(knitr)
+library(here)
 setwd("..")
 raw_data <- read_csv("datasets/ca_dental.csv")
 ```
@@ -181,6 +182,10 @@ head(clean_data_final)
     ## 4 CY 2013 Age <1    Treatment services          141      251033 0.06%           
     ## 5 CY 2013 Age <1    Preventive services         756      251033 0.30%           
     ## 6 CY 2013 Age 1–2   Dental visit             127182      577485 22.02%
+
+``` r
+write_csv(clean_data_final, here("datasets", "clean_ca.csv"))
+```
 
 ## Data Cleaning and Processing
 

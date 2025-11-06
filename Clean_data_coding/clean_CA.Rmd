@@ -10,6 +10,7 @@ date: "2025-11-05"
 library(tidyverse)
 library(janitor)
 library(knitr)
+library(here)
 setwd("..")
 raw_data <- read_csv("datasets/ca_dental.csv")
 ```
@@ -122,7 +123,7 @@ clean_data_final <- clean_data_simple |>
 
 
 head(clean_data_final)
-
+write_csv(clean_data_final, here("datasets", "clean_ca.csv"))
 ```
 
 ## Data Cleaning and Processing

@@ -1,0 +1,877 @@
+year,age_group,measure,users,denominator,utilization_rate
+CY 2013,Age <1,Dental visit,3922,251033,1.56%
+CY 2013,Age <1,Exam/Evaluation,42,251033,0.02%
+CY 2013,Age <1,Treatment for Caries or Caries-Preventive Procedure,714,251033,0.28%
+CY 2013,Age <1,Treatment services,141,251033,0.06%
+CY 2013,Age <1,Preventive services,756,251033,0.30%
+CY 2013,Age 1–2,Dental visit,127182,577485,22.02%
+CY 2013,Age 1–2,Exam/Evaluation,1765,577485,0.31%
+CY 2013,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,77903,577485,13.49%
+CY 2013,Age 1–2,Treatment services,18700,577485,3.24%
+CY 2013,Age 1–2,Preventive services,81914,577485,14.18%
+CY 2013,Age 1–2,Restorative services,14815,577485,2.57%
+CY 2013,Age 3–5,Dental visit,463983,865127,53.63%
+CY 2013,Age 3–5,Exam/Evaluation,386015,865127,44.62%
+CY 2013,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,364750,865127,42.16%
+CY 2013,Age 3–5,Treatment services,190635,865127,22.04%
+CY 2013,Age 3–5,Preventive services,373574,865127,43.18%
+CY 2013,Age 3–5,Restorative services,172480,865127,19.94%
+CY 2013,Age 6–9,Dental visit,642804,1108841,57.97%
+CY 2013,Age 6–9,Exam/Evaluation,545366,1108841,49.18%
+CY 2013,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,531974,1108841,47.98%
+CY 2013,Age 6–9,Treatment services,340991,1108841,30.75%
+CY 2013,Age 6–9,Preventive services,542138,1108841,48.89%
+CY 2013,Age 6–9,Restorative services,273950,1108841,24.71%
+CY 2013,Age 6–9,Sealant use,192120,1108841,17.33%
+CY 2013,Age 10–14,Dental visit,602513,1186943,50.76%
+CY 2013,Age 10–14,Exam/Evaluation,512244,1186943,43.16%
+CY 2013,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,487080,1186943,41.04%
+CY 2013,Age 10–14,Treatment services,284755,1186943,23.99%
+CY 2013,Age 10–14,Preventive services,507392,1186943,42.75%
+CY 2013,Age 10–14,Restorative services,213233,1186943,17.96%
+CY 2013,Age 10–14,Sealant use,110979,1186943,9.35%
+CY 2013,Age 15–18,Dental visit,370954,877824,42.26%
+CY 2013,Age 15–18,Exam/Evaluation,309239,877824,35.23%
+CY 2013,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,277461,877824,31.61%
+CY 2013,Age 15–18,Treatment services,185364,877824,21.12%
+CY 2013,Age 15–18,Preventive services,297889,877824,33.93%
+CY 2013,Age 15–18,Restorative services,147791,877824,16.84%
+CY 2013,Age 19–20,Dental visit,88764,307943,28.82%
+CY 2013,Age 19–20,Exam/Evaluation,72255,307943,23.46%
+CY 2013,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,59459,307943,19.31%
+CY 2013,Age 19–20,Treatment services,47478,307943,15.42%
+CY 2013,Age 19–20,Preventive services,65940,307943,21.41%
+CY 2013,Age 19–20,Restorative services,35071,307943,11.39%
+CY 2013,Age 21–34,Dental visit,111494,944886,11.80%
+CY 2013,Age 21–34,Exam/Evaluation,28846,944886,3.05%
+CY 2013,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,20470,944886,2.17%
+CY 2013,Age 21–34,Treatment services,72910,944886,7.72%
+CY 2013,Age 21–34,Preventive services,25635,944886,2.71%
+CY 2013,Age 21–34,Restorative services,13509,944886,1.43%
+CY 2013,Age 35–44,Dental visit,53123,529102,10.04%
+CY 2013,Age 35–44,Exam/Evaluation,5584,529102,1.06%
+CY 2013,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,3514,529102,0.66%
+CY 2013,Age 35–44,Treatment services,37707,529102,7.13%
+CY 2013,Age 35–44,Preventive services,4516,529102,0.85%
+CY 2013,Age 35–44,Restorative services,2282,529102,0.43%
+CY 2013,Age 45–64,Dental visit,105407,915855,11.51%
+CY 2013,Age 45–64,Exam/Evaluation,12288,915855,1.34%
+CY 2013,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,7830,915855,0.85%
+CY 2013,Age 45–64,Treatment services,76526,915855,8.36%
+CY 2013,Age 45–64,Preventive services,8791,915855,0.96%
+CY 2013,Age 45–64,Restorative services,4243,915855,0.46%
+CY 2013,Age 65–74,Dental visit,41820,486289,8.60%
+CY 2013,Age 65–74,Exam/Evaluation,5114,486289,1.05%
+CY 2013,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,2975,486289,0.61%
+CY 2013,Age 65–74,Treatment services,32420,486289,6.67%
+CY 2013,Age 65–74,Preventive services,2481,486289,0.51%
+CY 2013,Age 65–74,Restorative services,1458,486289,0.30%
+CY 2013,Age 75+,Dental visit,42122,480125,8.77%
+CY 2013,Age 75+,Exam/Evaluation,9004,480125,1.88%
+CY 2013,Age 75+,Treatment for Caries or Caries-Preventive Procedure,4089,480125,0.85%
+CY 2013,Age 75+,Treatment services,36491,480125,7.60%
+CY 2013,Age 75+,Preventive services,3944,480125,0.82%
+CY 2014,Age <1,Dental visit,3400,255231,1.33%
+CY 2014,Age <1,Exam/Evaluation,16,255231,0.01%
+CY 2014,Age <1,Treatment for Caries or Caries-Preventive Procedure,640,255231,0.25%
+CY 2014,Age <1,Treatment services,135,255231,0.05%
+CY 2014,Age <1,Preventive services,683,255231,0.27%
+CY 2014,Age 1–2,Dental visit,128869,583913,22.07%
+CY 2014,Age 1–2,Exam/Evaluation,1588,583913,0.27%
+CY 2014,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,80496,583913,13.79%
+CY 2014,Age 1–2,Treatment services,17879,583913,3.06%
+CY 2014,Age 1–2,Preventive services,84060,583913,14.40%
+CY 2014,Age 3–5,Dental visit,462440,867880,53.28%
+CY 2014,Age 3–5,Exam/Evaluation,385088,867880,44.37%
+CY 2014,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,365820,867880,42.15%
+CY 2014,Age 3–5,Treatment services,181856,867880,20.95%
+CY 2014,Age 3–5,Preventive services,371506,867880,42.81%
+CY 2014,Age 3–5,Restorative services,163868,867880,18.88%
+CY 2014,Age 6–9,Dental visit,696040,1180883,58.94%
+CY 2014,Age 6–9,Exam/Evaluation,589278,1180883,49.90%
+CY 2014,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,577470,1180883,48.90%
+CY 2014,Age 6–9,Treatment services,354751,1180883,30.04%
+CY 2014,Age 6–9,Preventive services,584648,1180883,49.51%
+CY 2014,Age 6–9,Restorative services,282606,1180883,23.93%
+CY 2014,Age 6–9,Sealant use,201053,1180883,17.03%
+CY 2014,Age 10–14,Dental visit,663620,1281797,51.77%
+CY 2014,Age 10–14,Exam/Evaluation,561792,1281797,43.83%
+CY 2014,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,539255,1281797,42.07%
+CY 2014,Age 10–14,Treatment services,298180,1281797,23.26%
+CY 2014,Age 10–14,Preventive services,555465,1281797,43.33%
+CY 2014,Age 10–14,Restorative services,219276,1281797,17.11%
+CY 2014,Age 10–14,Sealant use,115560,1281797,9.02%
+CY 2014,Age 15–18,Dental visit,403463,957425,42.14%
+CY 2014,Age 15–18,Exam/Evaluation,333877,957425,34.87%
+CY 2014,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,304312,957425,31.78%
+CY 2014,Age 15–18,Treatment services,192344,957425,20.09%
+CY 2014,Age 15–18,Preventive services,320334,957425,33.46%
+CY 2014,Age 15–18,Restorative services,150436,957425,15.71%
+CY 2014,Age 19–20,Dental visit,109309,407137,26.85%
+CY 2014,Age 19–20,Exam/Evaluation,88699,407137,21.79%
+CY 2014,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,73576,407137,18.07%
+CY 2014,Age 19–20,Treatment services,54835,407137,13.47%
+CY 2014,Age 19–20,Preventive services,80468,407137,19.76%
+CY 2014,Age 19–20,Restorative services,39422,407137,9.68%
+CY 2014,Age 21–34,Dental visit,325759,1925514,16.92%
+CY 2014,Age 21–34,Exam/Evaluation,208471,1925514,10.83%
+CY 2014,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,141022,1925514,7.32%
+CY 2014,Age 21–34,Treatment services,174456,1925514,9.06%
+CY 2014,Age 21–34,Preventive services,152889,1925514,7.94%
+CY 2014,Age 21–34,Restorative services,104068,1925514,5.40%
+CY 2014,Age 35–44,Dental visit,182498,909270,20.07%
+CY 2014,Age 35–44,Exam/Evaluation,116442,909270,12.81%
+CY 2014,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,71216,909270,7.83%
+CY 2014,Age 35–44,Treatment services,96452,909270,10.61%
+CY 2014,Age 35–44,Preventive services,78505,909270,8.63%
+CY 2014,Age 35–44,Restorative services,53831,909270,5.92%
+CY 2014,Age 45–64,Dental visit,447645,1986045,22.54%
+CY 2014,Age 45–64,Exam/Evaluation,280357,1986045,14.12%
+CY 2014,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,146381,1986045,7.37%
+CY 2014,Age 45–64,Treatment services,233088,1986045,11.74%
+CY 2014,Age 45–64,Preventive services,170989,1986045,8.61%
+CY 2014,Age 45–64,Restorative services,104800,1986045,5.28%
+CY 2014,Age 65–74,Dental visit,115748,532932,21.72%
+CY 2014,Age 65–74,Exam/Evaluation,74606,532932,14.00%
+CY 2014,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,35825,532932,6.72%
+CY 2014,Age 65–74,Treatment services,66003,532932,12.38%
+CY 2014,Age 65–74,Preventive services,45490,532932,8.54%
+CY 2014,Age 65–74,Restorative services,24517,532932,4.60%
+CY 2014,Age 75+,Dental visit,94635,496713,19.05%
+CY 2014,Age 75+,Exam/Evaluation,59846,496713,12.05%
+CY 2014,Age 75+,Treatment for Caries or Caries-Preventive Procedure,25873,496713,5.21%
+CY 2014,Age 75+,Treatment services,61973,496713,12.48%
+CY 2014,Age 75+,Preventive services,34734,496713,6.99%
+CY 2014,Age 75+,Restorative services,16137,496713,3.25%
+CY 2015,Age <1,Dental visit,4027,250364,1.61%
+CY 2015,Age <1,Exam/Evaluation,42,250364,0.02%
+CY 2015,Age <1,Treatment for Caries or Caries-Preventive Procedure,772,250364,0.31%
+CY 2015,Age <1,Treatment services,200,250364,0.08%
+CY 2015,Age <1,Preventive services,816,250364,0.33%
+CY 2015,Age 1–2,Dental visit,139608,591362,23.61%
+CY 2015,Age 1–2,Exam/Evaluation,1609,591362,0.27%
+CY 2015,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,88240,591362,14.92%
+CY 2015,Age 1–2,Treatment services,16479,591362,2.79%
+CY 2015,Age 1–2,Preventive services,92363,591362,15.62%
+CY 2015,Age 3–5,Dental visit,456899,871749,52.41%
+CY 2015,Age 3–5,Exam/Evaluation,380346,871749,43.63%
+CY 2015,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,361898,871749,41.51%
+CY 2015,Age 3–5,Treatment services,170400,871749,19.55%
+CY 2015,Age 3–5,Preventive services,365279,871749,41.90%
+CY 2015,Age 3–5,Restorative services,152089,871749,17.45%
+CY 2015,Age 6–9,Dental visit,706453,1212991,58.24%
+CY 2015,Age 6–9,Exam/Evaluation,594022,1212991,48.97%
+CY 2015,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,585148,1212991,48.24%
+CY 2015,Age 6–9,Treatment services,350875,1212991,28.93%
+CY 2015,Age 6–9,Preventive services,589225,1212991,48.58%
+CY 2015,Age 6–9,Restorative services,276666,1212991,22.81%
+CY 2015,Age 6–9,Sealant use,198632,1212991,16.38%
+CY 2015,Age 10–14,Dental visit,687170,1335627,51.45%
+CY 2015,Age 10–14,Exam/Evaluation,575675,1335627,43.10%
+CY 2015,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,556900,1335627,41.70%
+CY 2015,Age 10–14,Treatment services,300862,1335627,22.53%
+CY 2015,Age 10–14,Preventive services,568359,1335627,42.55%
+CY 2015,Age 10–14,Restorative services,218794,1335627,16.38%
+CY 2015,Age 10–14,Sealant use,113972,1335627,8.53%
+CY 2015,Age 15–18,Dental visit,414943,994141,41.74%
+CY 2015,Age 15–18,Exam/Evaluation,337525,994141,33.95%
+CY 2015,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,310849,994141,31.27%
+CY 2015,Age 15–18,Treatment services,192552,994141,19.37%
+CY 2015,Age 15–18,Preventive services,322000,994141,32.39%
+CY 2015,Age 15–18,Restorative services,147023,994141,14.79%
+CY 2015,Age 19–20,Dental visit,125824,465822,27.01%
+CY 2015,Age 19–20,Exam/Evaluation,100275,465822,21.53%
+CY 2015,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,84042,465822,18.04%
+CY 2015,Age 19–20,Treatment services,61626,465822,13.23%
+CY 2015,Age 19–20,Preventive services,89598,465822,19.23%
+CY 2015,Age 19–20,Restorative services,43149,465822,9.26%
+CY 2015,Age 21–34,Dental visit,464498,2463261,18.86%
+CY 2015,Age 21–34,Exam/Evaluation,297850,2463261,12.09%
+CY 2015,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,220519,2463261,8.95%
+CY 2015,Age 21–34,Treatment services,242348,2463261,9.84%
+CY 2015,Age 21–34,Preventive services,220996,2463261,8.97%
+CY 2015,Age 21–34,Restorative services,157617,2463261,6.40%
+CY 2015,Age 35–44,Dental visit,240012,1105194,21.72%
+CY 2015,Age 35–44,Exam/Evaluation,146679,1105194,13.27%
+CY 2015,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,100434,1105194,9.09%
+CY 2015,Age 35–44,Treatment services,122659,1105194,11.10%
+CY 2015,Age 35–44,Preventive services,99796,1105194,9.03%
+CY 2015,Age 35–44,Restorative services,72754,1105194,6.58%
+CY 2015,Age 45–64,Dental visit,570852,2305484,24.76%
+CY 2015,Age 45–64,Exam/Evaluation,326867,2305484,14.18%
+CY 2015,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,196315,2305484,8.52%
+CY 2015,Age 45–64,Treatment services,299007,2305484,12.97%
+CY 2015,Age 45–64,Preventive services,206370,2305484,8.95%
+CY 2015,Age 45–64,Restorative services,134654,2305484,5.84%
+CY 2015,Age 65–74,Dental visit,146139,590549,24.75%
+CY 2015,Age 65–74,Exam/Evaluation,83495,590549,14.14%
+CY 2015,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,46582,590549,7.89%
+CY 2015,Age 65–74,Treatment services,85005,590549,14.39%
+CY 2015,Age 65–74,Preventive services,52916,590549,8.96%
+CY 2015,Age 65–74,Restorative services,30298,590549,5.13%
+CY 2015,Age 75+,Dental visit,113636,518590,21.91%
+CY 2015,Age 75+,Exam/Evaluation,63532,518590,12.25%
+CY 2015,Age 75+,Treatment for Caries or Caries-Preventive Procedure,32854,518590,6.34%
+CY 2015,Age 75+,Treatment services,76348,518590,14.72%
+CY 2015,Age 75+,Preventive services,39133,518590,7.55%
+CY 2015,Age 75+,Restorative services,19474,518590,3.76%
+CY 2016,Age <1,Dental visit,5443,250052,2.18%
+CY 2016,Age <1,Exam/Evaluation,632,250052,0.25%
+CY 2016,Age <1,Treatment for Caries or Caries-Preventive Procedure,942,250052,0.38%
+CY 2016,Age <1,Treatment services,229,250052,0.09%
+CY 2016,Age <1,Preventive services,2558,250052,1.02%
+CY 2016,Age <1,Restorative services,57,250052,0.02%
+CY 2016,Age 1–2,Dental visit,140277,605175,23.18%
+CY 2016,Age 1–2,Exam/Evaluation,21480,605175,3.55%
+CY 2016,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,94040,605175,15.54%
+CY 2016,Age 1–2,Treatment services,17968,605175,2.97%
+CY 2016,Age 1–2,Preventive services,121209,605175,20.03%
+CY 2016,Age 1–2,Restorative services,13437,605175,2.22%
+CY 2016,Age 3–5,Dental visit,466832,903380,51.68%
+CY 2016,Age 3–5,Exam/Evaluation,438867,903380,48.58%
+CY 2016,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,394396,903380,43.66%
+CY 2016,Age 3–5,Treatment services,185620,903380,20.55%
+CY 2016,Age 3–5,Preventive services,433794,903380,48.02%
+CY 2016,Age 3–5,Restorative services,165964,903380,18.37%
+CY 2016,Age 6–9,Dental visit,732706,1247032,58.76%
+CY 2016,Age 6–9,Exam/Evaluation,689646,1247032,55.30%
+CY 2016,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,656017,1247032,52.61%
+CY 2016,Age 6–9,Treatment services,400652,1247032,32.13%
+CY 2016,Age 6–9,Preventive services,693326,1247032,55.60%
+CY 2016,Age 6–9,Restorative services,322437,1247032,25.86%
+CY 2016,Age 6–9,Sealant use,214344,1247032,17.19%
+CY 2016,Age 10–14,Dental visit,756492,1456248,51.95%
+CY 2016,Age 10–14,Exam/Evaluation,705657,1456248,48.46%
+CY 2016,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,659737,1456248,45.30%
+CY 2016,Age 10–14,Treatment services,357780,1456248,24.57%
+CY 2016,Age 10–14,Preventive services,707791,1456248,48.60%
+CY 2016,Age 10–14,Restorative services,266890,1456248,18.33%
+CY 2016,Age 10–14,Sealant use,134328,1456248,9.22%
+CY 2016,Age 15–18,Dental visit,460278,1102856,41.74%
+CY 2016,Age 15–18,Exam/Evaluation,413900,1102856,37.53%
+CY 2016,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,371530,1102856,33.69%
+CY 2016,Age 15–18,Treatment services,232376,1102856,21.07%
+CY 2016,Age 15–18,Preventive services,403378,1102856,36.58%
+CY 2016,Age 15–18,Restorative services,180179,1102856,16.34%
+CY 2016,Age 19–20,Dental visit,134016,492478,27.21%
+CY 2016,Age 19–20,Exam/Evaluation,116597,492478,23.68%
+CY 2016,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,95773,492478,19.45%
+CY 2016,Age 19–20,Treatment services,69753,492478,14.16%
+CY 2016,Age 19–20,Preventive services,106675,492478,21.66%
+CY 2016,Age 19–20,Restorative services,48707,492478,9.89%
+CY 2016,Age 21–34,Dental visit,515174,2824714,18.24%
+CY 2016,Age 21–34,Exam/Evaluation,376505,2824714,13.33%
+CY 2016,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,280615,2824714,9.93%
+CY 2016,Age 21–34,Treatment services,299061,2824714,10.59%
+CY 2016,Age 21–34,Preventive services,313295,2824714,11.09%
+CY 2016,Age 21–34,Restorative services,194365,2824714,6.88%
+CY 2016,Age 35–44,Dental visit,256182,1245287,20.57%
+CY 2016,Age 35–44,Exam/Evaluation,183700,1245287,14.75%
+CY 2016,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,128418,1245287,10.31%
+CY 2016,Age 35–44,Treatment services,151347,1245287,12.15%
+CY 2016,Age 35–44,Preventive services,146401,1245287,11.76%
+CY 2016,Age 35–44,Restorative services,92184,1245287,7.40%
+CY 2016,Age 45–64,Dental visit,576848,2505633,23.02%
+CY 2016,Age 45–64,Exam/Evaluation,403870,2505633,16.12%
+CY 2016,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,253502,2505633,10.12%
+CY 2016,Age 45–64,Treatment services,355099,2505633,14.17%
+CY 2016,Age 45–64,Preventive services,314964,2505633,12.57%
+CY 2016,Age 45–64,Restorative services,174705,2505633,6.97%
+CY 2016,Age 65–74,Dental visit,149240,648546,23.01%
+CY 2016,Age 65–74,Exam/Evaluation,100621,648546,15.51%
+CY 2016,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,59977,648546,9.25%
+CY 2016,Age 65–74,Treatment services,97278,648546,15.00%
+CY 2016,Age 65–74,Preventive services,77755,648546,11.99%
+CY 2016,Age 65–74,Restorative services,39442,648546,6.08%
+CY 2016,Age 75+,Dental visit,111010,539061,20.59%
+CY 2016,Age 75+,Exam/Evaluation,68594,539061,12.72%
+CY 2016,Age 75+,Treatment for Caries or Caries-Preventive Procedure,38425,539061,7.13%
+CY 2016,Age 75+,Treatment services,79445,539061,14.74%
+CY 2016,Age 75+,Preventive services,50331,539061,9.34%
+CY 2016,Age 75+,Restorative services,22184,539061,4.12%
+CY 2017,Age <1,Dental visit,5865,237656,2.47%
+CY 2017,Age <1,Exam/Evaluation,1324,237656,0.56%
+CY 2017,Age <1,Treatment for Caries or Caries-Preventive Procedure,1077,237656,0.45%
+CY 2017,Age <1,Treatment services,293,237656,0.12%
+CY 2017,Age <1,Preventive services,2842,237656,1.20%
+CY 2017,Age <1,Restorative services,47,237656,0.02%
+CY 2017,Age 1–2,Dental visit,157713,581236,27.13%
+CY 2017,Age 1–2,Exam/Evaluation,101184,581236,17.41%
+CY 2017,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,106128,581236,18.26%
+CY 2017,Age 1–2,Treatment services,20737,581236,3.57%
+CY 2017,Age 1–2,Preventive services,137125,581236,23.59%
+CY 2017,Age 1–2,Restorative services,13822,581236,2.38%
+CY 2017,Age 3–5,Dental visit,471396,880582,53.53%
+CY 2017,Age 3–5,Exam/Evaluation,420983,880582,47.81%
+CY 2017,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,399665,880582,45.39%
+CY 2017,Age 3–5,Treatment services,187596,880582,21.30%
+CY 2017,Age 3–5,Preventive services,441871,880582,50.18%
+CY 2017,Age 3–5,Restorative services,162434,880582,18.45%
+CY 2017,Age 6–9,Dental visit,724288,1192271,60.75%
+CY 2017,Age 6–9,Exam/Evaluation,684168,1192271,57.38%
+CY 2017,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,651866,1192271,54.67%
+CY 2017,Age 6–9,Treatment services,394855,1192271,33.12%
+CY 2017,Age 6–9,Preventive services,690033,1192271,57.88%
+CY 2017,Age 6–9,Restorative services,316481,1192271,26.54%
+CY 2017,Age 6–9,Sealant use,212235,1192271,17.80%
+CY 2017,Age 10–14,Dental visit,802896,1459208,55.02%
+CY 2017,Age 10–14,Exam/Evaluation,752787,1459208,51.59%
+CY 2017,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,705651,1459208,48.36%
+CY 2017,Age 10–14,Treatment services,379282,1459208,25.99%
+CY 2017,Age 10–14,Preventive services,757559,1459208,51.92%
+CY 2017,Age 10–14,Restorative services,283389,1459208,19.42%
+CY 2017,Age 10–14,Sealant use,145995,1459208,10.01%
+CY 2017,Age 15–18,Dental visit,489957,1085000,45.16%
+CY 2017,Age 15–18,Exam/Evaluation,444124,1085000,40.93%
+CY 2017,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,401151,1085000,36.97%
+CY 2017,Age 15–18,Treatment services,246558,1085000,22.72%
+CY 2017,Age 15–18,Preventive services,434574,1085000,40.05%
+CY 2017,Age 15–18,Restorative services,191311,1085000,17.63%
+CY 2017,Age 19–20,Dental visit,139244,479530,29.04%
+CY 2017,Age 19–20,Exam/Evaluation,122406,479530,25.53%
+CY 2017,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,100318,479530,20.92%
+CY 2017,Age 19–20,Treatment services,72419,479530,15.10%
+CY 2017,Age 19–20,Preventive services,111399,479530,23.23%
+CY 2017,Age 19–20,Restorative services,49889,479530,10.40%
+CY 2017,Age 21–34,Dental visit,536818,2798498,19.18%
+CY 2017,Age 21–34,Exam/Evaluation,428783,2798498,15.32%
+CY 2017,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,293562,2798498,10.49%
+CY 2017,Age 21–34,Treatment services,305345,2798498,10.91%
+CY 2017,Age 21–34,Preventive services,330475,2798498,11.81%
+CY 2017,Age 21–34,Restorative services,197347,2798498,7.05%
+CY 2017,Age 35–44,Dental visit,264127,1243924,21.23%
+CY 2017,Age 35–44,Exam/Evaluation,206319,1243924,16.59%
+CY 2017,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,135532,1243924,10.90%
+CY 2017,Age 35–44,Treatment services,155057,1243924,12.47%
+CY 2017,Age 35–44,Preventive services,154419,1243924,12.41%
+CY 2017,Age 35–44,Restorative services,95896,1243924,7.71%
+CY 2017,Age 45–64,Dental visit,579947,2438453,23.78%
+CY 2017,Age 45–64,Exam/Evaluation,445539,2438453,18.27%
+CY 2017,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,265856,2438453,10.90%
+CY 2017,Age 45–64,Treatment services,352965,2438453,14.47%
+CY 2017,Age 45–64,Preventive services,330538,2438453,13.56%
+CY 2017,Age 45–64,Restorative services,180136,2438453,7.39%
+CY 2017,Age 65–74,Dental visit,161532,674012,23.97%
+CY 2017,Age 65–74,Exam/Evaluation,121055,674012,17.96%
+CY 2017,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,68011,674012,10.09%
+CY 2017,Age 65–74,Treatment services,104508,674012,15.51%
+CY 2017,Age 65–74,Preventive services,88376,674012,13.11%
+CY 2017,Age 65–74,Restorative services,43839,674012,6.50%
+CY 2017,Age 75+,Dental visit,116566,546142,21.34%
+CY 2017,Age 75+,Exam/Evaluation,82470,546142,15.10%
+CY 2017,Age 75+,Treatment for Caries or Caries-Preventive Procedure,43140,546142,7.90%
+CY 2017,Age 75+,Treatment services,82604,546142,15.13%
+CY 2017,Age 75+,Preventive services,55937,546142,10.24%
+CY 2017,Age 75+,Restorative services,23569,546142,4.32%
+CY 2018,Age <1,Dental visit,5985,221667,2.70%
+CY 2018,Age <1,Exam/Evaluation,1309,221667,0.59%
+CY 2018,Age <1,Treatment for Caries or Caries-Preventive Procedure,1175,221667,0.53%
+CY 2018,Age <1,Treatment services,258,221667,0.12%
+CY 2018,Age <1,Diagnostic services,3298,221667,1.49%
+CY 2018,Age <1,Preventive services,2933,221667,1.32%
+CY 2018,Age <1,Restorative services,48,221667,0.02%
+CY 2018,Age 1–2,Dental visit,147491,554003,26.62%
+CY 2018,Age 1–2,Exam/Evaluation,94256,554003,17.01%
+CY 2018,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,99628,554003,17.98%
+CY 2018,Age 1–2,Treatment services,20192,554003,3.64%
+CY 2018,Age 1–2,Diagnostic services,134555,554003,24.29%
+CY 2018,Age 1–2,Preventive services,129144,554003,23.31%
+CY 2018,Age 1–2,Restorative services,12582,554003,2.27%
+CY 2018,Age 3–5,Dental visit,454532,853884,53.23%
+CY 2018,Age 3–5,Exam/Evaluation,402247,853884,47.11%
+CY 2018,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,387735,853884,45.41%
+CY 2018,Age 3–5,Treatment services,184354,853884,21.59%
+CY 2018,Age 3–5,Diagnostic services,435475,853884,51.00%
+CY 2018,Age 3–5,Preventive services,428246,853884,50.15%
+CY 2018,Age 3–5,Restorative services,156314,853884,18.31%
+CY 2018,Age 6–9,Dental visit,697337,1143911,60.96%
+CY 2018,Age 6–9,Exam/Evaluation,658001,1143911,57.52%
+CY 2018,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,630422,1143911,55.11%
+CY 2018,Age 6–9,Treatment services,383641,1143911,33.54%
+CY 2018,Age 6–9,Diagnostic services,671272,1143911,58.68%
+CY 2018,Age 6–9,Preventive services,664985,1143911,58.13%
+CY 2018,Age 6–9,Restorative services,306395,1143911,26.78%
+CY 2018,Age 6–9,Sealant use,196904,1143911,17.21%
+CY 2018,Age 10–14,Dental visit,806194,1453262,55.47%
+CY 2018,Age 10–14,Exam/Evaluation,755049,1453262,51.96%
+CY 2018,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,710500,1453262,48.89%
+CY 2018,Age 10–14,Treatment services,378243,1453262,26.03%
+CY 2018,Age 10–14,Diagnostic services,773640,1453262,53.23%
+CY 2018,Age 10–14,Preventive services,761395,1453262,52.39%
+CY 2018,Age 10–14,Restorative services,281221,1453262,19.35%
+CY 2018,Age 10–14,Sealant use,144024,1453262,9.91%
+CY 2018,Age 15–18,Dental visit,494030,1069724,46.18%
+CY 2018,Age 15–18,Exam/Evaluation,448294,1069724,41.91%
+CY 2018,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,406469,1069724,38.00%
+CY 2018,Age 15–18,Treatment services,248614,1069724,23.24%
+CY 2018,Age 15–18,Diagnostic services,464139,1069724,43.39%
+CY 2018,Age 15–18,Preventive services,438851,1069724,41.02%
+CY 2018,Age 15–18,Restorative services,190472,1069724,17.81%
+CY 2018,Age 19–20,Dental visit,139497,465831,29.95%
+CY 2018,Age 19–20,Exam/Evaluation,122510,465831,26.30%
+CY 2018,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,100877,465831,21.66%
+CY 2018,Age 19–20,Treatment services,73234,465831,15.72%
+CY 2018,Age 19–20,Diagnostic services,128771,465831,27.64%
+CY 2018,Age 19–20,Preventive services,111523,465831,23.94%
+CY 2018,Age 19–20,Restorative services,49855,465831,10.70%
+CY 2018,Age 21–34,Dental visit,563255,2737872,20.57%
+CY 2018,Age 21–34,Exam/Evaluation,462072,2737872,16.88%
+CY 2018,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,324411,2737872,11.85%
+CY 2018,Age 21–34,Treatment services,345045,2737872,12.60%
+CY 2018,Age 21–34,Diagnostic services,509279,2737872,18.60%
+CY 2018,Age 21–34,Preventive services,353393,2737872,12.91%
+CY 2018,Age 21–34,Restorative services,221992,2737872,8.11%
+CY 2018,Age 35–44,Dental visit,285309,1236026,23.08%
+CY 2018,Age 35–44,Exam/Evaluation,230720,1236026,18.67%
+CY 2018,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,156575,1236026,12.67%
+CY 2018,Age 35–44,Treatment services,186285,1236026,15.07%
+CY 2018,Age 35–44,Diagnostic services,255029,1236026,20.63%
+CY 2018,Age 35–44,Preventive services,169489,1236026,13.71%
+CY 2018,Age 35–44,Restorative services,113543,1236026,9.19%
+CY 2018,Age 45–64,Dental visit,609892,2358129,25.86%
+CY 2018,Age 45–64,Exam/Evaluation,486661,2358129,20.64%
+CY 2018,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,302518,2358129,12.83%
+CY 2018,Age 45–64,Treatment services,412838,2358129,17.51%
+CY 2018,Age 45–64,Diagnostic services,537820,2358129,22.81%
+CY 2018,Age 45–64,Preventive services,352197,2358129,14.94%
+CY 2018,Age 45–64,Restorative services,212653,2358129,9.02%
+CY 2018,Age 65–74,Dental visit,180249,692976,26.01%
+CY 2018,Age 65–74,Exam/Evaluation,141236,692976,20.38%
+CY 2018,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,81358,692976,11.74%
+CY 2018,Age 65–74,Treatment services,125158,692976,18.06%
+CY 2018,Age 65–74,Diagnostic services,156625,692976,22.60%
+CY 2018,Age 65–74,Preventive services,99510,692976,14.36%
+CY 2018,Age 65–74,Restorative services,54581,692976,7.88%
+CY 2018,Age 75+,Dental visit,126172,555584,22.71%
+CY 2018,Age 75+,Exam/Evaluation,95568,555584,17.20%
+CY 2018,Age 75+,Treatment for Caries or Caries-Preventive Procedure,49634,555584,8.93%
+CY 2018,Age 75+,Treatment services,92309,555584,16.61%
+CY 2018,Age 75+,Diagnostic services,107453,555584,19.34%
+CY 2018,Age 75+,Preventive services,61728,555584,11.11%
+CY 2018,Age 75+,Restorative services,28856,555584,5.19%
+CY 2019,Age <1,Dental visit,9426,190723,4.94%
+CY 2019,Age <1,Exam/Evaluation,2091,190723,1.10%
+CY 2019,Age <1,Treatment for Caries or Caries-Preventive Procedure,2299,190723,1.21%
+CY 2019,Age <1,Treatment services,1670,190723,0.88%
+CY 2019,Age <1,Diagnostic services,4863,190723,2.55%
+CY 2019,Age <1,Preventive services,6810,190723,3.57%
+CY 2019,Age <1,Restorative services,71,190723,0.04%
+CY 2019,Age 1–2,Dental visit,168347,514382,32.73%
+CY 2019,Age 1–2,Exam/Evaluation,99316,514382,19.31%
+CY 2019,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,109863,514382,21.36%
+CY 2019,Age 1–2,Treatment services,69917,514382,13.59%
+CY 2019,Age 1–2,Diagnostic services,140985,514382,27.41%
+CY 2019,Age 1–2,Preventive services,155130,514382,30.16%
+CY 2019,Age 1–2,Restorative services,12660,514382,2.46%
+CY 2019,Age 3–5,Dental visit,458445,821102,55.83%
+CY 2019,Age 3–5,Exam/Evaluation,402834,821102,49.06%
+CY 2019,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,390780,821102,47.59%
+CY 2019,Age 3–5,Treatment services,279183,821102,34.00%
+CY 2019,Age 3–5,Diagnostic services,432146,821102,52.63%
+CY 2019,Age 3–5,Preventive services,438662,821102,53.42%
+CY 2019,Age 3–5,Restorative services,153239,821102,18.66%
+CY 2019,Age 6–9,Dental visit,681876,1090999,62.50%
+CY 2019,Age 6–9,Exam/Evaluation,641715,1090999,58.82%
+CY 2019,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,620923,1090999,56.91%
+CY 2019,Age 6–9,Treatment services,406661,1090999,37.27%
+CY 2019,Age 6–9,Diagnostic services,654871,1090999,60.02%
+CY 2019,Age 6–9,Preventive services,652896,1090999,59.84%
+CY 2019,Age 6–9,Restorative services,303056,1090999,27.78%
+CY 2019,Age 6–9,Sealant use,194967,1090999,17.87%
+CY 2019,Age 10–14,Dental visit,808219,1419735,56.93%
+CY 2019,Age 10–14,Exam/Evaluation,756600,1419735,53.29%
+CY 2019,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,718380,1419735,50.60%
+CY 2019,Age 10–14,Treatment services,382768,1419735,26.96%
+CY 2019,Age 10–14,Diagnostic services,773962,1419735,54.51%
+CY 2019,Age 10–14,Preventive services,765801,1419735,53.94%
+CY 2019,Age 10–14,Restorative services,286009,1419735,20.15%
+CY 2019,Age 10–14,Sealant use,148699,1419735,10.47%
+CY 2019,Age 15–18,Dental visit,494465,1039477,47.57%
+CY 2019,Age 15–18,Exam/Evaluation,449454,1039477,43.24%
+CY 2019,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,413005,1039477,39.73%
+CY 2019,Age 15–18,Treatment services,250425,1039477,24.09%
+CY 2019,Age 15–18,Diagnostic services,464121,1039477,44.65%
+CY 2019,Age 15–18,Preventive services,442491,1039477,42.57%
+CY 2019,Age 15–18,Restorative services,192234,1039477,18.49%
+CY 2019,Age 19–20,Dental visit,139441,442679,31.50%
+CY 2019,Age 19–20,Exam/Evaluation,123114,442679,27.81%
+CY 2019,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,103675,442679,23.42%
+CY 2019,Age 19–20,Treatment services,73847,442679,16.68%
+CY 2019,Age 19–20,Diagnostic services,128770,442679,29.09%
+CY 2019,Age 19–20,Preventive services,113191,442679,25.57%
+CY 2019,Age 19–20,Restorative services,50963,442679,11.51%
+CY 2019,Age 21–34,Dental visit,570013,2548046,22.37%
+CY 2019,Age 21–34,Exam/Evaluation,463990,2548046,18.21%
+CY 2019,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,343875,2548046,13.50%
+CY 2019,Age 21–34,Treatment services,361281,2548046,14.18%
+CY 2019,Age 21–34,Diagnostic services,507186,2548046,19.90%
+CY 2019,Age 21–34,Preventive services,362626,2548046,14.23%
+CY 2019,Age 21–34,Restorative services,231050,2548046,9.07%
+CY 2019,Age 35–44,Dental visit,295333,1181250,25.00%
+CY 2019,Age 35–44,Exam/Evaluation,232315,1181250,19.67%
+CY 2019,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,170331,1181250,14.42%
+CY 2019,Age 35–44,Treatment services,202830,1181250,17.17%
+CY 2019,Age 35–44,Diagnostic services,255987,1181250,21.67%
+CY 2019,Age 35–44,Preventive services,175127,1181250,14.83%
+CY 2019,Age 35–44,Restorative services,122158,1181250,10.34%
+CY 2019,Age 45–64,Dental visit,615273,2209413,27.85%
+CY 2019,Age 45–64,Exam/Evaluation,478767,2209413,21.67%
+CY 2019,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,322974,2209413,14.62%
+CY 2019,Age 45–64,Treatment services,440075,2209413,19.92%
+CY 2019,Age 45–64,Diagnostic services,526574,2209413,23.83%
+CY 2019,Age 45–64,Preventive services,353626,2209413,16.01%
+CY 2019,Age 45–64,Restorative services,226099,2209413,10.23%
+CY 2019,Age 65–74,Dental visit,193839,699801,27.70%
+CY 2019,Age 65–74,Exam/Evaluation,149274,699801,21.33%
+CY 2019,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,93030,699801,13.29%
+CY 2019,Age 65–74,Treatment services,141663,699801,20.24%
+CY 2019,Age 65–74,Diagnostic services,164335,699801,23.48%
+CY 2019,Age 65–74,Preventive services,106810,699801,15.26%
+CY 2019,Age 65–74,Restorative services,62805,699801,8.97%
+CY 2019,Age 75+,Dental visit,134104,558160,24.03%
+CY 2019,Age 75+,Exam/Evaluation,101325,558160,18.15%
+CY 2019,Age 75+,Treatment for Caries or Caries-Preventive Procedure,57077,558160,10.23%
+CY 2019,Age 75+,Treatment services,101615,558160,18.21%
+CY 2019,Age 75+,Diagnostic services,112668,558160,20.19%
+CY 2019,Age 75+,Preventive services,66677,558160,11.95%
+CY 2019,Age 75+,Restorative services,33656,558160,6.03%
+CY 2020,Age <1,Dental visit,8571,196937,4.35%
+CY 2020,Age <1,Exam/Evaluation,1485,196937,0.75%
+CY 2020,Age <1,Treatment for Caries or Caries-Preventive Procedure,1609,196937,0.82%
+CY 2020,Age <1,Treatment services,1318,196937,0.67%
+CY 2020,Age <1,Diagnostic services,4506,196937,2.29%
+CY 2020,Age <1,Preventive services,7085,196937,3.60%
+CY 2020,Age <1,Restorative services,48,196937,0.02%
+CY 2020,Age 1–2,Dental visit,135987,489079,27.80%
+CY 2020,Age 1–2,Exam/Evaluation,74446,489079,15.22%
+CY 2020,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,81682,489079,16.70%
+CY 2020,Age 1–2,Treatment services,63238,489079,12.93%
+CY 2020,Age 1–2,Diagnostic services,103705,489079,21.20%
+CY 2020,Age 1–2,Preventive services,127167,489079,26.00%
+CY 2020,Age 1–2,Restorative services,9674,489079,1.98%
+CY 2020,Age 3–5,Dental visit,357912,790271,45.29%
+CY 2020,Age 3–5,Exam/Evaluation,304139,790271,38.49%
+CY 2020,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,299160,790271,37.86%
+CY 2020,Age 3–5,Treatment services,246600,790271,31.20%
+CY 2020,Age 3–5,Diagnostic services,329609,790271,41.71%
+CY 2020,Age 3–5,Preventive services,341646,790271,43.23%
+CY 2020,Age 3–5,Restorative services,113291,790271,14.34%
+CY 2020,Age 6–9,Dental visit,549637,1076163,51.07%
+CY 2020,Age 6–9,Exam/Evaluation,503616,1076163,46.80%
+CY 2020,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,489250,1076163,45.46%
+CY 2020,Age 6–9,Treatment services,336995,1076163,31.31%
+CY 2020,Age 6–9,Diagnostic services,520149,1076163,48.33%
+CY 2020,Age 6–9,Preventive services,516153,1076163,47.96%
+CY 2020,Age 6–9,Restorative services,224225,1076163,20.84%
+CY 2020,Age 6–9,Sealant use,140272,1076163,13.03%
+CY 2020,Age 10–14,Dental visit,650112,1406919,46.21%
+CY 2020,Age 10–14,Exam/Evaluation,592458,1406919,42.11%
+CY 2020,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,564466,1406919,40.12%
+CY 2020,Age 10–14,Treatment services,294555,1406919,20.94%
+CY 2020,Age 10–14,Diagnostic services,611928,1406919,43.49%
+CY 2020,Age 10–14,Preventive services,602715,1406919,42.84%
+CY 2020,Age 10–14,Restorative services,209246,1406919,14.87%
+CY 2020,Age 10–14,Sealant use,109961,1406919,7.82%
+CY 2020,Age 15–18,Dental visit,411646,1046964,39.32%
+CY 2020,Age 15–18,Exam/Evaluation,363038,1046964,34.68%
+CY 2020,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,335810,1046964,32.07%
+CY 2020,Age 15–18,Treatment services,200845,1046964,19.18%
+CY 2020,Age 15–18,Diagnostic services,378074,1046964,36.11%
+CY 2020,Age 15–18,Preventive services,358767,1046964,34.27%
+CY 2020,Age 15–18,Restorative services,145890,1046964,13.93%
+CY 2020,Age 19–20,Dental visit,122910,462580,26.57%
+CY 2020,Age 19–20,Exam/Evaluation,105264,462580,22.76%
+CY 2020,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,89470,462580,19.34%
+CY 2020,Age 19–20,Treatment services,64711,462580,13.99%
+CY 2020,Age 19–20,Diagnostic services,111568,462580,24.12%
+CY 2020,Age 19–20,Preventive services,97191,462580,21.01%
+CY 2020,Age 19–20,Restorative services,42307,462580,9.15%
+CY 2020,Age 21–34,Dental visit,501442,2601400,19.28%
+CY 2020,Age 21–34,Exam/Evaluation,394543,2601400,15.17%
+CY 2020,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,297296,2601400,11.43%
+CY 2020,Age 21–34,Treatment services,317967,2601400,12.22%
+CY 2020,Age 21–34,Diagnostic services,438907,2601400,16.87%
+CY 2020,Age 21–34,Preventive services,311793,2601400,11.99%
+CY 2020,Age 21–34,Restorative services,193416,2601400,7.44%
+CY 2020,Age 35–44,Dental visit,255917,1213943,21.08%
+CY 2020,Age 35–44,Exam/Evaluation,191384,1213943,15.77%
+CY 2020,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,142456,1213943,11.73%
+CY 2020,Age 35–44,Treatment services,175371,1213943,14.45%
+CY 2020,Age 35–44,Diagnostic services,215950,1213943,17.79%
+CY 2020,Age 35–44,Preventive services,144790,1213943,11.93%
+CY 2020,Age 35–44,Restorative services,99438,1213943,8.19%
+CY 2020,Age 45–64,Dental visit,511837,2204036,23.22%
+CY 2020,Age 45–64,Exam/Evaluation,377228,2204036,17.12%
+CY 2020,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,257961,2204036,11.70%
+CY 2020,Age 45–64,Treatment services,365078,2204036,16.56%
+CY 2020,Age 45–64,Diagnostic services,424305,2204036,19.25%
+CY 2020,Age 45–64,Preventive services,276737,2204036,12.56%
+CY 2020,Age 45–64,Restorative services,175992,2204036,7.98%
+CY 2020,Age 65–74,Dental visit,158612,714177,22.21%
+CY 2020,Age 65–74,Exam/Evaluation,113467,714177,15.89%
+CY 2020,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,72137,714177,10.10%
+CY 2020,Age 65–74,Treatment services,116427,714177,16.30%
+CY 2020,Age 65–74,Diagnostic services,127925,714177,17.91%
+CY 2020,Age 65–74,Preventive services,79775,714177,11.17%
+CY 2020,Age 65–74,Restorative services,48197,714177,6.75%
+CY 2020,Age 75+,Dental visit,103997,568876,18.28%
+CY 2020,Age 75+,Exam/Evaluation,71701,568876,12.60%
+CY 2020,Age 75+,Treatment for Caries or Caries-Preventive Procedure,41192,568876,7.24%
+CY 2020,Age 75+,Treatment services,79017,568876,13.89%
+CY 2020,Age 75+,Diagnostic services,82032,568876,14.42%
+CY 2020,Age 75+,Preventive services,46637,568876,8.20%
+CY 2020,Age 75+,Restorative services,24280,568876,4.27%
+CY 2021,Age <1,Dental visit,9664,190455,5.07%
+CY 2021,Age <1,Exam/Evaluation,1859,190455,0.98%
+CY 2021,Age <1,Treatment for Caries or Caries-Preventive Procedure,2481,190455,1.30%
+CY 2021,Age <1,Treatment services,2089,190455,1.10%
+CY 2021,Age <1,Diagnostic services,5141,190455,2.70%
+CY 2021,Age <1,Preventive services,7913,190455,4.15%
+CY 2021,Age 1–2,Dental visit,157824,477527,33.05%
+CY 2021,Age 1–2,Exam/Evaluation,90419,477527,18.93%
+CY 2021,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,100598,477527,21.07%
+CY 2021,Age 1–2,Treatment services,79645,477527,16.68%
+CY 2021,Age 1–2,Diagnostic services,122576,477527,25.67%
+CY 2021,Age 1–2,Preventive services,149250,477527,31.25%
+CY 2021,Age 3–5,Dental visit,406343,787315,51.61%
+CY 2021,Age 3–5,Exam/Evaluation,350039,787315,44.46%
+CY 2021,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,348183,787315,44.22%
+CY 2021,Age 3–5,Treatment services,293767,787315,37.31%
+CY 2021,Age 3–5,Diagnostic services,377183,787315,47.91%
+CY 2021,Age 3–5,Preventive services,391697,787315,49.75%
+CY 2021,Age 3–5,Restorative services,116837,787315,14.84%
+CY 2021,Age 6–9,Dental visit,625631,1102774,56.73%
+CY 2021,Age 6–9,Exam/Evaluation,586364,1102774,53.17%
+CY 2021,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,571572,1102774,51.83%
+CY 2021,Age 6–9,Treatment services,406538,1102774,36.87%
+CY 2021,Age 6–9,Diagnostic services,599205,1102774,54.34%
+CY 2021,Age 6–9,Preventive services,598919,1102774,54.31%
+CY 2021,Age 6–9,Restorative services,242383,1102774,21.98%
+CY 2021,Age 6–9,Sealant use,172275,1102774,15.62%
+CY 2021,Age 10–14,Dental visit,741269,1434599,51.67%
+CY 2021,Age 10–14,Exam/Evaluation,690552,1434599,48.14%
+CY 2021,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,663109,1434599,46.22%
+CY 2021,Age 10–14,Treatment services,360748,1434599,25.15%
+CY 2021,Age 10–14,Diagnostic services,707475,1434599,49.32%
+CY 2021,Age 10–14,Preventive services,700726,1434599,48.84%
+CY 2021,Age 10–14,Restorative services,222801,1434599,15.53%
+CY 2021,Age 10–14,Sealant use,133434,1434599,9.30%
+CY 2021,Age 15–18,Dental visit,485609,1109470,43.77%
+CY 2021,Age 15–18,Exam/Evaluation,439272,1109470,39.59%
+CY 2021,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,410701,1109470,37.02%
+CY 2021,Age 15–18,Treatment services,248568,1109470,22.40%
+CY 2021,Age 15–18,Diagnostic services,455156,1109470,41.02%
+CY 2021,Age 15–18,Preventive services,434396,1109470,39.15%
+CY 2021,Age 15–18,Restorative services,156803,1109470,14.13%
+CY 2021,Age 19–20,Dental visit,154339,510056,30.26%
+CY 2021,Age 19–20,Exam/Evaluation,135918,510056,26.65%
+CY 2021,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,118923,510056,23.32%
+CY 2021,Age 19–20,Treatment services,83502,510056,16.37%
+CY 2021,Age 19–20,Diagnostic services,142854,510056,28.01%
+CY 2021,Age 19–20,Preventive services,126957,510056,24.89%
+CY 2021,Age 19–20,Restorative services,47731,510056,9.36%
+CY 2021,Age 21–34,Dental visit,618584,2867405,21.57%
+CY 2021,Age 21–34,Exam/Evaluation,504452,2867405,17.59%
+CY 2021,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,391462,2867405,13.65%
+CY 2021,Age 21–34,Treatment services,389671,2867405,13.59%
+CY 2021,Age 21–34,Diagnostic services,555041,2867405,19.36%
+CY 2021,Age 21–34,Preventive services,404749,2867405,14.12%
+CY 2021,Age 21–34,Restorative services,193094,2867405,6.73%
+CY 2021,Age 35–44,Dental visit,308593,1337708,23.07%
+CY 2021,Age 35–44,Exam/Evaluation,243058,1337708,18.17%
+CY 2021,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,183192,1337708,13.69%
+CY 2021,Age 35–44,Treatment services,211286,1337708,15.79%
+CY 2021,Age 35–44,Diagnostic services,270743,1337708,20.24%
+CY 2021,Age 35–44,Preventive services,183887,1337708,13.75%
+CY 2021,Age 35–44,Restorative services,91411,1337708,6.83%
+CY 2021,Age 45–64,Dental visit,603260,2326146,25.93%
+CY 2021,Age 45–64,Exam/Evaluation,471997,2326146,20.29%
+CY 2021,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,326922,2326146,14.05%
+CY 2021,Age 45–64,Treatment services,433033,2326146,18.62%
+CY 2021,Age 45–64,Diagnostic services,523698,2326146,22.51%
+CY 2021,Age 45–64,Preventive services,345252,2326146,14.84%
+CY 2021,Age 45–64,Restorative services,149509,2326146,6.43%
+CY 2021,Age 65–74,Dental visit,204293,789863,25.86%
+CY 2021,Age 65–74,Exam/Evaluation,158895,789863,20.12%
+CY 2021,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,100552,789863,12.73%
+CY 2021,Age 65–74,Treatment services,151494,789863,19.18%
+CY 2021,Age 65–74,Diagnostic services,175612,789863,22.23%
+CY 2021,Age 65–74,Preventive services,110401,789863,13.98%
+CY 2021,Age 65–74,Restorative services,44099,789863,5.58%
+CY 2021,Age 75+,Dental visit,130750,598568,21.84%
+CY 2021,Age 75+,Exam/Evaluation,100285,598568,16.75%
+CY 2021,Age 75+,Treatment for Caries or Caries-Preventive Procedure,56194,598568,9.39%
+CY 2021,Age 75+,Treatment services,99362,598568,16.60%
+CY 2021,Age 75+,Diagnostic services,111486,598568,18.63%
+CY 2021,Age 75+,Preventive services,63491,598568,10.61%
+CY 2021,Age 75+,Restorative services,23042,598568,3.85%
+CY 2022,Age <1,Dental visit,11555,196261,5.89%
+CY 2022,Age <1,Exam/Evaluation,2456,196261,1.25%
+CY 2022,Age <1,Treatment for Caries or Caries-Preventive Procedure,3318,196261,1.69%
+CY 2022,Age <1,Treatment services,705,196261,0.36%
+CY 2022,Age <1,Diagnostic services,5869,196261,2.99%
+CY 2022,Age <1,Preventive services,9442,196261,4.81%
+CY 2022,Age 1–2,Dental visit,165602,465487,35.58%
+CY 2022,Age 1–2,Exam/Evaluation,99548,465487,21.39%
+CY 2022,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,110684,465487,23.78%
+CY 2022,Age 1–2,Treatment services,25736,465487,5.53%
+CY 2022,Age 1–2,Diagnostic services,131409,465487,28.23%
+CY 2022,Age 1–2,Preventive services,158038,465487,33.95%
+CY 2022,Age 3–5,Dental visit,418117,785330,53.24%
+CY 2022,Age 3–5,Exam/Evaluation,361936,785330,46.09%
+CY 2022,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,362034,785330,46.10%
+CY 2022,Age 3–5,Treatment services,179928,785330,22.91%
+CY 2022,Age 3–5,Diagnostic services,389551,785330,49.60%
+CY 2022,Age 3–5,Preventive services,404766,785330,51.54%
+CY 2022,Age 3–5,Restorative services,113189,785330,14.41%
+CY 2022,Age 6–9,Dental visit,658030,1127258,58.37%
+CY 2022,Age 6–9,Exam/Evaluation,617952,1127258,54.82%
+CY 2022,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,604818,1127258,53.65%
+CY 2022,Age 6–9,Treatment services,376167,1127258,33.37%
+CY 2022,Age 6–9,Diagnostic services,631123,1127258,55.99%
+CY 2022,Age 6–9,Preventive services,631289,1127258,56.00%
+CY 2022,Age 6–9,Restorative services,250132,1127258,22.19%
+CY 2022,Age 6–9,Sealant use,187148,1127258,16.60%
+CY 2022,Age 10–14,Dental visit,774994,1451780,53.38%
+CY 2022,Age 10–14,Exam/Evaluation,722661,1451780,49.78%
+CY 2022,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,697197,1451780,48.02%
+CY 2022,Age 10–14,Treatment services,376367,1451780,25.92%
+CY 2022,Age 10–14,Diagnostic services,739852,1451780,50.96%
+CY 2022,Age 10–14,Preventive services,733766,1451780,50.54%
+CY 2022,Age 10–14,Restorative services,230931,1451780,15.91%
+CY 2022,Age 10–14,Sealant use,145148,1451780,10.00%
+CY 2022,Age 15–18,Dental visit,523949,1176856,44.52%
+CY 2022,Age 15–18,Exam/Evaluation,475541,1176856,40.41%
+CY 2022,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,447066,1176856,37.99%
+CY 2022,Age 15–18,Treatment services,264193,1176856,22.45%
+CY 2022,Age 15–18,Diagnostic services,491336,1176856,41.75%
+CY 2022,Age 15–18,Preventive services,471693,1176856,40.08%
+CY 2022,Age 15–18,Restorative services,165650,1176856,14.08%
+CY 2022,Age 19–20,Dental visit,162753,543367,29.95%
+CY 2022,Age 19–20,Exam/Evaluation,144398,543367,26.57%
+CY 2022,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,126921,543367,23.36%
+CY 2022,Age 19–20,Treatment services,85611,543367,15.76%
+CY 2022,Age 19–20,Diagnostic services,151122,543367,27.81%
+CY 2022,Age 19–20,Preventive services,135400,543367,24.92%
+CY 2022,Age 19–20,Restorative services,48350,543367,8.90%
+CY 2022,Age 21–34,Dental visit,659677,3131557,21.07%
+CY 2022,Age 21–34,Exam/Evaluation,538766,3131557,17.20%
+CY 2022,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,422477,3131557,13.49%
+CY 2022,Age 21–34,Treatment services,410491,3131557,13.11%
+CY 2022,Age 21–34,Diagnostic services,590157,3131557,18.85%
+CY 2022,Age 21–34,Preventive services,438825,3131557,14.01%
+CY 2022,Age 21–34,Restorative services,198515,3131557,6.34%
+CY 2022,Age 35–44,Dental visit,331999,1469169,22.60%
+CY 2022,Age 35–44,Exam/Evaluation,261504,1469169,17.80%
+CY 2022,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,198860,1469169,13.54%
+CY 2022,Age 35–44,Treatment services,227863,1469169,15.51%
+CY 2022,Age 35–44,Diagnostic services,289627,1469169,19.71%
+CY 2022,Age 35–44,Preventive services,200130,1469169,13.62%
+CY 2022,Age 35–44,Restorative services,95744,1469169,6.52%
+CY 2022,Age 45–64,Dental visit,699806,2705801,25.86%
+CY 2022,Age 45–64,Exam/Evaluation,551223,2705801,20.37%
+CY 2022,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,386914,2705801,14.30%
+CY 2022,Age 45–64,Treatment services,504280,2705801,18.64%
+CY 2022,Age 45–64,Diagnostic services,606130,2705801,22.40%
+CY 2022,Age 45–64,Preventive services,407951,2705801,15.08%
+CY 2022,Age 45–64,Restorative services,173084,2705801,6.40%
+CY 2022,Age 65–74,Dental visit,239066,909360,26.29%
+CY 2022,Age 65–74,Exam/Evaluation,185051,909360,20.35%
+CY 2022,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,119557,909360,13.15%
+CY 2022,Age 65–74,Treatment services,177425,909360,19.51%
+CY 2022,Age 65–74,Diagnostic services,203791,909360,22.41%
+CY 2022,Age 65–74,Preventive services,130732,909360,14.38%
+CY 2022,Age 65–74,Restorative services,50619,909360,5.57%
+CY 2022,Age 75+,Dental visit,148083,651069,22.74%
+CY 2022,Age 75+,Exam/Evaluation,112514,651069,17.28%
+CY 2022,Age 75+,Treatment for Caries or Caries-Preventive Procedure,65592,651069,10.07%
+CY 2022,Age 75+,Treatment services,112913,651069,17.34%
+CY 2022,Age 75+,Diagnostic services,124823,651069,19.17%
+CY 2022,Age 75+,Preventive services,73441,651069,11.28%
+CY 2022,Age 75+,Restorative services,25780,651069,3.96%
+CY 2023,Age <1,Dental visit,15207,188095,8.08%
+CY 2023,Age <1,Exam/Evaluation,2912,188095,1.55%
+CY 2023,Age <1,Treatment for Caries or Caries-Preventive Procedure,3729,188095,1.98%
+CY 2023,Age <1,Treatment services,577,188095,0.31%
+CY 2023,Age <1,Diagnostic services,6517,188095,3.46%
+CY 2023,Age <1,Preventive services,12785,188095,6.80%
+CY 2023,Age <1,Restorative services,79,188095,0.04%
+CY 2023,Age 1–2,Dental visit,197617,470854,41.97%
+CY 2023,Age 1–2,Exam/Evaluation,110070,470854,23.38%
+CY 2023,Age 1–2,Treatment for Caries or Caries-Preventive Procedure,123141,470854,26.15%
+CY 2023,Age 1–2,Treatment services,21305,470854,4.52%
+CY 2023,Age 1–2,Diagnostic services,145275,470854,30.85%
+CY 2023,Age 1–2,Preventive services,190277,470854,40.41%
+CY 2023,Age 1–2,Restorative services,9946,470854,2.11%
+CY 2023,Age 3–5,Dental visit,434715,779697,55.75%
+CY 2023,Age 3–5,Exam/Evaluation,370610,779697,47.53%
+CY 2023,Age 3–5,Treatment for Caries or Caries-Preventive Procedure,373193,779697,47.86%
+CY 2023,Age 3–5,Treatment services,167051,779697,21.43%
+CY 2023,Age 3–5,Diagnostic services,398444,779697,51.10%
+CY 2023,Age 3–5,Preventive services,422617,779697,54.20%
+CY 2023,Age 3–5,Restorative services,129787,779697,16.65%
+CY 2023,Age 6–9,Dental visit,681692,1152831,59.13%
+CY 2023,Age 6–9,Exam/Evaluation,639931,1152831,55.51%
+CY 2023,Age 6–9,Treatment for Caries or Caries-Preventive Procedure,630318,1152831,54.68%
+CY 2023,Age 6–9,Treatment services,384847,1152831,33.38%
+CY 2023,Age 6–9,Diagnostic services,653152,1152831,56.66%
+CY 2023,Age 6–9,Preventive services,656549,1152831,56.95%
+CY 2023,Age 6–9,Restorative services,297613,1152831,25.82%
+CY 2023,Age 6–9,Sealant use,193191,1152831,16.76%
+CY 2023,Age 10–14,Dental visit,794380,1470335,54.03%
+CY 2023,Age 10–14,Exam/Evaluation,740564,1470335,50.37%
+CY 2023,Age 10–14,Treatment for Caries or Caries-Preventive Procedure,718980,1470335,48.90%
+CY 2023,Age 10–14,Treatment services,388608,1470335,26.43%
+CY 2023,Age 10–14,Diagnostic services,757510,1470335,51.52%
+CY 2023,Age 10–14,Preventive services,754180,1470335,51.29%
+CY 2023,Age 10–14,Restorative services,287227,1470335,19.53%
+CY 2023,Age 10–14,Sealant use,148306,1470335,10.09%
+CY 2023,Age 15–18,Dental visit,561992,1239071,45.36%
+CY 2023,Age 15–18,Exam/Evaluation,509886,1239071,41.15%
+CY 2023,Age 15–18,Treatment for Caries or Caries-Preventive Procedure,483162,1239071,38.99%
+CY 2023,Age 15–18,Treatment services,285237,1239071,23.02%
+CY 2023,Age 15–18,Diagnostic services,526147,1239071,42.46%
+CY 2023,Age 15–18,Preventive services,507569,1239071,40.96%
+CY 2023,Age 15–18,Restorative services,218120,1239071,17.60%
+CY 2023,Age 19–20,Dental visit,173306,577259,30.02%
+CY 2023,Age 19–20,Exam/Evaluation,153671,577259,26.62%
+CY 2023,Age 19–20,Treatment for Caries or Caries-Preventive Procedure,136944,577259,23.72%
+CY 2023,Age 19–20,Treatment services,91067,577259,15.78%
+CY 2023,Age 19–20,Diagnostic services,160358,577259,27.78%
+CY 2023,Age 19–20,Preventive services,145321,577259,25.17%
+CY 2023,Age 19–20,Restorative services,63334,577259,10.97%
+CY 2023,Age 21–34,Dental visit,719993,3404709,21.15%
+CY 2023,Age 21–34,Exam/Evaluation,586986,3404709,17.24%
+CY 2023,Age 21–34,Treatment for Caries or Caries-Preventive Procedure,480312,3404709,14.11%
+CY 2023,Age 21–34,Treatment services,457290,3404709,13.43%
+CY 2023,Age 21–34,Diagnostic services,640039,3404709,18.80%
+CY 2023,Age 21–34,Preventive services,485129,3404709,14.25%
+CY 2023,Age 21–34,Restorative services,292856,3404709,8.60%
+CY 2023,Age 35–44,Dental visit,368657,1622710,22.72%
+CY 2023,Age 35–44,Exam/Evaluation,289369,1622710,17.83%
+CY 2023,Age 35–44,Treatment for Caries or Caries-Preventive Procedure,232925,1622710,14.35%
+CY 2023,Age 35–44,Treatment services,259962,1622710,16.02%
+CY 2023,Age 35–44,Diagnostic services,319454,1622710,19.69%
+CY 2023,Age 35–44,Preventive services,224593,1622710,13.84%
+CY 2023,Age 35–44,Restorative services,156655,1622710,9.65%
+CY 2023,Age 45–64,Dental visit,781711,2881601,27.13%
+CY 2023,Age 45–64,Exam/Evaluation,611132,2881601,21.21%
+CY 2023,Age 45–64,Treatment for Caries or Caries-Preventive Procedure,460594,2881601,15.98%
+CY 2023,Age 45–64,Treatment services,579684,2881601,20.12%
+CY 2023,Age 45–64,Diagnostic services,671280,2881601,23.30%
+CY 2023,Age 45–64,Preventive services,465015,2881601,16.14%
+CY 2023,Age 45–64,Restorative services,308881,2881601,10.72%
+CY 2023,Age 65–74,Dental visit,272734,1008706,27.04%
+CY 2023,Age 65–74,Exam/Evaluation,211031,1008706,20.92%
+CY 2023,Age 65–74,Treatment for Caries or Caries-Preventive Procedure,144290,1008706,14.30%
+CY 2023,Age 65–74,Treatment services,204893,1008706,20.31%
+CY 2023,Age 65–74,Diagnostic services,231510,1008706,22.95%
+CY 2023,Age 65–74,Preventive services,151812,1008706,15.05%
+CY 2023,Age 65–74,Restorative services,92967,1008706,9.22%
+CY 2023,Age 75+,Dental visit,164160,699129,23.48%
+CY 2023,Age 75+,Exam/Evaluation,125533,699129,17.96%
+CY 2023,Age 75+,Treatment for Caries or Caries-Preventive Procedure,76777,699129,10.98%
+CY 2023,Age 75+,Treatment services,124922,699129,17.87%
+CY 2023,Age 75+,Diagnostic services,138544,699129,19.82%
+CY 2023,Age 75+,Preventive services,83636,699129,11.96%
+CY 2023,Age 75+,Restorative services,43003,699129,6.15%
