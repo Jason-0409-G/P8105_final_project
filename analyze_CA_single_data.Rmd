@@ -2,7 +2,7 @@
 title: "analyst—CA"
 author: "Jason Gao"
 date: "2025-11-06"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -58,7 +58,6 @@ y_max  <- max(year_summary$year, na.rm = TRUE)
 y_pk   <- year_summary$year[ which.max(year_summary$overall_rate_weighted) ]
 val_pk <- max(year_summary$overall_rate_weighted, na.rm = TRUE)
 ```
-
 ## 2. 生成年度总结报告 ------------------------------------------------
 
 
