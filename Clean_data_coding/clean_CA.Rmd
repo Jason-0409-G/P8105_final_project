@@ -14,8 +14,9 @@ library(dplyr)
 library(tibble)
 library(forcats)
 library(knitr)
-raw_data <- read.csv("/Users/jason/Desktop/p8105_project/datasets/ca_dental.csv")
-head(raw_data)
+clean_ca <- read_csv("datasets/clean_ca.csv")
+View(clean_ca)
+
 ```
 # ---- clean datasets ----
 
