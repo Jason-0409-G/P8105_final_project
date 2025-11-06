@@ -1,0 +1,183 @@
+---
+title: "analyst—CA"
+author: "Jason Gao"
+date: "2025-11-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
+## 0. 环境准备 --------------------------------------------------------
+```{r}
+library(tidyverse)
+library(scales)
+library(broom)
+library(knitr)
+## 创建输出目录（如果不存在就建）
+if (!dir.exists("output")) dir.create("output")
+if (!dir.exists("output/trend_plots")) dir.create("output/trend_plots")
+if (!dir.exists("output/trend_tables")) dir.create("output/trend_tables")
+```
+
+## 1. 读入并预处理数据 -----------------------------------------------
+
+```{r}
+# 读入与预处理：把百分比转成 0-1 小数，year 转 int
+df_raw <- readr::read_csv("datasets/clean_ca.csv")
+
+df <- df_raw %>%
+  mutate(
+    year = str_replace(year, "CY\\s*", "") %>% as.integer(),
+    utilization_rate = str_replace(utilization_rate, "%", "") %>% as.numeric() / 100,
+    users = as.numeric(users),
+    denominator = as.numeric(denominator)
+  )
+
+# 年度汇总：均值/中位数/总人数/加权总体利用率
+year_summary <- df %>%
+  group_by(year) %>%
+  summarize(
+    mean_utilization   = mean(utilization_rate, na.rm = TRUE),
+    median_utilization = median(utilization_rate, na.rm = TRUE),
+    total_users        = sum(users, na.rm = TRUE),
+    total_denominator  = sum(denominator, na.rm = TRUE),
+    overall_rate_weighted = sum(utilization_rate * denominator, na.rm = TRUE) /
+                            sum(denominator, na.rm = TRUE)
+  ) %>% ungroup()
+
+head(year_summary)
+# 一些内嵌需要用到的便捷量
+y_min  <- min(year_summary$year, na.rm = TRUE)
+y_max  <- max(year_summary$year, na.rm = TRUE)
+y_pk   <- year_summary$year[ which.max(year_summary$overall_rate_weighted) ]
+val_pk <- max(year_summary$overall_rate_weighted, na.rm = TRUE)
+```
+
+## 2. 生成年度总结报告 ------------------------------------------------
+
+
+
+```{r plot_weighted_utilization_rate, echo=FALSE, fig.width=8, fig.height=5}
+ggplot(year_summary, aes(year, overall_rate_weighted)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_x_continuous(breaks = pretty(year_summary$year)) +
+  labs(
+    title = "weighted utilization rate of dental services in CA",
+    x = "Year", y = "Weighted utilization rate"
+  ) +
+  theme_minimal()
+```
+
+* This report analyzes the trends in dental service utilization in California from CY `r y_min` to CY `r y_max`.  
+* During this period, the annual weighted overall dental service utilization reached its peak in CY `r y_pk`, at `r scales::percent(val_pk, accuracy = 0.1)`.  
+* The lowest annual weighted utilization occurred in CY `r year_summary$year[ which.min(year_summary$overall_rate_weighted) ]`, at `r scales::percent(min(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`.  
+* The average annual weighted utilization rate over the entire period was `r scales::percent(mean(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`, and the median value was `r scales::percent(median(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`.  
+* The total number of enrolled individuals increased from `r scales::comma(year_summary$total_denominator[ year_summary$year == y_min ])` in CY `r y_min` to `r scales::comma(year_summary$total_denominator[ year_summary$year == y_max ])` in CY `r y_max`, representing a growth of `r scales::percent( (year_summary$total_denominator[ year_summary$year == y_max ] - year_summary$total_denominator[ year_summary$year == y_min ]) / year_summary$total_denominator[ year_summary$year == y_min ], accuracy = 0.1)`.
+
+
+
+
+
+```{r plot_measure_trends, echo=FALSE, fig.width=8, fig.height=5}
+measure_year_summary <- df %>%
+  group_by(year, measure) %>%
+  summarize(mean_util = mean(utilization_rate, na.rm = TRUE), .groups = "drop")
+
+ggplot(measure_year_summary, aes(year, mean_util, color = measure)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(title = "every serivce average utilization", x = "Year", y = "Mean utilization rate",
+       color = "Service type") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+### Service Type Utilization Trends
+
+The figure below illustrates the mean utilization rate for each service type from `r min(measure_year_summary$year)` to `r max(measure_year_summary$year)`.
+
+Among all categories, **Dental visit** has the highest average utilization, increasing from about 
+`r percent(min(measure_year_summary$mean_util[measure_year_summary$measure == "Dental visit"]), accuracy = 0.1)` 
+in `r min(measure_year_summary$year)` to around 
+`r percent(max(measure_year_summary$mean_util[measure_year_summary$measure == "Dental visit"]), accuracy = 0.1)` 
+in `r max(measure_year_summary$year)`.
+
+**Preventive services** and **Exam/Evaluation** also show steady growth, reaching around 
+`r percent(max(measure_year_summary$mean_util[measure_year_summary$measure == "Preventive services"]), accuracy = 0.1)` 
+and 
+`r percent(max(measure_year_summary$mean_util[measure_year_summary$measure == "Exam/Evaluation"]), accuracy = 0.1)` 
+by `r max(measure_year_summary$year)`.
+
+In contrast, **Restorative services** and **Diagnostic services** maintain lower utilization, both staying near 
+`r percent(mean(measure_year_summary$mean_util[measure_year_summary$measure == "Restorative services"]), accuracy = 0.1)` 
+on average.
+
+A noticeable dip in `r measure_year_summary$year[which.min(measure_year_summary$mean_util)]` reflects the disruption during the COVID-19 period, after which utilization levels gradually recovered.
+
+Overall, from `r min(measure_year_summary$year)` to `r max(measure_year_summary$year)`, most service types demonstrate a consistent upward trend, highlighting an overall improvement in access to dental care.
+
+```{r plot_age_group_trends, echo=FALSE, fig.width=10, fig.height=6}
+age_year_summary <- df %>%
+  group_by(year, age_group) %>%
+  summarize(mean_util = mean(utilization_rate, na.rm = TRUE), .groups = "drop")
+
+ggplot(age_year_summary, aes(year, mean_util, group = age_group)) +
+  geom_line(linewidth = 1.0) +
+  geom_point(size = 1.8) +
+  facet_wrap(~ age_group) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(title = "age group weight trends", x = "Year", y = "Mean utilization rate") +
+  theme_minimal()
+```
+
+```{r linear_model_analysis, results='asis' }
+fit <- lm(utilization_rate ~ year + measure, data = df)
+tidy_fit <- tidy(fit)
+glance_fit <- glance(fit)
+
+tidy_fit %>%
+  filter(term == "year") %>%
+  mutate(estimate = estimate) %>%
+  transmute(
+    term = "year",
+    slope = round(estimate, 4),
+    p_value = signif(p.value, 3)
+  ) %>%
+  kable(caption = "linear model results for year trend")
+
+kable(
+  glance_fit %>% select(r.squared, adj.r.squared, AIC, BIC) %>%
+    mutate(across(everything(), ~ round(.x, 4))),
+  caption = "model summary statistics"
+)
+
+
+
+
+
+
+```
+
+### summary for linear model
+
+According to the linear regression results, the coefficient for the year variable is 0.0061 with a p-value of **0.000137**, indicating a statistically significant upward trend in dental utilization over time after controlling for service type. On average, the utilization rate increases by approximately 0.0061 (about 0.61 percentage points) each year, and _this trend is highly significant (p < 0.001)._
+
+The overall model fit statistics are as follows: R² = 0.1873, adjusted R² = 0.1798, AIC = -882.57, and BIC = -834.82.  
+These values suggest that the model explains about 18% of the variance in utilization rates, representing a moderate model fit, while the relatively low AIC and BIC indicate a well-specified and parsimonious model.
+
+In summary, between 2013 and 2023, dental service utilization shows a clear and statistically significant linear increase over time, implying a steady improvement in overall access and use of dental care services.
+
+
+
+
+
+
