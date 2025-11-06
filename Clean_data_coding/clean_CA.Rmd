@@ -5,23 +5,18 @@ author: Jason Gao
 date: "2025-11-05"
 ---
 # ---- upload packages ----
-```{r upload packages}
+
+```{r upload packages, warnings=FALSE, message=FALSE}
 library(tidyverse)
 library(janitor)
-library(stringr)
-library(readr)
-library(dplyr)
-library(tibble)
-library(forcats)
 library(knitr)
-clean_ca <- read_csv("datasets/clean_ca.csv")
-View(clean_ca)
-
+setwd("..")
+raw_data <- read_csv("datasets/ca_dental.csv")
 ```
 # ---- clean datasets ----
 
 
-```{r}
+```{r data cleaning }
 # ---- Full data cleaning pipeline ----
 # 1️⃣ Define age group order
 age_order <- c(
@@ -114,20 +109,19 @@ clean_data_final <- clean_data_simple |>
     measure,
     users,
     denominator,
-    utilization
+    utilization_percent   
   ) |>
   rename(
-    year = year,
-    age_group = age_group,
-    measure = measure,
-    users = users,
-    denominator = denominator,
-    utilization_rate = utilization
+    year             = year,
+    age_group        = age_group,
+    measure          = measure,
+    users            = users,
+    denominator      = denominator,
+    utilization_rate = utilization_percent   
   )
 
-# Check final result
-head(clean_data_final)
 
+head(clean_data_final)
 
 ```
 
@@ -184,6 +178,6 @@ rename_tbl <- tibble::tribble(
 knitr::kable(
   rename_tbl,
   align = "lll",
-  caption = "Table 2: Final variable names and definitions"
+  caption = "Table 1: Final variable names and definitions"
 )
 ```
