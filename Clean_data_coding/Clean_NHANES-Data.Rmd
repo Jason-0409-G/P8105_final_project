@@ -1,0 +1,111 @@
+---
+title: "Clean_NHANES-Data"
+author: Malcolm
+output: 
+  github_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+# Load the data
+```{r}
+nhanes <- read_csv("datasets/nhanes_oral.csv")
+```
+
+# Delete useless cols
+```{r}
+cols_to_drop <- c("Presentation Standard", "Note1", "Note2", "Notea", "Noteb")
+nhanes <- nhanes %>%
+  select(-any_of(cols_to_drop))
+```
+
+# Rename cols
+```{r}
+nhanes <- nhanes %>%
+  rename(
+    survey_years = `Survey Years`,
+    sex = Sex,
+    age_group = `Age Group`,
+    race_ethnicity = `Race and Hispanic Origin`,
+    measure = Measure,
+    percent = Percent,
+    se = `Standard Error`,
+    ci_lower = `Lower 95% CI Limit`,
+    ci_upper = `Upper 95% CI Limit`
+  )
+```
+
+# Clean percent
+```{r}
+nhanes <- nhanes %>%
+  mutate(
+    percent = str_replace_all(as.character(percent), "%", ""),
+    percent = as.numeric(percent)
+  )
+```
+
+# Clean years
+#### 在做趋势图或回归分析时，需要用一个“数值型时间”来表示每个点的位置。如果直接用 “1999–2000” 这种字符串，R 会认为它是一个 分类变量（factor），而不是连续的时间变量。
+```{r}
+nhanes <- nhanes %>%
+  mutate(
+    survey_years = str_replace_all(survey_years, "–", "-"),
+    year_mid = as.numeric(str_sub(survey_years, 1, 4)) + 0.5
+  )
+```
+
+# Standardize the Measure Name
+```{r}
+measure_map <- c(
+  "Total Dental Caries in Primary Teeth" = "total_primary",
+  "Total Dental Caries in Permanent Teeth" = "total_perm",
+  "Untreated Dental Caries in Primary Teeth" = "untreated_primary",
+  "Untreated Dental Caries in Permanent Teeth" = "untreated_perm",
+  "Sealants on Permanent Teeth" = "sealant_perm",
+  "Sealants on Permanent and Primary Teeth" = "sealant_all"
+)
+
+nhanes <- nhanes %>%
+  mutate(measure_clean = recode(measure, !!!measure_map))
+```
+
+# 目前未对分组进行任何操作（除了只保留年龄小组而非大组 之外）
+```{r}
+nhanes <- nhanes %>%
+  filter(age_group %in% c(
+    "2-5", "6-11", "12-19",
+    "20-29", "30-39", "40-49", "50-59",
+    "60-69", "70 and over"
+  ))
+```
+
+# Delete the rows that missing percent
+```{r}
+nhanes_clean <- nhanes %>%
+  filter(!is.na(percent))
+```
+
+# Sort and output
+```{r}
+nhanes_clean <- nhanes_clean %>%
+  select(
+    survey_years, year_mid, sex, age_group,
+    race_ethnicity, measure, measure_clean,
+    percent, se, ci_lower, ci_upper
+  )
+```
+
+# Save
+```{r}
+write_csv(nhanes_clean, "datasets/nhanes_oral_clean.csv")
+```
+
+
+
+
+
+
+
+
