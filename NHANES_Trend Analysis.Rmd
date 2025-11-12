@@ -1,0 +1,278 @@
+---
+title: "NHANES_Trend Analysis"
+author: Keyu
+output: 
+  github_document
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+**Load the data**
+```{r}
+nhanes <- read_csv("./datasets/nhanes_oral_clean.csv") %>% 
+  janitor::clean_names()
+```
+**Overall Time Trend by age group:**
+```{r}
+# === Step: Overall trend for ages 2–5 (sex = All, primary dentition) ===
+d25 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("2-5","2–5","2—5"),
+    measure_clean %in% c("total_primary","untreated_primary")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_primary"     = "Total Dental Caries in Primary Teeth",
+                           "untreated_primary" = "Untreated Dental Caries in Primary Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d25, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 2–5: Overall trend (sex = All, primary dentition)",
+    subtitle = "Two series: Total caries (primary) vs Untreated caries (primary); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 6–11 (sex = All, primary dentition) ===
+d611prim <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("6-11"),
+    measure_clean %in% c("total_primary","untreated_primary")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_primary"     = "Total Dental Caries in Primary Teeth",
+                           "untreated_primary" = "Untreated Dental Caries in Primary Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d611prim, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 6–11: Overall trend (sex = All, primary dentition)",
+    subtitle = "Two series: Total caries (primary) vs Untreated caries (primary); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 6–11 (sex = All, permanent dentition) ===
+d611 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("6-11"),
+    measure_clean %in% c("total_perm","untreated_perm")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_perm"     = "Total Dental Caries in Permanent Teeth",
+                           "untreated_perm" = "Untreated Dental Caries in Permanent Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d611, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 6–11: Overall trend (sex = All, permanent dentition)",
+    subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 12–19 (sex = All, permanent dentition) ===
+d1219 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("12-19"),
+    measure_clean %in% c("total_perm","untreated_perm")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_perm"     = "Total Dental Caries in Permanent Teeth",
+                           "untreated_perm" = "Untreated Dental Caries in Permanent Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d1219, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 12–19: Overall trend (sex = All, permanent dentition)",
+    subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 20–29 (sex = All, permanent dentition) ===
+d2029 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("20-29"),
+    measure_clean %in% c("total_perm","untreated_perm")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_perm"     = "Total Dental Caries in Permanent Teeth",
+                           "untreated_perm" = "Untreated Dental Caries in Permanent Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d2029, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 20–29: Overall trend (sex = All, permanent dentition)",
+    subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 30–39 (sex = All, permanent dentition) ===
+d3039 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("30-39"),
+    measure_clean %in% c("total_perm","untreated_perm")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_perm"     = "Total Dental Caries in Permanent Teeth",
+                           "untreated_perm" = "Untreated Dental Caries in Permanent Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d3039, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 30–39: Overall trend (sex = All, permanent dentition)",
+    subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 40–49 (sex = All, permanent dentition) ===
+d4049 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("40-49"),
+    measure_clean %in% c("total_perm","untreated_perm")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_perm"     = "Total Dental Caries in Permanent Teeth",
+                           "untreated_perm" = "Untreated Dental Caries in Permanent Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d4049, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 40–49: Overall trend (sex = All, permanent dentition)",
+    subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 50–59 (sex = All, permanent dentition) ===
+d5059 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("50-59"),
+    measure_clean %in% c("total_perm","untreated_perm")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_perm"     = "Total Dental Caries in Permanent Teeth",
+                           "untreated_perm" = "Untreated Dental Caries in Permanent Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d5059, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 50–59: Overall trend (sex = All, permanent dentition)",
+    subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r}
+# === Step: Overall trend for ages 60–69 (sex = All, permanent dentition) ===
+d6069 <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    age_group %in% c("60-69"),
+    measure_clean %in% c("total_perm","untreated_perm")
+  ) %>%
+  mutate(
+    measure_label = recode(measure_clean,
+                           "total_perm"     = "Total Dental Caries in Permanent Teeth",
+                           "untreated_perm" = "Untreated Dental Caries in Permanent Teeth")
+  ) %>%
+  arrange(year_mid, measure_clean)
+
+ggplot(d6069, aes(x = year_mid, y = percent,
+                     color = measure_label, fill = measure_label)) +
+  geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = 0.15, color = NA) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Ages 60–69: Overall trend (sex = All, permanent dentition)",
+    subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
+    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+  ) +
+  theme_minimal(base_size = 13)
+```
