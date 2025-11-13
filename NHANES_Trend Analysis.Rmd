@@ -259,17 +259,9 @@ target_meas <- "total_perm"  # change to "total_perm" for permanent dentition
 
 base <- nhanes %>%
   filter(
-    tolower(race_ethnicity) == "all",
     tolower(sex) %in% c("male","female"),
     measure_clean == target_meas
-  ) %>%
-  mutate(
-    sex = case_when(
-      tolower(sex) == "male"   ~ "Male",
-      tolower(sex) == "female" ~ "Female",
-      TRUE ~ sex
-    )
-  )
+  ) 
 
 # 2) wide join: Male & Female side by side
 male <- base %>%
@@ -307,15 +299,12 @@ print(p_heat)
 
 
 ```{r}
-
-
 # 2) Choose outcome (you can change this)
 target_meas <- "total_perm"        # or "total_primary", "untreated_primary", "untreated_perm"
 
 # 3) Filter to race = All, sex = All, chosen outcome
 base <- nhanes %>%
   filter(
-    tolower(race_ethnicity) == "all",
     tolower(sex) == "all",
     measure_clean == target_meas
   )
@@ -326,8 +315,6 @@ latest_year <- max(base$year_mid, na.rm = TRUE)
 latest <- base %>%
   filter(year_mid == latest_year) %>%
   mutate(
-    # unify age group formatting
-    age_group = gsub("–|—", "-", age_group),
     age_group = factor(
       age_group,
       levels = c("2-5","6-11","12-19","20-29",
@@ -355,12 +342,9 @@ print(p_age_bar)
 ```
 
 ```{r}
-
-
 # 3) Filter to race = All, sex = Male/Female, chosen outcome
-base <- nhanes %>%
+bar <- nhanes %>%
   filter(
-    tolower(race_ethnicity) == "all",
     tolower(sex) %in% c("male","female"),
     measure_clean == target_meas
   ) %>%
@@ -374,9 +358,9 @@ base <- nhanes %>%
   )
 
 # 4) Use latest survey mid-year
-latest_year <- max(base$year_mid, na.rm = TRUE)
+latest_year <- max(bar$year_mid, na.rm = TRUE)
 
-latest <- base %>%
+latest <- bar %>%
   filter(year_mid == latest_year) %>%
   mutate(
     age_group = factor(
@@ -396,8 +380,8 @@ p_age_sex <- ggplot(latest,
                  position = position_dodge(width = 0.7),
                  width = 0.2, linewidth = 0.5) +
   labs(
-    title = sprintf("Caries prevalence by age and sex (%s, latest year = %.1f)",
-                    target_meas, latest_year),
+    title = sprintf("Caries prevalence by age and sex (%s, latest year = %.0f)",
+                    target_meas, 2017),
     x = "Age group",
     y = "Caries prevalence (%)",
     fill = "Sex"
@@ -405,9 +389,6 @@ p_age_sex <- ggplot(latest,
   theme_minimal(base_size = 13)
 
 print(p_age_sex)
-
-
-
 ```
 
 
