@@ -1,9 +1,30 @@
 ---
-title: "NHANES_Trend Analysis"
+title: "NHANES Trend Analysis"
 author: Keyu
 output: 
   github_document
 ---
+
+
+
+## Analytic approach  
+
+Using the cleaned NHANES oral health summary dataset, we examined age- and sex-specific patterns of dental caries in the U.S. population. We restricted analyses to observations with race/ethnicity aggregated as “All” and focused on two outcomes for both primary and permanent dentition: **total caries experience** and **untreated caries**.  
+
+For each pre-defined age group, we first described caries prevalence in the **most recent survey cycle**, then summarized **trends over time** using survey mid-year (1999–2017). Sex differences were evaluated by (1) plotting age-specific prevalence by sex in the latest cycle and (2) computing male–female differences (percentage points) across age groups and survey years.
+
+## Results summary  
+
+In the **latest NHANES cycle**, permanent-tooth caries prevalence increased steeply with age: prevalence was lowest in children 6–11 years, higher in adolescents and young adults (12–29 years), and reached very high levels in mid- and older adulthood (40–69 years), where nearly all adults had experienced caries. Within each age group, females generally had slightly higher permanent-tooth caries prevalence than males, but sex differences were modest and confidence intervals overlapped.
+
+Across survey years, time-trend plots showed that **total caries remained high** in young children for primary teeth and in adults for permanent teeth, reflecting the cumulative nature of disease. In contrast, **untreated caries** was consistently lower than total caries in every age group and tended to decline more clearly over time, suggesting improvements in treatment or access to dental care rather than substantial reductions in underlying disease occurrence.
+
+Heatmaps of the **male–female gap in permanent-tooth caries** indicated that sex disparities were generally small (mostly within about ±5 percentage points) and showed no strong long-term trend. Females tended to have slightly higher prevalence in adolescent and young-adult groups, while gaps in older adults fluctuated around zero with no consistent pattern. Overall, these analyses highlight that **age-related accumulation of caries is the dominant inequality**, sex differences are relatively minor, and recent NHANES cycles show greater improvement in untreated disease than in total caries burden.
+
+## Limitations  
+
+This analysis has several important limitations. First, we relied on pre-aggregated NHANES summary estimates by age, sex, and survey cycle, so we could not adjust for individual-level covariates (e.g., socioeconomic status, insurance, or race/ethnicity) or formally model interactions beyond simple stratification. Second, because only the “race = All” strata were used, we could not describe racial/ethnic disparities in caries, which are known to be substantial. Third, the descriptive time trends do not account for potential changes in NHANES sampling, diagnostic criteria, or measurement error across cycles, and should not be interpreted causally. In addition, there are gaps in the time series where oral health summary data were unavailable or not used, so some survey cycles are missing; this limits our ability to assess smooth long-term trends and may exaggerate apparent changes between non-adjacent time points. Finally, all results are based on cross-sectional surveys, so we cannot distinguish between true cohort effects and the cumulative impact of aging on caries experience.
+
 
 ```{r}
 library(tidyverse)
@@ -252,6 +273,47 @@ ggplot(d6069, aes(x = year_mid, y = percent,
 ```
 
 ```{r}
+# 2) Choose outcome (you can change this)
+target_meas <- "total_perm"        # or "total_primary", "untreated_primary", "untreated_perm"
+
+# 3) Filter to race = All, sex = All, chosen outcome
+base <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    measure_clean == target_meas
+  )
+
+# 4) Choose latest survey mid-year
+latest_year <- max(base$year_mid, na.rm = TRUE)
+
+latest <- base %>%
+  filter(year_mid == latest_year) %>%
+  mutate(
+    age_group = factor(
+      age_group,
+      levels = c("2-5","6-11","12-19","20-29",
+                 "30-39","40-49","50-59","60-69")
+    )
+  ) %>%
+  arrange(age_group)
+
+# 5) Age-group bar chart
+p_age_bar <- ggplot(latest, aes(x = age_group, y = percent, fill = age_group)) +
+  geom_col(width = 0.7) +
+  scale_fill_brewer(palette = "Blues", direction = 1) +
+  labs(
+    title = sprintf("Caries prevalence by age group (%s, latest survey year %.1f)",
+                    target_meas, latest_year),
+    x = "Age group",
+    y = "Caries prevalence (%)"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "none")
+
+print(p_age_bar)
+```
+
+```{r}
 
 
 # 1) choose outcome & dentition, e.g. total_primary (ages 2–11) or total_perm (10+)
@@ -294,50 +356,6 @@ p_heat <- ggplot(gap, aes(x = year_mid, y = age_group, fill = Gap_abs)) +
   theme_minimal(base_size = 13)
 
 print(p_heat)
-
-```
-
-
-```{r}
-# 2) Choose outcome (you can change this)
-target_meas <- "total_perm"        # or "total_primary", "untreated_primary", "untreated_perm"
-
-# 3) Filter to race = All, sex = All, chosen outcome
-base <- nhanes %>%
-  filter(
-    tolower(sex) == "all",
-    measure_clean == target_meas
-  )
-
-# 4) Choose latest survey mid-year
-latest_year <- max(base$year_mid, na.rm = TRUE)
-
-latest <- base %>%
-  filter(year_mid == latest_year) %>%
-  mutate(
-    age_group = factor(
-      age_group,
-      levels = c("2-5","6-11","12-19","20-29",
-                 "30-39","40-49","50-59","60-69")
-    )
-  ) %>%
-  arrange(age_group)
-
-# 5) Age-group bar chart
-p_age_bar <- ggplot(latest, aes(x = age_group, y = percent, fill = age_group)) +
-  geom_col(width = 0.7) +
-  scale_fill_brewer(palette = "Blues", direction = 1) +
-  labs(
-    title = sprintf("Caries prevalence by age group (%s, latest survey year %.1f)",
-                    target_meas, latest_year),
-    x = "Age group",
-    y = "Caries prevalence (%)"
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(legend.position = "none")
-
-print(p_age_bar)
-
 
 ```
 
