@@ -65,25 +65,6 @@ non-adjacent time points. Finally, all results are based on
 cross-sectional surveys, so we cannot distinguish between true cohort
 effects and the cumulative impact of aging on caries experience.
 
-``` r
-library(tidyverse)
-```
-
-    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
-    ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.1.0     
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-``` r
-library(readr)
-```
-
 **Load the data**
 
 ``` r
@@ -134,13 +115,7 @@ ggplot(d25, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
-
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/2-5%20trend%20plot-1.png)<!-- -->
 
 ``` r
 # === Step: Overall trend for ages 6–11 (sex = All, primary dentition) ===
@@ -171,7 +146,7 @@ ggplot(d611, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/6-11%20trend%20plot-1.png)<!-- -->
 
 ``` r
 # === Step: Overall trend for ages 12–19 (sex = All, permanent dentition) ===
@@ -202,7 +177,7 @@ ggplot(d1219, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/12-19%20trend%20plot-1.png)<!-- -->
 
 ``` r
 # === Step: Overall trend for ages 20–29 (sex = All, permanent dentition) ===
@@ -233,7 +208,7 @@ ggplot(d2029, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/20-29%20trend%20plot-1.png)<!-- -->
 
 ``` r
 # === Step: Overall trend for ages 30–39 (sex = All, permanent dentition) ===
@@ -264,7 +239,7 @@ ggplot(d3039, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/30-39%20trend%20plot-1.png)<!-- -->
 
 ``` r
 # === Step: Overall trend for ages 40–49 (sex = All, permanent dentition) ===
@@ -295,11 +270,11 @@ ggplot(d4049, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/40-49%20trend%20plot-1.png)<!-- -->
 
 ``` r
 # === Step: Overall trend for ages 50–59 (sex = All, permanent dentition) ===
-d5059 <- nhanes %>%
+d5059 <- nhanes %>% 
   filter(
     tolower(sex) == "all",
     age_group %in% c("50-59"),
@@ -326,7 +301,7 @@ ggplot(d5059, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/50-59%20trend%20plot-1.png)<!-- -->
 
 ``` r
 # === Step: Overall trend for ages 60–69 (sex = All, permanent dentition) ===
@@ -357,60 +332,113 @@ ggplot(d6069, aes(x = year_mid, y = percent,
   theme_minimal()
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/60-69%20trend%20plot-1.png)<!-- -->
 
 ``` r
-# 2) Choose outcome (you can change this)
-target_meas <- "total_perm"        # or "total_primary", "untreated_primary", "untreated_perm"
+make_trend_plot <- function(age_values, age_title,
+                            dentition = c("primary", "perm"),
+                            show_x = FALSE, show_y = FALSE) {
 
-# 3) Filter to race = All, sex = All, chosen outcome
-base <- nhanes %>%
-  filter(
-    tolower(sex) == "all",
-    measure_clean == target_meas
-  )
+  dentition <- match.arg(dentition)
 
-# 4) Choose latest survey mid-year
-latest_year <- max(base$year_mid, na.rm = TRUE)
-
-latest <- base %>%
-  filter(year_mid == latest_year) %>%
-  mutate(
-    age_group = factor(
-      age_group,
-      levels = c("2-5","6-11","12-19","20-29",
-                 "30-39","40-49","50-59","60-69")
+  if (dentition == "primary") {
+    measures <- c("total_primary", "untreated_primary")
+    labels <- c(
+      total_primary     = "Total Dental Caries in Primary Teeth",
+      untreated_primary = "Untreated Dental Caries in Primary Teeth"
     )
-  ) %>%
-  arrange(age_group)
+  } else {
+    measures <- c("total_perm", "untreated_perm")
+    labels <- c(
+      total_perm        = "Total Dental Caries in Permanent Teeth",
+      untreated_perm    = "Untreated Dental Caries in Permanent Teeth"
+    )
+  }
 
-# 5) Age-group bar chart
-p_age_bar <- ggplot(latest, aes(x = age_group, y = percent, fill = age_group)) +
-  geom_col(width = 0.7) +
-  scale_fill_brewer(palette = "Blues", direction = 1) +
-  labs(
-    title = sprintf("Caries prevalence by age group (%s, latest survey year %.1f)",
-                    target_meas, latest_year),
-    x = "Age group",
-    y = "Caries prevalence (%)"
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(legend.position = "none")
+  dat <- nhanes %>%
+    filter(
+      tolower(sex) == "all",
+      age_group %in% age_values,
+      measure_clean %in% measures
+    ) %>%
+    mutate(measure_label = recode(measure_clean, !!!labels)) %>%
+    arrange(year_mid, measure_clean)
 
-print(p_age_bar)
+  ggplot(dat, aes(x = year_mid, y = percent,
+                  color = measure_label, fill = measure_label)) +
+    geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper),
+                alpha = 0.06, color = NA) +
+    geom_line(size = 1.3) +
+    geom_point(size = 2.6) +
+    scale_x_continuous(breaks = scales::pretty_breaks(n = 4)) +
+    scale_color_manual(values = c(
+      "Total Dental Caries in Primary Teeth"      = "#E16A5B",
+      "Untreated Dental Caries in Primary Teeth"  = "#1F9AC9",
+      "Total Dental Caries in Permanent Teeth"    = "#E16A5B",
+      "Untreated Dental Caries in Permanent Teeth"= "#1F9AC9"
+    )) +
+    scale_fill_manual(values = c(
+      "Total Dental Caries in Primary Teeth"      = "#E16A5B",
+      "Untreated Dental Caries in Primary Teeth"  = "#1F9AC9",
+      "Total Dental Caries in Permanent Teeth"    = "#E16A5B",
+      "Untreated Dental Caries in Permanent Teeth"= "#1F9AC9"
+    )) +
+    labs(
+      title = paste0("Ages ", age_title),
+      x = if (show_x) "Survey year" else NULL,
+      y = if (show_y) "Percent (%)" else NULL,
+      color = "Measure",
+      fill  = "Measure"
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.title = element_text(size = 11, face = "bold"),
+      axis.title = element_text(size = 9),
+      axis.text  = element_text(size = 7),
+      axis.text.x = element_text(size = 6, angle = 45, hjust = 1),   # ★ X 轴改小 + 倾斜
+      panel.grid.minor = element_blank()
+    )
+}
+
+# 8 个 panel
+p_2_5  <- make_trend_plot(c("2-5", "2–5", "2—5"), "2–5",  "primary",  show_y = TRUE)
+p_6_11 <- make_trend_plot("6-11", "6–11",           "primary")
+p_12_19 <- make_trend_plot("12-19", "12–19",       "perm", show_y = TRUE)
+p_20_29 <- make_trend_plot("20-29", "20–29",       "perm")
+p_30_39 <- make_trend_plot("30-39", "30–39",       "perm", show_y = TRUE)
+p_40_49 <- make_trend_plot("40-49", "40–49",       "perm")
+p_50_59 <- make_trend_plot("50-59", "50–59",       "perm", show_y = TRUE, show_x = TRUE)
+p_60_69 <- make_trend_plot("60-69", "60–69",       "perm", show_x = TRUE)
+
+combined <- (p_2_5 + p_6_11) /
+            (p_12_19 + p_20_29) /
+            (p_30_39 + p_40_49) /
+            (p_50_59 + p_60_69)
+
+combined +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title    = "Overall Time Trend of Dental Caries by Age Group (sex = All)",
+    subtitle = "NHANES; Total vs Untreated caries, shaded ribbons = 95% CI"
+  ) &
+  theme(
+    legend.position = "bottom",                # ★ 图例放下面
+    legend.box = "horizontal",
+    legend.title = element_text(size = 9),
+    legend.text  = element_text(size = 8)
+  )
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/load_patchwork-1.png)<!-- -->
 
 ``` r
 # 1) choose outcome & dentition, e.g. total_primary (ages 2–11) or total_perm (10+)
 target_meas <- "total_perm"  # change to "total_perm" for permanent dentition
-
 base <- nhanes %>%
   filter(
-    tolower(sex) %in% c("male","female"),
+    tolower(sex) %in% c("male", "female"),
     measure_clean == target_meas
-  ) 
+  )
 
 # 2) wide join: Male & Female side by side
 male <- base %>%
@@ -422,9 +450,9 @@ female <- base %>%
   select(age_group, year_mid, percent_F = percent)
 
 gap <- male %>%
-  inner_join(female, by = c("age_group","year_mid")) %>%
+  inner_join(female, by = c("age_group", "year_mid")) %>%
   mutate(
-    Gap_abs = percent_M - percent_F   # >0: higher in males
+    Gap_abs = percent_M - percent_F # >0: higher in males
   )
 
 # 3) heatmap of sex gap over time & age
@@ -445,7 +473,7 @@ p_heat <- ggplot(gap, aes(x = year_mid, y = age_group, fill = Gap_abs)) +
 print(p_heat)
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/trend_heatmap-1.png)<!-- -->
 
 ``` r
 # 3) Filter to race = All, sex = Male/Female, chosen outcome
@@ -497,4 +525,4 @@ p_age_sex <- ggplot(latest,
 print(p_age_sex)
 ```
 
-![](NHANES_Trend-Analysis_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](NHANES_Trend-Analysis_files/figure-gfm/filtered_bar_chart-1.png)<!-- -->
