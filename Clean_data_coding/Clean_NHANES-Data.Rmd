@@ -7,11 +7,12 @@ output:
 
 ```{r}
 library(tidyverse)
+library(readr)
 ```
 
 # Load the data
 ```{r}
-nhanes <- read_csv("datasets/nhanes_oral.csv")
+nhanes <- read_csv("../datasets/nhanes_oral.csv")
 ```
 
 # Delete useless cols
@@ -99,7 +100,7 @@ nhanes_clean <- nhanes_clean %>%
 
 # Save
 ```{r}
-write_csv(nhanes_clean, "datasets/nhanes_oral_clean.csv")
+write_csv(nhanes_clean, "../datasets/nhanes_oral_clean.csv")
 ```
 
 

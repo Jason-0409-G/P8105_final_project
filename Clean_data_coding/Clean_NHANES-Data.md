@@ -17,10 +17,14 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
+``` r
+library(readr)
+```
+
 # Load the data
 
 ``` r
-nhanes <- read_csv("datasets/nhanes_oral.csv")
+nhanes <- read_csv("../datasets/nhanes_oral.csv")
 ```
 
     ## Rows: 1160 Columns: 14
@@ -127,5 +131,5 @@ nhanes_clean <- nhanes_clean %>%
 # Save
 
 ``` r
-write_csv(nhanes_clean, "datasets/nhanes_oral_clean.csv")
+write_csv(nhanes_clean, "../datasets/nhanes_oral_clean.csv")
 ```

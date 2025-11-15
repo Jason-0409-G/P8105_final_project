@@ -3,7 +3,7 @@ Care: NHANES + California Medi-Cal (1999–2023)
 ================
 Team: Jian Gao (jg5037), Bruce Liu (tl3391), Malcolm Chen (zc2823), Keyu
 Pan (kp3127)
-Date: 2025-11-05
+Date: 2025-11-12
 
 - [Team Members](#team-members)
 - [Proposed Title](#proposed-title)
@@ -15,7 +15,7 @@ Date: 2025-11-05
 
 ## Team Members
 
-- Jason Guo (jg5037)
+- Jason Gao (jg5037)
 - Bruce Liu (tl3391)
 - Malcolm Chen (zc2823)
 - Keyu Pan (kp3127)
