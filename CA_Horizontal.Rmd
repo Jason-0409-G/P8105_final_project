@@ -34,7 +34,7 @@ age_order <- c(
 
 # 年龄组比较
 ## 下面这个code trunk是错误的
-```{r}
+```{r Wrong Age Comparison}
 # 按年龄组计算平均利用率
 age_summary <- ca %>%
   group_by(age_group) %>%
@@ -48,7 +48,7 @@ age_summary %>% slice_head(n = 1)
 age_summary %>% slice_tail(n = 1)
 ```
 
-```{r}
+```{r Wrong Graph}
 age_summary %>%
   ggplot(aes(x = reorder(age_group, mean_util), y = mean_util)) +
   geom_col(fill = "#4C72B0", width = 0.7) +                           # 柔和蓝色 + 稍窄柱宽
