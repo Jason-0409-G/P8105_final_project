@@ -59,11 +59,11 @@ library(knitr)
   <div class="loader">
     <p>loading&nbsp;</p>
     <div class="words">
-      <span class="word">buttons</span>
-      <span class="word">forms</span>
-      <span class="word">switches</span>
-      <span class="word">cards</span>
-      <span class="word">buttons</span>
+      <span class="word">肯擦那</span>
+      <span class="word">叮叮叮叮叮</span>
+      <span class="word">叮叮叮叮叮</span>
+      <span class="word">results</span>
+      <span class="word">findings</span>
     </div>
   </div>
 </div>

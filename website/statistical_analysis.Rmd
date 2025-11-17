@@ -22,4 +22,4 @@ library(sandwich)
 <p style="margin-bottom: 0;">Formal statistical modeling and hypothesis testing</p>
 </div>
 
-
+---
