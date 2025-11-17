@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Home</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Dental Caries & Preventive Care Analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="Project-Overview.html">Project Overview</a>
+</li>
+<li>
+  <a href="proposal.html">
+    <span class="fa fa-file-alt"></span>
+     
+    Proposal
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-database"></span>
+     
+    Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="data.html#codebook">Codebook</a>
+    </li>
+    <li>
+      <a href="data.html#data-cleaning">Data Cleaning</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="eda.html">
+    <span class="fa fa-chart-bar"></span>
+     
+    EDA
+  </a>
+</li>
+<li>
+  <a href="statistical_analysis.html">
+    <span class="fa fa-calculator"></span>
+     
+    Statistical Analysis
+  </a>
+</li>
+<li>
+  <a href="conclusion.html">
+    <span class="fa fa-flag-checkered"></span>
+     
+    Conclusion
+  </a>
+</li>
+<li>
+  <a href="discussion.html">
+    <span class="fa fa-comments"></span>
+     
+    Discussion
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a>
+    <span class="fa fa-youtube fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="mailto:jg5037@cumc.columbia.edu">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/Jason-0409-G/P8105_final_project">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Home</h1>
+
+</div>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('cares.png') center center / cover fixed no-repeat;
+}
+
+/* Hero Banner - Static */
+.hero-banner {
+    height: 90vh;
+    margin-top: 20px;
+    background-image: url('cares.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.85), rgba(41, 128, 185, 0.9));
+}
+
+.header-text {
+    position: relative;
+    z-index: 2;
+    padding: 150px 50px;
+    color: white;
+}
+
+.header-text h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.header-text em {
+    font-style: normal;
+    color: #f39c12;
+}
+
+.div-dec {
+    width: 80px;
+    height: 3px;
+    background: white;
+    margin: 20px 0 30px 0;
+}
+
+.header-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 700px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-custom {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary-custom {
+    background: white;
+    color: #3498db;
+}
+
+.btn-secondary-custom {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-primary-custom:hover {
+    background: #f39c12;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.btn-secondary-custom:hover {
+    background: white;
+    color: #3498db;
+    transform: translateY(-3px);
+}
+
+/* Services Section */
+.services-section {
+    padding: 80px 20px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-heading h6 {
+    color: #3498db;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.section-heading h4 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2c3e50;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    text-align: center;
+    padding: 40px 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.service-card h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.service-card p {
+    color: #7f8c8d;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.service-card a {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #3498db;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.service-card a:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+/* About Section */
+.about-section {
+    padding: 80px 20px;
+    background: rgba(236, 240, 241, 0.95);
+}
+
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-image img {
+    max-width: 350px;
+    width: 100%;
+}
+
+.about-text h4 {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.about-text p {
+    color: #7f8c8d;
+    line-height: 1.8;
+    font-size: 1.15rem;
+    margin-bottom: 25px;
+}
+
+.about-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.about-box h5 {
+    color: #3498db;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.about-box p {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.about-box p:last-child {
+    color: #7f8c8d;
+    font-weight: 400;
+}
+
+/* Team Section */
+.team-section {
+    padding: 80px 20px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-member {
+    background: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.avatar-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #ecf0f1;
+}
+
+.avatar-initials {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.team-member h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.uni-text {
+    color: #95a5a6;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.degree-text {
+    color: #7f8c8d;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Footer */
+.footer-section {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(52, 73, 94, 0.95));
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+}
+
+.footer-section p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.footer-section a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+.footer-section a:hover {
+    color: #5dade2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-text h2 {
+        font-size: 2.2rem;
+    }
+    
+    .buttons {
+        flex-direction: column;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<!-- Hero Banner -->
+<div class="hero-banner">
+    <div class="header-text">
+        <h2>Dental Caries & <em>Preventive Care</em><br>Analysis</h2>
+        <div class="div-dec"></div>
+        <p>Investigating long-term trends in dental health and preventive care using national and California real-world datasets to inform public health interventions.</p>
+        <div class="buttons">
+            <a href="#services" class="btn-custom btn-primary-custom">Explore Project</a>
+            <a href="#team" class="btn-custom btn-secondary-custom">About Us</a>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<section class="services-section" id="services">
+    <div class="section-heading">
+        <h6>Project Structure</h6>
+        <h4>Explore Our Work</h4>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fas fa-info-circle"></i>
+            <h4>Project Overview</h4>
+            <p>Project overview</p>
+            <a href="Project-Overview.html">Learn More</a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-chart-bar"></i>
+            <h4>EDA</h4>
+            <p>Exploratory data visualization of oral health trends and patterns.</p>
+            <a href="eda.html">View EDA</a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-calculator"></i>
+            <h4>Statistical Analysis</h4>
+            <p>Comprehensive modeling and analytical findings from our research.</p>
+            <a href="statistical_analysis.html">View Analysis</a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-flag-checkered"></i>
+            <h4>Conclusion</h4>
+            <p>Key insights and public health implications from our findings.</p>
+            <a href="conclusion.html">View Conclusion</a>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-comments"></i>
+            <h4>Discussion</h4>
+            <p>Limitations, challenges, and future research directions.</p>
+            <a href="discussion.html">View Discussion</a>
+        </div>
+        <div class="service-card">
+            <i class="fab fa-youtube"></i>
+            <h4>Screencast</h4>
+            <p>Video presentation explaining our project and findings.</p>
+            <a href="#">Watch Video</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+    <div class="section-heading">
+        <h6>About This Project</h6>
+        <h4>Our Mission</h4>
+    </div>
+    <div class="about-content">
+        <div class="about-text">
+            <h4>Data Science I Final Project</h4>
+            <p>This project analyzes trends in dental caries prevalence and preventive dental care utilization across diverse populations. Using national and California real-world datasets, we aim to inform public health interventions and improve oral health outcomes.</p>
+            <p>Our comprehensive analysis combines statistical modeling, data visualization, and epidemiological methods to uncover patterns and insights that can guide policy decisions and clinical practice.</p>
+        </div>
+        <div class="about-image">
+            <img src="mission.jpg" alt="Our Mission" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section" id="team">
+    <div class="section-heading">
+        <h6>Our Team</h6>
+        <h4>Meet Our Teams</h4>
+    </div>
+    <div class="team-grid">
+        <div class="team-member">
+            <div class="avatar-circle">
+                <span class="avatar-initials">JG</span>
+            </div>
+            <h3>Jian Gao</h3>
+            <p class="uni-text">UNI: jg5037</p>
+            <p class="degree-text">M.S. Biostatistics</p>
+        </div>
+        <div class="team-member">
+            <div class="avatar-circle">
+                <span class="avatar-initials">BL</span>
+            </div>
+            <h3>Bruce Liu</h3>
+            <p class="uni-text">UNI: tl3391</p>
+            <p class="degree-text">MPH Biostatistics</p>
+        </div>
+        <div class="team-member">
+            <div class="avatar-circle">
+                <span class="avatar-initials">MC</span>
+            </div>
+            <h3>Malcolm Chen</h3>
+            <p class="uni-text">UNI: zc2823</p>
+            <p class="degree-text">MPH Biostatistics</p>
+        </div>
+        <div class="team-member">
+            <div class="avatar-circle">
+                <span class="avatar-initials">KP</span>
+            </div>
+            <h3>Keyu Pan</h3>
+            <p class="uni-text">UNI: kp3127</p>
+            <p class="degree-text">MPH Epidemiology</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<section class="footer-section">
+    <p>For questions, contact us: <a href="mailto:jg5037@cumc.columbia.edu"><i class="fas fa-envelope"></i></a></p>
+</section>
+
+<p>```</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

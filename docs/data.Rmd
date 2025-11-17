@@ -1,0 +1,358 @@
+---
+title: ""
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(janitor)
+```
+
+## Data Documentation {.tabset}
+
+### Codebook
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
+<h2 style="margin-top: 0; color: white;">Data Codebook</h2>
+<p style="margin-bottom: 0;">Variable definitions and data structure documentation</p>
+</div>
+
+---
+
+#### California Medi-Cal Dental Data
+
+**Source:** California Department of Health Care Services  
+**Period:** 2013–2023 (Annual)  
+**Type:** Administrative claims data
+
+##### Variable Definitions
+
+```{r ca-codebook, echo=FALSE}
+ca_codebook <- tibble::tribble(
+  ~Variable,        ~Type,          ~Description,                                    ~Values,
+  "year",           "Numeric",      "Reporting calendar year",                       "2013-2023",
+  "age_group",      "Factor",       "Standardized age group (12 ordered levels)",    "Age <1, Age 1–2, Age 3–5, Age 6–9, Age 10–14, Age 15–18, Age 19–20, Age 21–34, Age 35–44, Age 45–64, Age 65–74, Age 75+",
+  "measure",        "Character",    "Type of dental service",                        "See measure types below",
+  "users",          "Numeric",      "Number of individuals using the service",       "Count (numerator)",
+  "denominator",    "Numeric",      "Population with ≥3 months continuous eligibility", "Count (denominator)",
+  "utilization_rate", "Numeric",    "Service utilization rate (users ÷ denominator)", "Proportion (0-1) or Percentage"
+)
+
+kable(ca_codebook, align = "llll", caption = "Table 1: California Medi-Cal Data Variables") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+##### Measure Types
+
+The `measure` variable includes the following service categories:
+
+- **Dental visit** - Annual dental visit
+- **Exam/Evaluation** - Exams and oral health evaluations
+- **Caries treatment** - Treatment for caries or caries-preventive procedures
+- **Treatment services** - Use of dental treatment services
+- **Diagnostic services** - Use of diagnostic services
+- **Preventive services** - Use of preventive services
+- **Restorative services** - Use of restorative services
+- **Sealant use** - Use of sealant procedures
+
+---
+
+#### NHANES Oral Health Data
+
+**Source:** Centers for Disease Control and Prevention (CDC) / National Center for Health Statistics (NCHS)  
+**Period:** 1999–2020 (Biennial cycles)  
+**Type:** National cross-sectional survey with clinical examinations
+
+##### Variable Definitions
+
+```{r nhanes-codebook, echo=FALSE}
+nhanes_codebook <- tibble::tribble(
+  ~Variable,        ~Type,          ~Description,                                    ~Values,
+  "survey_years",   "Character",    "NHANES survey cycle",                          "e.g., '1999-2000', '2001-2002'",
+  "year_mid",       "Numeric",      "Mid-point of survey years (for trend analysis)", "e.g., 1999.5, 2001.5",
+  "sex",            "Character",    "Participant's sex",                            "Male, Female, Both sexes",
+  "age_group",      "Character",    "Age group category",                           "2-5, 6-11, 12-19, 20-29, 30-39, 40-49, 50-59, 60-69, 70 and over",
+  "race_ethnicity", "Character",    "Participant's race/ethnicity",                 "Various categories",
+  "measure",        "Character",    "Type of oral health measure (original)",       "See measure types below",
+  "measure_clean",  "Character",    "Standardized measure name (short form)",       "total_primary, total_perm, untreated_primary, untreated_perm, sealant_perm, sealant_all",
+  "percent",        "Numeric",      "Prevalence estimate",                          "0-100",
+  "se",             "Numeric",      "Standard error of estimate",                   "Numeric",
+  "ci_lower",       "Numeric",      "Lower 95% confidence interval limit",          "Numeric",
+  "ci_upper",       "Numeric",      "Upper 95% confidence interval limit",          "Numeric"
+)
+
+kable(nhanes_codebook, align = "llll", caption = "Table 2: NHANES Oral Health Data Variables") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+##### Measure Types
+
+The `measure` variable includes:
+
+- **Total Dental Caries in Primary Teeth** (`total_primary`)
+- **Total Dental Caries in Permanent Teeth** (`total_perm`)
+- **Untreated Dental Caries in Primary Teeth** (`untreated_primary`)
+- **Untreated Dental Caries in Permanent Teeth** (`untreated_perm`)
+- **Sealants on Permanent Teeth** (`sealant_perm`)
+- **Sealants on Permanent and Primary Teeth** (`sealant_all`)
+
+---
+
+### Data-Cleaning
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
+<h2 style="margin-top: 0; color: white;">Data Cleaning Process</h2>
+<p style="margin-bottom: 0;">Reproducible data preparation and harmonization</p>
+</div>
+
+---
+
+#### California Medi-Cal Data Cleaning
+
+##### Overview
+
+The original Medi-Cal dental utilization dataset contained multiple annotation fields, coded measure names, and inconsistent formatting across variables. We conducted a structured cleaning process in R to prepare the data for analysis.
+
+##### Cleaning Process
+
+```{r ca-cleaning, eval=FALSE}
+# Load required packages
+library(tidyverse)
+library(janitor)
+library(knitr)
+library(here)
+setwd("..")
+
+# Read raw data
+raw_data <- read_csv("datasets/ca_dental.csv")
+
+# Define age group order for proper sorting
+age_order <- c(
+  "Age <1","Age 1–2","Age 3–5","Age 6–9",
+  "Age 10–14","Age 15–18","Age 19–20","Age 21–34",
+  "Age 35–44","Age 45–64","Age 65–74","Age 75+"
+)
+
+# Clean dataset: standardize names, remove invalid rows, clean text
+clean_data_basic <- raw_data |>
+  # Standardize column names
+  clean_names() |>
+  
+  # Remove invalid annotation rows (no data, suppressed cells)
+  mutate(desc_clean = str_to_lower(str_squish(users_annotation_description))) |>
+  filter(
+    is.na(desc_clean) |
+      !desc_clean %in% c(
+        "no data available",
+        "cell suppressed for small numbers",
+        "cell suppressed for complementary cell"
+      )
+  ) |>
+  select(-desc_clean) |>
+  
+  # Clean "measure" text: unify dashes, remove parentheses
+  mutate(
+    measure = measure |>
+      str_replace_all("[–—∼']", "-") |>
+      str_remove_all("\\s*\\([^()]*\\)") |>
+      str_squish()
+  ) |>
+  
+  # Rename important columns for clarity
+  rename(
+    year      = calendar_year,
+    age_group = age_filter,
+    denominator = denominator_3_months_continuous_eligibility
+  ) |>
+  
+  # Standardize and order age groups
+  mutate(
+    age_group = age_group |>
+      str_replace_all("[–—∼'-]", "–") |>
+      str_squish() |>
+      str_replace_all("^Age\\s*<\\s*1$", "Age <1") |>
+      str_replace_all("^Age 1–2$|^Age 1-2$", "Age 1–2") |>
+      str_replace_all("^Age 3–5$|^Age 3-5$", "Age 3–5") |>
+      str_replace_all("^Age 6–9$|^Age 6-9$", "Age 6–9") |>
+      str_replace_all("^Age 10–14$|^Age 10-14$", "Age 10–14") |>
+      str_replace_all("^Age 15–18$|^Age 15-18$", "Age 15–18") |>
+      str_replace_all("^Age 19–20$|^Age 19-20$", "Age 19–20") |>
+      str_replace_all("^Age 21–34$|^Age 21-34$", "Age 21–34") |>
+      str_replace_all("^Age 35–44$|^Age 35-44$", "Age 35–44") |>
+      str_replace_all("^Age 45–64$|^Age 45-64$", "Age 45–64") |>
+      str_replace_all("^Age 65–74$|^Age 65-74$", "Age 65–74") |>
+      str_replace_all("^Age 75\\+$", "Age 75+"),
+    age_group = factor(age_group, levels = age_order)
+  ) |>
+  
+  # Sort dataset by year, age group, and measure
+  arrange(year, age_group, measure)
+
+# Quick check of cleaned data
+clean_data_basic |> distinct(measure) |> arrange(measure)
+clean_data_basic |> count(year, age_group) |> arrange(year, age_group)
+head(clean_data_basic)
+
+# Simplify measure names for better readability
+clean_data_simple <- clean_data_basic |>
+  mutate(
+    measure = case_when(
+      measure == "Annual Dental Visit" ~ "Dental visit",
+      measure == "Exams/Oral Health Evaluations" ~ "Exam/Evaluation",
+      measure == "Treatment for Caries or Caries–Preventive Procedure" ~ "Caries treatment",
+      measure == "Use of Dental Treatment Services" ~ "Treatment services",
+      measure == "Use of Diagnostic Services" ~ "Diagnostic services",
+      measure == "Use of Preventive Services" ~ "Preventive services",
+      measure == "Use of Restorative Services" ~ "Restorative services",
+      measure == "Use of Sealant" ~ "Sealant use",
+      TRUE ~ measure
+    )
+  )
+
+# Keep only key variables and rename utilization column
+clean_data_final <- clean_data_simple |>
+  select(
+    year,
+    age_group,
+    measure,
+    users,
+    denominator,
+    utilization_percent   
+  ) |>
+  rename(
+    year             = year,
+    age_group        = age_group,
+    measure          = measure,
+    users            = users,
+    denominator      = denominator,
+    utilization_rate = utilization_percent   
+  )
+
+# Preview and save cleaned data
+head(clean_data_final)
+write_csv(clean_data_final, here("datasets", "clean_ca.csv"))
+```
+
+##### Variable Mapping
+
+```{r ca-rename-table, echo=FALSE}
+rename_tbl <- tibble::tribble(
+  ~original_name,        ~new_name,          ~meaning_en,
+  "calendar_year",       "year",             "Reporting year (CY xxxx)",
+  "age_filter",          "age_group",        "Standardized age group (ordered)",
+  "measure",             "measure",          "Type of dental service (cleaned and simplified)",
+  "users",               "users",            "Number of individuals using the service (numerator)",
+  "denominator_3_months_continuous_eligibility", "denominator", "Population with ≥3 months continuous eligibility (denominator for utilization rate)",
+  "utilization",         "utilization_rate", "Service utilization rate = users ÷ denominator"
+)
+
+kable(
+  rename_tbl,
+  align = "lll",
+  caption = "Table 3: Final variable names and definitions"
+) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+---
+
+#### NHANES Data Cleaning
+
+##### Overview
+
+The NHANES oral health dataset required standardization of variable names, cleaning of percentage values, and creation of time variables for trend analysis.
+
+##### Cleaning Process
+
+```{r nhanes-cleaning, eval=FALSE}
+library(tidyverse)
+library(readr)
+
+# Load the data
+nhanes <- read_csv("../datasets/nhanes_oral.csv")
+
+# Delete useless columns (presentation standards and notes)
+cols_to_drop <- c("Presentation Standard", "Note1", "Note2", "Notea", "Noteb")
+nhanes <- nhanes %>%
+  select(-any_of(cols_to_drop))
+
+# Rename columns to standardized lowercase format
+nhanes <- nhanes %>%
+  rename(
+    survey_years = `Survey Years`,
+    sex = Sex,
+    age_group = `Age Group`,
+    race_ethnicity = `Race and Hispanic Origin`,
+    measure = Measure,
+    percent = Percent,
+    se = `Standard Error`,
+    ci_lower = `Lower 95% CI Limit`,
+    ci_upper = `Upper 95% CI Limit`
+  )
+
+# Clean percent values: remove "%" symbol and convert to numeric
+nhanes <- nhanes %>%
+  mutate(
+    percent = str_replace_all(as.character(percent), "%", ""),
+    percent = as.numeric(percent)
+  )
+
+# Clean years and create mid-year variable for trend analysis
+# Example: "1999–2000" becomes year_mid = 1999.5
+nhanes <- nhanes %>%
+  mutate(
+    survey_years = str_replace_all(survey_years, "–", "-"),
+    year_mid = as.numeric(str_sub(survey_years, 1, 4)) + 0.5
+  )
+
+# Standardize measure names with short codes
+measure_map <- c(
+  "Total Dental Caries in Primary Teeth" = "total_primary",
+  "Total Dental Caries in Permanent Teeth" = "total_perm",
+  "Untreated Dental Caries in Primary Teeth" = "untreated_primary",
+  "Untreated Dental Caries in Permanent Teeth" = "untreated_perm",
+  "Sealants on Permanent Teeth" = "sealant_perm",
+  "Sealants on Permanent and Primary Teeth" = "sealant_all"
+)
+
+nhanes <- nhanes %>%
+  mutate(measure_clean = recode(measure, !!!measure_map))
+
+# Filter to specific age groups (exclude broad/aggregate groups)
+nhanes <- nhanes %>%
+  filter(age_group %in% c(
+    "2-5", "6-11", "12-19",
+    "20-29", "30-39", "40-49", "50-59",
+    "60-69", "70 and over"
+  ))
+
+# Remove rows with missing percent values
+nhanes_clean <- nhanes %>%
+  filter(!is.na(percent))
+
+# Select and order final variables
+nhanes_clean <- nhanes_clean %>%
+  select(
+    survey_years, year_mid, sex, age_group,
+    race_ethnicity, measure, measure_clean,
+    percent, se, ci_lower, ci_upper
+  )
+
+# Save cleaned dataset
+write_csv(nhanes_clean, "../datasets/nhanes_oral_clean.csv")
+```
+
+---
+
+##
+
+<div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+<p><strong>Data Repository:</strong> All raw and cleaned datasets are available in the project's <code>datasets/</code> folder.</p>
+</div>
