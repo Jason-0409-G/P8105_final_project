@@ -19,14 +19,15 @@ and survey years.
 
 ## Results summary
 
-In the **latest NHANES cycle**, permanent-tooth caries prevalence
-increased steeply with age: prevalence was lowest in children 6–11
-years, higher in adolescents and young adults (12–29 years), and reached
-very high levels in mid- and older adulthood (40–69 years), where nearly
-all adults had experienced caries. Within each age group, females
-generally had slightly higher permanent-tooth caries prevalence than
-males, but sex differences were modest and confidence intervals
-overlapped.
+In the most recent available survey mid-year (2017 for permanent
+dentition and 2015 for some primary dentition measures), caries patterns
+showed strong age gradients. Permanent-tooth caries prevalence increased
+steeply with age: prevalence was lowest in children 6–11 years, higher
+in adolescents and young adults (12–29 years), and reached very high
+levels in mid- and older adulthood (40–69 years), where nearly all
+adults had experienced caries. Within each age group, females generally
+had slightly higher permanent-tooth caries prevalence than males, but
+sex differences were modest and confidence intervals overlapped.
 
 Across survey years, time-trend plots showed that **total caries
 remained high** in young children for primary teeth and in adults for
@@ -46,13 +47,28 @@ accumulation of caries is the dominant inequality**, sex differences are
 relatively minor, and recent NHANES cycles show greater improvement in
 untreated disease than in total caries burden.
 
+Taken together, these findings provide a coherent picture of dental
+caries patterns in recent NHANES data. Primary-tooth caries remains
+common in young children, with only modest changes in total caries over
+time but clearer declines in untreated disease, suggesting improved
+treatment among those who develop caries. For permanent teeth, caries
+accumulates across the life course, leading to very high prevalence in
+middle-aged and older adults, while untreated permanent caries has
+decreased or remained relatively low, again pointing to better
+restoration rather than true prevention. Sex gaps are small compared
+with the strong age gradients and show no consistent temporal trend,
+indicating that **age and dentition stage—rather than sex—are the main
+axes of inequality in U.S. dental caries burden.**
+
 ## Limitations
 
 This analysis has several important limitations. First, we relied on
-pre-aggregated NHANES summary estimates by age, sex, and survey cycle,
-so we could not adjust for individual-level covariates (e.g.,
-socioeconomic status, insurance, or race/ethnicity) or formally model
-interactions beyond simple stratification. Second, because only the
+pre-aggregated NHANES oral health summary estimates by age, sex, and
+survey cycle rather than individual-level microdata. As a result, we
+could not re-apply survey weights, compute design-based standard errors
+ourselves, or perform formal hypothesis testing; all results should
+therefore be interpreted as descriptive summaries of the published
+estimates rather than inferential analyses. Second, because only the
 “race = All” strata were used, we could not describe racial/ethnic
 disparities in caries, which are known to be substantial. Third, the
 descriptive time trends do not account for potential changes in NHANES
@@ -110,7 +126,7 @@ ggplot(d25, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 2–5: Overall trend (sex = All, primary dentition)",
     subtitle = "Two series: Total caries (primary) vs Untreated caries (primary); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -141,7 +157,7 @@ ggplot(d611, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 6–11: Overall trend (sex = All, primary dentition)",
     subtitle = "Two series: Total caries (primary) vs Untreated caries (primary); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -172,7 +188,7 @@ ggplot(d1219, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 12–19: Overall trend (sex = All, permanent dentition)",
     subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -203,7 +219,7 @@ ggplot(d2029, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 20–29: Overall trend (sex = All, permanent dentition)",
     subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -234,7 +250,7 @@ ggplot(d3039, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 30–39: Overall trend (sex = All, permanent dentition)",
     subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -265,7 +281,7 @@ ggplot(d4049, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 40–49: Overall trend (sex = All, permanent dentition)",
     subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -296,7 +312,7 @@ ggplot(d5059, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 50–59: Overall trend (sex = All, permanent dentition)",
     subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -327,7 +343,7 @@ ggplot(d6069, aes(x = year_mid, y = percent,
   labs(
     title = "Ages 60–69: Overall trend (sex = All, permanent dentition)",
     subtitle = "Two series: Total caries (permanent) vs Untreated caries (permanent); shaded = 95% CI",
-    x = "Survey year", y = "Percent (%)", color = "Measure", fill = "Measure"
+    x = "Survey Mid-year", y = "Percent (%)", color = "Measure", fill = "Measure"
   ) +
   theme_minimal()
 ```
@@ -518,9 +534,14 @@ p_age_sex <- ggplot(latest,
                     target_meas, 2017),
     x = "Age group",
     y = "Caries prevalence (%)",
-    fill = "Sex"
+    fill = "Sex",
+    caption = 
+      "Note: Error bars show 95% CIs from the NHANES oral health summary dataset.\nStandard errors were not re-estimeted from microdata, and no formal hypothesis testing was performed."
   ) +
-  theme_minimal(base_size = 13)
+  theme_minimal(base_size = 13)+
+  theme(
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic")  
+  )
 
 print(p_age_sex)
 ```
