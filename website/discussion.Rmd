@@ -1,0 +1,71 @@
+---
+title: "Discussion"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(knitr)
+```
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
+<h2 style="margin-top: 0; color: white;">💬 Discussion</h2>
+<p style="margin-bottom: 0;">Extended interpretation, limitations, and future directions</p>
+</div>
+
+```{=html}
+<style>
+.card {
+  --bg-color: #111;
+  background-color: var(--bg-color);
+  padding: 1rem 2rem;
+  border-radius: 1.25rem;
+  margin-top: 25px;
+}
+.loader {
+  color: rgb(124, 124, 124);
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  height: 40px;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+}
+.words {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+}
+.word {
+  display: block;
+  animation: spin 3s infinite;
+}
+@keyframes spin {
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-1em); }
+  40%  { transform: translateY(-2em); }
+  60%  { transform: translateY(-3em); }
+  80%  { transform: translateY(-4em); }
+  100% { transform: translateY(0); }
+}
+</style>
+
+<div class="card">
+  <div class="loader">
+    <p>loading&nbsp;</p>
+    <div class="words">
+      <span class="word">buttons</span>
+      <span class="word">forms</span>
+      <span class="word">switches</span>
+      <span class="word">cards</span>
+      <span class="word">buttons</span>
+    </div>
+  </div>
+</div>
+```
+

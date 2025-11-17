@@ -1,0 +1,61 @@
+---
+title: "Project-Overview"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(knitr)
+```
+
+
+## Background & Motivation
+
+Dental caries remains the **most common chronic disease of childhood** in the United States, with progress in prevention being slower among low-income and minority children. Despite the proven effectiveness of preventive measures like dental sealants in reducing pit-and-fissure caries, disparities persist in access to and utilization of these services.
+
+This project aims to bridge the gap between:
+
+- **National oral health surveillance** (NHANES data)
+- **State-level preventive service delivery** (California Medi-Cal data)
+
+By integrating these complementary data sources, we assess whether state-level trends in preventive dental service utilization are temporally aligned with national changes in caries burden.
+
+
+## Research Objectives
+
+Our primary objectives include:
+
+1. **Temporal Trend Analysis**
+   - Describe time trends in total and untreated dental caries by age, sex, and race/ethnicity
+   - Assess inequality trends across demographic subgroups over two decades
+
+2. **Preventive Care Utilization**
+   - Analyze preventive visit and sealant utilization trends (2013–2023) among children and adolescents in California's Medi-Cal program
+   - Identify patterns and gaps in service delivery
+
+3. **COVID-19 Impact Assessment**
+   - Evaluate pandemic-related disruptions in dental care access using interrupted time-series analysis
+   - Quantify the magnitude and duration of service interruptions
+
+4. **Ecological Analysis**
+   - Explore temporal associations between California preventive utilization (as a proxy for preventive coverage) and national caries burden
+   - Conduct weighted least squares regression accounting for standard errors
+
+---
+
+## Expected Outcomes
+
+This analysis will produce:
+
+- **Interactive visualizations** showing trends over time
+- **Statistical models** quantifying relationships between preventive care and caries burden
+- **Policy-relevant insights** for improving oral health equity
+- **Reproducible research** via GitHub Pages and R Markdown
+
+---
+
+
