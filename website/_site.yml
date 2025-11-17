@@ -16,8 +16,8 @@ navbar:
       menu:
         - text: "Codebook"
           href: data.html#codebook
-        - text: "Data Cleaning"
-          href: data.html#data-cleaning
+        - text: "Data-Cleaning"
+          href: data.html#Data-Cleaning
     - text: "EDA"
       icon: fa-chart-bar
       href: eda.html
