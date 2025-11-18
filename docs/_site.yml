@@ -10,14 +10,14 @@ navbar:
       href: Project-Overview.html
     - text: "Proposal"
       icon: fa-file-alt
-      href: proposal.html
+      href: Proposal.html
     - text: "Data"
       icon: fa-database
       menu:
         - text: "Codebook"
           href: data.html#codebook
         - text: "Data-Cleaning"
-          href: data.html#Data-Cleaning
+          href: data.html#data-cleaning
     - text: "EDA"
       icon: fa-chart-bar
       href: eda.html

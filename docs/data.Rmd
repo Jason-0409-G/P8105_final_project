@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Data Documentation"
 output: 
   html_document:
     toc: true
@@ -15,14 +15,15 @@ library(kableExtra)
 library(janitor)
 ```
 
-## Data Documentation {.tabset}
+## Data Documentation 
 
-### Codebook
+### Codebook {#codebook}
 
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
-<h2 style="margin-top: 0; color: white;">Data Codebook</h2>
+<p style="margin-top: 0; font-size: 1.6em; font-weight: 600; color: white;">Data Codebook</p>
 <p style="margin-bottom: 0;">Variable definitions and data structure documentation</p>
 </div>
+
 
 ---
 
@@ -105,10 +106,10 @@ The `measure` variable includes:
 
 ---
 
-### Data-Cleaning
+### Data-Cleaning {#data-cleaning}
 
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
-<h2 style="margin-top: 0; color: white;">Data Cleaning Process</h2>
+<p style="margin-top: 0; font-size: 1.6em; font-weight: 600; color: white;">Data Cleaning Process</p>
 <p style="margin-bottom: 0;">Reproducible data preparation and harmonization</p>
 </div>
 
@@ -161,7 +162,7 @@ clean_data_basic <- raw_data |>
   mutate(
     measure = measure |>
       str_replace_all("[–—∼']", "-") |>
-      str_remove_all("\\s*\\([^()]*\\)") |>
+      str_remove_all("\\s*\$begin:math:text$[^()]*\\$end:math:text$") |>
       str_squish()
   ) |>
   
@@ -240,9 +241,10 @@ head(clean_data_final)
 write_csv(clean_data_final, here("datasets", "clean_ca.csv"))
 ```
 
+
 ##### Variable Mapping
 
-```{r ca-rename-table, echo=FALSE}
+```{r ca-variable-mapping, echo=FALSE}
 rename_tbl <- tibble::tribble(
   ~original_name,        ~new_name,          ~meaning_en,
   "calendar_year",       "year",             "Reporting year (CY xxxx)",
@@ -261,6 +263,7 @@ kable(
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
+      
 ---
 
 #### NHANES Data Cleaning
@@ -351,8 +354,9 @@ write_csv(nhanes_clean, "../datasets/nhanes_oral_clean.csv")
 
 ---
 
-##
+### Data Availability
 
 <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
 <p><strong>Data Repository:</strong> All raw and cleaned datasets are available in the project's <code>datasets/</code> folder.</p>
 </div>
+
