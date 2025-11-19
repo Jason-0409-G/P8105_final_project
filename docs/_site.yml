@@ -13,7 +13,7 @@ navbar:
 
     - text: "Proposal"
       icon: fa-file-alt
-      href: proposal.html     # 和 docs/Proposal.html 完全一致（大写 P）
+      href: proposal.html     
 
     - text: "Data"
       icon: fa-database
