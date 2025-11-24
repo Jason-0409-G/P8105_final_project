@@ -1,0 +1,108 @@
+---
+title: "combine data analysis"
+author: "Jian Gao-jg5037"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(stringr)
+library(readr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+```
+
+Loading the datasets
+```{r}
+ca_data <- read.csv("~/Desktop/P8105_final_project/datasets/clean_ca.csv")
+nhanes_data <- read.csv("~/Desktop/P8105_final_project/datasets/nhanes_oral_clean.csv")
+```
+
+Data processing for California dataset
+```{r ca_data_processing}
+ca_data <- ca_data %>%
+  mutate(
+    # Step 1: 标准化年龄段（把 Age 1–2 里的长横线替换为短横线）
+    age_group_std = str_replace_all(age_group, "–", "-"),
+
+    # Step 2: baseline life-stage 分组
+    age_group_baseline = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5")           ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9")           ~ "Middle Childhood",
+      age_group_std %in% c("Age 10-14", "Age 15-18") ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+")   ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    # Step 3: alternative life-stage 分组（敏感度版本）
+    age_group_alt = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5")           ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9", "Age 10-14")   ~ "Middle Childhood", # 左偏移
+      age_group_std %in% c("Age 15-18")         ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+")   ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    # Step 4: 把 year 从 "CY 2013" 转成数值型 2013
+    year_num = as.numeric(str_replace(year, "CY ", "")),
+
+    # Step 5: 把利用率从 "57.97%" 转成 0.5797
+    util_rate_num = parse_number(utilization_rate) / 100
+  )
+```
+
+
+Main trend plot for California data
+```{r ca_main_trend, fig.height=4}
+ggplot(ca_data, aes(year_num, util_rate_num, color = age_group_baseline)) +
+  geom_line(size = 1) +
+  scale_y_continuous(labels = percent_format()) +
+  labs(
+    title = "CA Medicaid: Dental Utilization by Life-Stage",
+    x = "Year", y = "Utilization Rate"
+  ) +
+  theme_bw()
+```
+
+Sensitivity Analysis A: Baseline vs Alternative Grouping**
+```{r ca_sensitivity_analysis, fig.height=4}
+sens_data <- bind_rows(
+  ca_data %>% select(year_num, util_rate_num, age_group = age_group_baseline) %>% mutate(scenario = "Baseline"),
+  ca_data %>% select(year_num, util_rate_num, age_group = age_group_alt) %>% mutate(scenario = "Alternative")
+)
+
+ggplot(sens_data, aes(year_num, util_rate_num, color = scenario)) +
+  geom_line(size = 1) +
+  facet_wrap(~ age_group) +
+  scale_y_continuous(labels = percent_format()) +
+  labs(
+    title = "Sensitivity Analysis A: Baseline vs Alternative Grouping",
+    x = "Year", y = "Utilization Rate"
+  ) +
+  theme_bw()
+```
+
+
+Sensitivity Summary Table
+```{r ca_sens_table}
+sens_summary_A <- sens_data %>%
+  group_by(age_group, scenario) %>%
+  summarise(mean_rate = mean(util_rate_num), .groups = "drop") %>%
+  pivot_wider(names_from = scenario, values_from = mean_rate) %>%
+  mutate(diff_A = Alternative - Baseline)
+
+
+list(
+  Sensitivity_A = sens_summary_A
+)
+```
+“Sensitivity analysis comparing the baseline and alternative age-group definitions showed that five of the seven life-stage categories produced identical utilization estimates. Only Adolescent and Middle Childhood differed slightly (–1.8% and –3.2% respectively), reflecting the intentional boundary shift of the 10–14 age segment. These differences were small and did not change temporal trends or overall conclusions; therefore, the baseline life-stage grouping was retained for the main analysis.”
