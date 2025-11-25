@@ -1,0 +1,88 @@
+---
+title: "aggregated_data"
+author: "Malcolm Chen"
+date: "2025-11-24"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(stringr)
+library(readr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+```
+
+Loading the datasets
+```{r}
+ca_data <- read.csv("datasets/clean_ca.csv")
+nhanes_data <- read.csv("datasets/nhanes_oral_clean.csv")
+```
+
+Data processing for California dataset
+```{r ca_data_processing}
+ca_data <- ca_data %>%
+  mutate(
+    # Step 1: 标准化年龄段（把 Age 1–2 里的长横线替换为短横线）
+    age_group_std = str_replace_all(age_group, "–", "-"),
+
+    # Step 2: baseline life-stage 分组
+    age_group_baseline = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5")           ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9")           ~ "Middle Childhood",
+      age_group_std %in% c("Age 10-14", "Age 15-18") ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+")   ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    # Step 3: alternative life-stage 分组（敏感度版本）
+    age_group_alt = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5")           ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9", "Age 10-14")   ~ "Middle Childhood", # 左偏移
+      age_group_std %in% c("Age 15-18")         ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+")   ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    # Step 4: 把 year 从 "CY 2013" 转成数值型 2013
+    year_num = as.numeric(str_replace(year, "CY ", "")),
+
+    # Step 5: 把利用率从 "57.97%" 转成 0.5797
+    util_rate_num = parse_number(utilization_rate) / 100
+  )
+```
+
+# 建立两年周期变量（例如 2013 和 2014 都归到 "2013-2014"）
+```{r}
+ca <- ca %>%
+  mutate(
+    period_start = ifelse(year %% 2 == 1, year, year - 1),
+    period_end   = period_start + 1,
+    survey_years = paste0(period_start, "-", period_end)
+  )
+```
+
+# 第四步：按两年周期聚合（取平均即可）
+```{r}
+ca_2yr <- ca %>%
+  group_by(survey_years, age_group, measure) %>%
+  summarise(
+    users = mean(users, na.rm = TRUE),
+    denominator = mean(denominator, na.rm = TRUE),
+    utilization_rate = mean(utilization_rate, na.rm = TRUE)
+  ) %>%
+  ungroup()
+```
+
+
+
+
+
+
