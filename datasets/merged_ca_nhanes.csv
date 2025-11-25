@@ -1,490 +1,292 @@
-"survey_years","age_group","measure","users","denominator","utilization_rate","year_mid","sex","race_ethnicity","measure_clean","percent","se","ci_lower","ci_upper"
-"2013-2014","Age 1-2","Dental visit",128025.5,580699,0.22045,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 1-2","Exam/Evaluation",1676.5,580699,0.0029,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 1-2","Preventive services",82987,580699,0.1429,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 1-2","Restorative services",14815,577485,0.0257,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 1-2","Treatment for Caries or Caries-Preventive Procedure",79199.5,580699,0.1364,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 1-2","Treatment services",18289.5,580699,0.0315,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 10-14","Dental visit",633066.5,1234370,0.51265,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 10-14","Exam/Evaluation",537018,1234370,0.43495,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 10-14","Preventive services",531428.5,1234370,0.4304,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 10-14","Restorative services",216254.5,1234370,0.17535,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 10-14","Sealant use",113269.5,1234370,0.09185,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 10-14","Treatment for Caries or Caries-Preventive Procedure",513167.5,1234370,0.41555,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 10-14","Treatment services",291467.5,1234370,0.23625,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 15-18","Dental visit",387208.5,917624.5,0.422,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 15-18","Exam/Evaluation",321558,917624.5,0.3505,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 15-18","Preventive services",309111.5,917624.5,0.33695,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 15-18","Restorative services",149113.5,917624.5,0.16275,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 15-18","Treatment for Caries or Caries-Preventive Procedure",290886.5,917624.5,0.31695,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 15-18","Treatment services",188854,917624.5,0.20605,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 19-20","Dental visit",99036.5,357540,0.27835,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 19-20","Exam/Evaluation",80477,357540,0.22625,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 19-20","Preventive services",73204,357540,0.20585,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 19-20","Restorative services",37246.5,357540,0.10535,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 19-20","Treatment for Caries or Caries-Preventive Procedure",66517.5,357540,0.1869,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 19-20","Treatment services",51156.5,357540,0.14445,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 21-34","Dental visit",218626.5,1435200,0.1436,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 21-34","Exam/Evaluation",118658.5,1435200,0.0694,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 21-34","Preventive services",89262,1435200,0.05325,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 21-34","Restorative services",58788.5,1435200,0.03415,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 21-34","Treatment for Caries or Caries-Preventive Procedure",80746,1435200,0.04745,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 21-34","Treatment services",123683,1435200,0.0839,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 3-5","Dental visit",463211.5,866503.5,0.53455,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 3-5","Exam/Evaluation",385551.5,866503.5,0.44495,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 3-5","Preventive services",372540,866503.5,0.42995,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 3-5","Restorative services",168174,866503.5,0.1941,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 3-5","Treatment for Caries or Caries-Preventive Procedure",365285,866503.5,0.42155,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 3-5","Treatment services",186245.5,866503.5,0.21495,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 35-44","Dental visit",117810.5,719186,0.15055,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 35-44","Exam/Evaluation",61013,719186,0.06935,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 35-44","Preventive services",41510.5,719186,0.0474,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 35-44","Restorative services",28056.5,719186,0.03175,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 35-44","Treatment for Caries or Caries-Preventive Procedure",37365,719186,0.04245,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 35-44","Treatment services",67079.5,719186,0.0887,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 45-64","Dental visit",276526,1450950,0.17025,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 45-64","Exam/Evaluation",146322.5,1450950,0.0773,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 45-64","Preventive services",89890,1450950,0.04785,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 45-64","Restorative services",54521.5,1450950,0.0287,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 45-64","Treatment for Caries or Caries-Preventive Procedure",77105.5,1450950,0.0411,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 45-64","Treatment services",154807,1450950,0.1005,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 6-9","Dental visit",669422,1144862,0.58455,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 6-9","Exam/Evaluation",567322,1144862,0.4954,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 6-9","Preventive services",563393,1144862,0.492,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 6-9","Restorative services",278278,1144862,0.2432,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 6-9","Sealant use",196586.5,1144862,0.1718,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 6-9","Treatment for Caries or Caries-Preventive Procedure",554722,1144862,0.4844,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 6-9","Treatment services",347871,1144862,0.30395,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 65-74","Dental visit",78784,509610.5,0.1516,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 65-74","Exam/Evaluation",39860,509610.5,0.07525,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 65-74","Preventive services",23985.5,509610.5,0.04525,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 65-74","Restorative services",12987.5,509610.5,0.0245,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 65-74","Treatment for Caries or Caries-Preventive Procedure",19400,509610.5,0.03665,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 65-74","Treatment services",49211.5,509610.5,0.09525,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 75+","Dental visit",68378.5,488419,0.1391,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 75+","Exam/Evaluation",34425,488419,0.06965,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 75+","Preventive services",19339,488419,0.03905,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 75+","Restorative services",16137,496713,0.0325,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 75+","Treatment for Caries or Caries-Preventive Procedure",14981,488419,0.0303,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age 75+","Treatment services",49232,488419,0.1004,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age <1","Dental visit",3661,253132,0.01445,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age <1","Exam/Evaluation",29,253132,0.00015,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age <1","Preventive services",719.5,253132,0.00285,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age <1","Treatment for Caries or Caries-Preventive Procedure",677,253132,0.00265,NA,NA,NA,NA,NA,NA,NA,NA
-"2013-2014","Age <1","Treatment services",138,253132,0.00055,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 1-2","Dental visit",139942.5,598268.5,0.23395,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 1-2","Exam/Evaluation",11544.5,598268.5,0.0191,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 1-2","Preventive services",106786,598268.5,0.17825,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 1-2","Restorative services",13437,605175,0.0222,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 1-2","Treatment for Caries or Caries-Preventive Procedure",91140,598268.5,0.1523,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 1-2","Treatment services",17223.5,598268.5,0.0288,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 10-14","Dental visit",721831,1395937.5,0.517,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 10-14","Exam/Evaluation",640666,1395937.5,0.4578,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 10-14","Preventive services",638075,1395937.5,0.45575,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 10-14","Restorative services",242842,1395937.5,0.17355,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 10-14","Sealant use",124150,1395937.5,0.08875,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 10-14","Treatment for Caries or Caries-Preventive Procedure",608318.5,1395937.5,0.435,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 10-14","Treatment services",329321,1395937.5,0.2355,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 15-18","Dental visit",437610.5,1048498.5,0.4174,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 15-18","Exam/Evaluation",375712.5,1048498.5,0.3574,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 15-18","Preventive services",362689,1048498.5,0.34485,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 15-18","Restorative services",163601,1048498.5,0.15565,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 15-18","Treatment for Caries or Caries-Preventive Procedure",341189.5,1048498.5,0.3248,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 15-18","Treatment services",212464,1048498.5,0.2022,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 19-20","Dental visit",129920,479150,0.2711,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 19-20","Exam/Evaluation",108436,479150,0.22605,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 19-20","Preventive services",98136.5,479150,0.20445,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 19-20","Restorative services",45928,479150,0.09575,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 19-20","Treatment for Caries or Caries-Preventive Procedure",89907.5,479150,0.18745,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 19-20","Treatment services",65689.5,479150,0.13695,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 21-34","Dental visit",489836,2643987.5,0.1855,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 21-34","Exam/Evaluation",337177.5,2643987.5,0.1271,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 21-34","Preventive services",267145.5,2643987.5,0.1003,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 21-34","Restorative services",175991,2643987.5,0.0664,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 21-34","Treatment for Caries or Caries-Preventive Procedure",250567,2643987.5,0.0944,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 21-34","Treatment services",270704.5,2643987.5,0.10215,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 3-5","Dental visit",461865.5,887564.5,0.52045,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 3-5","Exam/Evaluation",409606.5,887564.5,0.46105,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 3-5","Preventive services",399536.5,887564.5,0.4496,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 3-5","Restorative services",159026.5,887564.5,0.1791,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 3-5","Treatment for Caries or Caries-Preventive Procedure",378147,887564.5,0.42585,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 3-5","Treatment services",178010,887564.5,0.2005,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 35-44","Dental visit",248097,1175240.5,0.21145,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 35-44","Exam/Evaluation",165189.5,1175240.5,0.1401,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 35-44","Preventive services",123098.5,1175240.5,0.10395,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 35-44","Restorative services",82469,1175240.5,0.0699,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 35-44","Treatment for Caries or Caries-Preventive Procedure",114426,1175240.5,0.097,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 35-44","Treatment services",137003,1175240.5,0.11625,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 45-64","Dental visit",573850,2405558.5,0.2389,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 45-64","Exam/Evaluation",365368.5,2405558.5,0.1515,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 45-64","Preventive services",260667,2405558.5,0.1076,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 45-64","Restorative services",154679.5,2405558.5,0.06405,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 45-64","Treatment for Caries or Caries-Preventive Procedure",224908.5,2405558.5,0.0932,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 45-64","Treatment services",327053,2405558.5,0.1357,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 6-9","Dental visit",719579.5,1230011.5,0.585,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 6-9","Exam/Evaluation",641834,1230011.5,0.52135,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 6-9","Preventive services",641275.5,1230011.5,0.5209,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 6-9","Restorative services",299551.5,1230011.5,0.24335,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 6-9","Sealant use",206488,1230011.5,0.16785,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 6-9","Treatment for Caries or Caries-Preventive Procedure",620582.5,1230011.5,0.50425,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 6-9","Treatment services",375763.5,1230011.5,0.3053,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 65-74","Dental visit",147689.5,619547.5,0.2388,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 65-74","Exam/Evaluation",92058,619547.5,0.14825,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 65-74","Preventive services",65335.5,619547.5,0.10475,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 65-74","Restorative services",34870,619547.5,0.05605,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 65-74","Treatment for Caries or Caries-Preventive Procedure",53279.5,619547.5,0.0857,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 65-74","Treatment services",91141.5,619547.5,0.14695,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 75+","Dental visit",112323,528825.5,0.2125,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 75+","Exam/Evaluation",66063,528825.5,0.12485,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 75+","Preventive services",44732,528825.5,0.08445,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 75+","Restorative services",20829,528825.5,0.0394,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 75+","Treatment for Caries or Caries-Preventive Procedure",35639.5,528825.5,0.06735,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age 75+","Treatment services",77896.5,528825.5,0.1473,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age <1","Dental visit",4735,250208,0.01895,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age <1","Exam/Evaluation",337,250208,0.00135,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age <1","Preventive services",1687,250208,0.00675,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age <1","Restorative services",57,250052,2e-04,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age <1","Treatment for Caries or Caries-Preventive Procedure",857,250208,0.00345,NA,NA,NA,NA,NA,NA,NA,NA
-"2015-2016","Age <1","Treatment services",214.5,250208,0.00085,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 1-2","Dental visit",152602,567619.5,0.26875,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 1-2","Diagnostic services",134555,554003,0.2429,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 1-2","Exam/Evaluation",97720,567619.5,0.1721,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 1-2","Preventive services",133134.5,567619.5,0.2345,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 1-2","Restorative services",13202,567619.5,0.02325,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 1-2","Treatment for Caries or Caries-Preventive Procedure",102878,567619.5,0.1812,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 1-2","Treatment services",20464.5,567619.5,0.03605,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Dental visit",804545,1456235,0.55245,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Diagnostic services",773640,1453262,0.5323,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Exam/Evaluation",753918,1456235,0.51775,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Preventive services",759477,1456235,0.52155,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Restorative services",282305,1456235,0.19385,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Sealant use",145009.5,1456235,0.0996,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Treatment for Caries or Caries-Preventive Procedure",708075.5,1456235,0.48625,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 10-14","Treatment services",378762.5,1456235,0.2601,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 15-18","Dental visit",491993.5,1077362,0.4567,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 15-18","Diagnostic services",464139,1069724,0.4339,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 15-18","Exam/Evaluation",446209,1077362,0.4142,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 15-18","Preventive services",436712.5,1077362,0.40535,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 15-18","Restorative services",190891.5,1077362,0.1772,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 15-18","Treatment for Caries or Caries-Preventive Procedure",403810,1077362,0.37485,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 15-18","Treatment services",247586,1077362,0.2298,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 19-20","Dental visit",139370.5,472680.5,0.29495,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 19-20","Diagnostic services",128771,465831,0.2764,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 19-20","Exam/Evaluation",122458,472680.5,0.25915,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 19-20","Preventive services",111461,472680.5,0.23585,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 19-20","Restorative services",49872,472680.5,0.1055,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 19-20","Treatment for Caries or Caries-Preventive Procedure",100597.5,472680.5,0.2129,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 19-20","Treatment services",72826.5,472680.5,0.1541,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 21-34","Dental visit",550036.5,2768185,0.19875,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 21-34","Diagnostic services",509279,2737872,0.186,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 21-34","Exam/Evaluation",445427.5,2768185,0.161,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 21-34","Preventive services",341934,2768185,0.1236,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 21-34","Restorative services",209669.5,2768185,0.0758,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 21-34","Treatment for Caries or Caries-Preventive Procedure",308986.5,2768185,0.1117,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 21-34","Treatment services",325195,2768185,0.11755,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 3-5","Dental visit",462964,867233,0.5338,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 3-5","Diagnostic services",435475,853884,0.51,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 3-5","Exam/Evaluation",411615,867233,0.4746,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 3-5","Preventive services",435058.5,867233,0.50165,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 3-5","Restorative services",159374,867233,0.1838,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 3-5","Treatment for Caries or Caries-Preventive Procedure",393700,867233,0.454,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 3-5","Treatment services",185975,867233,0.21445,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 35-44","Dental visit",274718,1239975,0.22155,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 35-44","Diagnostic services",255029,1236026,0.2063,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 35-44","Exam/Evaluation",218519.5,1239975,0.1763,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 35-44","Preventive services",161954,1239975,0.1306,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 35-44","Restorative services",104719.5,1239975,0.0845,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 35-44","Treatment for Caries or Caries-Preventive Procedure",146053.5,1239975,0.11785,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 35-44","Treatment services",170671,1239975,0.1377,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 45-64","Dental visit",594919.5,2398291,0.2482,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 45-64","Diagnostic services",537820,2358129,0.2281,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 45-64","Exam/Evaluation",466100,2398291,0.19455,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 45-64","Preventive services",341367.5,2398291,0.1425,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 45-64","Restorative services",196394.5,2398291,0.08205,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 45-64","Treatment for Caries or Caries-Preventive Procedure",284187,2398291,0.11865,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 45-64","Treatment services",382901.5,2398291,0.1599,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Dental visit",710812.5,1168091,0.60855,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Diagnostic services",671272,1143911,0.5868,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Exam/Evaluation",671084.5,1168091,0.5745,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Preventive services",677509,1168091,0.58005,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Restorative services",311438,1168091,0.2666,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Sealant use",204569.5,1168091,0.17505,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Treatment for Caries or Caries-Preventive Procedure",641144,1168091,0.5489,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 6-9","Treatment services",389248,1168091,0.3333,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 65-74","Dental visit",170890.5,683494,0.2499,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 65-74","Diagnostic services",156625,692976,0.226,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 65-74","Exam/Evaluation",131145.5,683494,0.1917,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 65-74","Preventive services",93943,683494,0.13735,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 65-74","Restorative services",49210,683494,0.0719,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 65-74","Treatment for Caries or Caries-Preventive Procedure",74684.5,683494,0.10915,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 65-74","Treatment services",114833,683494,0.16785,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 75+","Dental visit",121369,550863,0.22025,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 75+","Diagnostic services",107453,555584,0.1934,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 75+","Exam/Evaluation",89019,550863,0.1615,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 75+","Preventive services",58832.5,550863,0.10675,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 75+","Restorative services",26212.5,550863,0.04755,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 75+","Treatment for Caries or Caries-Preventive Procedure",46387,550863,0.08415,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age 75+","Treatment services",87456.5,550863,0.1587,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age <1","Dental visit",5925,229661.5,0.02585,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age <1","Diagnostic services",3298,221667,0.0149,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age <1","Exam/Evaluation",1316.5,229661.5,0.00575,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age <1","Preventive services",2887.5,229661.5,0.0126,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age <1","Restorative services",47.5,229661.5,2e-04,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age <1","Treatment for Caries or Caries-Preventive Procedure",1126,229661.5,0.0049,NA,NA,NA,NA,NA,NA,NA,NA
-"2017-2018","Age <1","Treatment services",275.5,229661.5,0.0012,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 1-2","Dental visit",152167,501730.5,0.30265,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 1-2","Diagnostic services",122345,501730.5,0.24305,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 1-2","Exam/Evaluation",86881,501730.5,0.17265,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 1-2","Preventive services",141148.5,501730.5,0.2808,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 1-2","Restorative services",11167,501730.5,0.0222,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 1-2","Treatment for Caries or Caries-Preventive Procedure",95772.5,501730.5,0.1903,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 1-2","Treatment services",66577.5,501730.5,0.1326,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Dental visit",729165.5,1413327,0.5157,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Diagnostic services",692945,1413327,0.49,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Exam/Evaluation",674529,1413327,0.477,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Preventive services",684258,1413327,0.4839,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Restorative services",247627.5,1413327,0.1751,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Sealant use",129330,1413327,0.09145,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Treatment for Caries or Caries-Preventive Procedure",641423,1413327,0.4536,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 10-14","Treatment services",338661.5,1413327,0.2395,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 15-18","Dental visit",453055.5,1043220.5,0.43445,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 15-18","Diagnostic services",421097.5,1043220.5,0.4038,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 15-18","Exam/Evaluation",406246,1043220.5,0.3896,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 15-18","Preventive services",400629,1043220.5,0.3842,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 15-18","Restorative services",169062,1043220.5,0.1621,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 15-18","Treatment for Caries or Caries-Preventive Procedure",374407.5,1043220.5,0.359,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 15-18","Treatment services",225635,1043220.5,0.21635,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 19-20","Dental visit",131175.5,452629.5,0.29035,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 19-20","Diagnostic services",120169,452629.5,0.26605,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 19-20","Exam/Evaluation",114189,452629.5,0.25285,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 19-20","Preventive services",105191,452629.5,0.2329,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 19-20","Restorative services",46635,452629.5,0.1033,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 19-20","Treatment for Caries or Caries-Preventive Procedure",96572.5,452629.5,0.2138,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 19-20","Treatment services",69279,452629.5,0.15335,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 21-34","Dental visit",535727.5,2574723,0.20825,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 21-34","Diagnostic services",473046.5,2574723,0.18385,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 21-34","Exam/Evaluation",429266.5,2574723,0.1669,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 21-34","Preventive services",337209.5,2574723,0.1311,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 21-34","Restorative services",212233,2574723,0.08255,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 21-34","Treatment for Caries or Caries-Preventive Procedure",320585.5,2574723,0.12465,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 21-34","Treatment services",339624,2574723,0.132,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 3-5","Dental visit",408178.5,805686.5,0.5056,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 3-5","Diagnostic services",380877.5,805686.5,0.4717,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 3-5","Exam/Evaluation",353486.5,805686.5,0.43775,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 3-5","Preventive services",390154,805686.5,0.48325,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 3-5","Restorative services",133265,805686.5,0.165,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 3-5","Treatment for Caries or Caries-Preventive Procedure",344970,805686.5,0.42725,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 3-5","Treatment services",262891.5,805686.5,0.326,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 35-44","Dental visit",275625,1197596.5,0.2304,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 35-44","Diagnostic services",235968.5,1197596.5,0.1973,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 35-44","Exam/Evaluation",211849.5,1197596.5,0.1772,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 35-44","Preventive services",159958.5,1197596.5,0.1338,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 35-44","Restorative services",110798,1197596.5,0.09265,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 35-44","Treatment for Caries or Caries-Preventive Procedure",156393.5,1197596.5,0.13075,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 35-44","Treatment services",189100.5,1197596.5,0.1581,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 45-64","Dental visit",563555,2206724.5,0.25535,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 45-64","Diagnostic services",475439.5,2206724.5,0.2154,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 45-64","Exam/Evaluation",427997.5,2206724.5,0.19395,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 45-64","Preventive services",315181.5,2206724.5,0.14285,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 45-64","Restorative services",201045.5,2206724.5,0.09105,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 45-64","Treatment for Caries or Caries-Preventive Procedure",290467.5,2206724.5,0.1316,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 45-64","Treatment services",402576.5,2206724.5,0.1824,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Dental visit",615756.5,1083581,0.56785,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Diagnostic services",587510,1083581,0.54175,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Exam/Evaluation",572665.5,1083581,0.5281,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Preventive services",584524.5,1083581,0.539,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Restorative services",263640.5,1083581,0.2431,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Sealant use",167619.5,1083581,0.1545,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Treatment for Caries or Caries-Preventive Procedure",555086.5,1083581,0.51185,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 6-9","Treatment services",371828,1083581,0.3429,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 65-74","Dental visit",176225.5,706989,0.24955,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 65-74","Diagnostic services",146130,706989,0.20695,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 65-74","Exam/Evaluation",131370.5,706989,0.1861,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 65-74","Preventive services",93292.5,706989,0.13215,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 65-74","Restorative services",55501,706989,0.0786,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 65-74","Treatment for Caries or Caries-Preventive Procedure",82583.5,706989,0.11695,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 65-74","Treatment services",129045,706989,0.1827,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 75+","Dental visit",119050.5,563518,0.21155,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 75+","Diagnostic services",97350,563518,0.17305,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 75+","Exam/Evaluation",86513,563518,0.15375,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 75+","Preventive services",56657,563518,0.10075,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 75+","Restorative services",28968,563518,0.0515,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 75+","Treatment for Caries or Caries-Preventive Procedure",49134.5,563518,0.08735,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age 75+","Treatment services",90316,563518,0.1605,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age <1","Dental visit",8998.5,193830,0.04645,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age <1","Diagnostic services",4684.5,193830,0.0242,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age <1","Exam/Evaluation",1788,193830,0.00925,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age <1","Preventive services",6947.5,193830,0.03585,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age <1","Restorative services",59.5,193830,3e-04,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age <1","Treatment for Caries or Caries-Preventive Procedure",1954,193830,0.01015,NA,NA,NA,NA,NA,NA,NA,NA
-"2019-2020","Age <1","Treatment services",1494,193830,0.00775,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 1-2","Dental visit",161713,471507,0.34315,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 1-2","Diagnostic services",126992.5,471507,0.2695,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 1-2","Exam/Evaluation",94983.5,471507,0.2016,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 1-2","Preventive services",153644,471507,0.326,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 1-2","Treatment for Caries or Caries-Preventive Procedure",105641,471507,0.22425,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 1-2","Treatment services",52690.5,471507,0.11105,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Dental visit",758131.5,1443189.5,0.52525,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Diagnostic services",723663.5,1443189.5,0.5014,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Exam/Evaluation",706606.5,1443189.5,0.4896,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Preventive services",717246,1443189.5,0.4969,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Restorative services",226866,1443189.5,0.1572,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Sealant use",139291,1443189.5,0.0965,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Treatment for Caries or Caries-Preventive Procedure",680153,1443189.5,0.4712,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 10-14","Treatment services",368557.5,1443189.5,0.25535,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 15-18","Dental visit",504779,1143163,0.44145,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 15-18","Diagnostic services",473246,1143163,0.41385,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 15-18","Exam/Evaluation",457406.5,1143163,0.4,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 15-18","Preventive services",453044.5,1143163,0.39615,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 15-18","Restorative services",161226.5,1143163,0.14105,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 15-18","Treatment for Caries or Caries-Preventive Procedure",428883.5,1143163,0.37505,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 15-18","Treatment services",256380.5,1143163,0.22425,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 19-20","Dental visit",158546,526711.5,0.30105,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 19-20","Diagnostic services",146988,526711.5,0.2791,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 19-20","Exam/Evaluation",140158,526711.5,0.2661,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 19-20","Preventive services",131178.5,526711.5,0.24905,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 19-20","Restorative services",48040.5,526711.5,0.0913,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 19-20","Treatment for Caries or Caries-Preventive Procedure",122922,526711.5,0.2334,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 19-20","Treatment services",84556.5,526711.5,0.16065,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 21-34","Dental visit",639130.5,2999481,0.2132,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 21-34","Diagnostic services",572599,2999481,0.19105,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 21-34","Exam/Evaluation",521609,2999481,0.17395,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 21-34","Preventive services",421787,2999481,0.14065,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 21-34","Restorative services",195804.5,2999481,0.06535,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 21-34","Treatment for Caries or Caries-Preventive Procedure",406969.5,2999481,0.1357,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 21-34","Treatment services",400081,2999481,0.1335,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 3-5","Dental visit",412230,786322.5,0.52425,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 3-5","Diagnostic services",383367,786322.5,0.48755,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 3-5","Exam/Evaluation",355987.5,786322.5,0.45275,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 3-5","Preventive services",398231.5,786322.5,0.50645,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 3-5","Restorative services",115013,786322.5,0.14625,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 3-5","Treatment for Caries or Caries-Preventive Procedure",355108.5,786322.5,0.4516,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 3-5","Treatment services",236847.5,786322.5,0.3011,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 35-44","Dental visit",320296,1403438.5,0.22835,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 35-44","Diagnostic services",280185,1403438.5,0.19975,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 35-44","Exam/Evaluation",252281,1403438.5,0.17985,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 35-44","Preventive services",192008.5,1403438.5,0.13685,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 35-44","Restorative services",93577.5,1403438.5,0.06675,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 35-44","Treatment for Caries or Caries-Preventive Procedure",191026,1403438.5,0.13615,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 35-44","Treatment services",219574.5,1403438.5,0.1565,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 45-64","Dental visit",651533,2515973.5,0.25895,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 45-64","Diagnostic services",564914,2515973.5,0.22455,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 45-64","Exam/Evaluation",511610,2515973.5,0.2033,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 45-64","Preventive services",376601.5,2515973.5,0.1496,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 45-64","Restorative services",161296.5,2515973.5,0.06415,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 45-64","Treatment for Caries or Caries-Preventive Procedure",356918,2515973.5,0.14175,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 45-64","Treatment services",468656.5,2515973.5,0.1863,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Dental visit",641830.5,1115016,0.5755,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Diagnostic services",615164,1115016,0.55165,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Exam/Evaluation",602158,1115016,0.53995,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Preventive services",615104,1115016,0.55155,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Restorative services",246257.5,1115016,0.22085,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Sealant use",179711.5,1115016,0.1611,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Treatment for Caries or Caries-Preventive Procedure",588195,1115016,0.5274,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 6-9","Treatment services",391352.5,1115016,0.3512,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 65-74","Dental visit",221679.5,849611.5,0.26075,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 65-74","Diagnostic services",189701.5,849611.5,0.2232,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 65-74","Exam/Evaluation",171973,849611.5,0.20235,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 65-74","Preventive services",120566.5,849611.5,0.1418,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 65-74","Restorative services",47359,849611.5,0.05575,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 65-74","Treatment for Caries or Caries-Preventive Procedure",110054.5,849611.5,0.1294,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 65-74","Treatment services",164459.5,849611.5,0.19345,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 75+","Dental visit",139416.5,624818.5,0.2229,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 75+","Diagnostic services",118154.5,624818.5,0.189,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 75+","Exam/Evaluation",106399.5,624818.5,0.17015,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 75+","Preventive services",68466,624818.5,0.10945,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 75+","Restorative services",24411,624818.5,0.03905,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 75+","Treatment for Caries or Caries-Preventive Procedure",60893,624818.5,0.0973,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age 75+","Treatment services",106137.5,624818.5,0.1697,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age <1","Dental visit",10609.5,193358,0.0548,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age <1","Diagnostic services",5505,193358,0.02845,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age <1","Exam/Evaluation",2157.5,193358,0.01115,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age <1","Preventive services",8677.5,193358,0.0448,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age <1","Treatment for Caries or Caries-Preventive Procedure",2899.5,193358,0.01495,NA,NA,NA,NA,NA,NA,NA,NA
-"2021-2022","Age <1","Treatment services",1397,193358,0.0073,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 1-2","Dental visit",197617,470854,0.4197,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 1-2","Diagnostic services",145275,470854,0.3085,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 1-2","Exam/Evaluation",110070,470854,0.2338,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 1-2","Preventive services",190277,470854,0.4041,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 1-2","Restorative services",9946,470854,0.0211,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 1-2","Treatment for Caries or Caries-Preventive Procedure",123141,470854,0.2615,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 1-2","Treatment services",21305,470854,0.0452,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Dental visit",794380,1470335,0.5403,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Diagnostic services",757510,1470335,0.5152,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Exam/Evaluation",740564,1470335,0.5037,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Preventive services",754180,1470335,0.5129,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Restorative services",287227,1470335,0.1953,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Sealant use",148306,1470335,0.1009,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Treatment for Caries or Caries-Preventive Procedure",718980,1470335,0.489,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 10-14","Treatment services",388608,1470335,0.2643,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 15-18","Dental visit",561992,1239071,0.4536,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 15-18","Diagnostic services",526147,1239071,0.4246,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 15-18","Exam/Evaluation",509886,1239071,0.4115,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 15-18","Preventive services",507569,1239071,0.4096,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 15-18","Restorative services",218120,1239071,0.176,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 15-18","Treatment for Caries or Caries-Preventive Procedure",483162,1239071,0.3899,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 15-18","Treatment services",285237,1239071,0.2302,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 19-20","Dental visit",173306,577259,0.3002,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 19-20","Diagnostic services",160358,577259,0.2778,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 19-20","Exam/Evaluation",153671,577259,0.2662,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 19-20","Preventive services",145321,577259,0.2517,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 19-20","Restorative services",63334,577259,0.1097,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 19-20","Treatment for Caries or Caries-Preventive Procedure",136944,577259,0.2372,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 19-20","Treatment services",91067,577259,0.1578,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 21-34","Dental visit",719993,3404709,0.2115,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 21-34","Diagnostic services",640039,3404709,0.188,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 21-34","Exam/Evaluation",586986,3404709,0.1724,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 21-34","Preventive services",485129,3404709,0.1425,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 21-34","Restorative services",292856,3404709,0.086,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 21-34","Treatment for Caries or Caries-Preventive Procedure",480312,3404709,0.1411,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 21-34","Treatment services",457290,3404709,0.1343,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 3-5","Dental visit",434715,779697,0.5575,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 3-5","Diagnostic services",398444,779697,0.511,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 3-5","Exam/Evaluation",370610,779697,0.4753,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 3-5","Preventive services",422617,779697,0.542,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 3-5","Restorative services",129787,779697,0.1665,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 3-5","Treatment for Caries or Caries-Preventive Procedure",373193,779697,0.4786,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 3-5","Treatment services",167051,779697,0.2143,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 35-44","Dental visit",368657,1622710,0.2272,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 35-44","Diagnostic services",319454,1622710,0.1969,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 35-44","Exam/Evaluation",289369,1622710,0.1783,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 35-44","Preventive services",224593,1622710,0.1384,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 35-44","Restorative services",156655,1622710,0.0965,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 35-44","Treatment for Caries or Caries-Preventive Procedure",232925,1622710,0.1435,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 35-44","Treatment services",259962,1622710,0.1602,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 45-64","Dental visit",781711,2881601,0.2713,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 45-64","Diagnostic services",671280,2881601,0.233,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 45-64","Exam/Evaluation",611132,2881601,0.2121,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 45-64","Preventive services",465015,2881601,0.1614,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 45-64","Restorative services",308881,2881601,0.1072,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 45-64","Treatment for Caries or Caries-Preventive Procedure",460594,2881601,0.1598,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 45-64","Treatment services",579684,2881601,0.2012,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Dental visit",681692,1152831,0.5913,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Diagnostic services",653152,1152831,0.5666,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Exam/Evaluation",639931,1152831,0.5551,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Preventive services",656549,1152831,0.5695,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Restorative services",297613,1152831,0.2582,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Sealant use",193191,1152831,0.1676,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Treatment for Caries or Caries-Preventive Procedure",630318,1152831,0.5468,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 6-9","Treatment services",384847,1152831,0.3338,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 65-74","Dental visit",272734,1008706,0.2704,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 65-74","Diagnostic services",231510,1008706,0.2295,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 65-74","Exam/Evaluation",211031,1008706,0.2092,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 65-74","Preventive services",151812,1008706,0.1505,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 65-74","Restorative services",92967,1008706,0.0922,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 65-74","Treatment for Caries or Caries-Preventive Procedure",144290,1008706,0.143,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 65-74","Treatment services",204893,1008706,0.2031,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 75+","Dental visit",164160,699129,0.2348,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 75+","Diagnostic services",138544,699129,0.1982,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 75+","Exam/Evaluation",125533,699129,0.1796,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 75+","Preventive services",83636,699129,0.1196,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 75+","Restorative services",43003,699129,0.0615,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 75+","Treatment for Caries or Caries-Preventive Procedure",76777,699129,0.1098,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age 75+","Treatment services",124922,699129,0.1787,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age <1","Dental visit",15207,188095,0.0808,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age <1","Diagnostic services",6517,188095,0.0346,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age <1","Exam/Evaluation",2912,188095,0.0155,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age <1","Preventive services",12785,188095,0.068,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age <1","Restorative services",79,188095,4e-04,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age <1","Treatment for Caries or Caries-Preventive Procedure",3729,188095,0.0198,NA,NA,NA,NA,NA,NA,NA,NA
-"2023-2024","Age <1","Treatment services",577,188095,0.0031,NA,NA,NA,NA,NA,NA,NA,NA
+"survey_years","age_group_baseline","measure","users","denominator","utilization_rate","nhanes_prev"
+"2013-2014","Adolescent","Dental visit",510137.5,1075997.25,0.467325,0.385
+"2013-2014","Adolescent","Exam/Evaluation",429288,1075997.25,0.392725,0.385
+"2013-2014","Adolescent","Preventive services",420270,1075997.25,0.383675,0.385
+"2013-2014","Adolescent","Restorative services",182684,1075997.25,0.16905,0.385
+"2013-2014","Adolescent","Sealant use",113269.5,1234370,0.09185,0.385
+"2013-2014","Adolescent","Treatment for Caries or Caries-Preventive Procedure",402027,1075997.25,0.36625,0.385
+"2013-2014","Adolescent","Treatment services",240160.75,1075997.25,0.22115,0.385
+"2013-2014","Early Childhood","Dental visit",463211.5,866503.5,0.53455,0.18
+"2013-2014","Early Childhood","Exam/Evaluation",385551.5,866503.5,0.44495,0.18
+"2013-2014","Early Childhood","Preventive services",372540,866503.5,0.42995,0.18
+"2013-2014","Early Childhood","Restorative services",168174,866503.5,0.1941,0.18
+"2013-2014","Early Childhood","Treatment for Caries or Caries-Preventive Procedure",365285,866503.5,0.42155,0.18
+"2013-2014","Early Childhood","Treatment services",186245.5,866503.5,0.21495,0.18
+"2013-2014","Infant/Toddler","Dental visit",65843.25,416915.5,0.11745,NA
+"2013-2014","Infant/Toddler","Exam/Evaluation",852.75,416915.5,0.001525,NA
+"2013-2014","Infant/Toddler","Preventive services",41853.25,416915.5,0.072875,NA
+"2013-2014","Infant/Toddler","Restorative services",14815,577485,0.0257,NA
+"2013-2014","Infant/Toddler","Treatment for Caries or Caries-Preventive Procedure",39938.25,416915.5,0.069525,NA
+"2013-2014","Infant/Toddler","Treatment services",9213.75,416915.5,0.016025,NA
+"2013-2014","Middle Adult","Dental visit",197168.25,1085068,0.1604,0.63775
+"2013-2014","Middle Adult","Exam/Evaluation",103667.75,1085068,0.073325,0.63775
+"2013-2014","Middle Adult","Preventive services",65700.25,1085068,0.047625,0.63775
+"2013-2014","Middle Adult","Restorative services",41289,1085068,0.030225,0.63775
+"2013-2014","Middle Adult","Treatment for Caries or Caries-Preventive Procedure",57235.25,1085068,0.041775,0.63775
+"2013-2014","Middle Adult","Treatment services",110943.25,1085068,0.0946,0.63775
+"2013-2014","Middle Childhood","Dental visit",669422,1144862,0.58455,0.219
+"2013-2014","Middle Childhood","Exam/Evaluation",567322,1144862,0.4954,0.219
+"2013-2014","Middle Childhood","Preventive services",563393,1144862,0.492,0.219
+"2013-2014","Middle Childhood","Restorative services",278278,1144862,0.2432,0.219
+"2013-2014","Middle Childhood","Sealant use",196586.5,1144862,0.1718,0.219
+"2013-2014","Middle Childhood","Treatment for Caries or Caries-Preventive Procedure",554722,1144862,0.4844,0.219
+"2013-2014","Middle Childhood","Treatment services",347871,1144862,0.30395,0.219
+"2013-2014","Older Adult","Dental visit",73581.25,499014.75,0.14535,0.460666666666667
+"2013-2014","Older Adult","Exam/Evaluation",37142.5,499014.75,0.07245,0.460666666666667
+"2013-2014","Older Adult","Preventive services",21662.25,499014.75,0.04215,0.460666666666667
+"2013-2014","Older Adult","Restorative services",14037.3333333333,505311.333333333,0.0271666666666667,0.460666666666667
+"2013-2014","Older Adult","Treatment for Caries or Caries-Preventive Procedure",17190.5,499014.75,0.033475,0.460666666666667
+"2013-2014","Older Adult","Treatment services",49221.75,499014.75,0.097825,0.460666666666667
+"2013-2014","Young Adult","Dental visit",158831.5,896370,0.210975,0.60025
+"2013-2014","Young Adult","Exam/Evaluation",99567.75,896370,0.147825,0.60025
+"2013-2014","Young Adult","Preventive services",81233,896370,0.12955,0.60025
+"2013-2014","Young Adult","Restorative services",48017.5,896370,0.06975,0.60025
+"2013-2014","Young Adult","Treatment for Caries or Caries-Preventive Procedure",73631.75,896370,0.117175,0.60025
+"2013-2014","Young Adult","Treatment services",87419.75,896370,0.114175,0.60025
+"2015-2016","Adolescent","Dental visit",579720.75,1222218,0.4672,0.3245
+"2015-2016","Adolescent","Exam/Evaluation",508189.25,1222218,0.4076,0.3245
+"2015-2016","Adolescent","Preventive services",500382,1222218,0.4003,0.3245
+"2015-2016","Adolescent","Restorative services",203221.5,1222218,0.1646,0.3245
+"2015-2016","Adolescent","Sealant use",124150,1395937.5,0.08875,0.3245
+"2015-2016","Adolescent","Treatment for Caries or Caries-Preventive Procedure",474754,1222218,0.3799,0.3245
+"2015-2016","Adolescent","Treatment services",270892.5,1222218,0.21885,0.3245
+"2015-2016","Early Childhood","Dental visit",461865.5,887564.5,0.52045,0.151
+"2015-2016","Early Childhood","Exam/Evaluation",409606.5,887564.5,0.46105,0.151
+"2015-2016","Early Childhood","Preventive services",399536.5,887564.5,0.4496,0.151
+"2015-2016","Early Childhood","Restorative services",159026.5,887564.5,0.1791,0.151
+"2015-2016","Early Childhood","Treatment for Caries or Caries-Preventive Procedure",378147,887564.5,0.42585,0.151
+"2015-2016","Early Childhood","Treatment services",178010,887564.5,0.2005,0.151
+"2015-2016","Infant/Toddler","Dental visit",72338.75,424238.25,0.12645,NA
+"2015-2016","Infant/Toddler","Exam/Evaluation",5940.75,424238.25,0.010225,NA
+"2015-2016","Infant/Toddler","Preventive services",54236.5,424238.25,0.0925,NA
+"2015-2016","Infant/Toddler","Restorative services",6747,427613.5,0.0112,NA
+"2015-2016","Infant/Toddler","Treatment for Caries or Caries-Preventive Procedure",45998.5,424238.25,0.077875,NA
+"2015-2016","Infant/Toddler","Treatment services",8719,424238.25,0.014825,NA
+"2015-2016","Middle Adult","Dental visit",410973.5,1790399.5,0.225175,0.6055
+"2015-2016","Middle Adult","Exam/Evaluation",265279,1790399.5,0.1458,0.6055
+"2015-2016","Middle Adult","Preventive services",191882.75,1790399.5,0.105775,0.6055
+"2015-2016","Middle Adult","Restorative services",118574.25,1790399.5,0.066975,0.6055
+"2015-2016","Middle Adult","Treatment for Caries or Caries-Preventive Procedure",169667.25,1790399.5,0.0951,0.6055
+"2015-2016","Middle Adult","Treatment services",232028,1790399.5,0.125975,0.6055
+"2015-2016","Middle Childhood","Dental visit",719579.5,1230011.5,0.585,0.20925
+"2015-2016","Middle Childhood","Exam/Evaluation",641834,1230011.5,0.52135,0.20925
+"2015-2016","Middle Childhood","Preventive services",641275.5,1230011.5,0.5209,0.20925
+"2015-2016","Middle Childhood","Restorative services",299551.5,1230011.5,0.24335,0.20925
+"2015-2016","Middle Childhood","Sealant use",206488,1230011.5,0.16785,0.20925
+"2015-2016","Middle Childhood","Treatment for Caries or Caries-Preventive Procedure",620582.5,1230011.5,0.50425,0.20925
+"2015-2016","Middle Childhood","Treatment services",375763.5,1230011.5,0.3053,0.20925
+"2015-2016","Older Adult","Dental visit",130006.25,574186.5,0.22565,0.436333333333333
+"2015-2016","Older Adult","Exam/Evaluation",79060.5,574186.5,0.13655,0.436333333333333
+"2015-2016","Older Adult","Preventive services",55033.75,574186.5,0.0946,0.436333333333333
+"2015-2016","Older Adult","Restorative services",27849.5,574186.5,0.047725,0.436333333333333
+"2015-2016","Older Adult","Treatment for Caries or Caries-Preventive Procedure",44459.5,574186.5,0.076525,0.436333333333333
+"2015-2016","Older Adult","Treatment services",84519,574186.5,0.147125,0.436333333333333
+"2015-2016","Young Adult","Dental visit",309878,1561568.75,0.2283,0.55475
+"2015-2016","Young Adult","Exam/Evaluation",222806.75,1561568.75,0.176575,0.55475
+"2015-2016","Young Adult","Preventive services",182641,1561568.75,0.152375,0.55475
+"2015-2016","Young Adult","Restorative services",110959.5,1561568.75,0.081075,0.55475
+"2015-2016","Young Adult","Treatment for Caries or Caries-Preventive Procedure",170237.25,1561568.75,0.140925,0.55475
+"2015-2016","Young Adult","Treatment services",168197,1561568.75,0.11955,0.55475
+"2017-2018","Adolescent","Dental visit",648269.25,1266798.5,0.504575,0.3235
+"2017-2018","Adolescent","Diagnostic services",618889.5,1261493,0.4831,0.3235
+"2017-2018","Adolescent","Exam/Evaluation",600063.5,1266798.5,0.465975,0.3235
+"2017-2018","Adolescent","Preventive services",598094.75,1266798.5,0.46345,0.3235
+"2017-2018","Adolescent","Restorative services",236598.25,1266798.5,0.185525,0.3235
+"2017-2018","Adolescent","Sealant use",145009.5,1456235,0.0996,0.3235
+"2017-2018","Adolescent","Treatment for Caries or Caries-Preventive Procedure",555942.75,1266798.5,0.43055,0.3235
+"2017-2018","Adolescent","Treatment services",313174.25,1266798.5,0.24495,0.3235
+"2017-2018","Early Childhood","Dental visit",462964,867233,0.5338,0.174
+"2017-2018","Early Childhood","Diagnostic services",435475,853884,0.51,0.174
+"2017-2018","Early Childhood","Exam/Evaluation",411615,867233,0.4746,0.174
+"2017-2018","Early Childhood","Preventive services",435058.5,867233,0.50165,0.174
+"2017-2018","Early Childhood","Restorative services",159374,867233,0.1838,0.174
+"2017-2018","Early Childhood","Treatment for Caries or Caries-Preventive Procedure",393700,867233,0.454,0.174
+"2017-2018","Early Childhood","Treatment services",185975,867233,0.21445,0.174
+"2017-2018","Infant/Toddler","Dental visit",79263.5,398640.5,0.1473,NA
+"2017-2018","Infant/Toddler","Diagnostic services",68926.5,387835,0.1289,NA
+"2017-2018","Infant/Toddler","Exam/Evaluation",49518.25,398640.5,0.088925,NA
+"2017-2018","Infant/Toddler","Preventive services",68011,398640.5,0.12355,NA
+"2017-2018","Infant/Toddler","Restorative services",6624.75,398640.5,0.011725,NA
+"2017-2018","Infant/Toddler","Treatment for Caries or Caries-Preventive Procedure",52002,398640.5,0.09305,NA
+"2017-2018","Infant/Toddler","Treatment services",10370,398640.5,0.018625,NA
+"2017-2018","Middle Adult","Dental visit",434818.75,1819133,0.234875,0.59175
+"2017-2018","Middle Adult","Diagnostic services",396424.5,1797077.5,0.2172,0.59175
+"2017-2018","Middle Adult","Exam/Evaluation",342309.75,1819133,0.185425,0.59175
+"2017-2018","Middle Adult","Preventive services",251660.75,1819133,0.13655,0.59175
+"2017-2018","Middle Adult","Restorative services",150557,1819133,0.083275,0.59175
+"2017-2018","Middle Adult","Treatment for Caries or Caries-Preventive Procedure",215120.25,1819133,0.11825,0.59175
+"2017-2018","Middle Adult","Treatment services",276786.25,1819133,0.1488,0.59175
+"2017-2018","Middle Childhood","Dental visit",710812.5,1168091,0.60855,0.194
+"2017-2018","Middle Childhood","Diagnostic services",671272,1143911,0.5868,0.194
+"2017-2018","Middle Childhood","Exam/Evaluation",671084.5,1168091,0.5745,0.194
+"2017-2018","Middle Childhood","Preventive services",677509,1168091,0.58005,0.194
+"2017-2018","Middle Childhood","Restorative services",311438,1168091,0.2666,0.194
+"2017-2018","Middle Childhood","Sealant use",204569.5,1168091,0.17505,0.194
+"2017-2018","Middle Childhood","Treatment for Caries or Caries-Preventive Procedure",641144,1168091,0.5489,0.194
+"2017-2018","Middle Childhood","Treatment services",389248,1168091,0.3333,0.194
+"2017-2018","Older Adult","Dental visit",146129.75,617178.5,0.235075,0.442166666666667
+"2017-2018","Older Adult","Diagnostic services",132039,624280,0.2097,0.442166666666667
+"2017-2018","Older Adult","Exam/Evaluation",110082.25,617178.5,0.1766,0.442166666666667
+"2017-2018","Older Adult","Preventive services",76387.75,617178.5,0.12205,0.442166666666667
+"2017-2018","Older Adult","Restorative services",37711.25,617178.5,0.059725,0.442166666666667
+"2017-2018","Older Adult","Treatment for Caries or Caries-Preventive Procedure",60535.75,617178.5,0.09665,0.442166666666667
+"2017-2018","Older Adult","Treatment services",101144.75,617178.5,0.163275,0.442166666666667
+"2017-2018","Young Adult","Dental visit",344703.5,1620432.75,0.24685,0.506
+"2017-2018","Young Adult","Diagnostic services",319025,1601851.5,0.2312,0.506
+"2017-2018","Young Adult","Exam/Evaluation",283942.75,1620432.75,0.210075,0.506
+"2017-2018","Young Adult","Preventive services",226697.5,1620432.75,0.179725,0.506
+"2017-2018","Young Adult","Restorative services",129770.75,1620432.75,0.09065,0.506
+"2017-2018","Young Adult","Treatment for Caries or Caries-Preventive Procedure",204792,1620432.75,0.1623,0.506
+"2017-2018","Young Adult","Treatment services",199010.75,1620432.75,0.135825,0.506
+"2019-2020","Adolescent","Dental visit",591110.5,1228273.75,0.475075,NA
+"2019-2020","Adolescent","Diagnostic services",557021.25,1228273.75,0.4469,NA
+"2019-2020","Adolescent","Exam/Evaluation",540387.5,1228273.75,0.4333,NA
+"2019-2020","Adolescent","Preventive services",542443.5,1228273.75,0.43405,NA
+"2019-2020","Adolescent","Restorative services",208344.75,1228273.75,0.1686,NA
+"2019-2020","Adolescent","Sealant use",129330,1413327,0.09145,NA
+"2019-2020","Adolescent","Treatment for Caries or Caries-Preventive Procedure",507915.25,1228273.75,0.4063,NA
+"2019-2020","Adolescent","Treatment services",282148.25,1228273.75,0.227925,NA
+"2019-2020","Early Childhood","Dental visit",408178.5,805686.5,0.5056,NA
+"2019-2020","Early Childhood","Diagnostic services",380877.5,805686.5,0.4717,NA
+"2019-2020","Early Childhood","Exam/Evaluation",353486.5,805686.5,0.43775,NA
+"2019-2020","Early Childhood","Preventive services",390154,805686.5,0.48325,NA
+"2019-2020","Early Childhood","Restorative services",133265,805686.5,0.165,NA
+"2019-2020","Early Childhood","Treatment for Caries or Caries-Preventive Procedure",344970,805686.5,0.42725,NA
+"2019-2020","Early Childhood","Treatment services",262891.5,805686.5,0.326,NA
+"2019-2020","Infant/Toddler","Dental visit",80582.75,347780.25,0.17455,NA
+"2019-2020","Infant/Toddler","Diagnostic services",63514.75,347780.25,0.133625,NA
+"2019-2020","Infant/Toddler","Exam/Evaluation",44334.5,347780.25,0.09095,NA
+"2019-2020","Infant/Toddler","Preventive services",74048,347780.25,0.158325,NA
+"2019-2020","Infant/Toddler","Restorative services",5613.25,347780.25,0.01125,NA
+"2019-2020","Infant/Toddler","Treatment for Caries or Caries-Preventive Procedure",48863.25,347780.25,0.100225,NA
+"2019-2020","Infant/Toddler","Treatment services",34035.75,347780.25,0.070175,NA
+"2019-2020","Middle Adult","Dental visit",419590,1702160.5,0.242875,NA
+"2019-2020","Middle Adult","Diagnostic services",355704,1702160.5,0.20635,NA
+"2019-2020","Middle Adult","Exam/Evaluation",319923.5,1702160.5,0.185575,NA
+"2019-2020","Middle Adult","Preventive services",237570,1702160.5,0.138325,NA
+"2019-2020","Middle Adult","Restorative services",155921.75,1702160.5,0.09185,NA
+"2019-2020","Middle Adult","Treatment for Caries or Caries-Preventive Procedure",223430.5,1702160.5,0.131175,NA
+"2019-2020","Middle Adult","Treatment services",295838.5,1702160.5,0.17025,NA
+"2019-2020","Middle Childhood","Dental visit",615756.5,1083581,0.56785,NA
+"2019-2020","Middle Childhood","Diagnostic services",587510,1083581,0.54175,NA
+"2019-2020","Middle Childhood","Exam/Evaluation",572665.5,1083581,0.5281,NA
+"2019-2020","Middle Childhood","Preventive services",584524.5,1083581,0.539,NA
+"2019-2020","Middle Childhood","Restorative services",263640.5,1083581,0.2431,NA
+"2019-2020","Middle Childhood","Sealant use",167619.5,1083581,0.1545,NA
+"2019-2020","Middle Childhood","Treatment for Caries or Caries-Preventive Procedure",555086.5,1083581,0.51185,NA
+"2019-2020","Middle Childhood","Treatment services",371828,1083581,0.3429,NA
+"2019-2020","Older Adult","Dental visit",147638,635253.5,0.23055,NA
+"2019-2020","Older Adult","Diagnostic services",121740,635253.5,0.19,NA
+"2019-2020","Older Adult","Exam/Evaluation",108941.75,635253.5,0.169925,NA
+"2019-2020","Older Adult","Preventive services",74974.75,635253.5,0.11645,NA
+"2019-2020","Older Adult","Restorative services",42234.5,635253.5,0.06505,NA
+"2019-2020","Older Adult","Treatment for Caries or Caries-Preventive Procedure",65859,635253.5,0.10215,NA
+"2019-2020","Older Adult","Treatment services",109680.5,635253.5,0.1716,NA
+"2019-2020","Young Adult","Dental visit",333451.5,1513676.25,0.2493,NA
+"2019-2020","Young Adult","Diagnostic services",296607.75,1513676.25,0.22495,NA
+"2019-2020","Young Adult","Exam/Evaluation",271727.75,1513676.25,0.209875,NA
+"2019-2020","Young Adult","Preventive services",221200.25,1513676.25,0.182,NA
+"2019-2020","Young Adult","Restorative services",129434,1513676.25,0.092925,NA
+"2019-2020","Young Adult","Treatment for Caries or Caries-Preventive Procedure",208579,1513676.25,0.169225,NA
+"2019-2020","Young Adult","Treatment services",204451.5,1513676.25,0.142675,NA
+"2021-2022","Adolescent","Dental visit",631455.25,1293176.25,0.48335,NA
+"2021-2022","Adolescent","Diagnostic services",598454.75,1293176.25,0.457625,NA
+"2021-2022","Adolescent","Exam/Evaluation",582006.5,1293176.25,0.4448,NA
+"2021-2022","Adolescent","Preventive services",585145.25,1293176.25,0.446525,NA
+"2021-2022","Adolescent","Restorative services",194046.25,1293176.25,0.149125,NA
+"2021-2022","Adolescent","Sealant use",139291,1443189.5,0.0965,NA
+"2021-2022","Adolescent","Treatment for Caries or Caries-Preventive Procedure",554518.25,1293176.25,0.423125,NA
+"2021-2022","Adolescent","Treatment services",312469,1293176.25,0.2398,NA
+"2021-2022","Early Childhood","Dental visit",412230,786322.5,0.52425,NA
+"2021-2022","Early Childhood","Diagnostic services",383367,786322.5,0.48755,NA
+"2021-2022","Early Childhood","Exam/Evaluation",355987.5,786322.5,0.45275,NA
+"2021-2022","Early Childhood","Preventive services",398231.5,786322.5,0.50645,NA
+"2021-2022","Early Childhood","Restorative services",115013,786322.5,0.14625,NA
+"2021-2022","Early Childhood","Treatment for Caries or Caries-Preventive Procedure",355108.5,786322.5,0.4516,NA
+"2021-2022","Early Childhood","Treatment services",236847.5,786322.5,0.3011,NA
+"2021-2022","Infant/Toddler","Dental visit",86161.25,332432.5,0.198975,NA
+"2021-2022","Infant/Toddler","Diagnostic services",66248.75,332432.5,0.148975,NA
+"2021-2022","Infant/Toddler","Exam/Evaluation",48570.5,332432.5,0.106375,NA
+"2021-2022","Infant/Toddler","Preventive services",81160.75,332432.5,0.1854,NA
+"2021-2022","Infant/Toddler","Treatment for Caries or Caries-Preventive Procedure",54270.25,332432.5,0.1196,NA
+"2021-2022","Infant/Toddler","Treatment services",27043.75,332432.5,0.059175,NA
+"2021-2022","Middle Adult","Dental visit",485914.5,1959706,0.24365,NA
+"2021-2022","Middle Adult","Diagnostic services",422549.5,1959706,0.21215,NA
+"2021-2022","Middle Adult","Exam/Evaluation",381945.5,1959706,0.191575,NA
+"2021-2022","Middle Adult","Preventive services",284305,1959706,0.143225,NA
+"2021-2022","Middle Adult","Restorative services",127437,1959706,0.06545,NA
+"2021-2022","Middle Adult","Treatment for Caries or Caries-Preventive Procedure",273972,1959706,0.13895,NA
+"2021-2022","Middle Adult","Treatment services",344115.5,1959706,0.1714,NA
+"2021-2022","Middle Childhood","Dental visit",641830.5,1115016,0.5755,NA
+"2021-2022","Middle Childhood","Diagnostic services",615164,1115016,0.55165,NA
+"2021-2022","Middle Childhood","Exam/Evaluation",602158,1115016,0.53995,NA
+"2021-2022","Middle Childhood","Preventive services",615104,1115016,0.55155,NA
+"2021-2022","Middle Childhood","Restorative services",246257.5,1115016,0.22085,NA
+"2021-2022","Middle Childhood","Sealant use",179711.5,1115016,0.1611,NA
+"2021-2022","Middle Childhood","Treatment for Caries or Caries-Preventive Procedure",588195,1115016,0.5274,NA
+"2021-2022","Middle Childhood","Treatment services",391352.5,1115016,0.3512,NA
+"2021-2022","Older Adult","Dental visit",180548,737215,0.241825,NA
+"2021-2022","Older Adult","Diagnostic services",153928,737215,0.2061,NA
+"2021-2022","Older Adult","Exam/Evaluation",139186.25,737215,0.18625,NA
+"2021-2022","Older Adult","Preventive services",94516.25,737215,0.125625,NA
+"2021-2022","Older Adult","Restorative services",35885,737215,0.0474,NA
+"2021-2022","Older Adult","Treatment for Caries or Caries-Preventive Procedure",85473.75,737215,0.11335,NA
+"2021-2022","Older Adult","Treatment services",135298.5,737215,0.181575,NA
+"2021-2022","Young Adult","Dental visit",398838.25,1763096.25,0.257125,NA
+"2021-2022","Young Adult","Diagnostic services",359793.5,1763096.25,0.235075,NA
+"2021-2022","Young Adult","Exam/Evaluation",330883.5,1763096.25,0.220025,NA
+"2021-2022","Young Adult","Preventive services",276482.75,1763096.25,0.19485,NA
+"2021-2022","Young Adult","Restorative services",121922.5,1763096.25,0.078325,NA
+"2021-2022","Young Adult","Treatment for Caries or Caries-Preventive Procedure",264945.75,1763096.25,0.18455,NA
+"2021-2022","Young Adult","Treatment services",242318.75,1763096.25,0.147075,NA
+"2023-2024","Adolescent","Dental visit",678186,1354703,0.49695,NA
+"2023-2024","Adolescent","Diagnostic services",641828.5,1354703,0.4699,NA
+"2023-2024","Adolescent","Exam/Evaluation",625225,1354703,0.4576,NA
+"2023-2024","Adolescent","Preventive services",630874.5,1354703,0.46125,NA
+"2023-2024","Adolescent","Restorative services",252673.5,1354703,0.18565,NA
+"2023-2024","Adolescent","Sealant use",148306,1470335,0.1009,NA
+"2023-2024","Adolescent","Treatment for Caries or Caries-Preventive Procedure",601071,1354703,0.43945,NA
+"2023-2024","Adolescent","Treatment services",336922.5,1354703,0.24725,NA
+"2023-2024","Early Childhood","Dental visit",434715,779697,0.5575,NA
+"2023-2024","Early Childhood","Diagnostic services",398444,779697,0.511,NA
+"2023-2024","Early Childhood","Exam/Evaluation",370610,779697,0.4753,NA
+"2023-2024","Early Childhood","Preventive services",422617,779697,0.542,NA
+"2023-2024","Early Childhood","Restorative services",129787,779697,0.1665,NA
+"2023-2024","Early Childhood","Treatment for Caries or Caries-Preventive Procedure",373193,779697,0.4786,NA
+"2023-2024","Early Childhood","Treatment services",167051,779697,0.2143,NA
+"2023-2024","Infant/Toddler","Dental visit",106412,329474.5,0.25025,NA
+"2023-2024","Infant/Toddler","Diagnostic services",75896,329474.5,0.17155,NA
+"2023-2024","Infant/Toddler","Exam/Evaluation",56491,329474.5,0.12465,NA
+"2023-2024","Infant/Toddler","Preventive services",101531,329474.5,0.23605,NA
+"2023-2024","Infant/Toddler","Restorative services",5012.5,329474.5,0.01075,NA
+"2023-2024","Infant/Toddler","Treatment for Caries or Caries-Preventive Procedure",63435,329474.5,0.14065,NA
+"2023-2024","Infant/Toddler","Treatment services",10941,329474.5,0.02415,NA
+"2023-2024","Middle Adult","Dental visit",575184,2252155.5,0.24925,NA
+"2023-2024","Middle Adult","Diagnostic services",495367,2252155.5,0.21495,NA
+"2023-2024","Middle Adult","Exam/Evaluation",450250.5,2252155.5,0.1952,NA
+"2023-2024","Middle Adult","Preventive services",344804,2252155.5,0.1499,NA
+"2023-2024","Middle Adult","Restorative services",232768,2252155.5,0.10185,NA
+"2023-2024","Middle Adult","Treatment for Caries or Caries-Preventive Procedure",346759.5,2252155.5,0.15165,NA
+"2023-2024","Middle Adult","Treatment services",419823,2252155.5,0.1807,NA
+"2023-2024","Middle Childhood","Dental visit",681692,1152831,0.5913,NA
+"2023-2024","Middle Childhood","Diagnostic services",653152,1152831,0.5666,NA
+"2023-2024","Middle Childhood","Exam/Evaluation",639931,1152831,0.5551,NA
+"2023-2024","Middle Childhood","Preventive services",656549,1152831,0.5695,NA
+"2023-2024","Middle Childhood","Restorative services",297613,1152831,0.2582,NA
+"2023-2024","Middle Childhood","Sealant use",193191,1152831,0.1676,NA
+"2023-2024","Middle Childhood","Treatment for Caries or Caries-Preventive Procedure",630318,1152831,0.5468,NA
+"2023-2024","Middle Childhood","Treatment services",384847,1152831,0.3338,NA
+"2023-2024","Older Adult","Dental visit",218447,853917.5,0.2526,NA
+"2023-2024","Older Adult","Diagnostic services",185027,853917.5,0.21385,NA
+"2023-2024","Older Adult","Exam/Evaluation",168282,853917.5,0.1944,NA
+"2023-2024","Older Adult","Preventive services",117724,853917.5,0.13505,NA
+"2023-2024","Older Adult","Restorative services",67985,853917.5,0.07685,NA
+"2023-2024","Older Adult","Treatment for Caries or Caries-Preventive Procedure",110533.5,853917.5,0.1264,NA
+"2023-2024","Older Adult","Treatment services",164907.5,853917.5,0.1909,NA
+"2023-2024","Young Adult","Dental visit",446649.5,1990984,0.25585,NA
+"2023-2024","Young Adult","Diagnostic services",400198.5,1990984,0.2329,NA
+"2023-2024","Young Adult","Exam/Evaluation",370328.5,1990984,0.2193,NA
+"2023-2024","Young Adult","Preventive services",315225,1990984,0.1971,NA
+"2023-2024","Young Adult","Restorative services",178095,1990984,0.09785,NA
+"2023-2024","Young Adult","Treatment for Caries or Caries-Preventive Procedure",308628,1990984,0.18915,NA
+"2023-2024","Young Adult","Treatment services",274178.5,1990984,0.14605,NA

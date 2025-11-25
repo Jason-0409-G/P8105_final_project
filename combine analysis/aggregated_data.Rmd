@@ -61,9 +61,9 @@ ca_data <- ca_data %>%
 
 # 建立两年周期变量（例如 2013 和 2014 都归到 "2013-2014"）
 ```{r}
-ca <- ca %>%
+ca_data <- ca_data %>%
   mutate(
-    period_start = ifelse(year %% 2 == 1, year, year - 1),
+    period_start = ifelse(year_num %% 2 == 1, year_num, year_num - 1),
     period_end   = period_start + 1,
     survey_years = paste0(period_start, "-", period_end)
   )
@@ -71,18 +71,45 @@ ca <- ca %>%
 
 # 第四步：按两年周期聚合（取平均即可）
 ```{r}
-ca_2yr <- ca %>%
-  group_by(survey_years, age_group, measure) %>%
+ca_data_2yr <- ca_data %>%
+  group_by(survey_years, age_group_std, measure) %>%
   summarise(
-    users = mean(users, na.rm = TRUE),
-    denominator = mean(denominator, na.rm = TRUE),
-    utilization_rate = mean(utilization_rate, na.rm = TRUE)
+    users_avg = mean(users, na.rm = TRUE),
+    denom_avg = mean(denominator, na.rm = TRUE),
+    util_rate_avg = mean(util_rate_num, na.rm = TRUE)
   ) %>%
   ungroup()
+
 ```
 
+# Rename
+```{r}
+ca_data_2yr <- ca_data_2yr %>%
+  rename(
+    age_group = age_group_std,
+    users = users_avg,
+    denominator = denom_avg,
+    utilization_rate = util_rate_avg
+  )
+```
 
+# Merge
+```{r}
+merged_data <- ca_data_2yr %>%
+  left_join(
+    nhanes_data,
+    by = c("survey_years", "age_group")
+  )
+```
 
+# Save
+```{r}
+write.csv(
+  merged_data,
+  file = "datasets/merged_ca_nhanes.csv",
+  row.names = FALSE
+)
+```
 
 
 
