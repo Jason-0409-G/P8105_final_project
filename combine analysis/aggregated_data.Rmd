@@ -100,36 +100,28 @@ ca_data <- ca_data %>%
 # 第四步：按两年周期聚合（取平均即可）
 ```{r}
 ca_data_2yr <- ca_data %>%
-  group_by(survey_years, age_group_std, measure) %>%
+  group_by(survey_years, age_group_baseline, measure) %>%
   summarise(
-    users_avg = mean(users, na.rm = TRUE),
-    denom_avg = mean(denominator, na.rm = TRUE),
-    util_rate_avg = mean(util_rate_num, na.rm = TRUE)
+    users = mean(users, na.rm = TRUE),
+    denominator = mean(denominator, na.rm = TRUE),
+    utilization_rate = mean(util_rate_num, na.rm = TRUE)
   ) %>%
   ungroup()
-
 ```
 
-# Rename
-```{r}
-ca_data_2yr <- ca_data_2yr %>%
-  rename(
-    age_group = age_group_std,
-    users = users_avg,
-    denominator = denom_avg,
-    utilization_rate = util_rate_avg
-  )
-```
 
 # 先把 NHANES 的 period 改成 CA 的 survey_years
 ```{r}
 nhanes_period_clean <- nhanes_period %>%
   rename(
-    survey_years = period,          # 统一周期名称
-    nhanes_prev = prev_num,         # 更清晰的命名
-    nhanes_measure = measure_clean  # 可选：记录 NHANES 指标
+    survey_years = period,    
+    nhanes_prev = prev_num    
   ) %>%
-  select(survey_years, age_group = age_group_baseline, nhanes_prev, nhanes_measure)
+  group_by(survey_years, age_group_baseline) %>%   # ← 按 life-stage 聚合
+  summarise(
+    nhanes_prev = mean(nhanes_prev, na.rm = TRUE),
+    .groups = "drop"
+  )
 ```
 
 
@@ -137,8 +129,8 @@ nhanes_period_clean <- nhanes_period %>%
 ```{r}
 merged_data <- ca_data_2yr %>%
   left_join(
-    nhanes_period,
-    by = c("survey_years", "age_group")
+    nhanes_period_clean,
+    by = c("survey_years", "age_group_baseline")
   )
 ```
 
