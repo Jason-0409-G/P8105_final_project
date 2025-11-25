@@ -457,6 +457,43 @@ reflecting the intentional boundary shift of the 10–14 age segment.
 These differences were small and did not change temporal trends or
 overall conclusions; therefore, the baseline life-stage grouping was
 retained for the main analysis.”</p>
+<div id="nhanes-sort-data-processing" class="section level1">
+<h1>NHANES sort data processing</h1>
+<pre class="r"><code>nhanes_period &lt;- nhanes_data %&gt;%
+  # 只保留总体
+  filter(sex == &quot;All&quot;, race_ethnicity == &quot;All&quot;) %&gt;%
+  # 标准化年龄并映射到 CA 的 life-stage
+  mutate(
+    age_group_std = stringr::str_replace_all(age_group, &quot;–&quot;, &quot;-&quot;),
+    age_group_baseline = dplyr::case_when(
+      age_group_std == &quot;2-5&quot;                     ~ &quot;Early Childhood&quot;,
+      age_group_std == &quot;6-11&quot;                    ~ &quot;Middle Childhood&quot;,
+      age_group_std == &quot;12-19&quot;                   ~ &quot;Adolescent&quot;,
+      age_group_std %in% c(&quot;20-29&quot;, &quot;30-39&quot;)     ~ &quot;Young Adult&quot;,
+      age_group_std %in% c(&quot;40-49&quot;, &quot;50-59&quot;)     ~ &quot;Middle Adult&quot;,
+      age_group_std %in% c(&quot;60-69&quot;, &quot;70 and over&quot;) ~ &quot;Older Adult&quot;,
+      TRUE ~ NA_character_
+    ),
+    period   = survey_years,        # 周期标签，比如 &quot;1999-2000&quot;
+    prev_num = percent / 100        # 把百分数变成 0–1
+  ) %&gt;%
+  # 按周期 × life-stage × 指标 聚合
+  group_by(period, age_group_baseline, measure_clean) %&gt;%
+  summarise(
+    prev_num = mean(prev_num, na.rm = TRUE),
+    .groups = &quot;drop&quot;
+  )</code></pre>
+<pre class="r"><code>ca_data &lt;- ca_data %&gt;%
+  select(year_num, age_group = age_group_baseline, measure, util_rate_num)</code></pre>
+<pre class="r"><code>write.xlsx(
+  list(
+    CA = ca_data,
+    NHANES = nhanes_period
+  ),
+  file = &quot;~/Desktop/P8105_final_project/final_clean_data.xlsx&quot;,
+  overwrite = TRUE
+)</code></pre>
+</div>
 
 
 

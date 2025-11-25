@@ -13,6 +13,7 @@ library(readr)
 library(tidyr)
 library(ggplot2)
 library(scales)
+library(openxlsx)
 ```
 
 Loading the datasets
@@ -106,3 +107,51 @@ list(
 )
 ```
 “Sensitivity analysis comparing the baseline and alternative age-group definitions showed that five of the seven life-stage categories produced identical utilization estimates. Only Adolescent and Middle Childhood differed slightly (–1.8% and –3.2% respectively), reflecting the intentional boundary shift of the 10–14 age segment. These differences were small and did not change temporal trends or overall conclusions; therefore, the baseline life-stage grouping was retained for the main analysis.”
+
+
+# NHANES sort data processing
+```{r nhanes_data_processing}
+nhanes_period <- nhanes_data %>%
+  # 只保留总体
+  filter(sex == "All", race_ethnicity == "All") %>%
+  # 标准化年龄并映射到 CA 的 life-stage
+  mutate(
+    age_group_std = stringr::str_replace_all(age_group, "–", "-"),
+    age_group_baseline = dplyr::case_when(
+      age_group_std == "2-5"                     ~ "Early Childhood",
+      age_group_std == "6-11"                    ~ "Middle Childhood",
+      age_group_std == "12-19"                   ~ "Adolescent",
+      age_group_std %in% c("20-29", "30-39")     ~ "Young Adult",
+      age_group_std %in% c("40-49", "50-59")     ~ "Middle Adult",
+      age_group_std %in% c("60-69", "70 and over") ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+    period   = survey_years,        # 周期标签，比如 "1999-2000"
+    prev_num = percent / 100        # 把百分数变成 0–1
+  ) %>%
+  # 按周期 × life-stage × 指标 聚合
+  group_by(period, age_group_baseline, measure_clean) %>%
+  summarise(
+    prev_num = mean(prev_num, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+```{r}
+ca_data <- ca_data %>%
+  select(year_num, age_group = age_group_baseline, measure, util_rate_num)
+```
+
+
+```{r}
+write.xlsx(
+  list(
+    CA = ca_data,
+    NHANES = nhanes_period
+  ),
+  file = "~/Desktop/P8105_final_project/final_clean_data.xlsx",
+  overwrite = TRUE
+)
+
+```
+
