@@ -1,0 +1,94 @@
+---
+title: "Final CA Analysis"
+author: "Malcolm Chen"
+date: "2025-12-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(scales)
+library(broom)
+library(knitr)
+
+ca <- read_csv("datasets/clean_ca.csv")
+
+ca <- ca %>%
+  mutate(
+    year = as.numeric(gsub("CY ", "", year)),
+    utilization_rate = as.numeric(gsub("%", "", utilization_rate)) / 100,
+    users = as.numeric(users),
+    denominator = as.numeric(denominator),
+    covid_period = ifelse(year >= 2020, 1, 0)
+  )
+```
+
+# COVID-19 Interrupted Time Series (ITS)
+
+This is the most important CA analysis.
+
+We estimate the following model:
+
+$$
+\text{utilization}_{t}
+= \beta_0
++ \beta_1 \cdot year_t
++ \beta_2 \cdot covid_t
++ \beta_3 \cdot (year_t \times covid_t)
+$$
+
+Where:
+
+- **β₁**: pre-COVID slope  
+- **β₂**: immediate level drop in 2020  
+- **β₃**: slope change after COVID  
+
+```{r covid_its_model}
+its_model <- lm(
+  utilization_rate ~ year + covid_period + year:covid_period,
+  data = ca
+)
+
+tidy(its_model)
+```
+
+```{r covid_its_plot}
+avg_year <- ca %>%
+  group_by(year) %>%
+  summarise(mean_util = weighted.mean(utilization_rate, denominator, na.rm = TRUE))
+
+avg_year %>%
+  ggplot(aes(year, mean_util)) +
+  geom_line(linewidth = 1.2, color = "#2E86AB") +
+  geom_point(size = 2) +
+  geom_vline(xintercept = 2020, linetype = "dashed", color = "red") +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(
+    title = "CA Dental Utilization – Interrupted Time Series (COVID-19)",
+    subtitle = "Dashed line marks start of COVID in 2020",
+    x = "Year", y = "Weighted Utilization Rate"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+### Interpretation
+```{r}
+its <- tidy(its_model)
+
+cat("**Pre-COVID yearly slope:**", round(its$estimate[its$term=="year"],4), "\n\n")
+cat("**Immediate drop at COVID (level change):**", round(its$estimate[its$term=="covid_period"],4), "\n\n")
+cat("**Post-COVID slope change:**", round(its$estimate[its$term=="year:covid_period"],4), "\n\n")
+```
+
+The interrupted time-series analysis shows a clear and statistically significant upward trend in dental utilization prior to the COVID-19 pandemic (β₁ = 0.014, p < 0.001). In contrast, neither the estimated level change in 2020 (β₂ = 0.825, p = 0.961) nor the change in post-COVID slope (β₃ = –0.00043, p = 0.959) reached statistical significance. These results indicate that, although descriptive plots show an apparent decline during the onset of COVID-19, the regression model does not detect a statistically reliable interruption in either the level or trajectory of utilization. Overall, the data are most consistent with a continuation of the pre-existing upward trend, with no measurable long-term deviation attributable to the pandemic within this aggregated CA system-level dataset.
+
+
+
+
+
+
+
+
+
+
+
