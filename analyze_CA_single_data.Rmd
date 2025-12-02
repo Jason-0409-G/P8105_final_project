@@ -13,22 +13,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-## 0. 环境准备 --------------------------------------------------------
+## 0. Setup --------------------------------------------------------
 ```{r}
 library(tidyverse)
 library(scales)
 library(broom)
 library(knitr)
-## 创建输出目录（如果不存在就建）
+## Create output directories if they do not already exist
 if (!dir.exists("output")) dir.create("output")
 if (!dir.exists("output/trend_plots")) dir.create("output/trend_plots")
 if (!dir.exists("output/trend_tables")) dir.create("output/trend_tables")
 ```
 
-## 1. 读入并预处理数据 -----------------------------------------------
+## 1. Data import and preprocessing  -----------------------------------------------
 
 ```{r}
-# 读入与预处理：把百分比转成 0-1 小数，year 转 int
+# Read and preprocess: convert percentages to 0–1 proportions, year to integer
 df_raw <- readr::read_csv("datasets/clean_ca.csv")
 
 df <- df_raw %>%
@@ -39,7 +39,7 @@ df <- df_raw %>%
     denominator = as.numeric(denominator)
   )
 
-# 年度汇总：均值/中位数/总人数/加权总体利用率
+# Year-level summary: mean/median utilization, total users, total denominator,and weighted overall utilization rate
 year_summary <- df %>%
   group_by(year) %>%
   summarize(
@@ -52,15 +52,14 @@ year_summary <- df %>%
   ) %>% ungroup()
 
 head(year_summary)
-# 一些内嵌需要用到的便捷量
+# Convenience quantities used in the narrative
 y_min  <- min(year_summary$year, na.rm = TRUE)
 y_max  <- max(year_summary$year, na.rm = TRUE)
 y_pk   <- year_summary$year[ which.max(year_summary$overall_rate_weighted) ]
 val_pk <- max(year_summary$overall_rate_weighted, na.rm = TRUE)
 ```
-## 2. 生成年度总结报告 ------------------------------------------------
 
-
+## 2. Annual summary report ------------------------------------------------
 
 ```{r plot_weighted_utilization_rate, echo=FALSE, fig.width=8, fig.height=5}
 ggplot(year_summary, aes(year, overall_rate_weighted)) +

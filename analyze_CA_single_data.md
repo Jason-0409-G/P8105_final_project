@@ -3,7 +3,7 @@ analyst—CA
 Jason Gao
 2025-11-06
 
-## 0. 环境准备 ——————————————————–
+## 0. Setup ——————————————————–
 
 ``` r
 library(tidyverse)
@@ -11,8 +11,8 @@ library(tidyverse)
 
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.1     ✔ stringr   1.5.2
-    ## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
     ## ✔ purrr     1.1.0     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -38,16 +38,16 @@ library(scales)
 ``` r
 library(broom)
 library(knitr)
-## 创建输出目录（如果不存在就建）
+## Create output directories if they do not already exist
 if (!dir.exists("output")) dir.create("output")
 if (!dir.exists("output/trend_plots")) dir.create("output/trend_plots")
 if (!dir.exists("output/trend_tables")) dir.create("output/trend_tables")
 ```
 
-## 1. 读入并预处理数据 ———————————————–
+## 1. Data import and preprocessing ———————————————–
 
 ``` r
-# 读入与预处理：把百分比转成 0-1 小数，year 转 int
+# Read and preprocess: convert percentages to 0–1 proportions, year to integer
 df_raw <- readr::read_csv("datasets/clean_ca.csv")
 ```
 
@@ -69,7 +69,7 @@ df <- df_raw %>%
     denominator = as.numeric(denominator)
   )
 
-# 年度汇总：均值/中位数/总人数/加权总体利用率
+# Year-level summary: mean/median utilization, total users, total denominator,and weighted overall utilization rate
 year_summary <- df %>%
   group_by(year) %>%
   summarize(
@@ -96,14 +96,14 @@ head(year_summary)
     ## # ℹ 1 more variable: overall_rate_weighted <dbl>
 
 ``` r
-# 一些内嵌需要用到的便捷量
+# Convenience quantities used in the narrative
 y_min  <- min(year_summary$year, na.rm = TRUE)
 y_max  <- max(year_summary$year, na.rm = TRUE)
 y_pk   <- year_summary$year[ which.max(year_summary$overall_rate_weighted) ]
 val_pk <- max(year_summary$overall_rate_weighted, na.rm = TRUE)
 ```
 
-## 2. 生成年度总结报告 ————————————————
+## 2. Annual summary report ————————————————
 
 ![](analyze_CA_single_data_files/figure-gfm/plot_weighted_utilization_rate-1.png)<!-- -->
 
