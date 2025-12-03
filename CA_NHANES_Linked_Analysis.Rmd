@@ -32,7 +32,7 @@ ca_clean <- ca %>%
   )
 ```
 
-## Clean NHANES data（只取 children untreated caries）
+## Clean NHANES data（only children untreated caries）
 ```{r clean_nhanes}
 nh_clean <- nh %>%
   filter(
@@ -60,49 +60,41 @@ library(tidyverse)
 library(scales)
 library(janitor)
 
-## 1. 读入并清理 California 数据 -----------------------
-
 ca_raw <- read_csv("datasets/clean_ca.csv")
 
 ca_child <- ca_raw %>%
   mutate(
-    # 年份：去掉 "CY "，转成数值
     year = as.numeric(gsub("CY\\s*", "", year)),
-    # 利用率：百分号转成 0–1 小数
     utilization_rate = as.numeric(gsub("%", "", utilization_rate)) / 100
   ) %>%
-  # 选：儿童年龄组 + Preventive services
   filter(
     measure == "Preventive services",
-    age_group %in% c("Age 6–9", "Age 6-9")   # 兼容不同破折号写法
+    age_group %in% c("Age 6–9", "Age 6-9")  
   ) %>%
   group_by(year) %>%
   summarise(
     util = sum(users, na.rm = TRUE) / sum(denominator, na.rm = TRUE),
     .groups = "drop"
   ) %>%
-  # z-score 标准化
   mutate(
     z = as.numeric(scale(util)),
     series = "CA preventive (z)"
   )
 
-## 2. 读入并清理 NHANES 数据 ---------------------------
 
 nh_raw <- read_csv("datasets/nhanes_oral_clean.csv") %>%
   clean_names()
 
 nh_child <- nh_raw %>%
-  # 选：All sex, 儿童 age group, untreated caries
-  mutate(age_group = gsub("–|—", "-", age_group)) %>%   # 统一破折号
+  mutate(age_group = gsub("–|—", "-", age_group)) %>%    
   filter(
     tolower(sex) == "all",
     age_group == "6-11",
-    measure_clean == "untreated_primary"   # 儿童未治疗龋齿
+    measure_clean == "untreated_primary"   
   ) %>%
   transmute(
-    year  = year_mid,          # 中点年份，直接当作 x 轴
-    util  = percent / 100      # 百分比转 0–1
+    year  = year_mid,          
+    util  = percent / 100      
   ) %>%
   arrange(year) %>%
   mutate(
@@ -110,11 +102,7 @@ nh_child <- nh_raw %>%
     series = "NHANES untreated (z)"
   )
 
-## 3. 绑在一起（行绑定，不是 join）---------------------
-
 overlay_df <- bind_rows(ca_child, nh_child)
-
-## 4. 画 overlay 图 ------------------------------------
 
 ggplot(overlay_df, aes(x = year, y = z, color = series)) +
   geom_line(linewidth = 1.2) +
