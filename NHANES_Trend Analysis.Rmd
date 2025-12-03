@@ -5,27 +5,25 @@ output:
   github_document
 ---
 
-
-
 ## Analytic approach  
 
-Using the cleaned NHANES oral health summary dataset, we examined age- and sex-specific patterns of dental caries in the U.S. population. We restricted analyses to observations with race/ethnicity aggregated as “All” and focused on two outcomes for both primary and permanent dentition: **total caries experience** and **untreated caries**.  
-
-For each pre-defined age group, we first described caries prevalence in the **most recent survey cycle**, then summarized **trends over time** using survey mid-year (1999–2017). Sex differences were evaluated by (1) plotting age-specific prevalence by sex in the latest cycle and (2) computing male–female differences (percentage points) across age groups and survey years.
+Using NHANES oral health summary tables, we described age-, sex-, and race-specific prevalence of total and untreated caries in primary and permanent dentition. For each age group we plotted time trends (1999–2017); for permanent teeth we also examined sex-specific and race/ethnicity-specific trends and simple male–female and Black–White gaps. To summarize long-term change, we fit weighted linear regressions of prevalence on survey mid-year and reported slopes as percentage-point change per 10 years. Because we used published summary estimates rather than microdata, all analyses are descriptive.  
 
 ## Results summary  
 
-In the most recent available survey mid-year (2017 for permanent dentition and 2015 for some primary dentition measures), caries patterns showed strong age gradients. Permanent-tooth caries prevalence increased steeply with age: prevalence was lowest in children 6–11 years, higher in adolescents and young adults (12–29 years), and reached very high levels in mid- and older adulthood (40–69 years), where nearly all adults had experienced caries. Within each age group, females generally had slightly higher permanent-tooth caries prevalence than males, but sex differences were modest and confidence intervals overlapped.
+In the most recent available survey mid-year (2017 for permanent dentition and 2015 for some primary measures), caries showed a strong age gradient: permanent-tooth caries was lowest in children 6–11 years, higher in adolescents and young adults, and nearly universal in adults 40–69 years, while primary-tooth caries remained common in children 2–11 years. Within each age group, females had slightly higher permanent-tooth caries prevalence than males, but sex differences were small.  
 
-Across survey years, time-trend plots showed that **total caries remained high** in young children for primary teeth and in adults for permanent teeth, reflecting the cumulative nature of disease. In contrast, **untreated caries** was consistently lower than total caries in every age group and tended to decline more clearly over time, suggesting improvements in treatment or access to dental care rather than substantial reductions in underlying disease occurrence.
+Over time, total caries stayed high in young children and older adults, whereas untreated caries was consistently lower and tended to decline, especially in children and younger adults. Regression slopes confirmed modest decreases in untreated caries (on the order of a few percentage points per decade) and little change in total caries among older adults. Among youth aged 6–19 years, Mexican American and Non-Hispanic Black groups had higher permanent-tooth caries than Non-Hispanic Whites across most survey years; gaps narrowed slightly but racial/ethnic disparities persisted.  
 
-Heatmaps of the **male–female gap in permanent-tooth caries** indicated that sex disparities were generally small (mostly within about ±5 percentage points) and showed no strong long-term trend. Females tended to have slightly higher prevalence in adolescent and young-adult groups, while gaps in older adults fluctuated around zero with no consistent pattern. Overall, these analyses highlight that **age-related accumulation of caries is the dominant inequality**, sex differences are relatively minor, and recent NHANES cycles show greater improvement in untreated disease than in total caries burden.
+## Overall interpretation  
 
-Taken together, these findings provide a coherent picture of dental caries patterns in recent NHANES data. Primary-tooth caries remains common in young children, with only modest changes in total caries over time but clearer declines in untreated disease, suggesting improved treatment among those who develop caries. For permanent teeth, caries accumulates across the life course, leading to very high prevalence in middle-aged and older adults, while untreated permanent caries has decreased or remained relatively low, again pointing to better restoration rather than true prevention. Sex gaps are small compared with the strong age gradients and show no consistent temporal trend, indicating that **age and dentition stage—rather than sex—are the main axes of inequality in U.S. dental caries burden.**
+Overall, NHANES data suggest that dental caries is a lifelong, cumulative condition: primary caries remains common in children, permanent caries becomes almost universal in older adults, and declines in untreated disease are modest and concentrated at younger ages. Sex differences are small and relatively stable, while racial/ethnic gaps in youth remain visible despite overall improvement. Age and dentition stage, with superimposed racial/ethnic disparities, appear to be the main axes of inequality in U.S. dental caries burden.  
 
 ## Limitations  
 
-This analysis has several important limitations. First, we relied on pre-aggregated NHANES oral health summary estimates by age, sex, and survey cycle rather than individual-level microdata. As a result, we could not re-apply survey weights, compute design-based standard errors ourselves, or perform formal hypothesis testing; all results should therefore be interpreted as descriptive summaries of the published estimates rather than inferential analyses. Second, because only the “race = All” strata were used, we could not describe racial/ethnic disparities in caries, which are known to be substantial. Third, the descriptive time trends do not account for potential changes in NHANES sampling, diagnostic criteria, or measurement error across cycles, and should not be interpreted causally. In addition, there are gaps in the time series where oral health summary data were unavailable or not used, so some survey cycles are missing; this limits our ability to assess smooth long-term trends and may exaggerate apparent changes between non-adjacent time points. Finally, all results are based on cross-sectional surveys, so we cannot distinguish between true cohort effects and the cumulative impact of aging on caries experience.
+This work uses pre-aggregated NHANES summary tables rather than individual-level data, so we cannot re-apply survey weights, recompute standard errors, or perform formal hypothesis testing; all results should be viewed as descriptive summaries of published estimates. Main analyses focus on “race = All” strata and have gaps in some survey years, limiting our ability to describe detailed racial/ethnic patterns or smooth long-term trends. In addition, NHANES is cross-sectional, so we cannot distinguish aging from cohort effects when interpreting changes over time.
+
+
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -43,6 +41,12 @@ nhanes <- read_csv("./datasets/nhanes_oral_clean.csv") %>%
   mutate(age_group = factor(age_group,
                        levels = c("2-5","6-11","12-19","20-29",
                                   "30-39","40-49","50-59","60-69")))
+race_df <- read_csv("./datasets/nhanes_oral.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(race=race_and_hispanic_origin) %>% 
+  filter(age_group=="6-19",
+         sex=="All") %>% 
+  drop_na(percent)
 ```
 **Overall Time Trend by age group:**
 ```{r 2-5 trend plot,warning=FALSE, message=FALSE}
@@ -374,6 +378,66 @@ combined +
   )
 ```
 
+Long-term Regression (Slope)
+```{r}
+age_primary <- c("2-5", "6-11")
+age_perm    <- c("12-19", "20-29", "30-39", "40-49", "50-59", "60-69")
+
+measures_primary <- c("total_primary", "untreated_primary")
+measures_perm    <- c("total_perm", "untreated_perm")
+
+slope_dat <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    tolower(race_ethnicity) == "all",
+    measure_clean %in% c(measures_primary, measures_perm),
+    age_group %in% c(age_primary, age_perm)
+  ) %>%
+  mutate(
+    dentition = case_when(
+      measure_clean %in% measures_primary ~ "Primary",
+      measure_clean %in% measures_perm    ~ "Permanent"
+    ),
+    outcome = case_when(
+      str_detect(measure_clean, "total")     ~ "Total caries",
+      str_detect(measure_clean, "untreated") ~ "Untreated caries",
+      TRUE ~ measure_clean
+    ),
+    w = if_else(!is.na(se) & se > 0, 1 / (se^2), 1)
+  )
+
+fit_slope <- function(df) {
+  m  <- lm(percent ~ year_mid, data = df, weights = w)
+  b1 <- coef(m)[["year_mid"]]
+  ci <- confint(m)["year_mid", ]
+
+  tibble(
+    slope_per_year      = b1,
+    slope_per_10yrs     = b1 * 10,
+    slope_10yr_lower    = ci[1] * 10,
+    slope_10yr_upper    = ci[2] * 10,
+    n_cycles            = nrow(df),
+    first_year_mid      = min(df$year_mid),
+    last_year_mid       = max(df$year_mid)
+  )
+}
+
+slopes <- slope_dat %>%
+  group_by(dentition, age_group, outcome) %>%
+  group_modify(~ fit_slope(.x)) %>%
+  ungroup() %>%
+  mutate(
+    across(starts_with("slope"), ~ round(.x, 2))
+  ) %>%
+  arrange(dentition, outcome, age_group)
+
+slopes %>% 
+  knitr::kable(caption = "Estimated linear time trends (slopes) in caries prevalence by dentition, age group, and outcome. Slopes are interpreted as percentage-point change per 10 years.")
+
+```
+
+
+
 ```{r trend_heatmap, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
 
 
@@ -473,7 +537,45 @@ p_age_sex <- ggplot(latest,
 
 print(p_age_sex)
 ```
+Race/Ethnicity Trends
+```{r}
+# Choose outcome & age
+target_measure <- "Total Dental Caries in Permanent Teeth"
+target_age  <- "6-19"
 
+race_keep <- c("Non-Hispanic White", "Non-Hispanic Black", "Mexican American")
 
+race_trend <- race_df %>%
+  mutate(
+    age_group = gsub("–|—", "-", age_group)
+  ) %>%
+  filter(
+    age_group == target_age,
+    measure == target_measure,
+    race %in% race_keep,
+    tolower(sex) == "all"
+  )
+
+# Time trends by race
+p_race_trend <- ggplot(race_trend,
+                       aes(x = survey_years, y = percent, color = race)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_discrete(guide = guide_axis(n.dodge = 2))+
+  geom_ribbon(aes(ymin = lower_95_percent_ci_limit, ymax = upper_95_percent_ci_limit, fill = race, group = race),
+              alpha = 0.15, color = NA) +
+  labs(
+    title = sprintf("Time trends in %s 
+                    for ages %s by race/ethnicity",
+                    target_measure, target_age),
+    x = "Survey year", y = "Prevalence (%)",
+    color = "Race/ethnicity", fill = "Race/ethnicity"
+  ) +
+  theme_minimal(base_size = 13)+
+    theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)  
+  )
+p_race_trend
+```
 
 
