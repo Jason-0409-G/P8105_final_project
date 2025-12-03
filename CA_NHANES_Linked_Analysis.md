@@ -1,0 +1,317 @@
+CA NHANES Linked Analysis
+================
+Malcolm Chen
+2025-12-02
+
+``` r
+# Load datasets
+ca <- read_csv("datasets/clean_ca.csv")
+```
+
+    ## Rows: 876 Columns: 6
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (4): year, age_group, measure, utilization_rate
+    ## dbl (2): users, denominator
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+nh <- read_csv("datasets/nhanes_oral_clean.csv")
+```
+
+    ## Rows: 438 Columns: 11
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (6): survey_years, sex, age_group, race_ethnicity, measure, measure_clean
+    ## dbl (5): year_mid, percent, se, ci_lower, ci_upper
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+## Clean CA Data
+
+only children (link with NHANSE)
+
+``` r
+ca_clean <- ca %>%
+  mutate(
+    year = as.numeric(gsub("CY ", "", year)),
+    utilization_rate = as.numeric(gsub("%", "", utilization_rate)) / 100
+  ) %>%
+  filter(age_group %in% c("Age 3–5", "Age 6–9", "Age 10–14", "Age 15–18")) %>% 
+  group_by(year) %>%
+  summarise(
+    preventive = mean(utilization_rate[measure == "Preventive services"], na.rm = TRUE)
+  )
+```
+
+## Clean NHANES data（只取 children untreated caries）
+
+``` r
+nh_clean <- nh %>%
+  filter(
+    sex == "All",
+    race_ethnicity == "All",
+    measure_clean == "Untreated caries",
+    age_group %in% c("2-5", "6-11", "12-19")
+  ) %>%
+  group_by(survey_years) %>%
+  summarise(
+    untreated = mean(percent/100, na.rm = TRUE)
+  ) %>%
+  separate(survey_years, into = c("y1","y2"), sep="-", remove=FALSE) %>%
+  mutate(year = as.numeric(y1)) %>%
+  select(year, untreated)
+```
+
+# CA vs NHANES overlay
+
+``` r
+## --------------------------------------------------
+## CA vs NHANES overlay (no join, two datasets)
+## --------------------------------------------------
+
+library(tidyverse)
+library(scales)
+library(janitor)
+```
+
+    ## 
+    ## Attaching package: 'janitor'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     chisq.test, fisher.test
+
+``` r
+## 1. 读入并清理 California 数据 -----------------------
+
+ca_raw <- read_csv("datasets/clean_ca.csv")
+```
+
+    ## Rows: 876 Columns: 6
+
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (4): year, age_group, measure, utilization_rate
+    ## dbl (2): users, denominator
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+ca_child <- ca_raw %>%
+  mutate(
+    # 年份：去掉 "CY "，转成数值
+    year = as.numeric(gsub("CY\\s*", "", year)),
+    # 利用率：百分号转成 0–1 小数
+    utilization_rate = as.numeric(gsub("%", "", utilization_rate)) / 100
+  ) %>%
+  # 选：儿童年龄组 + Preventive services
+  filter(
+    measure == "Preventive services",
+    age_group %in% c("Age 6–9", "Age 6-9")   # 兼容不同破折号写法
+  ) %>%
+  group_by(year) %>%
+  summarise(
+    util = sum(users, na.rm = TRUE) / sum(denominator, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  # z-score 标准化
+  mutate(
+    z = as.numeric(scale(util)),
+    series = "CA preventive (z)"
+  )
+
+## 2. 读入并清理 NHANES 数据 ---------------------------
+
+nh_raw <- read_csv("datasets/nhanes_oral_clean.csv") %>%
+  clean_names()
+```
+
+    ## Rows: 438 Columns: 11
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (6): survey_years, sex, age_group, race_ethnicity, measure, measure_clean
+    ## dbl (5): year_mid, percent, se, ci_lower, ci_upper
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+nh_child <- nh_raw %>%
+  # 选：All sex, 儿童 age group, untreated caries
+  mutate(age_group = gsub("–|—", "-", age_group)) %>%   # 统一破折号
+  filter(
+    tolower(sex) == "all",
+    age_group == "6-11",
+    measure_clean == "untreated_primary"   # 儿童未治疗龋齿
+  ) %>%
+  transmute(
+    year  = year_mid,          # 中点年份，直接当作 x 轴
+    util  = percent / 100      # 百分比转 0–1
+  ) %>%
+  arrange(year) %>%
+  mutate(
+    z = as.numeric(scale(util)),
+    series = "NHANES untreated (z)"
+  )
+
+## 3. 绑在一起（行绑定，不是 join）---------------------
+
+overlay_df <- bind_rows(ca_child, nh_child)
+
+## 4. 画 overlay 图 ------------------------------------
+
+ggplot(overlay_df, aes(x = year, y = z, color = series)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(
+    values = c(
+      "CA preventive (z)"       = "#1f77b4",
+      "NHANES untreated (z)"    = "#d62728"
+    )
+  ) +
+  labs(
+    title    = "Standardized Trend Comparison (z-score overlay)",
+    subtitle = "CA preventive utilization vs NHANES untreated caries (children)",
+    x        = "Year",
+    y        = "Standardized value (z-score)",
+    color    = ""
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "bottom",
+    plot.title      = element_text(face = "bold")
+  )
+```
+
+![](CA_NHANES_Linked_Analysis_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+Although the two datasets cover different years, the standardized trends
+allow a visual comparison of their patterns. NHANES untreated caries
+among children rises in the early 2000s and steadily declines after
+2005, indicating improving national oral health. California’s preventive
+utilization (2013–2023) shows a similar upward trend before a sharp
+COVID-19 drop in 2020 and a rapid rebound afterward. While not
+temporally aligned, both trajectories suggest improving preventive
+behaviors or outcomes over time, with the CA pattern additionally
+highlighting the strong impact of the pandemic on service use.
+
+# Heatmap
+
+``` r
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(readr)
+library(patchwork)
+
+# ===============================
+# Load data
+# ===============================
+ca <- read.csv("datasets/clean_ca.csv")
+nh <- read.csv("datasets/nhanes_oral_clean.csv")
+
+# ===============================
+# Process CA dataset
+# ===============================
+ca_clean <- ca %>%
+  mutate(
+    age_group_std = str_replace_all(age_group, "–", "-"),
+
+    # ---- Life-stage mapping (CA) ----
+    age_group_baseline = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5") ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9") ~ "Middle Childhood",
+      age_group_std %in% c("Age 10-14", "Age 15-18") ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+") ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    year_num = as.numeric(str_replace(year, "CY ", "")),
+    util_rate_num = parse_number(utilization_rate) / 100
+  )
+
+# ===============================
+# CA heatmap input: year × life-stage × utilization_rate
+# ===============================
+ca_heatmap <- ca_clean %>%
+  group_by(year_num, age_group_baseline) %>%
+  summarise(
+    util_rate = mean(util_rate_num, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+``` r
+# ===============================
+# Process NHANES dataset
+# ===============================
+nh_clean <- nh %>%
+  filter(sex == "All", race_ethnicity == "All") %>%
+  mutate(
+    age_group_std = str_replace_all(age_group, "–", "-"),
+
+    # ---- NHANES → CA life-stage mapping ----
+    age_group_baseline = case_when(
+      age_group_std == "2-5" ~ "Early Childhood",
+      age_group_std == "6-11" ~ "Middle Childhood",
+      age_group_std == "12-19" ~ "Adolescent",
+      age_group_std %in% c("20-29", "30-39") ~ "Young Adult",
+      age_group_std %in% c("40-49", "50-59") ~ "Middle Adult",
+      age_group_std %in% c("60-69", "70 and over") ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    prev_num = percent / 100   # prevalence
+  )
+
+# ===============================
+# NHANES heatmap input: period × life-stage × prevalence
+# ===============================
+nh_heatmap <- nh_clean %>%
+  group_by(survey_years, age_group_baseline) %>%
+  summarise(
+    prevalence = mean(prev_num, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+``` r
+p1 <- ggplot(ca_heatmap, aes(x = year_num, y = age_group_baseline, fill = util_rate)) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_c(option = "C", labels=scales::percent_format()) +
+  labs(
+    title = "CA Preventive Service Utilization (Heatmap)",
+    x = "Year",
+    y = "Life Stage",
+    fill = "Utilization"
+  ) +
+  theme_minimal(base_size = 14)
+
+p2 <- ggplot(nh_heatmap, aes(x = survey_years, y = age_group_baseline, fill = prevalence)) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_c(option = "C", labels=scales::percent_format()) +
+  labs(
+    title = "NHANES Untreated Caries (Heatmap)",
+    x = "Survey Cycle",
+    y = "Life Stage",
+    fill = "Prevalence"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p1 + p2
+```
+
+![](CA_NHANES_Linked_Analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+Across life-stages, California’s preventive utilization trends broadly
+align with NHANES untreated caries risk patterns: higher caries burden
+groups generally correspond to higher preventive utilization.
