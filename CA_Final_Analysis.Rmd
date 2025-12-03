@@ -82,13 +82,96 @@ cat("**Post-COVID slope change:**", round(its$estimate[its$term=="year:covid_per
 
 The interrupted time-series analysis shows a clear and statistically significant upward trend in dental utilization prior to the COVID-19 pandemic (β₁ = 0.014, p < 0.001). In contrast, neither the estimated level change in 2020 (β₂ = 0.825, p = 0.961) nor the change in post-COVID slope (β₃ = –0.00043, p = 0.959) reached statistical significance. These results indicate that, although descriptive plots show an apparent decline during the onset of COVID-19, the regression model does not detect a statistically reliable interruption in either the level or trajectory of utilization. Overall, the data are most consistent with a continuation of the pre-existing upward trend, with no measurable long-term deviation attributable to the pandemic within this aggregated CA system-level dataset.
 
+# Age-gap inequality trend over time
+We compute utilization gap between highest vs lowest age-groups each year.
+This checks whether age inequality is widening or narrowing.
+
+```{r age_gap}
+age_year <- ca %>%
+  group_by(year, age_group) %>%
+  summarise(mean_util = weighted.mean(utilization_rate, denominator), .groups="drop")
+
+age_gap <- age_year %>%
+  group_by(year) %>%
+  summarise(
+    max_age = max(mean_util),
+    min_age = min(mean_util),
+    gap = max_age - min_age
+  )
+
+ggplot(age_gap, aes(year, gap)) +
+  geom_line(linewidth = 1.2, color="#8E44AD") +
+  geom_point(size=2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(
+    title = "Age Inequality Gap in Utilization Over Time",
+    subtitle = "Gap = Highest age group's utilization – Lowest age group",
+    x = "Year", y = "Utilization Gap"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+The age-based utilization gap in California shows a steady widening throughout the pre-COVID period, rising from roughly 39% in 2013 to a peak of nearly 46% by 2019. This pattern indicates that differences between the highest-utilizing age group (school-aged children) and the lowest-utilizing group (typically infants or older adults) became increasingly pronounced during the years leading up to the pandemic. In 2020, the gap abruptly narrowed to approximately 36%, driven by a disproportionately large decline among age groups that typically have higher utilization. Following this disruption, the inequality gap began to widen again, though it remained below its pre-pandemic peak. Overall, the trend suggests that age-related disparities in dental service use were increasing prior to COVID-19, temporarily compressed during the pandemic, and have since partially re-expanded.
 
 
+# Service Composition Shift
+We examine how the proportion of each service category changes over time.
+
+```{r service_composition}
+service_comp <- ca %>%
+  group_by(year, measure) %>%
+  summarise(
+    total_users = sum(users),
+    total_denom = sum(denominator),
+    prop = total_users / total_denom,
+    .groups="drop"
+  )
+
+ggplot(service_comp, aes(year, prop, color = measure)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format()) +
+  labs(
+    title = "Service Composition Shift Over Time",
+    subtitle = "Weighted by denominator (population size)",
+    x = "Year", y = "Weighted Utilization Rate",
+    color = "Service Type"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 8),
+    legend.text = element_text(size = 7)
+  )
+```
+
+Across all service categories, weighted utilization rates in California generally increased from 2013 to 2019, with the largest gains observed in preventive services, diagnostic care, and examinations—reflecting strengthening engagement in routine and preventive dental care. In 2020, every service type experienced a pronounced decline, consistent with widespread service disruptions during the onset of COVID-19. Post-2020, most categories rebounded but did not fully recover their pre-pandemic peak levels, and the relative composition remained broadly similar: preventive and diagnostic services continued to dominate, while restorative and sealant services maintained lower but stable utilization levels. These patterns indicate that while COVID-19 caused a sharp, system-wide contraction in service use, the structural distribution of service types within Medi-Cal dental utilization remained largely intact.
 
 
+# Age-specific yearly slope (trend strength)
+Fit separate trend models for each age group.
+```{r age_slopes}
+age_slopes <- ca %>%
+  group_by(age_group) %>%
+  do(tidy(lm(utilization_rate ~ year, data = .))) %>%
+  filter(term == "year") %>%
+  arrange(desc(estimate))
 
+kable(age_slopes, caption = "Yearly Trend Slopes by Age Group")
+```
 
+```{r age_slopes_plot}
+age_slopes %>%
+  ggplot(aes(x = reorder(age_group, estimate), y = estimate)) +
+  geom_col(fill="#27AE60") +
+  geom_text(aes(label = round(estimate,4)), hjust=-0.1) +
+  coord_flip() +
+  labs(
+    title = "Strength of Yearly Trend by Age Group",
+    x = "Age Group", y = "Yearly Slope (Change in Utilization)"
+  ) +
+  theme_minimal(base_size = 13)
+```
 
-
-
+The yearly trend analysis reveals substantial heterogeneity in the rate of increase in dental service utilization across age groups. The steepest growth is observed among children aged 1–2, whose utilization increased by approximately 0.0169 per year, indicating rapid gains in service engagement for young toddlers. Middle-aged adults (45–64 and 65–74) also show relatively strong upward trends, with yearly increases around 0.010–0.011, suggesting consistent improvement in utilization among older working-age and early senior populations. In contrast, school-aged children (3–14) and adolescents (15–18) exhibit much smaller slope estimates (0.004–0.006), indicating slower growth despite being the highest-utilizing groups overall. Infants (<1 year) display the weakest trend (0.003), reflecting persistently low and only modestly increasing service use. Taken together, these patterns indicate that utilization has been rising across nearly all age groups, but the pace of improvement is disproportionately concentrated among toddlers and middle-aged adults, whereas school-aged children—already starting from high baseline utilization—have experienced comparatively slower incremental gains.
 
