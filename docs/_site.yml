@@ -10,7 +10,7 @@ navbar:
       
     - text: "Report"
       icon: fa-file-alt
-      href: report.html
+      href: master_report.html
 
     - text: "Project Overview"
       icon: fa-file

@@ -3,7 +3,7 @@ title: "Trends and Regional Differences in U.S. Dental Caries Burden and Prevent
 author: "Jian Gao-jg5037"
 date: "`r Sys.Date()`"
 output:
-  github_document:
+  html_document:
     toc: true
     toc_depth: 2
 ---
