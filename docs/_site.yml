@@ -11,10 +11,6 @@ navbar:
     - text: "Project Overview"
       href: Project-Overview.html
 
-    - text: "Proposal"
-      icon: fa-file-alt
-      href: proposal.html     
-
     - text: "Data"
       icon: fa-database
       menu:
