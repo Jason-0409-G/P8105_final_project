@@ -127,8 +127,7 @@ measure_summary_weighted %>%
     axis.text = element_text(color = "gray20"),
     axis.title = element_text(face = "bold"),
     panel.grid.major.y = element_blank(),
-    panel.grid.minor = element_blank()
-  )
+    panel.grid.minor = element_blank())
 ```
 
 # Age x Service Type Interaction
