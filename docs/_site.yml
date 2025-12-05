@@ -7,8 +7,13 @@ navbar:
     - text: "Home"
       icon: fa-home
       href: index.html
+      
+    - text: "Report"
+      icon: fa-file-alt
+      href: report.html
 
     - text: "Project Overview"
+      icon: fa-file
       href: Project-Overview.html
 
     - text: "Data"
@@ -18,10 +23,6 @@ navbar:
           href: data.html#codebook
         - text: "Data Cleaning"
           href: data.html#data-cleaning
-
-    - text: "EDA"
-      icon: fa-chart-bar
-      href: eda.html
 
     - text: "Statistical Analysis"
       icon: fa-calculator
