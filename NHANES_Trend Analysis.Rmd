@@ -371,7 +371,7 @@ combined +
     subtitle = "NHANES; Total vs Untreated caries, shaded ribbons = 95% CI"
   ) &
   theme(
-    legend.position = "bottom",                # ★ 图例放下面
+    legend.position = "bottom",                
     legend.box = "horizontal",
     legend.title = element_text(size = 9),
     legend.text  = element_text(size = 8)
