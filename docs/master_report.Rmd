@@ -5,11 +5,11 @@ date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 1
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "..")
 ```
 
 
@@ -86,7 +86,7 @@ library(here)
 setwd("..")
 
 # Read raw data
-raw_data <- read_csv("datasets/ca_dental.csv")
+raw_data <- read_csv("P8105_final_project/datasets/ca_dental.csv")
 
 # Define age group order for proper sorting
 age_order <- c(
@@ -185,7 +185,7 @@ library(tidyverse)
 library(readr)
 
 # Load the data
-nhanes <- read_csv("datasets/nhanes_oral.csv")
+nhanes <- read_csv("P8105_final_project/datasets/nhanes_oral.csv")
 
 # Delete useless columns (presentation standards and notes)
 cols_to_drop <- c("Presentation Standard", "Note1", "Note2", "Notea", "Noteb")
