@@ -1,9 +1,11 @@
 ---
-title: Trends and Regional Differences in U.S. Dental Caries Burden and Preventive
-  Service Utilization
+title: "Trends and Regional Differences in U.S. Dental Caries Burden and Preventive Service Utilization"
 author: "Jian Gao-jg5037"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  github_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ```{r setup, include=FALSE}
