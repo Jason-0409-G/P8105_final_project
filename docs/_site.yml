@@ -44,7 +44,7 @@ navbar:
 
   right:
     - icon: fa-youtube fa-lg
-      href: "#"
+      href: "https://www.youtube.com/watch?v=hMhSxsouBZs"
     - icon: fa-envelope fa-lg
       href: mailto:jg5037@cumc.columbia.edu
     - icon: fa-github fa-lg
