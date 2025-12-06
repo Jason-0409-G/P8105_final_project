@@ -29,9 +29,8 @@ library(janitor)
 
 ---
 
-## Staitstical Analysis
 
-### California Data Analysis {#California_data_analysis}
+## **California Data Analysis** {#California_data_analysis}
 
 ```{r}
 # Read and preprocess: convert percentages to 0–1 proportions, year to integer
@@ -65,7 +64,7 @@ y_pk   <- year_summary$year[ which.max(year_summary$overall_rate_weighted) ]
 val_pk <- max(year_summary$overall_rate_weighted, na.rm = TRUE)
 ```
 
-#### Annual Summary Report
+### Annual Summary Report
 
 ```{r plot_weighted_utilization_rate, echo=FALSE, fig.width=8, fig.height=5}
 ggplot(year_summary, aes(year, overall_rate_weighted)) +
@@ -86,7 +85,7 @@ ggplot(year_summary, aes(year, overall_rate_weighted)) +
 * The average annual weighted utilization rate over the entire period was `r scales::percent(mean(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`, and the median value was `r scales::percent(median(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`.  
 * The total number of enrolled individuals increased from `r scales::comma(year_summary$total_denominator[ year_summary$year == y_min ])` in CY `r y_min` to `r scales::comma(year_summary$total_denominator[ year_summary$year == y_max ])` in CY `r y_max`, representing a growth of `r scales::percent( (year_summary$total_denominator[ year_summary$year == y_max ] - year_summary$total_denominator[ year_summary$year == y_min ]) / year_summary$total_denominator[ year_summary$year == y_min ], accuracy = 0.1)`.
 
-#### Service Type Utilization Trends
+### Service Type Utilization Trends
 
 ```{r plot_measure_trends, echo=FALSE, fig.width=8, fig.height=5}
 measure_year_summary <- df %>%
@@ -125,7 +124,7 @@ A noticeable dip in `r measure_year_summary$year[which.min(measure_year_summary$
 
 Overall, from `r min(measure_year_summary$year)` to `r max(measure_year_summary$year)`, most service types demonstrate a consistent upward trend, highlighting an overall improvement in access to dental care.
 
-#### Age Group Mean Utilization Trends
+### Age Group Mean Utilization Trends
 
 ```{r plot_age_group_trends, echo=FALSE, fig.width=10, fig.height=6}
 age_year_summary <- df %>%
@@ -141,7 +140,7 @@ ggplot(age_year_summary, aes(year, mean_util, group = age_group)) +
   theme_minimal()
 ```
 
-#### Linear Model Analysis
+### Linear Model Analysis
 
 ```{r linear_model_analysis, results='asis'}
 fit <- lm(utilization_rate ~ year + measure, data = df)
@@ -172,7 +171,7 @@ These values suggest that the model explains about 18% of the variance in utiliz
 
 In summary, between 2013 and 2023, dental service utilization shows a clear and statistically significant linear increase over time, implying a steady improvement in overall access and use of dental care services.
 
-#### COVID-19 Interrupted Time Series (ITS)
+### COVID-19 Interrupted Time Series (ITS)
 
 ```{r}
 ca <- read_csv("../datasets/clean_ca.csv")
@@ -231,7 +230,7 @@ avg_year %>%
   theme_minimal(base_size = 13)
 ```
 
-##### Interpretation
+#### Interpretation
 ```{r}
 its <- tidy(its_model)
 
@@ -242,7 +241,7 @@ cat("**Post-COVID slope change:**", round(its$estimate[its$term=="year:covid_per
 
 The interrupted time-series analysis shows a clear and statistically significant upward trend in dental utilization prior to the COVID-19 pandemic (β₁ = 0.014, p < 0.001). In contrast, neither the estimated level change in 2020 (β₂ = 0.825, p = 0.961) nor the change in post-COVID slope (β₃ = −0.00043, p = 0.959) reached statistical significance. These results indicate that, although descriptive plots show an apparent decline during the onset of COVID-19, the regression model does not detect a statistically reliable interruption in either the level or trajectory of utilization. Overall, the data are most consistent with a continuation of the pre-existing upward trend, with no measurable long-term deviation attributable to the pandemic within this aggregated CA system-level dataset.
 
-#### Age-gap Inequality Trend Over Time
+### Age-gap Inequality Trend Over Time
 
 We compute utilization gap between highest vs lowest age-groups each year.
 This checks whether age inequality is widening or narrowing.
@@ -274,7 +273,7 @@ ggplot(age_gap, aes(year, gap)) +
 
 The age-based utilization gap in California shows a steady widening throughout the pre-COVID period, rising from roughly 39% in 2013 to a peak of nearly 46% by 2019. This pattern indicates that differences between the highest-utilizing age group (school-aged children) and the lowest-utilizing group (typically infants or older adults) became increasingly pronounced during the years leading up to the pandemic. In 2020, the gap abruptly narrowed to approximately 36%, driven by a disproportionately large decline among age groups that typically have higher utilization. Following this disruption, the inequality gap began to widen again, though it remained below its pre-pandemic peak. Overall, the trend suggests that age-related disparities in dental service use were increasing prior to COVID-19, temporarily compressed during the pandemic, and have since partially re-expanded.
 
-#### Service Composition Shift
+### Service Composition Shift
 
 We examine how the proportion of each service category changes over time.
 
@@ -308,7 +307,7 @@ ggplot(service_comp, aes(year, prop, color = measure)) +
 
 Across all service categories, weighted utilization rates in California generally increased from 2013 to 2019, with the largest gains observed in preventive services, diagnostic care, and examinations—reflecting strengthening engagement in routine and preventive dental care. In 2020, every service type experienced a pronounced decline, consistent with widespread service disruptions during the onset of COVID-19. Post-2020, most categories rebounded but did not fully recover their pre-pandemic peak levels, and the relative composition remained broadly similar: preventive and diagnostic services continued to dominate, while restorative and sealant services maintained lower but stable utilization levels. These patterns indicate that while COVID-19 caused a sharp, system-wide contraction in service use, the structural distribution of service types within Medi-Cal dental utilization remained largely intact.
 
-#### Age-specific Yearly Slope (Trend Strength)
+### Age-specific Yearly Slope (Trend Strength)
 
 Fit separate trend models for each age group.
 
@@ -338,19 +337,19 @@ age_slopes %>%
 The yearly trend analysis reveals substantial heterogeneity in the rate of increase in dental service utilization across age groups. The steepest growth is observed among children aged 1–2, whose utilization increased by approximately 0.0169 per year, indicating rapid gains in service engagement for young toddlers. Middle-aged adults (45–64 and 65–74) also show relatively strong upward trends, with yearly increases around 0.010–0.011, suggesting consistent improvement in utilization among older working-age and early senior populations. In contrast, school-aged children (3–14) and adolescents (15–18) exhibit much smaller slope estimates (0.004–0.006), indicating slower growth despite being the highest-utilizing groups overall. Infants (<1 year) display the weakest trend (0.003), reflecting persistently low and only modestly increasing service use. Taken together, these patterns indicate that utilization has been rising across nearly all age groups, but the pace of improvement is disproportionately concentrated among toddlers and middle-aged adults, whereas school-aged children—already starting from high baseline utilization—have experienced comparatively slower incremental gains.
 
 
-### NHANES Data Analysis {#NHANES_data_analysis}
+## **NHANES Data Analysis** {#NHANES_data_analysis}
 
-#### Analytic Approach
+### Analytic Approach
 
 Using NHANES oral health summary tables, we described age-, sex-, and race-specific prevalence of total and untreated caries in primary and permanent dentition. For each age group we plotted time trends (1999–2017); for permanent teeth we also examined sex-specific and race/ethnicity-specific trends and simple male–female and Black–White gaps. To summarize long-term change, we fit weighted linear regressions of prevalence on survey mid-year and reported slopes as percentage-point change per 10 years. Because we used published summary estimates rather than microdata, all analyses are descriptive.
 
-#### Results Summary
+### Results Summary
 
 In the most recent available survey mid-year (2017 for permanent dentition and 2015 for some primary measures), caries showed a strong age gradient: permanent-tooth caries was lowest in children 6–11 years, higher in adolescents and young adults, and nearly universal in adults 40–69 years, while primary-tooth caries remained common in children 2–11 years. Within each age group, females had slightly higher permanent-tooth caries prevalence than males, but sex differences were small.
 
 Over time, total caries stayed high in young children and older adults, whereas untreated caries was consistently lower and tended to decline, especially in children and younger adults. Regression slopes confirmed modest decreases in untreated caries (on the order of a few percentage points per decade) and little change in total caries among older adults. Among youth aged 6–19 years, Mexican American and Non-Hispanic Black groups had higher permanent-tooth caries than Non-Hispanic Whites across most survey years; gaps narrowed slightly but racial/ethnic disparities persisted.
 
-#### Overall Interpretation
+### Overall Interpretation
 
 Overall, NHANES data suggest that dental caries is a lifelong, cumulative condition: primary caries remains common in children, permanent caries becomes almost universal in older adults, and declines in untreated disease are modest and concentrated at younger ages. Sex differences are small and relatively stable, while racial/ethnic gaps in youth remain visible despite overall improvement. Age and dentition stage, with superimposed racial/ethnic disparities, appear to be the main axes of inequality in U.S. dental caries burden.
 
@@ -466,7 +465,7 @@ combined +
   )
 ```
 
-#### Long-term Regression (Slope)
+### Long-term Regression (Slope)
 ```{r}
 age_primary <- c("2-5", "6-11")
 age_perm    <- c("12-19", "20-29", "30-39", "40-49", "50-59", "60-69")
@@ -524,7 +523,7 @@ slopes %>%
 
 ```
 
-#### Trend heatmap
+### Trend heatmap
 ```{r trend_heatmap, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
 
 
@@ -570,7 +569,7 @@ print(p_heat)
 
 ```
 
-#### Caries prevalence by age and sex
+### Caries prevalence by age and sex
 ```{r filtered_bar_chart, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
 # 3) Filter to race = All, sex = Male/Female, chosen outcome
 bar <- nhanes %>%
@@ -626,7 +625,7 @@ p_age_sex <- ggplot(latest,
 print(p_age_sex)
 ```
 
-#### Race/Ethnicity Trends
+### Race/Ethnicity Trends
 ```{r}
 # Choose outcome & age
 target_measure <- "Total Dental Caries in Permanent Teeth"
@@ -667,9 +666,9 @@ p_race_trend <- ggplot(race_trend,
 p_race_trend
 ```
 
-### Combined data analysis {#Combined_data_analysis}
+## **Combined data analysis** {#Combined_data_analysis}
 
-#### Sensitivity analysis
+### Sensitivity analysis
 
 ```{r}
 knitr::opts_chunk$set(echo = TRUE)
@@ -723,7 +722,7 @@ ca_data <- ca_data %>%
 ```
 
 
-#### Main trend plot for California data
+### Main trend plot for California data
 ```{r ca_main_trend, fig.height=4}
 ggplot(ca_data, aes(year_num, util_rate_num, color = age_group_baseline)) +
   geom_line(size = 1) +
@@ -735,7 +734,7 @@ ggplot(ca_data, aes(year_num, util_rate_num, color = age_group_baseline)) +
   theme_bw()
 ```
 
-#### Sensitivity Analysis A: Baseline vs Alternative Grouping**
+### Sensitivity Analysis A: Baseline vs Alternative Grouping
 ```{r ca_sensitivity_analysis, fig.height=4}
 sens_data <- bind_rows(
   ca_data %>% select(year_num, util_rate_num, age_group = age_group_baseline) %>% mutate(scenario = "Baseline"),
@@ -754,7 +753,7 @@ ggplot(sens_data, aes(year_num, util_rate_num, color = scenario)) +
 ```
 
 
-#### Sensitivity Summary Table
+### Sensitivity Summary Table
 ```{r ca_sens_table}
 sens_summary_A <- sens_data %>%
   group_by(age_group, scenario) %>%
@@ -769,7 +768,6 @@ list(
 ```
 “Sensitivity analysis comparing the baseline and alternative age-group definitions showed that five of the seven life-stage categories produced identical utilization estimates. Only Adolescent and Middle Childhood differed slightly (–1.8% and –3.2% respectively), reflecting the intentional boundary shift of the 10–14 age segment. These differences were small and did not change temporal trends or overall conclusions; therefore, the baseline life-stage grouping was retained for the main analysis.”
 
-#### Combined analysis
 ```{r}
 library(tidyverse)
 library(scales)
@@ -809,7 +807,7 @@ nh_clean <- nh %>%
   select(year, untreated)
 ```
 
-#### CA vs NHANES overlay
+### CA vs NHANES overlay
 ```{r}
 ## --------------------------------------------------
 ## CA vs NHANES overlay (no join, two datasets)
@@ -888,7 +886,7 @@ ggplot(overlay_df, aes(x = year, y = z, color = series)) +
 
 Although the two datasets cover different years, the standardized trends allow a visual comparison of their patterns. NHANES untreated caries among children rises in the early 2000s and steadily declines after 2005, indicating improving national oral health. California’s preventive utilization (2013–2023) shows a similar upward trend before a sharp COVID-19 drop in 2020 and a rapid rebound afterward. While not temporally aligned, both trajectories suggest improving preventive behaviors or outcomes over time, with the CA pattern additionally highlighting the strong impact of the pandemic on service use.
 
-#### Heatmap
+### Heatmap
 
 ```{r}
 library(dplyr)
@@ -998,3 +996,4 @@ p2 <- ggplot(nh_heatmap, aes(x = survey_years, y = age_group_baseline, fill = pr
 p1 + p2
 ```
 
+Across life-stages, California’s preventive utilization trends broadly align with NHANES untreated caries risk patterns: higher caries burden groups generally correspond to higher preventive utilization.
