@@ -603,7 +603,10 @@ ggplot(age_gap, aes(x = year_num, y = gap)) +
   theme_minimal(base_size = 13)
 ```
 
-The age-based utilization gap in California shows a steady widening throughout the pre-COVID period, rising from roughly 39% in 2013 to a peak of nearly 46% by 2019. This pattern indicates that differences between the highest-utilizing age group (school-aged children) and the lowest-utilizing group (typically infants or older adults) became increasingly pronounced during the years leading up to the pandemic. In 2020, the gap abruptly narrowed to approximately 36%, driven by a disproportionately large decline among age groups that typically have higher utilization. Following this disruption, the inequality gap began to widen again, though it remained below its pre-pandemic peak. Overall, the trend suggests that age-related disparities in dental service use were increasing prior to COVID-19, temporarily compressed during the pandemic, and have since partially re-expanded.
+The **age-based utilization gap widened steadily before COVID-19**, increasing from about **39% in 2013** to nearly **46% in 2019** between the highest- and lowest-utilizing age groups.  
+In **2020**, the gap **narrowed sharply to ~36%**, driven by a disproportionate drop among high-utilization age groups.  
+The gap has since **partially widened again**, but remains below its pre-pandemic peak.  
+**Overall, age-related disparities in dental service use increased before COVID, compressed briefly during 2020, and then re-expanded.**
 
 ### 5.2.3 Age-specific yearly slope (trend strength)
 ```{r age_specific_slopes, message=FALSE, warning=FALSE}
@@ -642,7 +645,20 @@ age_slopes %>%
   theme_minimal(base_size = 13)
 ```
 
-The yearly trend analysis reveals substantial heterogeneity in the rate of increase in dental service utilization across age groups. The steepest growth is observed among children aged 1–2, whose utilization increased by approximately 0.0169 per year, indicating rapid gains in service engagement for young toddlers. Middle-aged adults (45–64 and 65–74) also show relatively strong upward trends, with yearly increases around 0.010–0.011, suggesting consistent improvement in utilization among older working-age and early senior populations. In contrast, school-aged children (3–14) and adolescents (15–18) exhibit much smaller slope estimates (0.004–0.006), indicating slower growth despite being the highest-utilizing groups overall. Infants (<1 year) display the weakest trend (0.003), reflecting persistently low and only modestly increasing service use. Taken together, these patterns indicate that utilization has been rising across nearly all age groups, but the pace of improvement is disproportionately concentrated among toddlers and middle-aged adults, whereas school-aged children—already starting from high baseline utilization—have experienced comparatively slower incremental gains.
+Yearly trend estimates show **substantial differences** in how fast utilization is growing across age groups.
+
+The steepest increases occur among  
+
+- **children aged 1–2** (slope ≈ **0.0169/year**) and  
+- **middle-aged adults (45–74)** (≈ **0.010–0.011/year**), indicating rapid gains in these groups.
+
+In contrast,  
+
+- **school-aged children (3–14)** and  
+- **adolescents (15–18)** have **smaller slopes** (≈ **0.004–0.006**), despite already having the highest baseline utilization.
+
+Infants (**<1**) show the **weakest growth** (~**0.003**).
+
 	
 ## 5.3 Trends by service type
 
