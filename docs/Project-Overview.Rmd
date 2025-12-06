@@ -12,52 +12,68 @@ library(tidyverse)
 library(knitr)
 ```
 
-
 ## Background & Motivation
 
-Dental caries remains the **most common chronic disease of childhood** in the United States, with progress in prevention being slower among low-income and minority children. Despite the proven effectiveness of preventive measures like dental sealants in reducing pit-and-fissure caries, disparities persist in access to and utilization of these services.
+California’s Medi-Cal program provides dental care to millions of children and adults, yet long-term
+trends in utilization and disparities remain poorly understood. Meanwhile, national NHANES
+surveillance consistently shows unequal burdens of dental caries across age groups, with pronounced
+disease among adolescents and adults.
 
-This project aims to bridge the gap between:
+To understand how service delivery aligns with broader oral health needs, this project integrates:
 
-- **National oral health surveillance** (NHANES data)
-- **State-level preventive service delivery** (California Medi-Cal data)
+- **Statewide administrative utilization data from California (2013–2023)**
+- **National oral health prevalence estimates from NHANES (1999–2018)**
 
-By integrating these complementary data sources, we assess whether state-level trends in preventive dental service utilization are temporally aligned with national changes in caries burden.
+By combining these complementary data sources, we examine whether increases in preventive dental
+service utilization in California correspond to national changes in caries burden, and how trends vary
+across age groups, service types, and the COVID-19 disruption.
 
 
 ## Research Objectives
 
-Our primary objectives include:
+Our analysis addresses the following questions:
 
-1. **Temporal Trend Analysis**
-   - Describe time trends in total and untreated dental caries by age, sex, and race/ethnicity
-   - Assess inequality trends across demographic subgroups over two decades
+1. **California Utilization Trends (2013–2023)**
+   - How have overall dental service utilization rates changed over time?
+   - How do trends differ across age groups and service categories?
+   - Has age-based inequality widened or narrowed?
 
-2. **Preventive Care Utilization**
-   - Analyze preventive visit and sealant utilization trends (2013–2023) among children and adolescents in California's Medi-Cal program
-   - Identify patterns and gaps in service delivery
+2. **COVID-19 Impact**
+   - Did the pandemic cause measurable disruptions in access to dental care?
+   - Can interrupted time-series models detect level or slope changes?
 
-3. **COVID-19 Impact Assessment**
-   - Evaluate pandemic-related disruptions in dental care access using interrupted time-series analysis
-   - Quantify the magnitude and duration of service interruptions
+3. **NHANES Caries Burden Trends (1999–2018)**
+   - What are the long-term trends in total and untreated caries across age groups?
+   - How do disease patterns differ by age and race/ethnicity?
 
-4. **Ecological Analysis**
-   - Explore temporal associations between California preventive utilization (as a proxy for preventive coverage) and national caries burden
-   - Conduct weighted least squares regression accounting for standard errors
+4. **California vs. National Alignment**
+   - Do increases in preventive utilization align with declines in untreated caries nationally?
+   - How do life-stage utilization patterns compare with life-stage disease burdens?
 
----
+5. **Additional Analyses**
+   - Estimate yearly slopes for each age group to quantify trend intensity.
+   - Evaluate cross-sectional patterns across service types (preventive, diagnostic, restorative, sealants).
+   - Conduct sensitivity analyses for age-group definitions.
+
 
 ## Expected Outcomes
 
-This analysis will produce:
+This project delivers:
 
-- **Interactive visualizations** showing trends over time
-- **Statistical models** quantifying relationships between preventive care and caries burden
-- **Policy-relevant insights** for improving oral health equity
-- **Reproducible research** via GitHub Pages and R Markdown
+- **Comprehensive descriptive visualizations**  
+  including age-stratified trends, service-type patterns, inequality gaps, and heatmaps.
 
----
+- **Statistical models and longitudinal indicators**  
+  such as yearly trend slopes and interrupted time-series (ITS) estimates for COVID-19.
 
+- **Integrated interpretation across two datasets**  
+  comparing California’s preventive utilization with national caries burden trends.
+
+- **Equity-relevant insights**  
+  highlighting life-stage disparities and data limitations.
+
+- **Fully reproducible research workflow**  
+  implemented via GitHub, R Markdown, and a published project website.
 
 
 
