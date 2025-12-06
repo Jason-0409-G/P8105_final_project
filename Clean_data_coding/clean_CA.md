@@ -18,14 +18,14 @@ raw_data <- read_csv("datasets/ca_dental.csv")
 
 ``` r
 # ---- Full data cleaning pipeline ----
-# 1️⃣ Define age group order
+# 1 Define age group order
 age_order <- c(
   "Age <1","Age 1–2","Age 3–5","Age 6–9",
   "Age 10–14","Age 15–18","Age 19–20","Age 21–34",
   "Age 35–44","Age 45–64","Age 65–74","Age 75+"
 )
 
-# 2️⃣ Clean dataset
+# 2 Clean dataset
 clean_data_basic <- raw_data |>
   # (1) Standardize column names
   clean_names() |>
@@ -134,7 +134,7 @@ head(clean_data_basic)
     ## #   utilization_annotation_code <dbl>, utilization_annotation_description <chr>
 
 ``` r
-# 3️⃣ Simplify measure names
+# 3 Simplify measure names
 clean_data_simple <- clean_data_basic |>
   mutate(
     measure = case_when(
@@ -150,7 +150,7 @@ clean_data_simple <- clean_data_basic |>
     )
   )
 
-# 4️⃣ Keep only key variables & simplify names
+# 4 Keep only key variables & simplify names
 clean_data_final <- clean_data_simple |>
   select(
     year,

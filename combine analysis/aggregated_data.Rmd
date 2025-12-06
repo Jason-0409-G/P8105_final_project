@@ -24,10 +24,10 @@ Data processing for California dataset
 ```{r ca_data_processing}
 ca_data <- ca_data %>%
   mutate(
-    # Step 1: 标准化年龄段（把 Age 1–2 里的长横线替换为短横线）
+    # Step 1: Standardized age ranges (replace the long horizontal lines in Age 1–2 with short horizontal lines)
     age_group_std = str_replace_all(age_group, "–", "-"),
 
-    # Step 2: baseline life-stage 分组
+    # Step 2: baseline life-stage group
     age_group_baseline = case_when(
       age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
       age_group_std %in% c("Age 3-5")           ~ "Early Childhood",
@@ -39,11 +39,11 @@ ca_data <- ca_data %>%
       TRUE ~ NA_character_
     ),
 
-    # Step 3: alternative life-stage 分组（敏感度版本）
+    # Step 3: alternative life-stage 
     age_group_alt = case_when(
       age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
       age_group_std %in% c("Age 3-5")           ~ "Early Childhood",
-      age_group_std %in% c("Age 6-9", "Age 10-14")   ~ "Middle Childhood", # 左偏移
+      age_group_std %in% c("Age 6-9", "Age 10-14")   ~ "Middle Childhood", 
       age_group_std %in% c("Age 15-18")         ~ "Adolescent",
       age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
       age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
@@ -51,10 +51,10 @@ ca_data <- ca_data %>%
       TRUE ~ NA_character_
     ),
 
-    # Step 4: 把 year 从 "CY 2013" 转成数值型 2013
+    # Step 4: year: "CY 2013" to numic 2013
     year_num = as.numeric(str_replace(year, "CY ", "")),
 
-    # Step 5: 把利用率从 "57.97%" 转成 0.5797
+
     util_rate_num = parse_number(utilization_rate) / 100
   )
 ```
@@ -62,9 +62,9 @@ ca_data <- ca_data %>%
 # NHANES sort data processing
 ```{r nhanes_data_processing}
 nhanes_period <- nhanes_data %>%
-  # 只保留总体
+  # Only keep the overall
   filter(sex == "All", race_ethnicity == "All") %>%
-  # 标准化年龄并映射到 CA 的 life-stage
+  # Standardize age and map it to CA's life-stage
   mutate(
     age_group_std = stringr::str_replace_all(age_group, "–", "-"),
     age_group_baseline = dplyr::case_when(
@@ -76,10 +76,10 @@ nhanes_period <- nhanes_data %>%
       age_group_std %in% c("60-69", "70 and over") ~ "Older Adult",
       TRUE ~ NA_character_
     ),
-    period   = survey_years,        # 周期标签，比如 "1999-2000"
-    prev_num = percent / 100        # 把百分数变成 0–1
+    period   = survey_years,       
+    prev_num = percent / 100      
   ) %>%
-  # 按周期 × life-stage × 指标 聚合
+  # combine
   group_by(period, age_group_baseline, measure_clean) %>%
   summarise(
     prev_num = mean(prev_num, na.rm = TRUE),
@@ -87,7 +87,7 @@ nhanes_period <- nhanes_data %>%
   )
 ```
 
-# 建立两年周期变量（例如 2013 和 2014 都归到 "2013-2014"）
+# Establish a two-year cycle variable (e.g., 2013 and 2014 are both categorized under "2013-2014").
 ```{r}
 ca_data <- ca_data %>%
   mutate(
@@ -97,7 +97,7 @@ ca_data <- ca_data %>%
   )
 ```
 
-# 第四步：按两年周期聚合（取平均即可）
+# Step 4: Aggregate over a two-year cycle (take the average).
 ```{r}
 ca_data_2yr <- ca_data %>%
   group_by(survey_years, age_group_baseline, measure) %>%
@@ -110,14 +110,14 @@ ca_data_2yr <- ca_data %>%
 ```
 
 
-# 先把 NHANES 的 period 改成 CA 的 survey_years
+# switch from NHANES period to CA survey_years
 ```{r}
 nhanes_period_clean <- nhanes_period %>%
   rename(
     survey_years = period,    
     nhanes_prev = prev_num    
   ) %>%
-  group_by(survey_years, age_group_baseline) %>%   # ← 按 life-stage 聚合
+  group_by(survey_years, age_group_baseline) %>%   # aggregate life-stage 
   summarise(
     nhanes_prev = mean(nhanes_prev, na.rm = TRUE),
     .groups = "drop"

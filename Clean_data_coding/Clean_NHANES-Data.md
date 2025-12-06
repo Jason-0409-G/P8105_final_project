@@ -73,7 +73,7 @@ nhanes <- nhanes %>%
 
 # Clean years
 
-#### 在做趋势图或回归分析时，需要用一个“数值型时间”来表示每个点的位置。如果直接用 “1999–2000” 这种字符串，R 会认为它是一个 分类变量（factor），而不是连续的时间变量。
+#### When creating trend charts or performing regression analysis, a numerical time period is needed to represent the location of each point.
 
 ``` r
 nhanes <- nhanes %>%
@@ -99,7 +99,7 @@ nhanes <- nhanes %>%
   mutate(measure_clean = recode(measure, !!!measure_map))
 ```
 
-# 目前未对分组进行任何操作（除了只保留年龄小组而非大组 之外）
+# No changes have been made to the groupings at present (except for retaining only age groups instead of larger groups).
 
 ``` r
 nhanes <- nhanes %>%
