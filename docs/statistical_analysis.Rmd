@@ -8,13 +8,18 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 6)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 6)
 library(tidyverse)
 library(broom)
 library(knitr)
 library(plotly)
 library(lmtest)
 library(sandwich)
+library(scales)
+library(patchwork)
+library(viridis)
+library(openxlsx)
+library(janitor)
 ```
 
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
@@ -23,3 +28,976 @@ library(sandwich)
 </div>
 
 ---
+
+# {.tabset}
+
+## California Data Analysis
+
+### Data Import and Preprocessing
+
+```{r}
+# Read and preprocess: convert percentages to 0–1 proportions, year to integer
+df_raw <- readr::read_csv("../datasets/clean_ca.csv")
+
+df <- df_raw %>%
+  mutate(
+    year = str_replace(year, "CY\\s*", "") %>% as.integer(),
+    utilization_rate = str_replace(utilization_rate, "%", "") %>% as.numeric() / 100,
+    users = as.numeric(users),
+    denominator = as.numeric(denominator)
+  )
+
+# Year-level summary: mean/median utilization, total users, total denominator,and weighted overall utilization rate
+year_summary <- df %>%
+  group_by(year) %>%
+  summarize(
+    mean_utilization   = mean(utilization_rate, na.rm = TRUE),
+    median_utilization = median(utilization_rate, na.rm = TRUE),
+    total_users        = sum(users, na.rm = TRUE),
+    total_denominator  = sum(denominator, na.rm = TRUE),
+    overall_rate_weighted = sum(utilization_rate * denominator, na.rm = TRUE) /
+                            sum(denominator, na.rm = TRUE)
+  ) %>% ungroup()
+
+head(year_summary)
+# Convenience quantities used in the narrative
+y_min  <- min(year_summary$year, na.rm = TRUE)
+y_max  <- max(year_summary$year, na.rm = TRUE)
+y_pk   <- year_summary$year[ which.max(year_summary$overall_rate_weighted) ]
+val_pk <- max(year_summary$overall_rate_weighted, na.rm = TRUE)
+```
+
+### Annual Summary Report
+
+```{r plot_weighted_utilization_rate, echo=FALSE, fig.width=8, fig.height=5}
+ggplot(year_summary, aes(year, overall_rate_weighted)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_x_continuous(breaks = pretty(year_summary$year)) +
+  labs(
+    title = "weighted utilization rate of dental services in CA",
+    x = "Year", y = "Weighted utilization rate"
+  ) +
+  theme_minimal()
+```
+
+* This report analyzes the trends in dental service utilization in California from CY `r y_min` to CY `r y_max`.  
+* During this period, the annual weighted overall dental service utilization reached its peak in CY `r y_pk`, at `r scales::percent(val_pk, accuracy = 0.1)`.  
+* The lowest annual weighted utilization occurred in CY `r year_summary$year[ which.min(year_summary$overall_rate_weighted) ]`, at `r scales::percent(min(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`.  
+* The average annual weighted utilization rate over the entire period was `r scales::percent(mean(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`, and the median value was `r scales::percent(median(year_summary$overall_rate_weighted, na.rm = TRUE), accuracy = 0.1)`.  
+* The total number of enrolled individuals increased from `r scales::comma(year_summary$total_denominator[ year_summary$year == y_min ])` in CY `r y_min` to `r scales::comma(year_summary$total_denominator[ year_summary$year == y_max ])` in CY `r y_max`, representing a growth of `r scales::percent( (year_summary$total_denominator[ year_summary$year == y_max ] - year_summary$total_denominator[ year_summary$year == y_min ]) / year_summary$total_denominator[ year_summary$year == y_min ], accuracy = 0.1)`.
+
+### Service Type Utilization Trends
+
+```{r plot_measure_trends, echo=FALSE, fig.width=8, fig.height=5}
+measure_year_summary <- df %>%
+  group_by(year, measure) %>%
+  summarize(mean_util = mean(utilization_rate, na.rm = TRUE), .groups = "drop")
+
+ggplot(measure_year_summary, aes(year, mean_util, color = measure)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(title = "every serivce average utilization", x = "Year", y = "Mean utilization rate",
+       color = "Service type") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+The figure below illustrates the mean utilization rate for each service type from `r min(measure_year_summary$year)` to `r max(measure_year_summary$year)`.
+
+Among all categories, **Dental visit** has the highest average utilization, increasing from about 
+`r percent(min(measure_year_summary$mean_util[measure_year_summary$measure == "Dental visit"]), accuracy = 0.1)` 
+in `r min(measure_year_summary$year)` to around 
+`r percent(max(measure_year_summary$mean_util[measure_year_summary$measure == "Dental visit"]), accuracy = 0.1)` 
+in `r max(measure_year_summary$year)`.
+
+**Preventive services** and **Exam/Evaluation** also show steady growth, reaching around 
+`r percent(max(measure_year_summary$mean_util[measure_year_summary$measure == "Preventive services"]), accuracy = 0.1)` 
+and 
+`r percent(max(measure_year_summary$mean_util[measure_year_summary$measure == "Exam/Evaluation"]), accuracy = 0.1)` 
+by `r max(measure_year_summary$year)`.
+
+In contrast, **Restorative services** and **Diagnostic services** maintain lower utilization, both staying near 
+`r percent(mean(measure_year_summary$mean_util[measure_year_summary$measure == "Restorative services"]), accuracy = 0.1)` 
+on average.
+
+A noticeable dip in `r measure_year_summary$year[which.min(measure_year_summary$mean_util)]` reflects the disruption during the COVID-19 period, after which utilization levels gradually recovered.
+
+Overall, from `r min(measure_year_summary$year)` to `r max(measure_year_summary$year)`, most service types demonstrate a consistent upward trend, highlighting an overall improvement in access to dental care.
+
+### Age Group Mean Utilization Trends
+
+```{r plot_age_group_trends, echo=FALSE, fig.width=10, fig.height=6}
+age_year_summary <- df %>%
+  group_by(year, age_group) %>%
+  summarize(mean_util = mean(utilization_rate, na.rm = TRUE), .groups = "drop")
+
+ggplot(age_year_summary, aes(year, mean_util, group = age_group)) +
+  geom_line(linewidth = 1.0) +
+  geom_point(size = 1.8) +
+  facet_wrap(~ age_group) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(title = "age group weight trends", x = "Year", y = "Mean utilization rate") +
+  theme_minimal()
+```
+
+### Linear Model Analysis
+
+```{r linear_model_analysis, results='asis'}
+fit <- lm(utilization_rate ~ year + measure, data = df)
+tidy_fit <- tidy(fit)
+glance_fit <- glance(fit)
+
+tidy_fit %>%
+  filter(term == "year") %>%
+  mutate(estimate = estimate) %>%
+  transmute(
+    term = "year",
+    slope = round(estimate, 4),
+    p_value = signif(p.value, 3)
+  ) %>%
+  kable(caption = "linear model results for year trend")
+
+kable(
+  glance_fit %>% select(r.squared, adj.r.squared, AIC, BIC) %>%
+    mutate(across(everything(), ~ round(.x, 4))),
+  caption = "model summary statistics"
+)
+```
+
+According to the linear regression results, the coefficient for the year variable is 0.0061 with a p-value of **0.000137**, indicating a statistically significant upward trend in dental utilization over time after controlling for service type. On average, the utilization rate increases by approximately 0.0061 (about 0.61 percentage points) each year, and _this trend is highly significant (p < 0.001)._
+
+The overall model fit statistics are as follows: R² = 0.1873, adjusted R² = 0.1798, AIC = -882.57, and BIC = -834.82.  
+These values suggest that the model explains about 18% of the variance in utilization rates, representing a moderate model fit, while the relatively low AIC and BIC indicate a well-specified and parsimonious model.
+
+In summary, between 2013 and 2023, dental service utilization shows a clear and statistically significant linear increase over time, implying a steady improvement in overall access and use of dental care services.
+
+### COVID-19 Interrupted Time Series (ITS)
+
+```{r}
+ca <- read_csv("../datasets/clean_ca.csv")
+
+ca <- ca %>%
+  mutate(
+    year = as.numeric(gsub("CY ", "", year)),
+    utilization_rate = as.numeric(gsub("%", "", utilization_rate)) / 100,
+    users = as.numeric(users),
+    denominator = as.numeric(denominator),
+    covid_period = ifelse(year >= 2020, 1, 0)
+  )
+```
+
+We estimate the following model:
+
+$$
+\text{utilization}_{t}
+= \beta_0
++ \beta_1 \cdot year_t
++ \beta_2 \cdot covid_t
++ \beta_3 \cdot (year_t \times covid_t)
+$$
+
+Where:
+
+- **β₁**: pre-COVID slope  
+- **β₂**: immediate level drop in 2020  
+- **β₃**: slope change after COVID  
+
+```{r covid_its_model}
+its_model <- lm(
+  utilization_rate ~ year + covid_period + year:covid_period,
+  data = ca
+)
+
+tidy(its_model)
+```
+
+```{r covid_its_plot}
+avg_year <- ca %>%
+  group_by(year) %>%
+  summarise(mean_util = weighted.mean(utilization_rate, denominator, na.rm = TRUE))
+
+avg_year %>%
+  ggplot(aes(year, mean_util)) +
+  geom_line(linewidth = 1.2, color = "#2E86AB") +
+  geom_point(size = 2) +
+  geom_vline(xintercept = 2020, linetype = "dashed", color = "red") +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(
+    title = "CA Dental Utilization – Interrupted Time Series (COVID-19)",
+    subtitle = "Dashed line marks start of COVID in 2020",
+    x = "Year", y = "Weighted Utilization Rate"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+#### Interpretation
+```{r}
+its <- tidy(its_model)
+
+cat("**Pre-COVID yearly slope:**", round(its$estimate[its$term=="year"],4), "\n\n")
+cat("**Immediate drop at COVID (level change):**", round(its$estimate[its$term=="covid_period"],4), "\n\n")
+cat("**Post-COVID slope change:**", round(its$estimate[its$term=="year:covid_period"],4), "\n\n")
+```
+
+The interrupted time-series analysis shows a clear and statistically significant upward trend in dental utilization prior to the COVID-19 pandemic (β₁ = 0.014, p < 0.001). In contrast, neither the estimated level change in 2020 (β₂ = 0.825, p = 0.961) nor the change in post-COVID slope (β₃ = −0.00043, p = 0.959) reached statistical significance. These results indicate that, although descriptive plots show an apparent decline during the onset of COVID-19, the regression model does not detect a statistically reliable interruption in either the level or trajectory of utilization. Overall, the data are most consistent with a continuation of the pre-existing upward trend, with no measurable long-term deviation attributable to the pandemic within this aggregated CA system-level dataset.
+
+### Age-gap Inequality Trend Over Time
+
+We compute utilization gap between highest vs lowest age-groups each year.
+This checks whether age inequality is widening or narrowing.
+
+```{r age_gap}
+age_year <- ca %>%
+  group_by(year, age_group) %>%
+  summarise(mean_util = weighted.mean(utilization_rate, denominator), .groups="drop")
+
+age_gap <- age_year %>%
+  group_by(year) %>%
+  summarise(
+    max_age = max(mean_util),
+    min_age = min(mean_util),
+    gap = max_age - min_age
+  )
+
+ggplot(age_gap, aes(year, gap)) +
+  geom_line(linewidth = 1.2, color="#8E44AD") +
+  geom_point(size=2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(
+    title = "Age Inequality Gap in Utilization Over Time",
+    subtitle = "Gap = Highest age group's utilization – Lowest age group",
+    x = "Year", y = "Utilization Gap"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+The age-based utilization gap in California shows a steady widening throughout the pre-COVID period, rising from roughly 39% in 2013 to a peak of nearly 46% by 2019. This pattern indicates that differences between the highest-utilizing age group (school-aged children) and the lowest-utilizing group (typically infants or older adults) became increasingly pronounced during the years leading up to the pandemic. In 2020, the gap abruptly narrowed to approximately 36%, driven by a disproportionately large decline among age groups that typically have higher utilization. Following this disruption, the inequality gap began to widen again, though it remained below its pre-pandemic peak. Overall, the trend suggests that age-related disparities in dental service use were increasing prior to COVID-19, temporarily compressed during the pandemic, and have since partially re-expanded.
+
+### Service Composition Shift
+
+We examine how the proportion of each service category changes over time.
+
+```{r service_composition}
+service_comp <- ca %>%
+  group_by(year, measure) %>%
+  summarise(
+    total_users = sum(users),
+    total_denom = sum(denominator),
+    prop = total_users / total_denom,
+    .groups="drop"
+  )
+
+ggplot(service_comp, aes(year, prop, color = measure)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format()) +
+  labs(
+    title = "Service Composition Shift Over Time",
+    subtitle = "Weighted by denominator (population size)",
+    x = "Year", y = "Weighted Utilization Rate",
+    color = "Service Type"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 8),
+    legend.text = element_text(size = 7)
+  )
+```
+
+Across all service categories, weighted utilization rates in California generally increased from 2013 to 2019, with the largest gains observed in preventive services, diagnostic care, and examinations—reflecting strengthening engagement in routine and preventive dental care. In 2020, every service type experienced a pronounced decline, consistent with widespread service disruptions during the onset of COVID-19. Post-2020, most categories rebounded but did not fully recover their pre-pandemic peak levels, and the relative composition remained broadly similar: preventive and diagnostic services continued to dominate, while restorative and sealant services maintained lower but stable utilization levels. These patterns indicate that while COVID-19 caused a sharp, system-wide contraction in service use, the structural distribution of service types within Medi-Cal dental utilization remained largely intact.
+
+### Age-specific Yearly Slope (Trend Strength)
+
+Fit separate trend models for each age group.
+
+```{r age_slopes}
+age_slopes <- ca %>%
+  group_by(age_group) %>%
+  do(tidy(lm(utilization_rate ~ year, data = .))) %>%
+  filter(term == "year") %>%
+  arrange(desc(estimate))
+
+kable(age_slopes, caption = "Yearly Trend Slopes by Age Group")
+```
+
+```{r age_slopes_plot}
+age_slopes %>%
+  ggplot(aes(x = reorder(age_group, estimate), y = estimate)) +
+  geom_col(fill="#27AE60") +
+  geom_text(aes(label = round(estimate,4)), hjust=-0.1) +
+  coord_flip() +
+  labs(
+    title = "Strength of Yearly Trend by Age Group",
+    x = "Age Group", y = "Yearly Slope (Change in Utilization)"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+The yearly trend analysis reveals substantial heterogeneity in the rate of increase in dental service utilization across age groups. The steepest growth is observed among children aged 1–2, whose utilization increased by approximately 0.0169 per year, indicating rapid gains in service engagement for young toddlers. Middle-aged adults (45–64 and 65–74) also show relatively strong upward trends, with yearly increases around 0.010–0.011, suggesting consistent improvement in utilization among older working-age and early senior populations. In contrast, school-aged children (3–14) and adolescents (15–18) exhibit much smaller slope estimates (0.004–0.006), indicating slower growth despite being the highest-utilizing groups overall. Infants (<1 year) display the weakest trend (0.003), reflecting persistently low and only modestly increasing service use. Taken together, these patterns indicate that utilization has been rising across nearly all age groups, but the pace of improvement is disproportionately concentrated among toddlers and middle-aged adults, whereas school-aged children—already starting from high baseline utilization—have experienced comparatively slower incremental gains.
+
+
+## NHANES Data Analysis
+
+### Analytic Approach
+
+Using NHANES oral health summary tables, we described age-, sex-, and race-specific prevalence of total and untreated caries in primary and permanent dentition. For each age group we plotted time trends (1999–2017); for permanent teeth we also examined sex-specific and race/ethnicity-specific trends and simple male–female and Black–White gaps. To summarize long-term change, we fit weighted linear regressions of prevalence on survey mid-year and reported slopes as percentage-point change per 10 years. Because we used published summary estimates rather than microdata, all analyses are descriptive.
+
+### Results Summary
+
+In the most recent available survey mid-year (2017 for permanent dentition and 2015 for some primary measures), caries showed a strong age gradient: permanent-tooth caries was lowest in children 6–11 years, higher in adolescents and young adults, and nearly universal in adults 40–69 years, while primary-tooth caries remained common in children 2–11 years. Within each age group, females had slightly higher permanent-tooth caries prevalence than males, but sex differences were small.
+
+Over time, total caries stayed high in young children and older adults, whereas untreated caries was consistently lower and tended to decline, especially in children and younger adults. Regression slopes confirmed modest decreases in untreated caries (on the order of a few percentage points per decade) and little change in total caries among older adults. Among youth aged 6–19 years, Mexican American and Non-Hispanic Black groups had higher permanent-tooth caries than Non-Hispanic Whites across most survey years; gaps narrowed slightly but racial/ethnic disparities persisted.
+
+### Overall Interpretation
+
+Overall, NHANES data suggest that dental caries is a lifelong, cumulative condition: primary caries remains common in children, permanent caries becomes almost universal in older adults, and declines in untreated disease are modest and concentrated at younger ages. Sex differences are small and relatively stable, while racial/ethnic gaps in youth remain visible despite overall improvement. Age and dentition stage, with superimposed racial/ethnic disparities, appear to be the main axes of inequality in U.S. dental caries burden.
+
+
+```{r nhanes_trend_plots, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=12}
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+nhanes <- read_csv("../datasets/nhanes_oral_clean.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(age_group = factor(age_group,
+                       levels = c("2-5","6-11","12-19","20-29",
+                                  "30-39","40-49","50-59","60-69")))
+race_df <- read_csv("../datasets/nhanes_oral.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(race=race_and_hispanic_origin) %>% 
+  filter(age_group=="6-19",
+         sex=="All") %>% 
+  drop_na(percent)
+
+make_trend_plot <- function(age_values, age_title,
+                            dentition = c("primary", "perm"),
+                            show_x = FALSE, show_y = FALSE) {
+
+  dentition <- match.arg(dentition)
+
+  if (dentition == "primary") {
+    measures <- c("total_primary", "untreated_primary")
+    labels <- c(
+      total_primary     = "Total Dental Caries in Primary Teeth",
+      untreated_primary = "Untreated Dental Caries in Primary Teeth"
+    )
+  } else {
+    measures <- c("total_perm", "untreated_perm")
+    labels <- c(
+      total_perm        = "Total Dental Caries in Permanent Teeth",
+      untreated_perm    = "Untreated Dental Caries in Permanent Teeth"
+    )
+  }
+
+  dat <- nhanes %>%
+    filter(
+      tolower(sex) == "all",
+      age_group %in% age_values,
+      measure_clean %in% measures
+    ) %>%
+    mutate(measure_label = recode(measure_clean, !!!labels)) %>%
+    arrange(year_mid, measure_clean)
+
+  ggplot(dat, aes(x = year_mid, y = percent,
+                  color = measure_label, fill = measure_label)) +
+    geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper),
+                alpha = 0.06, color = NA) +
+    geom_line(size = 1.3) +
+    geom_point(size = 2.6) +
+    scale_x_continuous(breaks = scales::pretty_breaks(n = 4)) +
+    scale_color_manual(values = c(
+      "Total Dental Caries in Primary Teeth"      = "#E16A5B",
+      "Untreated Dental Caries in Primary Teeth"  = "#1F9AC9",
+      "Total Dental Caries in Permanent Teeth"    = "#E16A5B",
+      "Untreated Dental Caries in Permanent Teeth"= "#1F9AC9"
+    )) +
+    scale_fill_manual(values = c(
+      "Total Dental Caries in Primary Teeth"      = "#E16A5B",
+      "Untreated Dental Caries in Primary Teeth"  = "#1F9AC9",
+      "Total Dental Caries in Permanent Teeth"    = "#E16A5B",
+      "Untreated Dental Caries in Permanent Teeth"= "#1F9AC9"
+    )) +
+    labs(
+      title = paste0("Ages ", age_title),
+      x = if (show_x) "Survey year" else NULL,
+      y = if (show_y) "Percent (%)" else NULL,
+      color = "Measure",
+      fill  = "Measure"
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.title = element_text(size = 11, face = "bold"),
+      axis.title = element_text(size = 9),
+      axis.text  = element_text(size = 7),
+      axis.text.x = element_text(size = 6, angle = 45, hjust = 1),  
+      panel.grid.minor = element_blank()
+    )
+}
+
+p_2_5  <- make_trend_plot(c("2-5", "2–5", "2—5"), "2–5",  "primary",  show_y = TRUE)
+p_6_11 <- make_trend_plot("6-11", "6–11",           "primary")
+p_12_19 <- make_trend_plot("12-19", "12–19",       "perm", show_y = TRUE)
+p_20_29 <- make_trend_plot("20-29", "20–29",       "perm")
+p_30_39 <- make_trend_plot("30-39", "30–39",       "perm", show_y = TRUE)
+p_40_49 <- make_trend_plot("40-49", "40–49",       "perm")
+p_50_59 <- make_trend_plot("50-59", "50–59",       "perm", show_y = TRUE, show_x = TRUE)
+p_60_69 <- make_trend_plot("60-69", "60–69",       "perm", show_x = TRUE)
+
+combined <- (p_2_5 + p_6_11) /
+            (p_12_19 + p_20_29) /
+            (p_30_39 + p_40_49) /
+            (p_50_59 + p_60_69)
+
+combined +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title    = "Overall Time Trend of Dental Caries by Age Group (sex = All)",
+    subtitle = "NHANES; Total vs Untreated caries, shaded ribbons = 95% CI"
+  ) &
+  theme(
+    legend.position = "bottom",                
+    legend.box = "horizontal",
+    legend.title = element_text(size = 9),
+    legend.text  = element_text(size = 8)
+  )
+```
+
+### Long-term Regression (Slope)
+```{r}
+age_primary <- c("2-5", "6-11")
+age_perm    <- c("12-19", "20-29", "30-39", "40-49", "50-59", "60-69")
+
+measures_primary <- c("total_primary", "untreated_primary")
+measures_perm    <- c("total_perm", "untreated_perm")
+
+slope_dat <- nhanes %>%
+  filter(
+    tolower(sex) == "all",
+    tolower(race_ethnicity) == "all",
+    measure_clean %in% c(measures_primary, measures_perm),
+    age_group %in% c(age_primary, age_perm)
+  ) %>%
+  mutate(
+    dentition = case_when(
+      measure_clean %in% measures_primary ~ "Primary",
+      measure_clean %in% measures_perm    ~ "Permanent"
+    ),
+    outcome = case_when(
+      str_detect(measure_clean, "total")     ~ "Total caries",
+      str_detect(measure_clean, "untreated") ~ "Untreated caries",
+      TRUE ~ measure_clean
+    ),
+    w = if_else(!is.na(se) & se > 0, 1 / (se^2), 1)
+  )
+
+fit_slope <- function(df) {
+  m  <- lm(percent ~ year_mid, data = df, weights = w)
+  b1 <- coef(m)[["year_mid"]]
+  ci <- confint(m)["year_mid", ]
+
+  tibble(
+    slope_per_year      = b1,
+    slope_per_10yrs     = b1 * 10,
+    slope_10yr_lower    = ci[1] * 10,
+    slope_10yr_upper    = ci[2] * 10,
+    n_cycles            = nrow(df),
+    first_year_mid      = min(df$year_mid),
+    last_year_mid       = max(df$year_mid)
+  )
+}
+
+slopes <- slope_dat %>%
+  group_by(dentition, age_group, outcome) %>%
+  group_modify(~ fit_slope(.x)) %>%
+  ungroup() %>%
+  mutate(
+    across(starts_with("slope"), ~ round(.x, 2))
+  ) %>%
+  arrange(dentition, outcome, age_group)
+
+slopes %>% 
+  knitr::kable(caption = "Estimated linear time trends (slopes) in caries prevalence by dentition, age group, and outcome. Slopes are interpreted as percentage-point change per 10 years.")
+
+```
+
+### Trend heatmap
+```{r trend_heatmap, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+
+
+# 1) choose outcome & dentition, e.g. total_primary (ages 2–11) or total_perm (10+)
+target_meas <- "total_perm"  # change to "total_perm" for permanent dentition
+base <- nhanes %>%
+  filter(
+    tolower(sex) %in% c("male", "female"),
+    measure_clean == target_meas
+  )
+
+# 2) wide join: Male & Female side by side
+male <- base %>%
+  filter(sex == "Male") %>%
+  select(age_group, year_mid, percent_M = percent)
+
+female <- base %>%
+  filter(sex == "Female") %>%
+  select(age_group, year_mid, percent_F = percent)
+
+gap <- male %>%
+  inner_join(female, by = c("age_group", "year_mid")) %>%
+  mutate(
+    Gap_abs = percent_M - percent_F # >0: higher in males
+  )
+
+# 3) heatmap of sex gap over time & age
+p_heat <- ggplot(gap, aes(x = year_mid, y = age_group, fill = Gap_abs)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(
+    name = "Male − Female\n(percentage points)",
+    low = "#3182bd", mid = "white", high = "#de2d26", midpoint = 0
+  ) +
+  scale_x_continuous(breaks = scales::pretty_breaks()) +
+  labs(
+    title = "Sex gap in total caries over time",
+    subtitle = "Positive = higher in males; Negative = higher in females",
+    x = "Survey mid-year", y = "Age group"
+  ) +
+  theme_minimal(base_size = 13)
+
+print(p_heat)
+
+```
+
+### Caries prevalence by age and sex
+```{r filtered_bar_chart, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+# 3) Filter to race = All, sex = Male/Female, chosen outcome
+bar <- nhanes %>%
+  filter(
+    tolower(sex) %in% c("male","female"),
+    measure_clean == target_meas
+  ) %>%
+  mutate(
+    sex = case_when(
+      tolower(sex) == "male"   ~ "Male",
+      tolower(sex) == "female" ~ "Female",
+      TRUE ~ sex
+    ),
+    age_group = gsub("–|—", "-", age_group)  # unify dash
+  )
+
+# 4) Use latest survey mid-year
+latest_year <- max(bar$year_mid, na.rm = TRUE)
+
+latest <- bar %>%
+  filter(year_mid == latest_year) %>%
+  mutate(
+    age_group = factor(
+      age_group,
+      levels = c("2-5","6-11","12-19","20-29",
+                 "30-39","40-49","50-59","60-69")
+    )
+  ) %>%
+  arrange(age_group, sex)
+
+# 5) Grouped bar chart: prevalence by age × sex
+p_age_sex <- ggplot(latest,
+                    aes(x = age_group, y = percent, fill = sex)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+  # Optional: add 95% CI error bars if you want
+  geom_errorbar(aes(ymin = ci_lower, ymax = ci_upper),
+                 position = position_dodge(width = 0.7),
+                 width = 0.2, linewidth = 0.5) +
+  labs(
+    title = sprintf("Caries prevalence by age and sex (%s, latest year = %.0f)",
+                    target_meas, 2017),
+    x = "Age group",
+    y = "Caries prevalence (%)",
+    fill = "Sex",
+    caption = 
+      "Note: Error bars show 95% CIs from the NHANES oral health summary dataset.\nStandard errors were not re-estimeted from microdata, and no formal hypothesis testing was performed."
+  ) +
+  theme_minimal(base_size = 13)+
+  theme(
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic")  
+  )
+
+print(p_age_sex)
+```
+
+### Race/Ethnicity Trends
+```{r}
+# Choose outcome & age
+target_measure <- "Total Dental Caries in Permanent Teeth"
+target_age  <- "6-19"
+
+race_keep <- c("Non-Hispanic White", "Non-Hispanic Black", "Mexican American")
+
+race_trend <- race_df %>%
+  mutate(
+    age_group = gsub("–|—", "-", age_group)
+  ) %>%
+  filter(
+    age_group == target_age,
+    measure == target_measure,
+    race %in% race_keep,
+    tolower(sex) == "all"
+  )
+
+# Time trends by race
+p_race_trend <- ggplot(race_trend,
+                       aes(x = survey_years, y = percent, color = race)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_discrete(guide = guide_axis(n.dodge = 2))+
+  geom_ribbon(aes(ymin = lower_95_percent_ci_limit, ymax = upper_95_percent_ci_limit, fill = race, group = race),
+              alpha = 0.15, color = NA) +
+  labs(
+    title = sprintf("Time trends in %s 
+                    for ages %s by race/ethnicity",
+                    target_measure, target_age),
+    x = "Survey year", y = "Prevalence (%)",
+    color = "Race/ethnicity", fill = "Race/ethnicity"
+  ) +
+  theme_minimal(base_size = 13)+
+    theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)  
+  )
+p_race_trend
+```
+
+## Combined data analysis
+
+### Sensitivity analysis
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(stringr)
+library(readr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+library(openxlsx)
+```
+
+```{r}
+ca_data <- read_csv("../datasets/clean_ca.csv")
+nhanes_data <- read_csv("../datasets/nhanes_oral_clean.csv")
+```
+
+
+```{r ca_data_processing}
+ca_data <- ca_data %>%
+  mutate(
+    # Step 1: standardize age groups (replace en-dash with hyphen)
+    age_group_std = str_replace_all(age_group, "–", "-"),
+
+    # Step 2: baseline life-stage
+    age_group_baseline = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5") ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9") ~ "Middle Childhood",
+      age_group_std %in% c("Age 10-14", "Age 15-18") ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+") ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    # Step 3: alternative life-stage
+    age_group_alt = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5") ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9", "Age 10-14") ~ "Middle Childhood",
+      age_group_std %in% c("Age 15-18") ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+") ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+    year_num = as.numeric(str_replace(year, "CY ", "")),
+    util_rate_num = parse_number(utilization_rate) / 100
+  )
+```
+
+
+### Main trend plot for California data
+```{r ca_main_trend, fig.height=4}
+ggplot(ca_data, aes(year_num, util_rate_num, color = age_group_baseline)) +
+  geom_line(size = 1) +
+  scale_y_continuous(labels = percent_format()) +
+  labs(
+    title = "CA Medicaid: Dental Utilization by Life-Stage",
+    x = "Year", y = "Utilization Rate"
+  ) +
+  theme_bw()
+```
+
+### Sensitivity Analysis A: Baseline vs Alternative Grouping**
+```{r ca_sensitivity_analysis, fig.height=4}
+sens_data <- bind_rows(
+  ca_data %>% select(year_num, util_rate_num, age_group = age_group_baseline) %>% mutate(scenario = "Baseline"),
+  ca_data %>% select(year_num, util_rate_num, age_group = age_group_alt) %>% mutate(scenario = "Alternative")
+)
+
+ggplot(sens_data, aes(year_num, util_rate_num, color = scenario)) +
+  geom_line(size = 1) +
+  facet_wrap(~ age_group) +
+  scale_y_continuous(labels = percent_format()) +
+  labs(
+    title = "Sensitivity Analysis A: Baseline vs Alternative Grouping",
+    x = "Year", y = "Utilization Rate"
+  ) +
+  theme_bw()
+```
+
+
+### Sensitivity Summary Table
+```{r ca_sens_table}
+sens_summary_A <- sens_data %>%
+  group_by(age_group, scenario) %>%
+  summarise(mean_rate = mean(util_rate_num), .groups = "drop") %>%
+  pivot_wider(names_from = scenario, values_from = mean_rate) %>%
+  mutate(diff_A = Alternative - Baseline)
+
+
+list(
+  Sensitivity_A = sens_summary_A
+)
+```
+“Sensitivity analysis comparing the baseline and alternative age-group definitions showed that five of the seven life-stage categories produced identical utilization estimates. Only Adolescent and Middle Childhood differed slightly (–1.8% and –3.2% respectively), reflecting the intentional boundary shift of the 10–14 age segment. These differences were small and did not change temporal trends or overall conclusions; therefore, the baseline life-stage grouping was retained for the main analysis.”
+
+### Combined analysis
+```{r}
+library(tidyverse)
+library(scales)
+library(viridis)
+ca <- read_csv("../datasets/clean_ca.csv")
+nh <- read_csv("../datasets/nhanes_oral_clean.csv")
+```
+
+
+```{r clean_ca}
+ca_clean <- ca %>%
+  mutate(
+    year = as.numeric(gsub("CY ", "", year)),
+    utilization_rate = as.numeric(gsub("%", "", utilization_rate)) / 100
+  ) %>%
+  filter(age_group %in% c("Age 3–5", "Age 6–9", "Age 10–14", "Age 15–18")) %>% 
+  group_by(year) %>%
+  summarise(
+    preventive = mean(utilization_rate[measure == "Preventive services"], na.rm = TRUE)
+  )
+```
+
+```{r clean_nhanes}
+nh_clean <- nh %>%
+  filter(
+    sex == "All",
+    race_ethnicity == "All",
+    measure_clean == "Untreated caries",
+    age_group %in% c("2-5", "6-11", "12-19")
+  ) %>%
+  group_by(survey_years) %>%
+  summarise(
+    untreated = mean(percent/100, na.rm = TRUE)
+  ) %>%
+  separate(survey_years, into = c("y1","y2"), sep="-", remove=FALSE) %>%
+  mutate(year = as.numeric(y1)) %>%
+  select(year, untreated)
+```
+
+### CA vs NHANES overlay
+```{r}
+## --------------------------------------------------
+## CA vs NHANES overlay (no join, two datasets)
+## --------------------------------------------------
+
+library(tidyverse)
+library(scales)
+library(janitor)
+
+ca_raw <- read_csv("../datasets/clean_ca.csv")
+
+ca_child <- ca_raw %>%
+  mutate(
+    year = as.numeric(gsub("CY\\s*", "", year)),
+    utilization_rate = as.numeric(gsub("%", "", utilization_rate)) / 100
+  ) %>%
+  filter(
+    measure == "Preventive services",
+    age_group %in% c("Age 6–9", "Age 6-9")  
+  ) %>%
+  group_by(year) %>%
+  summarise(
+    util = sum(users, na.rm = TRUE) / sum(denominator, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    z = as.numeric(scale(util)),
+    series = "CA preventive (z)"
+  )
+
+
+nh_raw <- read_csv("../datasets/nhanes_oral_clean.csv") %>%
+  clean_names()
+
+nh_child <- nh_raw %>%
+  mutate(age_group = gsub("–|—", "-", age_group)) %>%    
+  filter(
+    tolower(sex) == "all",
+    age_group == "6-11",
+    measure_clean == "untreated_primary"   
+  ) %>%
+  transmute(
+    year  = year_mid,          
+    util  = percent / 100      
+  ) %>%
+  arrange(year) %>%
+  mutate(
+    z = as.numeric(scale(util)),
+    series = "NHANES untreated (z)"
+  )
+
+overlay_df <- bind_rows(ca_child, nh_child)
+
+ggplot(overlay_df, aes(x = year, y = z, color = series)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(
+    values = c(
+      "CA preventive (z)"       = "#1f77b4",
+      "NHANES untreated (z)"    = "#d62728"
+    )
+  ) +
+  labs(
+    title    = "Standardized Trend Comparison (z-score overlay)",
+    subtitle = "CA preventive utilization vs NHANES untreated caries (children)",
+    x        = "Year",
+    y        = "Standardized value (z-score)",
+    color    = ""
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "bottom",
+    plot.title      = element_text(face = "bold")
+  )
+```
+
+Although the two datasets cover different years, the standardized trends allow a visual comparison of their patterns. NHANES untreated caries among children rises in the early 2000s and steadily declines after 2005, indicating improving national oral health. California’s preventive utilization (2013–2023) shows a similar upward trend before a sharp COVID-19 drop in 2020 and a rapid rebound afterward. While not temporally aligned, both trajectories suggest improving preventive behaviors or outcomes over time, with the CA pattern additionally highlighting the strong impact of the pandemic on service use.
+
+### Heatmap
+
+```{r}
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(readr)
+library(patchwork)
+
+# ===============================
+# Load data
+# ===============================
+ca <- read.csv("../datasets/clean_ca.csv")
+nh <- read.csv("../datasets/nhanes_oral_clean.csv")
+
+# ===============================
+# Process CA dataset
+# ===============================
+ca_clean <- ca %>%
+  mutate(
+    age_group_std = str_replace_all(age_group, "–", "-"),
+
+    # ---- Life-stage mapping (CA) ----
+    age_group_baseline = case_when(
+      age_group_std %in% c("Age <1", "Age 1-2") ~ "Infant/Toddler",
+      age_group_std %in% c("Age 3-5") ~ "Early Childhood",
+      age_group_std %in% c("Age 6-9") ~ "Middle Childhood",
+      age_group_std %in% c("Age 10-14", "Age 15-18") ~ "Adolescent",
+      age_group_std %in% c("Age 19-20", "Age 21-34") ~ "Young Adult",
+      age_group_std %in% c("Age 35-44", "Age 45-64") ~ "Middle Adult",
+      age_group_std %in% c("Age 65-74", "Age 75+") ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    year_num = as.numeric(str_replace(year, "CY ", "")),
+    util_rate_num = parse_number(utilization_rate) / 100
+  )
+
+# ===============================
+# CA heatmap input: year × life-stage × utilization_rate
+# ===============================
+ca_heatmap <- ca_clean %>%
+  group_by(year_num, age_group_baseline) %>%
+  summarise(
+    util_rate = mean(util_rate_num, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+```{r}
+# ===============================
+# Process NHANES dataset
+# ===============================
+nh_clean <- nh %>%
+  filter(sex == "All", race_ethnicity == "All") %>%
+  mutate(
+    age_group_std = str_replace_all(age_group, "–", "-"),
+
+    # ---- NHANES → CA life-stage mapping ----
+    age_group_baseline = case_when(
+      age_group_std == "2-5" ~ "Early Childhood",
+      age_group_std == "6-11" ~ "Middle Childhood",
+      age_group_std == "12-19" ~ "Adolescent",
+      age_group_std %in% c("20-29", "30-39") ~ "Young Adult",
+      age_group_std %in% c("40-49", "50-59") ~ "Middle Adult",
+      age_group_std %in% c("60-69", "70 and over") ~ "Older Adult",
+      TRUE ~ NA_character_
+    ),
+
+    prev_num = percent / 100   # prevalence
+  )
+
+# ===============================
+# NHANES heatmap input: period × life-stage × prevalence
+# ===============================
+nh_heatmap <- nh_clean %>%
+  group_by(survey_years, age_group_baseline) %>%
+  summarise(
+    prevalence = mean(prev_num, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+```{r, fig.width=14, fig.height=6 }
+p1 <- ggplot(ca_heatmap, aes(x = year_num, y = age_group_baseline, fill = util_rate)) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_c(option = "C", labels=scales::percent_format()) +
+  labs(
+    title = "CA Preventive Service Utilization (Heatmap)",
+    x = "Year",
+    y = "Life Stage",
+    fill = "Utilization"
+  ) +
+  theme_minimal(base_size = 14)
+
+p2 <- ggplot(nh_heatmap, aes(x = survey_years, y = age_group_baseline, fill = prevalence)) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_c(option = "C", labels=scales::percent_format()) +
+  labs(
+    title = "NHANES Untreated Caries (Heatmap)",
+    x = "Survey Cycle",
+    y = "Life Stage",
+    fill = "Prevalence"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p1 + p2
+```
+
+Across life-stages, California’s preventive utilization trends broadly align with NHANES untreated caries risk patterns: higher caries burden groups generally correspond to higher preventive utilization.
