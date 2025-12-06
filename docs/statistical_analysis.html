@@ -462,12 +462,25 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li>
-  <a href="statistical_analysis.html">
-    <span class="fa fa-calculator"></span>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-chart-bar"></span>
      
     Statistical Analysis
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="statistical_analysis.html#California_data_analysis">California Analysis</a>
+    </li>
+    <li>
+      <a href="statistical_analysis.html#NHANES_data_analysis">NHANES Analysis</a>
+    </li>
+    <li>
+      <a href="statistical_analysis.html#Combined_data_analysis">Combined Analysis</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="conclusion.html">
@@ -535,20 +548,17 @@ Formal statistical modeling and hypothesis testing
 </p>
 </div>
 <hr />
-<div id="section" class="section level1 tabset">
-<h1 class="tabset"></h1>
-<div id="california-data-analysis" class="section level2">
-<h2>California Data Analysis</h2>
-<div id="data-import-and-preprocessing" class="section level3">
-<h3>Data Import and Preprocessing</h3>
+<div id="staitstical-analysis" class="section level2">
+<h2>Staitstical Analysis</h2>
+<div id="California_data_analysis" class="section level3">
+<h3>California Data Analysis</h3>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["mean_utilization"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["median_utilization"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["total_users"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total_denominator"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["overall_rate_weighted"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2013","2":"0.1667236","3":"0.10715","4":"10801088","5":"52753344","6":"0.2047493"},{"1":"2014","2":"0.1936444","3":"0.14260","4":"14382669","5":"69931976","6":"0.2056662"},{"1":"2015","2":"0.1957111","3":"0.14855","4":"15692865","5":"77937696","6":"0.2013563"},{"1":"2016","2":"0.2065703","3":"0.15830","4":"18345247","5":"85626052","6":"0.2142503"},{"1":"2017","2":"0.2212919","3":"0.17880","4":"19187205","5":"84350551","6":"0.2274671"},{"1":"2018","2":"0.2397186","3":"0.19865","4":"23829529","5":"95997256","6":"0.2482314"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-</div>
-<div id="annual-summary-report" class="section level3">
-<h3>Annual Summary Report</h3>
+<div id="annual-summary-report" class="section level4">
+<h4>Annual Summary Report</h4>
 <p><img src="statistical_analysis_files/figure-html/plot_weighted_utilization_rate-1.png" width="768" /></p>
 <ul>
 <li>This report analyzes the trends in dental service utilization in
@@ -568,8 +578,8 @@ in CY 2013 to 111,088,145 in CY 2023, representing a growth of
 110.6%.</li>
 </ul>
 </div>
-<div id="service-type-utilization-trends" class="section level3">
-<h3>Service Type Utilization Trends</h3>
+<div id="service-type-utilization-trends" class="section level4">
+<h4>Service Type Utilization Trends</h4>
 <p><img src="statistical_analysis_files/figure-html/plot_measure_trends-1.png" width="768" /></p>
 <p>The figure below illustrates the mean utilization rate for each
 service type from 2013 to 2023.</p>
@@ -588,12 +598,12 @@ period, after which utilization levels gradually recovered.</p>
 consistent upward trend, highlighting an overall improvement in access
 to dental care.</p>
 </div>
-<div id="age-group-mean-utilization-trends" class="section level3">
-<h3>Age Group Mean Utilization Trends</h3>
+<div id="age-group-mean-utilization-trends" class="section level4">
+<h4>Age Group Mean Utilization Trends</h4>
 <p><img src="statistical_analysis_files/figure-html/plot_age_group_trends-1.png" width="960" /></p>
 </div>
-<div id="linear-model-analysis" class="section level3">
-<h3>Linear Model Analysis</h3>
+<div id="linear-model-analysis" class="section level4">
+<h4>Linear Model Analysis</h4>
 <table>
 <caption>linear model results for year trend</caption>
 <thead>
@@ -648,8 +658,8 @@ clear and statistically significant linear increase over time, implying
 a steady improvement in overall access and use of dental care
 services.</p>
 </div>
-<div id="covid-19-interrupted-time-series-its" class="section level3">
-<h3>COVID-19 Interrupted Time Series (ITS)</h3>
+<div id="covid-19-interrupted-time-series-its" class="section level4">
+<h4>COVID-19 Interrupted Time Series (ITS)</h4>
 <p>We estimate the following model:</p>
 <p><span class="math display">\[
 \text{utilization}_{t}
@@ -672,8 +682,8 @@ services.</p>
   </script>
 </div>
 <p><img src="statistical_analysis_files/figure-html/covid_its_plot-1.png" width="960" /></p>
-<div id="interpretation" class="section level4">
-<h4>Interpretation</h4>
+<div id="interpretation" class="section level5">
+<h5>Interpretation</h5>
 <pre><code>## **Pre-COVID yearly slope:** 0.014</code></pre>
 <pre><code>## **Immediate drop at COVID (level change):** 0.8248</code></pre>
 <pre><code>## **Post-COVID slope change:** -4e-04</code></pre>
@@ -691,8 +701,8 @@ measurable long-term deviation attributable to the pandemic within this
 aggregated CA system-level dataset.</p>
 </div>
 </div>
-<div id="age-gap-inequality-trend-over-time" class="section level3">
-<h3>Age-gap Inequality Trend Over Time</h3>
+<div id="age-gap-inequality-trend-over-time" class="section level4">
+<h4>Age-gap Inequality Trend Over Time</h4>
 <p>We compute utilization gap between highest vs lowest age-groups each
 year. This checks whether age inequality is widening or narrowing.</p>
 <p><img src="statistical_analysis_files/figure-html/age_gap-1.png" width="960" /></p>
@@ -710,8 +720,8 @@ the trend suggests that age-related disparities in dental service use
 were increasing prior to COVID-19, temporarily compressed during the
 pandemic, and have since partially re-expanded.</p>
 </div>
-<div id="service-composition-shift" class="section level3">
-<h3>Service Composition Shift</h3>
+<div id="service-composition-shift" class="section level4">
+<h4>Service Composition Shift</h4>
 <p>We examine how the proportion of each service category changes over
 time.</p>
 <p><img src="statistical_analysis_files/figure-html/service_composition-1.png" width="960" /></p>
@@ -731,8 +741,8 @@ structural distribution of service types within Medi-Cal dental
 utilization remained largely intact.</p>
 </div>
 <div id="age-specific-yearly-slope-trend-strength"
-class="section level3">
-<h3>Age-specific Yearly Slope (Trend Strength)</h3>
+class="section level4">
+<h4>Age-specific Yearly Slope (Trend Strength)</h4>
 <p>Fit separate trend models for each age group.</p>
 <table>
 <caption>Yearly Trend Slopes by Age Group</caption>
@@ -866,10 +876,10 @@ high baseline utilization—have experienced comparatively slower
 incremental gains.</p>
 </div>
 </div>
-<div id="nhanes-data-analysis" class="section level2">
-<h2>NHANES Data Analysis</h2>
-<div id="analytic-approach" class="section level3">
-<h3>Analytic Approach</h3>
+<div id="NHANES_data_analysis" class="section level3">
+<h3>NHANES Data Analysis</h3>
+<div id="analytic-approach" class="section level4">
+<h4>Analytic Approach</h4>
 <p>Using NHANES oral health summary tables, we described age-, sex-, and
 race-specific prevalence of total and untreated caries in primary and
 permanent dentition. For each age group we plotted time trends
@@ -880,8 +890,8 @@ of prevalence on survey mid-year and reported slopes as percentage-point
 change per 10 years. Because we used published summary estimates rather
 than microdata, all analyses are descriptive.</p>
 </div>
-<div id="results-summary" class="section level3">
-<h3>Results Summary</h3>
+<div id="results-summary" class="section level4">
+<h4>Results Summary</h4>
 <p>In the most recent available survey mid-year (2017 for permanent
 dentition and 2015 for some primary measures), caries showed a strong
 age gradient: permanent-tooth caries was lowest in children 6–11 years,
@@ -900,8 +910,8 @@ Non-Hispanic Black groups had higher permanent-tooth caries than
 Non-Hispanic Whites across most survey years; gaps narrowed slightly but
 racial/ethnic disparities persisted.</p>
 </div>
-<div id="overall-interpretation" class="section level3">
-<h3>Overall Interpretation</h3>
+<div id="overall-interpretation" class="section level4">
+<h4>Overall Interpretation</h4>
 <p>Overall, NHANES data suggest that dental caries is a lifelong,
 cumulative condition: primary caries remains common in children,
 permanent caries becomes almost universal in older adults, and declines
@@ -912,8 +922,8 @@ stage, with superimposed racial/ethnic disparities, appear to be the
 main axes of inequality in U.S. dental caries burden.</p>
 <p><img src="statistical_analysis_files/figure-html/nhanes_trend_plots-1.png" width="960" /></p>
 </div>
-<div id="long-term-regression-slope" class="section level3">
-<h3>Long-term Regression (Slope)</h3>
+<div id="long-term-regression-slope" class="section level4">
+<h4>Long-term Regression (Slope)</h4>
 <table style="width:100%;">
 <caption>Estimated linear time trends (slopes) in caries prevalence by
 dentition, age group, and outcome. Slopes are interpreted as
@@ -1164,23 +1174,23 @@ percentage-point change per 10 years.</caption>
 </tbody>
 </table>
 </div>
-<div id="trend-heatmap" class="section level3">
-<h3>Trend heatmap</h3>
+<div id="trend-heatmap" class="section level4">
+<h4>Trend heatmap</h4>
 <p><img src="statistical_analysis_files/figure-html/trend_heatmap-1.png" width="768" /></p>
 </div>
-<div id="caries-prevalence-by-age-and-sex" class="section level3">
-<h3>Caries prevalence by age and sex</h3>
+<div id="caries-prevalence-by-age-and-sex" class="section level4">
+<h4>Caries prevalence by age and sex</h4>
 <p><img src="statistical_analysis_files/figure-html/filtered_bar_chart-1.png" width="768" /></p>
 </div>
-<div id="raceethnicity-trends" class="section level3">
-<h3>Race/Ethnicity Trends</h3>
+<div id="raceethnicity-trends" class="section level4">
+<h4>Race/Ethnicity Trends</h4>
 <p><img src="statistical_analysis_files/figure-html/unnamed-chunk-5-1.png" width="960" /></p>
 </div>
 </div>
-<div id="combined-data-analysis" class="section level2">
-<h2>Combined data analysis</h2>
-<div id="sensitivity-analysis" class="section level3">
-<h3>Sensitivity analysis</h3>
+<div id="Combined_data_analysis" class="section level3">
+<h3>Combined data analysis</h3>
+<div id="sensitivity-analysis" class="section level4">
+<h4>Sensitivity analysis</h4>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>ca_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/clean_ca.csv&quot;</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>nhanes_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/nhanes_oral_clean.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ca_data <span class="ot">&lt;-</span> ca_data <span class="sc">%&gt;%</span></span>
@@ -1215,8 +1225,8 @@ percentage-point change per 10 years.</caption>
 <span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>    <span class="at">util_rate_num =</span> <span class="fu">parse_number</span>(utilization_rate) <span class="sc">/</span> <span class="dv">100</span></span>
 <span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
-<div id="main-trend-plot-for-california-data" class="section level3">
-<h3>Main trend plot for California data</h3>
+<div id="main-trend-plot-for-california-data" class="section level4">
+<h4>Main trend plot for California data</h4>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(ca_data, <span class="fu">aes</span>(year_num, util_rate_num, <span class="at">color =</span> age_group_baseline)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>()) <span class="sc">+</span></span>
@@ -1228,8 +1238,8 @@ percentage-point change per 10 years.</caption>
 <p><img src="statistical_analysis_files/figure-html/ca_main_trend-1.png" width="960" /></p>
 </div>
 <div id="sensitivity-analysis-a-baseline-vs-alternative-grouping"
-class="section level3">
-<h3>Sensitivity Analysis A: Baseline vs Alternative Grouping**</h3>
+class="section level4">
+<h4>Sensitivity Analysis A: Baseline vs Alternative Grouping**</h4>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>sens_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  ca_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(year_num, util_rate_num, <span class="at">age_group =</span> age_group_baseline) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">scenario =</span> <span class="st">&quot;Baseline&quot;</span>),</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  ca_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(year_num, util_rate_num, <span class="at">age_group =</span> age_group_alt) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">scenario =</span> <span class="st">&quot;Alternative&quot;</span>)</span>
@@ -1246,8 +1256,8 @@ class="section level3">
 <span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="statistical_analysis_files/figure-html/ca_sensitivity_analysis-1.png" width="960" /></p>
 </div>
-<div id="sensitivity-summary-table" class="section level3">
-<h3>Sensitivity Summary Table</h3>
+<div id="sensitivity-summary-table" class="section level4">
+<h4>Sensitivity Summary Table</h4>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>sens_summary_A <span class="ot">&lt;-</span> sens_data <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="fu">group_by</span>(age_group, scenario) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_rate =</span> <span class="fu">mean</span>(util_rate_num), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1278,8 +1288,8 @@ These differences were small and did not change temporal trends or
 overall conclusions; therefore, the baseline life-stage grouping was
 retained for the main analysis.”</p>
 </div>
-<div id="combined-analysis" class="section level3">
-<h3>Combined analysis</h3>
+<div id="combined-analysis" class="section level4">
+<h4>Combined analysis</h4>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
@@ -1310,8 +1320,8 @@ retained for the main analysis.”</p>
 <span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(y1)) <span class="sc">%&gt;%</span></span>
 <span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>  <span class="fu">select</span>(year, untreated)</span></code></pre></div>
 </div>
-<div id="ca-vs-nhanes-overlay" class="section level3">
-<h3>CA vs NHANES overlay</h3>
+<div id="ca-vs-nhanes-overlay" class="section level4">
+<h4>CA vs NHANES overlay</h4>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">## --------------------------------------------------</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="do">## CA vs NHANES overlay (no join, two datasets)</span></span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="do">## --------------------------------------------------</span></span>
@@ -1396,8 +1406,8 @@ temporally aligned, both trajectories suggest improving preventive
 behaviors or outcomes over time, with the CA pattern additionally
 highlighting the strong impact of the pandemic on service use.</p>
 </div>
-<div id="heatmap" class="section level3">
-<h3>Heatmap</h3>
+<div id="heatmap" class="section level4">
+<h4>Heatmap</h4>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -1498,9 +1508,6 @@ highlighting the strong impact of the pandemic on service use.</p>
 <span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a></span>
 <span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div>
 <p><img src="statistical_analysis_files/figure-html/unnamed-chunk-12-1.png" width="1344" /></p>
-<p>Across life-stages, California’s preventive utilization trends
-broadly align with NHANES untreated caries risk patterns: higher caries
-burden groups generally correspond to higher preventive utilization.</p>
 </div>
 </div>
 </div>
