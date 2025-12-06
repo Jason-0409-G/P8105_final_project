@@ -417,71 +417,86 @@ div.tocify {
 
 <div id="background-motivation" class="section level2">
 <h2>Background &amp; Motivation</h2>
-<p>Dental caries remains the <strong>most common chronic disease of
-childhood</strong> in the United States, with progress in prevention
-being slower among low-income and minority children. Despite the proven
-effectiveness of preventive measures like dental sealants in reducing
-pit-and-fissure caries, disparities persist in access to and utilization
-of these services.</p>
-<p>This project aims to bridge the gap between:</p>
+<p>California’s Medi-Cal program provides dental care to millions of
+children and adults, yet long-term trends in utilization and disparities
+remain poorly understood. Meanwhile, national NHANES surveillance
+consistently shows unequal burdens of dental caries across age groups,
+with pronounced disease among adolescents and adults.</p>
+<p>To understand how service delivery aligns with broader oral health
+needs, this project integrates:</p>
 <ul>
-<li><strong>National oral health surveillance</strong> (NHANES
-data)</li>
-<li><strong>State-level preventive service delivery</strong> (California
-Medi-Cal data)</li>
+<li><strong>Statewide administrative utilization data from California
+(2013–2023)</strong></li>
+<li><strong>National oral health prevalence estimates from NHANES
+(1999–2018)</strong></li>
 </ul>
-<p>By integrating these complementary data sources, we assess whether
-state-level trends in preventive dental service utilization are
-temporally aligned with national changes in caries burden.</p>
+<p>By combining these complementary data sources, we examine whether
+increases in preventive dental service utilization in California
+correspond to national changes in caries burden, and how trends vary
+across age groups, service types, and the COVID-19 disruption.</p>
 </div>
 <div id="research-objectives" class="section level2">
 <h2>Research Objectives</h2>
-<p>Our primary objectives include:</p>
+<p>Our analysis addresses the following questions:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Temporal Trend Analysis</strong>
+<li><strong>California Utilization Trends (2013–2023)</strong>
 <ul>
-<li>Describe time trends in total and untreated dental caries by age,
-sex, and race/ethnicity</li>
-<li>Assess inequality trends across demographic subgroups over two
-decades</li>
+<li>How have overall dental service utilization rates changed over
+time?</li>
+<li>How do trends differ across age groups and service categories?</li>
+<li>Has age-based inequality widened or narrowed?</li>
 </ul></li>
-<li><strong>Preventive Care Utilization</strong>
+<li><strong>COVID-19 Impact</strong>
 <ul>
-<li>Analyze preventive visit and sealant utilization trends (2013–2023)
-among children and adolescents in California’s Medi-Cal program</li>
-<li>Identify patterns and gaps in service delivery</li>
+<li>Did the pandemic cause measurable disruptions in access to dental
+care?</li>
+<li>Can interrupted time-series models detect level or slope
+changes?</li>
 </ul></li>
-<li><strong>COVID-19 Impact Assessment</strong>
+<li><strong>NHANES Caries Burden Trends (1999–2018)</strong>
 <ul>
-<li>Evaluate pandemic-related disruptions in dental care access using
-interrupted time-series analysis</li>
-<li>Quantify the magnitude and duration of service interruptions</li>
+<li>What are the long-term trends in total and untreated caries across
+age groups?</li>
+<li>How do disease patterns differ by age and race/ethnicity?</li>
 </ul></li>
-<li><strong>Ecological Analysis</strong>
+<li><strong>California vs. National Alignment</strong>
 <ul>
-<li>Explore temporal associations between California preventive
-utilization (as a proxy for preventive coverage) and national caries
-burden</li>
-<li>Conduct weighted least squares regression accounting for standard
-errors</li>
+<li>Do increases in preventive utilization align with declines in
+untreated caries nationally?</li>
+<li>How do life-stage utilization patterns compare with life-stage
+disease burdens?</li>
+</ul></li>
+<li><strong>Additional Analyses</strong>
+<ul>
+<li>Estimate yearly slopes for each age group to quantify trend
+intensity.</li>
+<li>Evaluate cross-sectional patterns across service types (preventive,
+diagnostic, restorative, sealants).</li>
+<li>Conduct sensitivity analyses for age-group definitions.</li>
 </ul></li>
 </ol>
-<hr />
 </div>
 <div id="expected-outcomes" class="section level2">
 <h2>Expected Outcomes</h2>
-<p>This analysis will produce:</p>
+<p>This project delivers:</p>
 <ul>
-<li><strong>Interactive visualizations</strong> showing trends over
-time</li>
-<li><strong>Statistical models</strong> quantifying relationships
-between preventive care and caries burden</li>
-<li><strong>Policy-relevant insights</strong> for improving oral health
-equity</li>
-<li><strong>Reproducible research</strong> via GitHub Pages and R
-Markdown</li>
+<li><p><strong>Comprehensive descriptive visualizations</strong><br />
+including age-stratified trends, service-type patterns, inequality gaps,
+and heatmaps.</p></li>
+<li><p><strong>Statistical models and longitudinal
+indicators</strong><br />
+such as yearly trend slopes and interrupted time-series (ITS) estimates
+for COVID-19.</p></li>
+<li><p><strong>Integrated interpretation across two
+datasets</strong><br />
+comparing California’s preventive utilization with national caries
+burden trends.</p></li>
+<li><p><strong>Equity-relevant insights</strong><br />
+highlighting life-stage disparities and data limitations.</p></li>
+<li><p><strong>Fully reproducible research workflow</strong><br />
+implemented via GitHub, R Markdown, and a published project
+website.</p></li>
 </ul>
-<hr />
 </div>
 
 

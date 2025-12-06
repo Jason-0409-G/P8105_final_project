@@ -308,7 +308,7 @@ write_csv(nhanes_clean, "datasets/nhanes_oral_clean.csv")
 ```
 We used NHANES oral health data and first removed non-analytic note variables (e.g., presentation and footnote columns). Variable names were standardized to a consistent snake_case format, and percentage values were converted from character strings with “%” symbols to numeric. Survey year ranges (e.g., “2011–2012”) were cleaned and used to derive a mid-point year variable for trend analyses. We created a simplified measure variable (e.g., “total_perm”, “untreated_primary”) and restricted the dataset to pre-specified age groups (2–5, 6–11, 12–19, 20–29, 30–39, 40–49, 50–59, 60–69, ≥70 years). Finally, observations with missing percentages were excluded, and the cleaned dataset was saved for subsequent analyses.
 
-### sensitivity analysis code for age group definitions
+### Sensitivity analysis code for age group definitions
 
 ```{r sensitivity-analysis,message=FALSE, warning=FALSE}
 
@@ -423,7 +423,7 @@ This section summarizes descriptive findings from both the California administra
 
 ## 5.1 California statewide utilization trends (2013–2023)
 
-```{r plot_statewide_trends, echo=FALSE, message=FALSE, warning=FALSE,fig.width=10, fig.height=6}
+```{r plot_statewide_trends, message=FALSE, warning=FALSE,fig.width=10, fig.height=6}
 
 library(tidyverse)
 library(scales)
@@ -489,7 +489,7 @@ The mean utilization rate was **`r scales::percent(mean_rate)`**, and enrollment
 
 ## 5.2 Age-group disparities in utilization
 
-```{r plot_age_group_trends, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
+```{r plot_age_group_trends, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
 age_year_summary <- df %>%
   group_by(year, age_group) %>%
   summarize(mean_util = mean(utilization_rate, na.rm = TRUE), .groups = "drop")
@@ -513,14 +513,156 @@ Time-series plots reveal persistent age gradients, with younger groups accessing
 
 ### 5.2.1 Overall weighted utilization by age group
 To complement the time-series patterns above, we also aggregated utilization across all years and service types, weighting by the eligible population size (denominator) in each age group. This provides a long-run view of which age groups rely most heavily on dental services overall.
-```{r}
+```{r age_group_weighted_summary, message=FALSE, warning=FALSE}
+ca <- readr::read_csv("datasets/clean_ca.csv") %>%
+  dplyr::mutate(
+    users       = as.numeric(users),
+    denominator = as.numeric(denominator)
+  )
 
+age_summary_weighted <- ca %>%
+  dplyr::group_by(age_group) %>%
+  dplyr::summarise(
+    total_users = sum(users, na.rm = TRUE),
+    total_denom = sum(denominator, na.rm = TRUE),
+    weighted_util = total_users / total_denom,
+    .groups = "drop"
+  ) %>%
+  dplyr::arrange(dplyr::desc(weighted_util))
+
+knitr::kable(age_summary_weighted,
+             caption = "Weighted average utilization by age group (2013–2022)")
 ```
 
+```{r}
+library(scales)
 
+age_summary_weighted %>%
+  ggplot2::ggplot(ggplot2::aes(x = reorder(age_group, weighted_util),
+                               y = weighted_util)) +
+  ggplot2::geom_col(width = 0.7) +
+  ggplot2::coord_flip() +
+  scale_y_continuous(labels = percent_format(accuracy = 0.1),
+                     expand = expansion(mult = c(0, 0.05))) +
+  ggplot2::labs(
+    title    = "Weighted average dental service utilization by age group",
+    subtitle = "Weighted by eligible population size across all service types, 2013–2022",
+    x = "Age group",
+    y = "Weighted utilization rate"
+  ) +
+  ggplot2::theme_minimal(base_size = 12)
+```
+
+After weighting each age group by its eligible population size, the overall age pattern remains similar to the time-series plots, but the weighted results better reflect true population-level service use:
+
+-	Children aged 6–9 show the highest weighted utilization (~42–43%), followed by ages 3–5 and 10–14.
+-	Adolescents (15–18) also have relatively high utilization (~33%).
+-	Adults over 45 have substantially lower utilization (<20%), and infants (<1) use services least.
+
+### 5.2.2 Age-gap inequality trend over time
+We compute utilization gap between highest vs lowest age-groups each year.
+This checks whether age inequality is widening or narrowing.
+```{r age_gap_inequality, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(stringr)
+library(readr)
+
+ca_gap <- readr::read_csv("datasets/clean_ca.csv") %>%
+  mutate(
+    year_num = as.numeric(str_replace(year, "CY\\s*", "")),
+    util_num = readr::parse_number(utilization_rate) / 100,
+    denominator = as.numeric(denominator)
+  ) %>%
+  group_by(year_num, age_group) %>%
+  summarise(
+    mean_util = weighted.mean(util_num, denominator, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+age_gap <- ca_gap %>%
+  group_by(year_num) %>%
+  summarise(
+    max_age = max(mean_util, na.rm = TRUE),
+    min_age = min(mean_util, na.rm = TRUE),
+    gap     = max_age - min_age,
+    .groups = "drop"
+  )
+
+ggplot(age_gap, aes(x = year_num, y = gap)) +
+  geom_line(linewidth = 1.2, color = "#8E44AD") +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(
+    title    = "Age Inequality Gap in Utilization Over Time",
+    subtitle = "Gap = Highest age group's utilization − Lowest age group",
+    x = "Year",
+    y = "Utilization gap"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+The **age-based utilization gap widened steadily before COVID-19**, increasing from about **39% in 2013** to nearly **46% in 2019** between the highest- and lowest-utilizing age groups.  
+In **2020**, the gap **narrowed sharply to ~36%**, driven by a disproportionate drop among high-utilization age groups.  
+The gap has since **partially widened again**, but remains below its pre-pandemic peak.  
+**Overall, age-related disparities in dental service use increased before COVID, compressed briefly during 2020, and then re-expanded.**
+
+### 5.2.3 Age-specific yearly slope (trend strength)
+```{r age_specific_slopes, message=FALSE, warning=FALSE}
+library(broom)
+
+age_slopes <- ca %>%
+  mutate(
+    year_num = as.numeric(gsub("CY\\s*", "", year)),
+    util_num = readr::parse_number(utilization_rate) / 100
+  ) %>%
+  group_by(age_group) %>%
+  do(tidy(lm(util_num ~ year_num, data = .))) %>%
+  ungroup() %>%
+  filter(term == "year_num") %>%
+  arrange(desc(estimate))
+
+knitr::kable(
+  age_slopes %>%
+    select(age_group, estimate, std.error, statistic, p.value),
+  caption = "Yearly trend slopes by age group"
+)
+```
+
+```{r age_specific_slopes_plot, message=FALSE, warning=FALSE, fig.width=7, fig.height=5}
+age_slopes %>%
+  ggplot(aes(x = reorder(age_group, estimate), y = estimate)) +
+  geom_col() +
+  geom_text(aes(label = round(estimate, 4)),
+            hjust = -0.1, size = 3) +
+  coord_flip() +
+  labs(
+    title = "Strength of yearly trend by age group",
+    x = "Age group",
+    y = "Yearly slope (change in utilization)"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+Yearly trend estimates show **substantial differences** in how fast utilization is growing across age groups.
+
+The steepest increases occur among  
+
+- **children aged 1–2** (slope ≈ **0.0169/year**) and  
+- **middle-aged adults (45–74)** (≈ **0.010–0.011/year**), indicating rapid gains in these groups.
+
+In contrast,  
+
+- **school-aged children (3–14)** and  
+- **adolescents (15–18)** have **smaller slopes** (≈ **0.004–0.006**), despite already having the highest baseline utilization.
+
+Infants (**<1**) show the **weakest growth** (~**0.003**).
+
+	
 ## 5.3 Trends by service type
 
-```{r plot_measure_trends, echo=FALSE, fig.width=8, fig.height=5}
+```{r plot_measure_trends, fig.width=8, fig.height=5}
 measure_year_summary <- df %>%
   group_by(year, measure) %>%
   summarize(mean_util = mean(utilization_rate, na.rm = TRUE), .groups = "drop")
@@ -529,11 +671,12 @@ ggplot(measure_year_summary, aes(year, mean_util, color = measure)) +
   geom_line(linewidth = 1.1) +
   geom_point(size = 2) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
-  labs(title = "every serivce average utilization", x = "Year", y = "Mean utilization rate",
+  labs(title = "Every serivce average utilization", x = "Year", y = "Mean utilization rate",
        color = "Service type") +
   theme_minimal() +
   theme(legend.position = "bottom")
 ```
+
 Eight service categories were evaluated from 2013–2023:
 
 - **Dental visits** showed the highest utilization and a consistent upward trend (from ~25.6% to ~34.9%).
@@ -544,9 +687,95 @@ Eight service categories were evaluated from 2013–2023:
 
 These patterns suggest sustained improvements in preventive care access over the decade.
 
+
+### 5.3.1 Overall weighted utilization by service type
+In addition to yearly trends, we summarized utilization across all years and age groups to see which service categories account for the largest share of use.
+```{r service_type_weighted_summary, message=FALSE, warning=FALSE}
+measure_summary_weighted <- ca %>%
+  dplyr::group_by(measure) %>%
+  dplyr::summarise(
+    total_users = sum(users, na.rm = TRUE),
+    total_denom = sum(denominator, na.rm = TRUE),
+    weighted_util = total_users / total_denom,
+    .groups = "drop"
+  ) %>%
+  dplyr::arrange(dplyr::desc(weighted_util))
+
+knitr::kable(measure_summary_weighted,
+             caption = "Weighted average utilization by service type (2013–2022)")
+```
+
+```{r service_type_weighted_plot, message=FALSE, warning=FALSE,fig.width=7, fig.height=4 }
+measure_summary_weighted %>%
+  ggplot2::ggplot(ggplot2::aes(x = reorder(measure, weighted_util),
+                               y = weighted_util)) +
+  ggplot2::geom_col(width = 0.7) +
+  ggplot2::coord_flip() +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 0.1),
+                     expand = expansion(mult = c(0, 0.05))) +
+  ggplot2::labs(
+    title    = "Weighted average utilization by service type",
+    subtitle = "Weighted by denominator across all age groups and years (2013–2022)",
+    x = "Service type",
+    y = "Weighted utilization rate"
+  ) +
+  ggplot2::theme_minimal(base_size = 12)
+```
+
+Weighted averages show that:
+
+- Dental visits have the highest long-run utilization (~32–33%).
+- Diagnostic services and Exam/Evaluation also show high use (around 26–30%).
+- Preventive services and caries-related treatment fall in the mid range.
+- Restorative services and Sealant use are used far less frequently, reflecting their more specialized or episodic nature.
+
+### 5.3.2 Age × service type interaction
+To visualize how service use varies jointly by age and service type, we constructed a heatmap of weighted utilization rates across all years.
+```{r age_service_heatmap,message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
+cross_summary_weighted <- ca %>%
+  dplyr::group_by(age_group, measure) %>%
+  dplyr::summarise(
+    total_users = sum(users, na.rm = TRUE),
+    total_denom = sum(denominator, na.rm = TRUE),
+    weighted_util = total_users / total_denom,
+    .groups = "drop"
+  )
+
+age_order <- c("Age <1","Age 1–2","Age 3–5","Age 6–9","Age 10–14",
+               "Age 15–18","Age 19–20","Age 21–34","Age 35–44",
+               "Age 45–64","Age 65–74","Age 75+")
+
+cross_summary_weighted <- cross_summary_weighted %>%
+  dplyr::mutate(age_group = factor(age_group, levels = age_order))
+
+ggplot2::ggplot(cross_summary_weighted,
+                ggplot2::aes(x = age_group, y = measure, fill = weighted_util)) +
+  ggplot2::geom_tile(color = "white") +
+  scale_fill_viridis_c(option = "C",
+                       labels = scales::percent_format(accuracy = 1)) +
+  ggplot2::labs(
+    title = "Dental service utilization by age group and service type",
+    subtitle = "Weighted by population denominator, 2013–2022",
+    x = "Age group",
+    y = "Service type",
+    fill = "Weighted utilization"
+  ) +
+  ggplot2::theme_minimal(base_size = 12) +
+  ggplot2::theme(
+    axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)
+  )
+```
+The heatmap highlights strong age–service interactions:
+
+- Preventive and diagnostic services are concentrated among school-aged children (6–14).
+- Adolescents and young adults show more use of treatment and restorative services.
+- Older adults have uniformly low utilization across most service types.
+
+These patterns reinforce earlier findings that preventive care is heavily focused on children, while adults engage more episodically and often for treatment rather than prevention.
+
 ## 5.4 Interrupted Time-Series (ITS) analysis of the COVID-19 impact
 
-```{r its_model_fit, echo=FALSE, message=FALSE, warning=FALSE}
+```{r its_model_fit, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(broom)
 library(knitr)
@@ -605,7 +834,7 @@ To contextualize California utilization patterns, national NHANES data were exam
 
 ### 5.5.1 Trends in total and untreated caries (by age groups)
 
-```{r nhanes_trend_plots, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=12}
+```{r nhanes_trend_plots, message=FALSE, warning=FALSE, fig.width=10, fig.height=12}
 library(tidyverse)
 library(readr)
 library(dplyr)
@@ -729,7 +958,7 @@ Overall, the national trends highlight **high total caries, gradual improvement 
 
 ### 5.5.2 National regression slopes
 
-```{r nhanes_slope_estimation, echo=FALSE, message=FALSE, warning=FALSE}
+```{r nhanes_slope_estimation, message=FALSE, warning=FALSE}
 age_primary <- c("2-5", "6-11")
 age_perm    <- c("12-19", "20-29", "30-39", "40-49", "50-59", "60-69")
 
@@ -798,7 +1027,7 @@ Overall, these patterns indicate slow national improvement, driven mainly by red
 
 ### 5.5.3 Sex differences in caries prevalence
 
-```{r sex_diff_combined, echo = FALSE, message = FALSE, warning = FALSE,fig.width = 12, fig.height = 5}
+```{r sex_diff_combined, message = FALSE, warning = FALSE,fig.width = 12, fig.height = 5}
 
 library(tidyverse)
 library(scales)
@@ -917,7 +1146,7 @@ The combined heat map and bar chart indicate that sex differences in dental cari
 
 ### 5.5.4 Race/ethnicity disparities
 
-```{r race, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
+```{r race, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6}
 # Choose outcome & age
 target_measure <- "Total Dental Caries in Permanent Teeth"
 target_age  <- "6-19"
@@ -992,7 +1221,7 @@ This section synthesizes findings from California’s administrative utilization
 
 ## 6.1 Alignment between CA utilization trends and national caries burden
 
-```{r overlay_ca_nhanes, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
+```{r overlay_ca_nhanes, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
 
 library(tidyverse)
 library(scales)
@@ -1076,7 +1305,7 @@ ggplot(overlay_df, aes(x = year, y = z, color = series)) +
 ## 6.2 Age patterns: high utilization in children vs high disease burden in youth
 
 
-```{r lifestage_heatmaps,echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=6}
+```{r lifestage_heatmaps, message=FALSE, warning=FALSE, fig.width=12, fig.height=6}
 library(dplyr)
 library(stringr)
 library(ggplot2)
@@ -1178,7 +1407,7 @@ This suggests that **service utilization in California may be disproportionately
 
 ## 6.3 COVID-19 impacts: similar national and state-level disruptions
 
-```{r covid_impact_comparison, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
+```{r covid_impact_comparison, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
 library(tidyverse)
 library(scales)
 library(broom)
