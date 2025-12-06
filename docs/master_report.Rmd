@@ -86,7 +86,7 @@ library(here)
 setwd("..")
 
 # Read raw data
-raw_data <- read_csv("P8105_final_project/datasets/ca_dental.csv")
+raw_data <- read_csv("datasets/ca_dental.csv")
 
 # Define age group order for proper sorting
 age_order <- c(
@@ -177,6 +177,55 @@ clean_data_final <- clean_data_simple |>
 # Save cleaned dataset
 write_csv(clean_data_final, here("datasets", "clean_ca.csv"))
 ```
+The original Medi-Cal dental utilization dataset contained multiple annotation fields, coded measure names, and inconsistent formatting across variables.  
+To prepare the data for analysis, we conducted a structured cleaning process in **R**, summarized as follows:
+
+1. **Column normalization:**  
+   All column names were standardized using `janitor::clean_names()` to ensure consistent lower-case formatting with underscores.
+
+2. **Invalid record removal:**  
+   Rows annotated as *“No data available”*, *“Cell suppressed for small numbers”*, or *“Cell suppressed for complementary cell”* were excluded.
+
+3. **Measure text cleaning:**  
+   All dash symbols were unified, parentheses and code ranges (e.g., CPT codes) were removed, and extra whitespace was trimmed.
+
+4. **Age group standardization:**  
+   Age labels were harmonized (e.g., `Age1-2`, `Age 1 – 2` → `Age 1–2`) and ordered logically from `<1` to `75+`.
+
+5. **Annotation field removal:**  
+   Redundant annotation columns were dropped, retaining only core analytical variables.
+
+6. **Variable renaming:**  
+   Key variables were renamed for clarity and consistency (e.g.,  
+   `Calendar.Year` → `year`,  
+   `Age.Filter` → `age_group`,  
+   `Denominator..3.Months.Continuous.Eligibility.` → `denominator`,  
+   `Utilization` → `utilization_rate`).
+
+7. **Measure simplification:**  
+   Long descriptive measure names were shortened to concise forms (e.g.,  
+   *Annual Dental Visit* → *Dental visit*,  
+   *Use of Preventive Services* → *Preventive services*).
+
+The final cleaned dataset contains **six essential variables** —  `year`, `age_group`, `measure`, `users`, `denominator`, and `utilization_rate` —  suitable for descriptive and longitudinal analysis.
+
+```{r}
+rename_tbl <- tibble::tribble(
+  ~original_name,        ~new_name,          ~meaning_en,
+  "calendar_year",       "year",             "Reporting year (CY xxxx)",
+  "age_filter",          "age_group",        "Standardized age group (ordered)",
+  "measure",             "measure",          "Type of dental service (cleaned and simplified)",
+  "users",               "users",            "Number of individuals using the service (numerator)",
+  "denominator_3_months_continuous_eligibility", "denominator", "Population with ≥3 months continuous eligibility (denominator for utilization rate)",
+  "utilization",         "utilization_rate", "Service utilization rate = users ÷ denominator"
+)
+
+knitr::kable(
+  rename_tbl,
+  align = "lll",
+  caption = "Table 1: Final variable names and definitions"
+)
+```
 
 ### NHANES datasets were cleaned and processed using the following R code:
 ```{r cleaning-code-nhanes, eval=FALSE, warning=FALSE}
@@ -185,7 +234,7 @@ library(tidyverse)
 library(readr)
 
 # Load the data
-nhanes <- read_csv("P8105_final_project/datasets/nhanes_oral.csv")
+nhanes <- read_csv("datasets/nhanes_oral.csv")
 
 # Delete useless columns (presentation standards and notes)
 cols_to_drop <- c("Presentation Standard", "Note1", "Note2", "Notea", "Noteb")
@@ -257,6 +306,7 @@ nhanes_clean <- nhanes_clean %>%
 # Save cleaned dataset
 write_csv(nhanes_clean, "datasets/nhanes_oral_clean.csv")
 ```
+We used NHANES oral health data and first removed non-analytic note variables (e.g., presentation and footnote columns). Variable names were standardized to a consistent snake_case format, and percentage values were converted from character strings with “%” symbols to numeric. Survey year ranges (e.g., “2011–2012”) were cleaned and used to derive a mid-point year variable for trend analyses. We created a simplified measure variable (e.g., “total_perm”, “untreated_primary”) and restricted the dataset to pre-specified age groups (2–5, 6–11, 12–19, 20–29, 30–39, 40–49, 50–59, 60–69, ≥70 years). Finally, observations with missing percentages were excluded, and the cleaned dataset was saved for subsequent analyses.
 
 ### sensitivity analysis code for age group definitions
 
@@ -269,7 +319,7 @@ library(tidyr)
 library(ggplot2)
 library(scales)
 
-ca_data <- read.csv("~/Desktop/P8105_final_project/datasets/clean_ca.csv") %>%
+ca_data <- read.csv("datasets/clean_ca.csv") %>%
   mutate(
     age_group_std = str_replace_all(age_group, "–", "-"),
     age_group_baseline = case_when(
@@ -439,7 +489,6 @@ The mean utilization rate was **`r scales::percent(mean_rate)`**, and enrollment
 
 ## 5.2 Age-group disparities in utilization
 
-
 ```{r plot_age_group_trends, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6}
 age_year_summary <- df %>%
   group_by(year, age_group) %>%
@@ -461,6 +510,13 @@ Across all years, utilization rates vary substantially by age:
 - Older adults (≥65) show the lowest but steadily increasing utilization, reflecting improving access.
 
 Time-series plots reveal persistent age gradients, with younger groups accessing services more frequently than adults.
+
+### 5.2.1 Overall weighted utilization by age group
+To complement the time-series patterns above, we also aggregated utilization across all years and service types, weighting by the eligible population size (denominator) in each age group. This provides a long-run view of which age groups rely most heavily on dental services overall.
+```{r}
+
+```
+
 
 ## 5.3 Trends by service type
 
