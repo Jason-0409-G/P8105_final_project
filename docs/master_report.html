@@ -941,7 +941,7 @@ saved for subsequent analyses.</p>
 </div>
 <div id="sensitivity-analysis-code-for-age-group-definitions"
 class="section level3">
-<h3>sensitivity analysis code for age group definitions</h3>
+<h3>Sensitivity analysis code for age group definitions</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
@@ -1073,6 +1073,58 @@ national disease burden.</p>
 <div id="california-statewide-utilization-trends-20132023"
 class="section level2">
 <h2>5.1 California statewide utilization trends (2013–2023)</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Load and preprocess data</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>df_raw <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;datasets/clean_ca.csv&quot;</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">str_replace</span>(year, <span class="st">&quot;CY</span><span class="sc">\\</span><span class="st">s*&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.integer</span>(),</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>    <span class="at">utilization_rate =</span> <span class="fu">str_replace</span>(utilization_rate, <span class="st">&quot;%&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>() <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>    <span class="at">users =</span> <span class="fu">as.numeric</span>(users),</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>    <span class="at">denominator =</span> <span class="fu">as.numeric</span>(denominator)</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>  )</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co"># Year-level summary</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>year_summary <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>    <span class="at">mean_utilization   =</span> <span class="fu">mean</span>(utilization_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>    <span class="at">median_utilization =</span> <span class="fu">median</span>(utilization_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>    <span class="at">total_users        =</span> <span class="fu">sum</span>(users, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>    <span class="at">total_denominator  =</span> <span class="fu">sum</span>(denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>    <span class="at">overall_rate_weighted =</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>      <span class="fu">sum</span>(utilization_rate <span class="sc">*</span> denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>      <span class="fu">sum</span>(denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>  )</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co"># ---- Numbers for inline text ----</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>mean_rate <span class="ot">&lt;-</span> <span class="fu">mean</span>(year_summary<span class="sc">$</span>overall_rate_weighted, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>peak_rate <span class="ot">&lt;-</span> <span class="fu">max</span>(year_summary<span class="sc">$</span>overall_rate_weighted, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>peak_year <span class="ot">&lt;-</span> year_summary<span class="sc">$</span>year[<span class="fu">which.max</span>(year_summary<span class="sc">$</span>overall_rate_weighted)]</span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>year_summary <span class="ot">&lt;-</span> year_summary <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(year)</span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a>den_first <span class="ot">&lt;-</span> <span class="fu">first</span>(year_summary<span class="sc">$</span>total_denominator)</span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>den_last  <span class="ot">&lt;-</span> <span class="fu">last</span>(year_summary<span class="sc">$</span>total_denominator)</span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a>growth <span class="ot">&lt;-</span> (den_last <span class="sc">-</span> den_first) <span class="sc">/</span> den_first   </span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="co"># ---- Plot ----</span></span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a><span class="fu">ggplot</span>(year_summary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> overall_rate_weighted)) <span class="sc">+</span></span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty</span>(year_summary<span class="sc">$</span>year)) <span class="sc">+</span></span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Weighted utilization rate of dental services in CA&quot;</span>,</span>
+<span id="cb7-49"><a href="#cb7-49" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb7-50"><a href="#cb7-50" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Weighted utilization rate&quot;</span></span>
+<span id="cb7-51"><a href="#cb7-51" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-52"><a href="#cb7-52" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="master_report_files/figure-html/plot_statewide_trends-1.png" width="960" /></p>
 <p>Statewide weighted dental service utilization in California
 shows:</p>
@@ -1088,6 +1140,17 @@ increased by over <strong>111%</strong>.</p>
 </div>
 <div id="age-group-disparities-in-utilization" class="section level2">
 <h2>5.2 Age-group disparities in utilization</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>age_year_summary <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="fu">group_by</span>(year, age_group) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_util =</span> <span class="fu">mean</span>(utilization_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">ggplot</span>(age_year_summary, <span class="fu">aes</span>(year, mean_util, <span class="at">group =</span> age_group)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> age_group) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;age group weight trends&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean utilization rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="master_report_files/figure-html/plot_age_group_trends-1.png" width="960" /></p>
 <p>Across all years, utilization rates vary substantially by age:</p>
 <ul>
@@ -1108,10 +1171,153 @@ utilization across all years and service types, weighting by the
 eligible population size (denominator) in each age group. This provides
 a long-run view of which age groups rely most heavily on dental services
 overall.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ca <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;datasets/clean_ca.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="at">users       =</span> <span class="fu">as.numeric</span>(users),</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="at">denominator =</span> <span class="fu">as.numeric</span>(denominator)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  )</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>age_summary_weighted <span class="ot">&lt;-</span> ca <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(age_group) <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>    <span class="at">total_users =</span> <span class="fu">sum</span>(users, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>    <span class="at">total_denom =</span> <span class="fu">sum</span>(denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>    <span class="at">weighted_util =</span> total_users <span class="sc">/</span> total_denom,</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(weighted_util))</span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(age_summary_weighted,</span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Weighted average utilization by age group (2013–2022)&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Weighted average utilization by age group (2013–2022)</caption>
+<thead>
+<tr class="header">
+<th align="left">age_group</th>
+<th align="right">total_users</th>
+<th align="right">total_denom</th>
+<th align="right">weighted_util</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Age 6–9</td>
+<td align="right">40582322</td>
+<td align="right">95145614</td>
+<td align="right">0.4265286</td>
+</tr>
+<tr class="even">
+<td align="left">Age 3–5</td>
+<td align="right">23744880</td>
+<td align="right">60055501</td>
+<td align="right">0.3953823</td>
+</tr>
+<tr class="odd">
+<td align="left">Age 10–14</td>
+<td align="right">42226240</td>
+<td align="right">116131801</td>
+<td align="right">0.3636062</td>
+</tr>
+<tr class="even">
+<td align="left">Age 15–18</td>
+<td align="right">25440852</td>
+<td align="right">76874410</td>
+<td align="right">0.3309405</td>
+</tr>
+<tr class="odd">
+<td align="left">Age 19–20</td>
+<td align="right">7168455</td>
+<td align="right">33929864</td>
+<td align="right">0.2112727</td>
+</tr>
+<tr class="even">
+<td align="left">Age 1–2</td>
+<td align="right">6097515</td>
+<td align="right">36316061</td>
+<td align="right">0.1679013</td>
+</tr>
+<tr class="odd">
+<td align="left">Age 45–64</td>
+<td align="right">25894840</td>
+<td align="right">163704702</td>
+<td align="right">0.1581802</td>
+</tr>
+<tr class="even">
+<td align="left">Age 65–74</td>
+<td align="right">7832363</td>
+<td align="right">51298149</td>
+<td align="right">0.1526832</td>
+</tr>
+<tr class="odd">
+<td align="left">Age 35–44</td>
+<td align="right">12483435</td>
+<td align="right">86622304</td>
+<td align="right">0.1441134</td>
+</tr>
+<tr class="even">
+<td align="left">Age 21–34</td>
+<td align="right">25108100</td>
+<td align="right">186778161</td>
+<td align="right">0.1344274</td>
+</tr>
+<tr class="odd">
+<td align="left">Age 75+</td>
+<td align="right">5130129</td>
+<td align="right">40423363</td>
+<td align="right">0.1269100</td>
+</tr>
+<tr class="even">
+<td align="left">Age &lt;1</td>
+<td align="right">208771</td>
+<td align="right">14611638</td>
+<td align="right">0.0142880</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>age_summary_weighted <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(age_group, weighted_util),</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>                               <span class="at">y =</span> weighted_util)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="fl">0.1</span>),</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">&quot;Weighted average dental service utilization by age group&quot;</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Weighted by eligible population size across all service types, 2013–2022&quot;</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age group&quot;</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Weighted utilization rate&quot;</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<p><img src="master_report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>After weighting each age group by its eligible population size, the
+overall age pattern remains similar to the time-series plots, but the
+weighted results better reflect true population-level service use:</p>
+<ul>
+<li>Children aged 6–9 show the highest weighted utilization (~42–43%),
+followed by ages 3–5 and 10–14.</li>
+<li>Adolescents (15–18) also have relatively high utilization
+(~33%).</li>
+<li>Adults over 45 have substantially lower utilization (&lt;20%), and
+infants (&lt;1) use services least.</li>
+</ul>
 </div>
 </div>
 <div id="trends-by-service-type" class="section level2">
 <h2>5.3 Trends by service type</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>measure_year_summary <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">group_by</span>(year, measure) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_util =</span> <span class="fu">mean</span>(utilization_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">ggplot</span>(measure_year_summary, <span class="fu">aes</span>(year, mean_util, <span class="at">color =</span> measure)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;every serivce average utilization&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean utilization rate&quot;</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Service type&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="master_report_files/figure-html/plot_measure_trends-1.png" width="768" />
 Eight service categories were evaluated from 2013–2023:</p>
 <ul>
@@ -1129,11 +1335,210 @@ recovery.</li>
 </ul>
 <p>These patterns suggest sustained improvements in preventive care
 access over the decade.</p>
+<div id="overall-weighted-utilization-by-service-type"
+class="section level3">
+<h3>5.3.1 Overall weighted utilization by service type</h3>
+<p>In addition to yearly trends, we summarized utilization across all
+years and age groups to see which service categories account for the
+largest share of use.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>measure_summary_weighted <span class="ot">&lt;-</span> ca <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(measure) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    <span class="at">total_users =</span> <span class="fu">sum</span>(users, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>    <span class="at">total_denom =</span> <span class="fu">sum</span>(denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="at">weighted_util =</span> total_users <span class="sc">/</span> total_denom,</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(weighted_util))</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(measure_summary_weighted,</span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Weighted average utilization by service type (2013–2022)&quot;</span>)</span></code></pre></div>
+<table style="width:100%;">
+<caption>Weighted average utilization by service type
+(2013–2022)</caption>
+<colgroup>
+<col width="57%" />
+<col width="13%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">measure</th>
+<th align="right">total_users</th>
+<th align="right">total_denom</th>
+<th align="right">weighted_util</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Dental visit</td>
+<td align="right">46365680</td>
+<td align="right">142528460</td>
+<td align="right">0.3253082</td>
+</tr>
+<tr class="even">
+<td align="left">Diagnostic services</td>
+<td align="right">24741672</td>
+<td align="right">82470159</td>
+<td align="right">0.3000076</td>
+</tr>
+<tr class="odd">
+<td align="left">Exam/Evaluation</td>
+<td align="right">37916792</td>
+<td align="right">142528460</td>
+<td align="right">0.2660296</td>
+</tr>
+<tr class="even">
+<td align="left">Preventive services</td>
+<td align="right">35484508</td>
+<td align="right">142528460</td>
+<td align="right">0.2489644</td>
+</tr>
+<tr class="odd">
+<td align="left">Treatment for Caries or Caries-Preventive
+Procedure</td>
+<td align="right">32943682</td>
+<td align="right">142528460</td>
+<td align="right">0.2311376</td>
+</tr>
+<tr class="even">
+<td align="left">Treatment services</td>
+<td align="right">25414311</td>
+<td align="right">142528460</td>
+<td align="right">0.1783104</td>
+</tr>
+<tr class="odd">
+<td align="left">Sealant use</td>
+<td align="right">3553547</td>
+<td align="right">27992407</td>
+<td align="right">0.1269468</td>
+</tr>
+<tr class="even">
+<td align="left">Restorative services</td>
+<td align="right">15497710</td>
+<td align="right">138786702</td>
+<td align="right">0.1116657</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>measure_summary_weighted <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(measure, weighted_util),</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                               <span class="at">y =</span> weighted_util)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="fl">0.1</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">&quot;Weighted average utilization by service type&quot;</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Weighted by denominator across all age groups and years (2013–2022)&quot;</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Service type&quot;</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Weighted utilization rate&quot;</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<p><img src="master_report_files/figure-html/service_type_weighted_plot-1.png" width="768" />
+Weighted averages show that:</p>
+<ul>
+<li>Dental visits have the highest long-run utilization (~32–33%).</li>
+<li>Diagnostic services and Exam/Evaluation also show high use (around
+26–30%).</li>
+<li>Preventive services and caries-related treatment fall in the mid
+range.</li>
+<li>Restorative services and Sealant use are used far less frequently,
+reflecting their more specialized or episodic nature.</li>
+</ul>
+</div>
+<div id="age-service-type-interaction" class="section level3">
+<h3>5.3.2 Age × service type interaction</h3>
+<p>To visualize how service use varies jointly by age and service type,
+we constructed a heatmap of weighted utilization rates across all
+years.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>cross_summary_weighted <span class="ot">&lt;-</span> ca <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(age_group, measure) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    <span class="at">total_users =</span> <span class="fu">sum</span>(users, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    <span class="at">total_denom =</span> <span class="fu">sum</span>(denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="at">weighted_util =</span> total_users <span class="sc">/</span> total_denom,</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  )</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>age_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Age &lt;1&quot;</span>,<span class="st">&quot;Age 1–2&quot;</span>,<span class="st">&quot;Age 3–5&quot;</span>,<span class="st">&quot;Age 6–9&quot;</span>,<span class="st">&quot;Age 10–14&quot;</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>               <span class="st">&quot;Age 15–18&quot;</span>,<span class="st">&quot;Age 19–20&quot;</span>,<span class="st">&quot;Age 21–34&quot;</span>,<span class="st">&quot;Age 35–44&quot;</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>               <span class="st">&quot;Age 45–64&quot;</span>,<span class="st">&quot;Age 65–74&quot;</span>,<span class="st">&quot;Age 75+&quot;</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>cross_summary_weighted <span class="ot">&lt;-</span> cross_summary_weighted <span class="sc">%&gt;%</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">factor</span>(age_group, <span class="at">levels =</span> age_order))</span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(cross_summary_weighted,</span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>                ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> age_group, <span class="at">y =</span> measure, <span class="at">fill =</span> weighted_util)) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">&quot;C&quot;</span>,</span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a>                       <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Dental service utilization by age group and service type&quot;</span>,</span>
+<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Weighted by population denominator, 2013–2022&quot;</span>,</span>
+<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age group&quot;</span>,</span>
+<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Service type&quot;</span>,</span>
+<span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Weighted utilization&quot;</span></span>
+<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-29"><a href="#cb14-29" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb14-30"><a href="#cb14-30" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb14-31"><a href="#cb14-31" tabindex="-1"></a>    <span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="master_report_files/figure-html/age_service_heatmap-1.png" width="960" />
+The heatmap highlights strong age–service interactions:</p>
+<ul>
+<li>Preventive and diagnostic services are concentrated among
+school-aged children (6–14).</li>
+<li>Adolescents and young adults show more use of treatment and
+restorative services.</li>
+<li>Older adults have uniformly low utilization across most service
+types.</li>
+</ul>
+<p>These patterns reinforce earlier findings that preventive care is
+heavily focused on children, while adults engage more episodically and
+often for treatment rather than prevention.</p>
+</div>
 </div>
 <div id="interrupted-time-series-its-analysis-of-the-covid-19-impact"
 class="section level2">
 <h2>5.4 Interrupted Time-Series (ITS) analysis of the COVID-19
 impact</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;df&quot;</span>)) {</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  df_raw <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;datasets/clean_ca.csv&quot;</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>      <span class="at">year =</span> <span class="fu">str_replace</span>(year, <span class="st">&quot;CY</span><span class="sc">\\</span><span class="st">s*&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.integer</span>(),</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>      <span class="at">utilization_rate =</span> <span class="fu">str_replace</span>(utilization_rate, <span class="st">&quot;%&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>() <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>      <span class="at">users =</span> <span class="fu">as.numeric</span>(users),</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>      <span class="at">denominator =</span> <span class="fu">as.numeric</span>(denominator)</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>    )</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>}</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>fit_its    <span class="ot">&lt;-</span> <span class="fu">lm</span>(utilization_rate <span class="sc">~</span> year <span class="sc">+</span> measure, <span class="at">data =</span> df)</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>tidy_fit   <span class="ot">&lt;-</span> <span class="fu">tidy</span>(fit_its)</span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>glance_fit <span class="ot">&lt;-</span> <span class="fu">glance</span>(fit_its)</span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>its_slope <span class="ot">&lt;-</span> tidy_fit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;year&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(estimate)</span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>its_p     <span class="ot">&lt;-</span> tidy_fit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;year&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(p.value)</span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a>its_r2    <span class="ot">&lt;-</span> glance_fit<span class="sc">$</span>r.squared</span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a>its_aic   <span class="ot">&lt;-</span> glance_fit<span class="sc">$</span>AIC</span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a>its_bic   <span class="ot">&lt;-</span> glance_fit<span class="sc">$</span>BIC</span>
+<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a>tidy_fit <span class="sc">%&gt;%</span></span>
+<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;year&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb15-31"><a href="#cb15-31" tabindex="-1"></a>    <span class="at">term   =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb15-32"><a href="#cb15-32" tabindex="-1"></a>    <span class="at">slope  =</span> <span class="fu">round</span>(estimate, <span class="dv">4</span>),</span>
+<span id="cb15-33"><a href="#cb15-33" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">signif</span>(p.value, <span class="dv">3</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb15-35"><a href="#cb15-35" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;linear model results for year trend&quot;</span>)</span></code></pre></div>
 <table>
 <caption>linear model results for year trend</caption>
 <thead>
@@ -1151,6 +1556,11 @@ impact</h2>
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># summary statistics</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>glance_fit <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">select</span>(r.squared, adj.r.squared, AIC, BIC) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">4</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;model summary statistics&quot;</span>)</span></code></pre></div>
 <table>
 <caption>model summary statistics</caption>
 <thead>
@@ -1200,6 +1610,114 @@ teeth.</p>
 <div id="trends-in-total-and-untreated-caries-by-age-groups"
 class="section level3">
 <h3>5.5.1 Trends in total and untreated caries (by age groups)</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>nhanes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./datasets/nhanes_oral_clean.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">factor</span>(age_group,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;2-5&quot;</span>,<span class="st">&quot;6-11&quot;</span>,<span class="st">&quot;12-19&quot;</span>,<span class="st">&quot;20-29&quot;</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>                                  <span class="st">&quot;30-39&quot;</span>,<span class="st">&quot;40-49&quot;</span>,<span class="st">&quot;50-59&quot;</span>,<span class="st">&quot;60-69&quot;</span>)))</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>race_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./datasets/nhanes_oral.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">race=</span>race_and_hispanic_origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>  <span class="fu">filter</span>(age_group<span class="sc">==</span><span class="st">&quot;6-19&quot;</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>         sex<span class="sc">==</span><span class="st">&quot;All&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>  <span class="fu">drop_na</span>(percent)</span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a>make_trend_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(age_values, age_title,</span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a>                            <span class="at">dentition =</span> <span class="fu">c</span>(<span class="st">&quot;primary&quot;</span>, <span class="st">&quot;perm&quot;</span>),</span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a>                            <span class="at">show_x =</span> <span class="cn">FALSE</span>, <span class="at">show_y =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a>  dentition <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(dentition)</span>
+<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a>  <span class="cf">if</span> (dentition <span class="sc">==</span> <span class="st">&quot;primary&quot;</span>) {</span>
+<span id="cb17-25"><a href="#cb17-25" tabindex="-1"></a>    measures <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;total_primary&quot;</span>, <span class="st">&quot;untreated_primary&quot;</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" tabindex="-1"></a>    labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb17-27"><a href="#cb17-27" tabindex="-1"></a>      <span class="at">total_primary     =</span> <span class="st">&quot;Total Dental Caries in Primary Teeth&quot;</span>,</span>
+<span id="cb17-28"><a href="#cb17-28" tabindex="-1"></a>      <span class="at">untreated_primary =</span> <span class="st">&quot;Untreated Dental Caries in Primary Teeth&quot;</span></span>
+<span id="cb17-29"><a href="#cb17-29" tabindex="-1"></a>    )</span>
+<span id="cb17-30"><a href="#cb17-30" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb17-31"><a href="#cb17-31" tabindex="-1"></a>    measures <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;total_perm&quot;</span>, <span class="st">&quot;untreated_perm&quot;</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" tabindex="-1"></a>    labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb17-33"><a href="#cb17-33" tabindex="-1"></a>      <span class="at">total_perm        =</span> <span class="st">&quot;Total Dental Caries in Permanent Teeth&quot;</span>,</span>
+<span id="cb17-34"><a href="#cb17-34" tabindex="-1"></a>      <span class="at">untreated_perm    =</span> <span class="st">&quot;Untreated Dental Caries in Permanent Teeth&quot;</span></span>
+<span id="cb17-35"><a href="#cb17-35" tabindex="-1"></a>    )</span>
+<span id="cb17-36"><a href="#cb17-36" tabindex="-1"></a>  }</span>
+<span id="cb17-37"><a href="#cb17-37" tabindex="-1"></a></span>
+<span id="cb17-38"><a href="#cb17-38" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span></span>
+<span id="cb17-39"><a href="#cb17-39" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb17-40"><a href="#cb17-40" tabindex="-1"></a>      <span class="fu">tolower</span>(sex) <span class="sc">==</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb17-41"><a href="#cb17-41" tabindex="-1"></a>      age_group <span class="sc">%in%</span> age_values,</span>
+<span id="cb17-42"><a href="#cb17-42" tabindex="-1"></a>      measure_clean <span class="sc">%in%</span> measures</span>
+<span id="cb17-43"><a href="#cb17-43" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb17-44"><a href="#cb17-44" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">measure_label =</span> <span class="fu">recode</span>(measure_clean, <span class="sc">!!!</span>labels)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-45"><a href="#cb17-45" tabindex="-1"></a>    <span class="fu">arrange</span>(year_mid, measure_clean)</span>
+<span id="cb17-46"><a href="#cb17-46" tabindex="-1"></a></span>
+<span id="cb17-47"><a href="#cb17-47" tabindex="-1"></a>  <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> year_mid, <span class="at">y =</span> percent,</span>
+<span id="cb17-48"><a href="#cb17-48" tabindex="-1"></a>                  <span class="at">color =</span> measure_label, <span class="at">fill =</span> measure_label)) <span class="sc">+</span></span>
+<span id="cb17-49"><a href="#cb17-49" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> ci_lower, <span class="at">ymax =</span> ci_upper),</span>
+<span id="cb17-50"><a href="#cb17-50" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.06</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb17-51"><a href="#cb17-51" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
+<span id="cb17-52"><a href="#cb17-52" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.6</span>) <span class="sc">+</span></span>
+<span id="cb17-53"><a href="#cb17-53" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb17-54"><a href="#cb17-54" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb17-55"><a href="#cb17-55" tabindex="-1"></a>      <span class="st">&quot;Total Dental Caries in Primary Teeth&quot;</span>      <span class="ot">=</span> <span class="st">&quot;#E16A5B&quot;</span>,</span>
+<span id="cb17-56"><a href="#cb17-56" tabindex="-1"></a>      <span class="st">&quot;Untreated Dental Caries in Primary Teeth&quot;</span>  <span class="ot">=</span> <span class="st">&quot;#1F9AC9&quot;</span>,</span>
+<span id="cb17-57"><a href="#cb17-57" tabindex="-1"></a>      <span class="st">&quot;Total Dental Caries in Permanent Teeth&quot;</span>    <span class="ot">=</span> <span class="st">&quot;#E16A5B&quot;</span>,</span>
+<span id="cb17-58"><a href="#cb17-58" tabindex="-1"></a>      <span class="st">&quot;Untreated Dental Caries in Permanent Teeth&quot;</span><span class="ot">=</span> <span class="st">&quot;#1F9AC9&quot;</span></span>
+<span id="cb17-59"><a href="#cb17-59" tabindex="-1"></a>    )) <span class="sc">+</span></span>
+<span id="cb17-60"><a href="#cb17-60" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb17-61"><a href="#cb17-61" tabindex="-1"></a>      <span class="st">&quot;Total Dental Caries in Primary Teeth&quot;</span>      <span class="ot">=</span> <span class="st">&quot;#E16A5B&quot;</span>,</span>
+<span id="cb17-62"><a href="#cb17-62" tabindex="-1"></a>      <span class="st">&quot;Untreated Dental Caries in Primary Teeth&quot;</span>  <span class="ot">=</span> <span class="st">&quot;#1F9AC9&quot;</span>,</span>
+<span id="cb17-63"><a href="#cb17-63" tabindex="-1"></a>      <span class="st">&quot;Total Dental Caries in Permanent Teeth&quot;</span>    <span class="ot">=</span> <span class="st">&quot;#E16A5B&quot;</span>,</span>
+<span id="cb17-64"><a href="#cb17-64" tabindex="-1"></a>      <span class="st">&quot;Untreated Dental Caries in Permanent Teeth&quot;</span><span class="ot">=</span> <span class="st">&quot;#1F9AC9&quot;</span></span>
+<span id="cb17-65"><a href="#cb17-65" tabindex="-1"></a>    )) <span class="sc">+</span></span>
+<span id="cb17-66"><a href="#cb17-66" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb17-67"><a href="#cb17-67" tabindex="-1"></a>      <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;Ages &quot;</span>, age_title),</span>
+<span id="cb17-68"><a href="#cb17-68" tabindex="-1"></a>      <span class="at">x =</span> <span class="cf">if</span> (show_x) <span class="st">&quot;Survey year&quot;</span> <span class="cf">else</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-69"><a href="#cb17-69" tabindex="-1"></a>      <span class="at">y =</span> <span class="cf">if</span> (show_y) <span class="st">&quot;Percent (%)&quot;</span> <span class="cf">else</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-70"><a href="#cb17-70" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">&quot;Measure&quot;</span>,</span>
+<span id="cb17-71"><a href="#cb17-71" tabindex="-1"></a>      <span class="at">fill  =</span> <span class="st">&quot;Measure&quot;</span></span>
+<span id="cb17-72"><a href="#cb17-72" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-73"><a href="#cb17-73" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb17-74"><a href="#cb17-74" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb17-75"><a href="#cb17-75" tabindex="-1"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb17-76"><a href="#cb17-76" tabindex="-1"></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb17-77"><a href="#cb17-77" tabindex="-1"></a>      <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>),</span>
+<span id="cb17-78"><a href="#cb17-78" tabindex="-1"></a>      <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),  </span>
+<span id="cb17-79"><a href="#cb17-79" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb17-80"><a href="#cb17-80" tabindex="-1"></a>    )</span>
+<span id="cb17-81"><a href="#cb17-81" tabindex="-1"></a>}</span>
+<span id="cb17-82"><a href="#cb17-82" tabindex="-1"></a></span>
+<span id="cb17-83"><a href="#cb17-83" tabindex="-1"></a>p_2_5  <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="fu">c</span>(<span class="st">&quot;2-5&quot;</span>, <span class="st">&quot;2–5&quot;</span>, <span class="st">&quot;2—5&quot;</span>), <span class="st">&quot;2–5&quot;</span>,  <span class="st">&quot;primary&quot;</span>,  <span class="at">show_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-84"><a href="#cb17-84" tabindex="-1"></a>p_6_11 <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="st">&quot;6-11&quot;</span>, <span class="st">&quot;6–11&quot;</span>,           <span class="st">&quot;primary&quot;</span>)</span>
+<span id="cb17-85"><a href="#cb17-85" tabindex="-1"></a>p_12_19 <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="st">&quot;12-19&quot;</span>, <span class="st">&quot;12–19&quot;</span>,       <span class="st">&quot;perm&quot;</span>, <span class="at">show_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-86"><a href="#cb17-86" tabindex="-1"></a>p_20_29 <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="st">&quot;20-29&quot;</span>, <span class="st">&quot;20–29&quot;</span>,       <span class="st">&quot;perm&quot;</span>)</span>
+<span id="cb17-87"><a href="#cb17-87" tabindex="-1"></a>p_30_39 <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="st">&quot;30-39&quot;</span>, <span class="st">&quot;30–39&quot;</span>,       <span class="st">&quot;perm&quot;</span>, <span class="at">show_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-88"><a href="#cb17-88" tabindex="-1"></a>p_40_49 <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="st">&quot;40-49&quot;</span>, <span class="st">&quot;40–49&quot;</span>,       <span class="st">&quot;perm&quot;</span>)</span>
+<span id="cb17-89"><a href="#cb17-89" tabindex="-1"></a>p_50_59 <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="st">&quot;50-59&quot;</span>, <span class="st">&quot;50–59&quot;</span>,       <span class="st">&quot;perm&quot;</span>, <span class="at">show_y =</span> <span class="cn">TRUE</span>, <span class="at">show_x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-90"><a href="#cb17-90" tabindex="-1"></a>p_60_69 <span class="ot">&lt;-</span> <span class="fu">make_trend_plot</span>(<span class="st">&quot;60-69&quot;</span>, <span class="st">&quot;60–69&quot;</span>,       <span class="st">&quot;perm&quot;</span>, <span class="at">show_x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-91"><a href="#cb17-91" tabindex="-1"></a></span>
+<span id="cb17-92"><a href="#cb17-92" tabindex="-1"></a>combined <span class="ot">&lt;-</span> (p_2_5 <span class="sc">+</span> p_6_11) <span class="sc">/</span></span>
+<span id="cb17-93"><a href="#cb17-93" tabindex="-1"></a>            (p_12_19 <span class="sc">+</span> p_20_29) <span class="sc">/</span></span>
+<span id="cb17-94"><a href="#cb17-94" tabindex="-1"></a>            (p_30_39 <span class="sc">+</span> p_40_49) <span class="sc">/</span></span>
+<span id="cb17-95"><a href="#cb17-95" tabindex="-1"></a>            (p_50_59 <span class="sc">+</span> p_60_69)</span>
+<span id="cb17-96"><a href="#cb17-96" tabindex="-1"></a></span>
+<span id="cb17-97"><a href="#cb17-97" tabindex="-1"></a>combined <span class="sc">+</span></span>
+<span id="cb17-98"><a href="#cb17-98" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&quot;collect&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-99"><a href="#cb17-99" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb17-100"><a href="#cb17-100" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">&quot;Overall Time Trend of Dental Caries by Age Group (sex = All)&quot;</span>,</span>
+<span id="cb17-101"><a href="#cb17-101" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;NHANES; Total vs Untreated caries, shaded ribbons = 95% CI&quot;</span></span>
+<span id="cb17-102"><a href="#cb17-102" tabindex="-1"></a>  ) <span class="sc">&amp;</span></span>
+<span id="cb17-103"><a href="#cb17-103" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-104"><a href="#cb17-104" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,                </span>
+<span id="cb17-105"><a href="#cb17-105" tabindex="-1"></a>    <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb17-106"><a href="#cb17-106" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb17-107"><a href="#cb17-107" tabindex="-1"></a>    <span class="at">legend.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb17-108"><a href="#cb17-108" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="master_report_files/figure-html/nhanes_trend_plots-1.png" width="960" /></p>
 <p>The NHANES age-specific trend panels show three consistent national
 patterns:</p>
@@ -1219,6 +1737,59 @@ disparities.</p>
 </div>
 <div id="national-regression-slopes" class="section level3">
 <h3>5.5.2 National regression slopes</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>age_primary <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2-5&quot;</span>, <span class="st">&quot;6-11&quot;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>age_perm    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;12-19&quot;</span>, <span class="st">&quot;20-29&quot;</span>, <span class="st">&quot;30-39&quot;</span>, <span class="st">&quot;40-49&quot;</span>, <span class="st">&quot;50-59&quot;</span>, <span class="st">&quot;60-69&quot;</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>measures_primary <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;total_primary&quot;</span>, <span class="st">&quot;untreated_primary&quot;</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>measures_perm    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;total_perm&quot;</span>, <span class="st">&quot;untreated_perm&quot;</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>slope_dat <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>    <span class="fu">tolower</span>(sex) <span class="sc">==</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>    <span class="fu">tolower</span>(race_ethnicity) <span class="sc">==</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a>    measure_clean <span class="sc">%in%</span> <span class="fu">c</span>(measures_primary, measures_perm),</span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a>    age_group <span class="sc">%in%</span> <span class="fu">c</span>(age_primary, age_perm)</span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a>    <span class="at">dentition =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a>      measure_clean <span class="sc">%in%</span> measures_primary <span class="sc">~</span> <span class="st">&quot;Primary&quot;</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a>      measure_clean <span class="sc">%in%</span> measures_perm    <span class="sc">~</span> <span class="st">&quot;Permanent&quot;</span></span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a>    ),</span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a>      <span class="fu">str_detect</span>(measure_clean, <span class="st">&quot;total&quot;</span>)     <span class="sc">~</span> <span class="st">&quot;Total caries&quot;</span>,</span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a>      <span class="fu">str_detect</span>(measure_clean, <span class="st">&quot;untreated&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Untreated caries&quot;</span>,</span>
+<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> measure_clean</span>
+<span id="cb18-23"><a href="#cb18-23" tabindex="-1"></a>    ),</span>
+<span id="cb18-24"><a href="#cb18-24" tabindex="-1"></a>    <span class="at">w =</span> <span class="fu">if_else</span>(<span class="sc">!</span><span class="fu">is.na</span>(se) <span class="sc">&amp;</span> se <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span> <span class="sc">/</span> (se<span class="sc">^</span><span class="dv">2</span>), <span class="dv">1</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" tabindex="-1"></a>  )</span>
+<span id="cb18-26"><a href="#cb18-26" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" tabindex="-1"></a>fit_slope <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb18-28"><a href="#cb18-28" tabindex="-1"></a>  m  <span class="ot">&lt;-</span> <span class="fu">lm</span>(percent <span class="sc">~</span> year_mid, <span class="at">data =</span> df, <span class="at">weights =</span> w)</span>
+<span id="cb18-29"><a href="#cb18-29" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(m)[[<span class="st">&quot;year_mid&quot;</span>]]</span>
+<span id="cb18-30"><a href="#cb18-30" tabindex="-1"></a>  ci <span class="ot">&lt;-</span> <span class="fu">confint</span>(m)[<span class="st">&quot;year_mid&quot;</span>, ]</span>
+<span id="cb18-31"><a href="#cb18-31" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="#cb18-32" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb18-33"><a href="#cb18-33" tabindex="-1"></a>    <span class="at">slope_per_year      =</span> b1,</span>
+<span id="cb18-34"><a href="#cb18-34" tabindex="-1"></a>    <span class="at">slope_per_10yrs     =</span> b1 <span class="sc">*</span> <span class="dv">10</span>,</span>
+<span id="cb18-35"><a href="#cb18-35" tabindex="-1"></a>    <span class="at">slope_10yr_lower    =</span> ci[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">10</span>,</span>
+<span id="cb18-36"><a href="#cb18-36" tabindex="-1"></a>    <span class="at">slope_10yr_upper    =</span> ci[<span class="dv">2</span>] <span class="sc">*</span> <span class="dv">10</span>,</span>
+<span id="cb18-37"><a href="#cb18-37" tabindex="-1"></a>    <span class="at">n_cycles            =</span> <span class="fu">nrow</span>(df),</span>
+<span id="cb18-38"><a href="#cb18-38" tabindex="-1"></a>    <span class="at">first_year_mid      =</span> <span class="fu">min</span>(df<span class="sc">$</span>year_mid),</span>
+<span id="cb18-39"><a href="#cb18-39" tabindex="-1"></a>    <span class="at">last_year_mid       =</span> <span class="fu">max</span>(df<span class="sc">$</span>year_mid)</span>
+<span id="cb18-40"><a href="#cb18-40" tabindex="-1"></a>  )</span>
+<span id="cb18-41"><a href="#cb18-41" tabindex="-1"></a>}</span>
+<span id="cb18-42"><a href="#cb18-42" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" tabindex="-1"></a>slopes <span class="ot">&lt;-</span> slope_dat <span class="sc">%&gt;%</span></span>
+<span id="cb18-44"><a href="#cb18-44" tabindex="-1"></a>  <span class="fu">group_by</span>(dentition, age_group, outcome) <span class="sc">%&gt;%</span></span>
+<span id="cb18-45"><a href="#cb18-45" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">fit_slope</span>(.x)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-46"><a href="#cb18-46" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-47"><a href="#cb18-47" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-48"><a href="#cb18-48" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">&quot;slope&quot;</span>), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>))</span>
+<span id="cb18-49"><a href="#cb18-49" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-50"><a href="#cb18-50" tabindex="-1"></a>  <span class="fu">arrange</span>(dentition, outcome, age_group)</span>
+<span id="cb18-51"><a href="#cb18-51" tabindex="-1"></a></span>
+<span id="cb18-52"><a href="#cb18-52" tabindex="-1"></a>slopes <span class="sc">%&gt;%</span> </span>
+<span id="cb18-53"><a href="#cb18-53" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Estimated linear time trends (slopes) in caries prevalence by dentition, age group, and outcome. Slopes are interpreted as percentage-point change per 10 years.&quot;</span>)</span></code></pre></div>
 <table style="width:100%;">
 <caption>Estimated linear time trends (slopes) in caries prevalence by
 dentition, age group, and outcome. Slopes are interpreted as
@@ -1488,6 +2059,107 @@ mainly by reductions in untreated disease among younger populations.</p>
 </div>
 <div id="sex-differences-in-caries-prevalence" class="section level3">
 <h3>5.5.3 Sex differences in caries prevalence</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="do">## 1) Choose outcome: total caries in permanent teeth</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>target_meas <span class="ot">&lt;-</span> <span class="st">&quot;total_perm&quot;</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>base <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>    <span class="fu">tolower</span>(sex) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>),</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>    measure_clean <span class="sc">==</span> target_meas</span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>  )</span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="do">## 2) Build Male–Female gap dataset for heatmap</span></span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a>male <span class="ot">&lt;-</span> base <span class="sc">%&gt;%</span></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">tolower</span>(sex) <span class="sc">==</span> <span class="st">&quot;male&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a>  <span class="fu">select</span>(age_group, year_mid, <span class="at">percent_M =</span> percent)</span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a>female <span class="ot">&lt;-</span> base <span class="sc">%&gt;%</span></span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">tolower</span>(sex) <span class="sc">==</span> <span class="st">&quot;female&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a>  <span class="fu">select</span>(age_group, year_mid, <span class="at">percent_F =</span> percent)</span>
+<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a>gap <span class="ot">&lt;-</span> male <span class="sc">%&gt;%</span></span>
+<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a>  <span class="fu">inner_join</span>(female, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;age_group&quot;</span>, <span class="st">&quot;year_mid&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-25"><a href="#cb19-25" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-26"><a href="#cb19-26" tabindex="-1"></a>    <span class="at">Gap_abs  =</span> percent_M <span class="sc">-</span> percent_F,   <span class="co"># &gt;0: higher in males</span></span>
+<span id="cb19-27"><a href="#cb19-27" tabindex="-1"></a>    <span class="at">age_group =</span> <span class="fu">gsub</span>(<span class="st">&quot;–|—&quot;</span>, <span class="st">&quot;-&quot;</span>, age_group),</span>
+<span id="cb19-28"><a href="#cb19-28" tabindex="-1"></a>    <span class="at">age_group =</span> <span class="fu">factor</span>(</span>
+<span id="cb19-29"><a href="#cb19-29" tabindex="-1"></a>      age_group,</span>
+<span id="cb19-30"><a href="#cb19-30" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;6-11&quot;</span>,<span class="st">&quot;12-19&quot;</span>,<span class="st">&quot;20-29&quot;</span>,<span class="st">&quot;30-39&quot;</span>,<span class="st">&quot;40-49&quot;</span>,<span class="st">&quot;50-59&quot;</span>,<span class="st">&quot;60-69&quot;</span>)</span>
+<span id="cb19-31"><a href="#cb19-31" tabindex="-1"></a>    )</span>
+<span id="cb19-32"><a href="#cb19-32" tabindex="-1"></a>  )</span>
+<span id="cb19-33"><a href="#cb19-33" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" tabindex="-1"></a>p_heat <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gap, <span class="fu">aes</span>(<span class="at">x =</span> year_mid, <span class="at">y =</span> age_group, <span class="at">fill =</span> Gap_abs)) <span class="sc">+</span></span>
+<span id="cb19-35"><a href="#cb19-35" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-36"><a href="#cb19-36" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
+<span id="cb19-37"><a href="#cb19-37" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Male − Female</span><span class="sc">\n</span><span class="st">(percentage points)&quot;</span>,</span>
+<span id="cb19-38"><a href="#cb19-38" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">&quot;#3182bd&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#de2d26&quot;</span>, <span class="at">midpoint =</span> <span class="dv">0</span></span>
+<span id="cb19-39"><a href="#cb19-39" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-40"><a href="#cb19-40" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty_breaks</span>()) <span class="sc">+</span></span>
+<span id="cb19-41"><a href="#cb19-41" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-42"><a href="#cb19-42" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">&quot;Sex gap in total caries over time&quot;</span>,</span>
+<span id="cb19-43"><a href="#cb19-43" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Positive = higher in males; negative = higher in females&quot;</span>,</span>
+<span id="cb19-44"><a href="#cb19-44" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Survey mid-year&quot;</span>,</span>
+<span id="cb19-45"><a href="#cb19-45" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Age group&quot;</span></span>
+<span id="cb19-46"><a href="#cb19-46" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-47"><a href="#cb19-47" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span>
+<span id="cb19-48"><a href="#cb19-48" tabindex="-1"></a></span>
+<span id="cb19-49"><a href="#cb19-49" tabindex="-1"></a><span class="do">## 3) Latest-year bar chart by age × sex</span></span>
+<span id="cb19-50"><a href="#cb19-50" tabindex="-1"></a>bar <span class="ot">&lt;-</span> base <span class="sc">%&gt;%</span></span>
+<span id="cb19-51"><a href="#cb19-51" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-52"><a href="#cb19-52" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">case_when</span>(</span>
+<span id="cb19-53"><a href="#cb19-53" tabindex="-1"></a>      <span class="fu">tolower</span>(sex) <span class="sc">==</span> <span class="st">&quot;male&quot;</span>   <span class="sc">~</span> <span class="st">&quot;Male&quot;</span>,</span>
+<span id="cb19-54"><a href="#cb19-54" tabindex="-1"></a>      <span class="fu">tolower</span>(sex) <span class="sc">==</span> <span class="st">&quot;female&quot;</span> <span class="sc">~</span> <span class="st">&quot;Female&quot;</span>,</span>
+<span id="cb19-55"><a href="#cb19-55" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> sex</span>
+<span id="cb19-56"><a href="#cb19-56" tabindex="-1"></a>    ),</span>
+<span id="cb19-57"><a href="#cb19-57" tabindex="-1"></a>    <span class="at">age_group =</span> <span class="fu">gsub</span>(<span class="st">&quot;–|—&quot;</span>, <span class="st">&quot;-&quot;</span>, age_group)</span>
+<span id="cb19-58"><a href="#cb19-58" tabindex="-1"></a>  )</span>
+<span id="cb19-59"><a href="#cb19-59" tabindex="-1"></a></span>
+<span id="cb19-60"><a href="#cb19-60" tabindex="-1"></a>latest_year <span class="ot">&lt;-</span> <span class="fu">max</span>(bar<span class="sc">$</span>year_mid, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-61"><a href="#cb19-61" tabindex="-1"></a></span>
+<span id="cb19-62"><a href="#cb19-62" tabindex="-1"></a>latest <span class="ot">&lt;-</span> bar <span class="sc">%&gt;%</span></span>
+<span id="cb19-63"><a href="#cb19-63" tabindex="-1"></a>  <span class="fu">filter</span>(year_mid <span class="sc">==</span> latest_year) <span class="sc">%&gt;%</span></span>
+<span id="cb19-64"><a href="#cb19-64" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-65"><a href="#cb19-65" tabindex="-1"></a>    <span class="at">age_group =</span> <span class="fu">factor</span>(</span>
+<span id="cb19-66"><a href="#cb19-66" tabindex="-1"></a>      age_group,</span>
+<span id="cb19-67"><a href="#cb19-67" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;6-11&quot;</span>,<span class="st">&quot;12-19&quot;</span>,<span class="st">&quot;20-29&quot;</span>,<span class="st">&quot;30-39&quot;</span>,<span class="st">&quot;40-49&quot;</span>,<span class="st">&quot;50-59&quot;</span>,<span class="st">&quot;60-69&quot;</span>)</span>
+<span id="cb19-68"><a href="#cb19-68" tabindex="-1"></a>    )</span>
+<span id="cb19-69"><a href="#cb19-69" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-70"><a href="#cb19-70" tabindex="-1"></a>  <span class="fu">arrange</span>(age_group, sex)</span>
+<span id="cb19-71"><a href="#cb19-71" tabindex="-1"></a></span>
+<span id="cb19-72"><a href="#cb19-72" tabindex="-1"></a><span class="co"># 5) Grouped bar chart: prevalence by age × sex</span></span>
+<span id="cb19-73"><a href="#cb19-73" tabindex="-1"></a>p_age_sex <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(latest,</span>
+<span id="cb19-74"><a href="#cb19-74" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> age_group, <span class="at">y =</span> percent, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb19-75"><a href="#cb19-75" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.7</span>), <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb19-76"><a href="#cb19-76" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb19-77"><a href="#cb19-77" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> ci_lower, <span class="at">ymax =</span> ci_upper),</span>
+<span id="cb19-78"><a href="#cb19-78" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.7</span>),</span>
+<span id="cb19-79"><a href="#cb19-79" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb19-80"><a href="#cb19-80" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-81"><a href="#cb19-81" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-82"><a href="#cb19-82" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">sprintf</span>(<span class="st">&quot;Caries prevalence by age and sex</span><span class="sc">\n</span><span class="st">(%s, latest year = %.0f)&quot;</span>,</span>
+<span id="cb19-83"><a href="#cb19-83" tabindex="-1"></a>                    target_meas, latest_year),</span>
+<span id="cb19-84"><a href="#cb19-84" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age group&quot;</span>,</span>
+<span id="cb19-85"><a href="#cb19-85" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Caries prevalence (%)&quot;</span>,</span>
+<span id="cb19-86"><a href="#cb19-86" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Sex&quot;</span>,</span>
+<span id="cb19-87"><a href="#cb19-87" tabindex="-1"></a>    <span class="at">caption =</span></span>
+<span id="cb19-88"><a href="#cb19-88" tabindex="-1"></a>      <span class="st">&quot;Note: Error bars show 95% CIs from the NHANES summary dataset.</span><span class="sc">\n</span><span class="st">Standard errors were not re-estimated.&quot;</span></span>
+<span id="cb19-89"><a href="#cb19-89" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-90"><a href="#cb19-90" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb19-91"><a href="#cb19-91" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-92"><a href="#cb19-92" tabindex="-1"></a>    <span class="at">plot.title   =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">lineheight =</span> <span class="fl">1.1</span>),</span>
+<span id="cb19-93"><a href="#cb19-93" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb19-94"><a href="#cb19-94" tabindex="-1"></a>    <span class="at">legend.title    =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb19-95"><a href="#cb19-95" tabindex="-1"></a>    <span class="at">legend.text     =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb19-96"><a href="#cb19-96" tabindex="-1"></a>    <span class="at">plot.caption    =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>)</span>
+<span id="cb19-97"><a href="#cb19-97" tabindex="-1"></a>  )</span>
+<span id="cb19-98"><a href="#cb19-98" tabindex="-1"></a></span>
+<span id="cb19-99"><a href="#cb19-99" tabindex="-1"></a><span class="do">## 4) Put the two plots side by side</span></span>
+<span id="cb19-100"><a href="#cb19-100" tabindex="-1"></a>(p_heat <span class="sc">|</span> p_age_sex) <span class="sc">+</span></span>
+<span id="cb19-101"><a href="#cb19-101" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">1.1</span>))</span></code></pre></div>
 <p><img src="master_report_files/figure-html/sex_diff_combined-1.png" width="1152" /></p>
 <p>Sex differences in caries prevalence</p>
 <p>The combined heat map and bar chart indicate that sex differences in
@@ -1510,6 +2182,8 @@ race/ethnicity differences.</strong></p>
 </div>
 <div id="raceethnicity-disparities" class="section level3">
 <h3>5.5.4 Race/ethnicity disparities</h3>
+<pre><code>## `geom_line()`: Each group consists of only one observation.
+## ℹ Do you need to adjust the group aesthetic?</code></pre>
 <p><img src="master_report_files/figure-html/race-1.png" width="960" /></p>
 <p>NHANES data show persistent race/ethnicity disparities in caries
 prevalence among children ages 6–19:</p>
@@ -1566,6 +2240,75 @@ id="alignment-between-ca-utilization-trends-and-national-caries-burden"
 class="section level2">
 <h2>6.1 Alignment between CA utilization trends and national caries
 burden</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>ca_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datasets/clean_ca.csv&quot;</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>ca_child <span class="ot">&lt;-</span> ca_raw <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;CY</span><span class="sc">\\</span><span class="st">s*&quot;</span>, <span class="st">&quot;&quot;</span>, year)),</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>    <span class="at">utilization_rate =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;%&quot;</span>, <span class="st">&quot;&quot;</span>, utilization_rate)) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>    measure <span class="sc">==</span> <span class="st">&quot;Preventive services&quot;</span>,</span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>    age_group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age 6–9&quot;</span>, <span class="st">&quot;Age 6-9&quot;</span>)  </span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a>    <span class="at">util =</span> <span class="fu">sum</span>(users, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sum</span>(denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a>    <span class="at">z =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(util)),</span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a>    <span class="at">series =</span> <span class="st">&quot;CA preventive (z)&quot;</span></span>
+<span id="cb21-24"><a href="#cb21-24" tabindex="-1"></a>  )</span>
+<span id="cb21-25"><a href="#cb21-25" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="#cb21-27" tabindex="-1"></a>nh_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datasets/nhanes_oral_clean.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-28"><a href="#cb21-28" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb21-29"><a href="#cb21-29" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="#cb21-30" tabindex="-1"></a>nh_child <span class="ot">&lt;-</span> nh_raw <span class="sc">%&gt;%</span></span>
+<span id="cb21-31"><a href="#cb21-31" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">gsub</span>(<span class="st">&quot;–|—&quot;</span>, <span class="st">&quot;-&quot;</span>, age_group)) <span class="sc">%&gt;%</span>    </span>
+<span id="cb21-32"><a href="#cb21-32" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb21-33"><a href="#cb21-33" tabindex="-1"></a>    <span class="fu">tolower</span>(sex) <span class="sc">==</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb21-34"><a href="#cb21-34" tabindex="-1"></a>    age_group <span class="sc">==</span> <span class="st">&quot;6-11&quot;</span>,</span>
+<span id="cb21-35"><a href="#cb21-35" tabindex="-1"></a>    measure_clean <span class="sc">==</span> <span class="st">&quot;untreated_primary&quot;</span>   </span>
+<span id="cb21-36"><a href="#cb21-36" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-37"><a href="#cb21-37" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb21-38"><a href="#cb21-38" tabindex="-1"></a>    <span class="at">year  =</span> year_mid,          </span>
+<span id="cb21-39"><a href="#cb21-39" tabindex="-1"></a>    <span class="at">util  =</span> percent <span class="sc">/</span> <span class="dv">100</span>      </span>
+<span id="cb21-40"><a href="#cb21-40" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-41"><a href="#cb21-41" tabindex="-1"></a>  <span class="fu">arrange</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb21-42"><a href="#cb21-42" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-43"><a href="#cb21-43" tabindex="-1"></a>    <span class="at">z =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(util)),</span>
+<span id="cb21-44"><a href="#cb21-44" tabindex="-1"></a>    <span class="at">series =</span> <span class="st">&quot;NHANES untreated (z)&quot;</span></span>
+<span id="cb21-45"><a href="#cb21-45" tabindex="-1"></a>  )</span>
+<span id="cb21-46"><a href="#cb21-46" tabindex="-1"></a></span>
+<span id="cb21-47"><a href="#cb21-47" tabindex="-1"></a>overlay_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ca_child, nh_child)</span>
+<span id="cb21-48"><a href="#cb21-48" tabindex="-1"></a></span>
+<span id="cb21-49"><a href="#cb21-49" tabindex="-1"></a><span class="fu">ggplot</span>(overlay_df, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> z, <span class="at">color =</span> series)) <span class="sc">+</span></span>
+<span id="cb21-50"><a href="#cb21-50" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb21-51"><a href="#cb21-51" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb21-52"><a href="#cb21-52" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb21-53"><a href="#cb21-53" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb21-54"><a href="#cb21-54" tabindex="-1"></a>      <span class="st">&quot;CA preventive (z)&quot;</span>       <span class="ot">=</span> <span class="st">&quot;#1f77b4&quot;</span>,</span>
+<span id="cb21-55"><a href="#cb21-55" tabindex="-1"></a>      <span class="st">&quot;NHANES untreated (z)&quot;</span>    <span class="ot">=</span> <span class="st">&quot;#d62728&quot;</span></span>
+<span id="cb21-56"><a href="#cb21-56" tabindex="-1"></a>    )</span>
+<span id="cb21-57"><a href="#cb21-57" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-58"><a href="#cb21-58" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-59"><a href="#cb21-59" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">&quot;Standardized Trend Comparison (z-score overlay)&quot;</span>,</span>
+<span id="cb21-60"><a href="#cb21-60" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;CA preventive utilization vs NHANES untreated caries (children)&quot;</span>,</span>
+<span id="cb21-61"><a href="#cb21-61" tabindex="-1"></a>    <span class="at">x        =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb21-62"><a href="#cb21-62" tabindex="-1"></a>    <span class="at">y        =</span> <span class="st">&quot;Standardized value (z-score)&quot;</span>,</span>
+<span id="cb21-63"><a href="#cb21-63" tabindex="-1"></a>    <span class="at">color    =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb21-64"><a href="#cb21-64" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-65"><a href="#cb21-65" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb21-66"><a href="#cb21-66" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb21-67"><a href="#cb21-67" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb21-68"><a href="#cb21-68" tabindex="-1"></a>    <span class="at">plot.title      =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb21-69"><a href="#cb21-69" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="master_report_files/figure-html/overlay_ca_nhanes-1.png" width="960" /></p>
 <ul>
 <li><p><strong>California preventive utilization shows a clear upward
@@ -1590,6 +2333,91 @@ id="age-patterns-high-utilization-in-children-vs-high-disease-burden-in-youth"
 class="section level2">
 <h2>6.2 Age patterns: high utilization in children vs high disease
 burden in youth</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>ca <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;datasets/clean_ca.csv&quot;</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>nh <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;datasets/nhanes_oral_clean.csv&quot;</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a>ca_heatmap <span class="ot">&lt;-</span> ca <span class="sc">%&gt;%</span></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>    <span class="at">age_group_std =</span> <span class="fu">str_replace_all</span>(age_group, <span class="st">&quot;–&quot;</span>, <span class="st">&quot;-&quot;</span>),</span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a>    <span class="at">age_group_baseline =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age &lt;1&quot;</span>, <span class="st">&quot;Age 1-2&quot;</span>)          <span class="sc">~</span> <span class="st">&quot;Infant/Toddler&quot;</span>,</span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age 3-5&quot;</span>)                   <span class="sc">~</span> <span class="st">&quot;Early Childhood&quot;</span>,</span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age 6-9&quot;</span>)                   <span class="sc">~</span> <span class="st">&quot;Middle Childhood&quot;</span>,</span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age 10-14&quot;</span>, <span class="st">&quot;Age 15-18&quot;</span>)    <span class="sc">~</span> <span class="st">&quot;Adolescent&quot;</span>,</span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age 19-20&quot;</span>, <span class="st">&quot;Age 21-34&quot;</span>)    <span class="sc">~</span> <span class="st">&quot;Young Adult&quot;</span>,</span>
+<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age 35-44&quot;</span>, <span class="st">&quot;Age 45-64&quot;</span>)    <span class="sc">~</span> <span class="st">&quot;Middle Adult&quot;</span>,</span>
+<span id="cb22-23"><a href="#cb22-23" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Age 65-74&quot;</span>, <span class="st">&quot;Age 75+&quot;</span>)      <span class="sc">~</span> <span class="st">&quot;Older Adult&quot;</span>,</span>
+<span id="cb22-24"><a href="#cb22-24" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb22-25"><a href="#cb22-25" tabindex="-1"></a>    ),</span>
+<span id="cb22-26"><a href="#cb22-26" tabindex="-1"></a>    <span class="at">year_num     =</span> <span class="fu">as.numeric</span>(<span class="fu">str_replace</span>(year, <span class="st">&quot;CY &quot;</span>, <span class="st">&quot;&quot;</span>)),</span>
+<span id="cb22-27"><a href="#cb22-27" tabindex="-1"></a>    <span class="at">util_rate_num =</span> <span class="fu">parse_number</span>(utilization_rate) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb22-28"><a href="#cb22-28" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-29"><a href="#cb22-29" tabindex="-1"></a>  <span class="fu">group_by</span>(year_num, age_group_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb22-30"><a href="#cb22-30" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-31"><a href="#cb22-31" tabindex="-1"></a>    <span class="at">util_rate =</span> <span class="fu">mean</span>(util_rate_num, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-32"><a href="#cb22-32" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb22-33"><a href="#cb22-33" tabindex="-1"></a>  )</span>
+<span id="cb22-34"><a href="#cb22-34" tabindex="-1"></a></span>
+<span id="cb22-35"><a href="#cb22-35" tabindex="-1"></a></span>
+<span id="cb22-36"><a href="#cb22-36" tabindex="-1"></a>nh_heatmap <span class="ot">&lt;-</span> nh <span class="sc">%&gt;%</span></span>
+<span id="cb22-37"><a href="#cb22-37" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;All&quot;</span>, race_ethnicity <span class="sc">==</span> <span class="st">&quot;All&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-38"><a href="#cb22-38" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-39"><a href="#cb22-39" tabindex="-1"></a>    <span class="at">age_group_std =</span> <span class="fu">str_replace_all</span>(age_group, <span class="st">&quot;–&quot;</span>, <span class="st">&quot;-&quot;</span>),</span>
+<span id="cb22-40"><a href="#cb22-40" tabindex="-1"></a>    <span class="at">age_group_baseline =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-41"><a href="#cb22-41" tabindex="-1"></a>      age_group_std <span class="sc">==</span> <span class="st">&quot;2-5&quot;</span>                        <span class="sc">~</span> <span class="st">&quot;Early Childhood&quot;</span>,</span>
+<span id="cb22-42"><a href="#cb22-42" tabindex="-1"></a>      age_group_std <span class="sc">==</span> <span class="st">&quot;6-11&quot;</span>                       <span class="sc">~</span> <span class="st">&quot;Middle Childhood&quot;</span>,</span>
+<span id="cb22-43"><a href="#cb22-43" tabindex="-1"></a>      age_group_std <span class="sc">==</span> <span class="st">&quot;12-19&quot;</span>                      <span class="sc">~</span> <span class="st">&quot;Adolescent&quot;</span>,</span>
+<span id="cb22-44"><a href="#cb22-44" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;20-29&quot;</span>, <span class="st">&quot;30-39&quot;</span>)        <span class="sc">~</span> <span class="st">&quot;Young Adult&quot;</span>,</span>
+<span id="cb22-45"><a href="#cb22-45" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;40-49&quot;</span>, <span class="st">&quot;50-59&quot;</span>)        <span class="sc">~</span> <span class="st">&quot;Middle Adult&quot;</span>,</span>
+<span id="cb22-46"><a href="#cb22-46" tabindex="-1"></a>      age_group_std <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;60-69&quot;</span>, <span class="st">&quot;70 and over&quot;</span>)  <span class="sc">~</span> <span class="st">&quot;Older Adult&quot;</span>,</span>
+<span id="cb22-47"><a href="#cb22-47" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb22-48"><a href="#cb22-48" tabindex="-1"></a>    ),</span>
+<span id="cb22-49"><a href="#cb22-49" tabindex="-1"></a>    <span class="at">prev_num =</span> percent <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb22-50"><a href="#cb22-50" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-51"><a href="#cb22-51" tabindex="-1"></a>  <span class="fu">group_by</span>(survey_years, age_group_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb22-52"><a href="#cb22-52" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-53"><a href="#cb22-53" tabindex="-1"></a>    <span class="at">prevalence =</span> <span class="fu">mean</span>(prev_num, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-54"><a href="#cb22-54" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb22-55"><a href="#cb22-55" tabindex="-1"></a>  )</span>
+<span id="cb22-56"><a href="#cb22-56" tabindex="-1"></a></span>
+<span id="cb22-57"><a href="#cb22-57" tabindex="-1"></a></span>
+<span id="cb22-58"><a href="#cb22-58" tabindex="-1"></a>p_ca <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ca_heatmap,</span>
+<span id="cb22-59"><a href="#cb22-59" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> year_num, <span class="at">y =</span> age_group_baseline, <span class="at">fill =</span> util_rate)) <span class="sc">+</span></span>
+<span id="cb22-60"><a href="#cb22-60" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb22-61"><a href="#cb22-61" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">&quot;C&quot;</span>,</span>
+<span id="cb22-62"><a href="#cb22-62" tabindex="-1"></a>                       <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb22-63"><a href="#cb22-63" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-64"><a href="#cb22-64" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;CA Preventive Service Utilization (Heatmap)&quot;</span>,</span>
+<span id="cb22-65"><a href="#cb22-65" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb22-66"><a href="#cb22-66" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Life Stage&quot;</span>,</span>
+<span id="cb22-67"><a href="#cb22-67" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Utilization&quot;</span></span>
+<span id="cb22-68"><a href="#cb22-68" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-69"><a href="#cb22-69" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span>
+<span id="cb22-70"><a href="#cb22-70" tabindex="-1"></a></span>
+<span id="cb22-71"><a href="#cb22-71" tabindex="-1"></a>p_nh <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nh_heatmap,</span>
+<span id="cb22-72"><a href="#cb22-72" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> survey_years, <span class="at">y =</span> age_group_baseline, <span class="at">fill =</span> prevalence)) <span class="sc">+</span></span>
+<span id="cb22-73"><a href="#cb22-73" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb22-74"><a href="#cb22-74" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">&quot;C&quot;</span>,</span>
+<span id="cb22-75"><a href="#cb22-75" tabindex="-1"></a>                       <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb22-76"><a href="#cb22-76" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-77"><a href="#cb22-77" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;NHANES Untreated Caries (Heatmap)&quot;</span>,</span>
+<span id="cb22-78"><a href="#cb22-78" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Survey Cycle&quot;</span>,</span>
+<span id="cb22-79"><a href="#cb22-79" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Life Stage&quot;</span>,</span>
+<span id="cb22-80"><a href="#cb22-80" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Prevalence&quot;</span></span>
+<span id="cb22-81"><a href="#cb22-81" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-82"><a href="#cb22-82" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb22-83"><a href="#cb22-83" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb22-84"><a href="#cb22-84" tabindex="-1"></a></span>
+<span id="cb22-85"><a href="#cb22-85" tabindex="-1"></a>p_ca <span class="sc">+</span> p_nh</span></code></pre></div>
 <p><img src="master_report_files/figure-html/lifestage_heatmaps-1.png" width="1152" /></p>
 <ul>
 <li><p><strong>California heatmap</strong> shows that preventive service
@@ -1620,11 +2448,48 @@ potential opportunities to rebalance preventive resources.</p>
 class="section level2">
 <h2>6.3 COVID-19 impacts: similar national and state-level
 disruptions</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>ca <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datasets/clean_ca.csv&quot;</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>ca <span class="ot">&lt;-</span> ca <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;CY &quot;</span>, <span class="st">&quot;&quot;</span>, year)),</span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>    <span class="at">utilization_rate =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;%&quot;</span>, <span class="st">&quot;&quot;</span>, utilization_rate)) <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>    <span class="at">users =</span> <span class="fu">as.numeric</span>(users),</span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>    <span class="at">denominator =</span> <span class="fu">as.numeric</span>(denominator),</span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>    <span class="at">covid_period =</span> <span class="fu">ifelse</span>(year <span class="sc">&gt;=</span> <span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a>  )</span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a>its_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a>  utilization_rate <span class="sc">~</span> year <span class="sc">+</span> covid_period <span class="sc">+</span> year<span class="sc">:</span>covid_period,</span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a>  <span class="at">data =</span> ca</span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a>)</span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a><span class="fu">tidy</span>(its_model)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-2.801287e+01","3":"6.827631178","4":"-4.10286791","5":"4.463006e-05"},{"1":"year","2":"1.400026e-02","3":"0.003386494","4":"4.13414534","5":"3.906809e-05"},{"1":"covid_period","2":"8.248134e-01","3":"16.908376223","4":"0.04878135","5":"9.611047e-01"},{"1":"year:covid_period","2":"-4.337102e-04","3":"0.008367904","4":"-0.05183020","5":"9.586759e-01"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>avg_year <span class="ot">&lt;-</span> ca <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_util =</span> <span class="fu">weighted.mean</span>(utilization_rate, denominator, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>avg_year <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, mean_util)) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">color =</span> <span class="st">&quot;#2E86AB&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2020</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;CA Dental Utilization – Interrupted Time Series (COVID-19)&quot;</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Dashed line marks start of COVID in 2020&quot;</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Weighted Utilization Rate&quot;</span></span>
+<span id="cb24-15"><a href="#cb24-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-16"><a href="#cb24-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div>
 <p><img src="master_report_files/figure-html/covid_impact_comparison-1.png" width="960" />
 We estimate the following model:</p>
 <p><span class="math display">\[
