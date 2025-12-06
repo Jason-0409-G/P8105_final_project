@@ -4,6 +4,7 @@ output:
   html_document:
     theme: flatly
     toc: false
+    code_folding: none
 ---
 
 ```{r setup, include=FALSE}
