@@ -1,6 +1,6 @@
 ---
 title: "Trends and Regional Differences in U.S. Dental Caries Burden and Preventive Service Utilization"
-author: "Jian Gao-jg5037"
+author: "Jian Gao(jg5037), Bruce Liu(tl3391), Keyu Pan(kp3127), Malcolm Chen(zc2823)"
 date: "`r Sys.Date()`"
 output:
   html_document:
