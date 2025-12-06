@@ -25,8 +25,14 @@ navbar:
           href: data.html#data-cleaning
 
     - text: "Statistical Analysis"
-      icon: fa-calculator
-      href: statistical_analysis.html
+      icon: fa-chart-bar
+      menu:
+        - text: "California Analysis"
+          href: statistical_analysis.html#California_data_analysis
+        - text: "NHANES Analysis"
+          href: statistical_analysis.html#NHANES_data_analysis
+        - text: "Combined Analysis"
+          href: statistical_analysis.html#Combined_data_analysis
 
     - text: "Conclusion"
       icon: fa-flag-checkered
@@ -38,7 +44,7 @@ navbar:
 
   right:
     - icon: fa-youtube fa-lg
-      href: "#"   # 这里先占位，将来换成真正视频链接
+      href: "#"
     - icon: fa-envelope fa-lg
       href: mailto:jg5037@cumc.columbia.edu
     - icon: fa-github fa-lg
