@@ -558,6 +558,91 @@ After weighting each age group by its eligible population size, the overall age 
 -	Children aged 6–9 show the highest weighted utilization (~42–43%), followed by ages 3–5 and 10–14.
 -	Adolescents (15–18) also have relatively high utilization (~33%).
 -	Adults over 45 have substantially lower utilization (<20%), and infants (<1) use services least.
+
+### 5.2.2 Age-gap inequality trend over time
+We compute utilization gap between highest vs lowest age-groups each year.
+This checks whether age inequality is widening or narrowing.
+```{r age_gap_inequality, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(stringr)
+library(readr)
+
+ca_gap <- readr::read_csv("datasets/clean_ca.csv") %>%
+  mutate(
+    year_num = as.numeric(str_replace(year, "CY\\s*", "")),
+    util_num = readr::parse_number(utilization_rate) / 100,
+    denominator = as.numeric(denominator)
+  ) %>%
+  group_by(year_num, age_group) %>%
+  summarise(
+    mean_util = weighted.mean(util_num, denominator, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+age_gap <- ca_gap %>%
+  group_by(year_num) %>%
+  summarise(
+    max_age = max(mean_util, na.rm = TRUE),
+    min_age = min(mean_util, na.rm = TRUE),
+    gap     = max_age - min_age,
+    .groups = "drop"
+  )
+
+ggplot(age_gap, aes(x = year_num, y = gap)) +
+  geom_line(linewidth = 1.2, color = "#8E44AD") +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(
+    title    = "Age Inequality Gap in Utilization Over Time",
+    subtitle = "Gap = Highest age group's utilization − Lowest age group",
+    x = "Year",
+    y = "Utilization gap"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+The age-based utilization gap in California shows a steady widening throughout the pre-COVID period, rising from roughly 39% in 2013 to a peak of nearly 46% by 2019. This pattern indicates that differences between the highest-utilizing age group (school-aged children) and the lowest-utilizing group (typically infants or older adults) became increasingly pronounced during the years leading up to the pandemic. In 2020, the gap abruptly narrowed to approximately 36%, driven by a disproportionately large decline among age groups that typically have higher utilization. Following this disruption, the inequality gap began to widen again, though it remained below its pre-pandemic peak. Overall, the trend suggests that age-related disparities in dental service use were increasing prior to COVID-19, temporarily compressed during the pandemic, and have since partially re-expanded.
+
+### 5.2.3 Age-specific yearly slope (trend strength)
+```{r age_specific_slopes, message=FALSE, warning=FALSE}
+library(broom)
+
+age_slopes <- ca %>%
+  mutate(
+    year_num = as.numeric(gsub("CY\\s*", "", year)),
+    util_num = readr::parse_number(utilization_rate) / 100
+  ) %>%
+  group_by(age_group) %>%
+  do(tidy(lm(util_num ~ year_num, data = .))) %>%
+  ungroup() %>%
+  filter(term == "year_num") %>%
+  arrange(desc(estimate))
+
+knitr::kable(
+  age_slopes %>%
+    select(age_group, estimate, std.error, statistic, p.value),
+  caption = "Yearly trend slopes by age group"
+)
+```
+
+```{r age_specific_slopes_plot, message=FALSE, warning=FALSE, fig.width=7, fig.height=5}
+age_slopes %>%
+  ggplot(aes(x = reorder(age_group, estimate), y = estimate)) +
+  geom_col() +
+  geom_text(aes(label = round(estimate, 4)),
+            hjust = -0.1, size = 3) +
+  coord_flip() +
+  labs(
+    title = "Strength of yearly trend by age group",
+    x = "Age group",
+    y = "Yearly slope (change in utilization)"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+The yearly trend analysis reveals substantial heterogeneity in the rate of increase in dental service utilization across age groups. The steepest growth is observed among children aged 1–2, whose utilization increased by approximately 0.0169 per year, indicating rapid gains in service engagement for young toddlers. Middle-aged adults (45–64 and 65–74) also show relatively strong upward trends, with yearly increases around 0.010–0.011, suggesting consistent improvement in utilization among older working-age and early senior populations. In contrast, school-aged children (3–14) and adolescents (15–18) exhibit much smaller slope estimates (0.004–0.006), indicating slower growth despite being the highest-utilizing groups overall. Infants (<1 year) display the weakest trend (0.003), reflecting persistently low and only modestly increasing service use. Taken together, these patterns indicate that utilization has been rising across nearly all age groups, but the pace of improvement is disproportionately concentrated among toddlers and middle-aged adults, whereas school-aged children—already starting from high baseline utilization—have experienced comparatively slower incremental gains.
 	
 ## 5.3 Trends by service type
 
@@ -570,11 +655,12 @@ ggplot(measure_year_summary, aes(year, mean_util, color = measure)) +
   geom_line(linewidth = 1.1) +
   geom_point(size = 2) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
-  labs(title = "every serivce average utilization", x = "Year", y = "Mean utilization rate",
+  labs(title = "Every serivce average utilization", x = "Year", y = "Mean utilization rate",
        color = "Service type") +
   theme_minimal() +
   theme(legend.position = "bottom")
 ```
+
 Eight service categories were evaluated from 2013–2023:
 
 - **Dental visits** showed the highest utilization and a consistent upward trend (from ~25.6% to ~34.9%).
@@ -603,7 +689,7 @@ knitr::kable(measure_summary_weighted,
              caption = "Weighted average utilization by service type (2013–2022)")
 ```
 
-```{r service_type_weighted_plot, message=FALSE, warning=FALSE,fig.width=8, fig.height=5 }
+```{r service_type_weighted_plot, message=FALSE, warning=FALSE,fig.width=7, fig.height=4 }
 measure_summary_weighted %>%
   ggplot2::ggplot(ggplot2::aes(x = reorder(measure, weighted_util),
                                y = weighted_util)) +
@@ -619,6 +705,7 @@ measure_summary_weighted %>%
   ) +
   ggplot2::theme_minimal(base_size = 12)
 ```
+
 Weighted averages show that:
 
 - Dental visits have the highest long-run utilization (~32–33%).
